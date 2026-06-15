@@ -60,4 +60,5 @@ Summarize: change name + location, artifacts created (one line each), and: "Plan
 - Do NOT manufacture "out of scope / 후속" deferrals. Only exclude what the user explicitly excluded.
 - Read dependency artifacts before creating the next one.
 - If a change with that name already exists, ask whether to continue it or create a new one.
+- **Superseding an existing plan:** when a new plan replaces an older one (a v2, a rewrite, or a materially better revision), move the OLD change into `openspec/changes/archive/<name>/` so only the current plan stays in the active list (`openspec list`). Do this with a plain folder move (`mv openspec/changes/<old> openspec/changes/archive/<old>`), NOT `openspec archive` — that command is for completed spec-driven changes and would try to promote artifacts into main specs, which is wrong for planning (planning artifacts never become specs). Confirm with the user before moving, and tell them the old plan is preserved under `archive/`, not deleted.
 - Verify each artifact file exists after writing before proceeding.

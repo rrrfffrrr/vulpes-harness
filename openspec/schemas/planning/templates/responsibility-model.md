@@ -1,11 +1,14 @@
-# Responsibility Model (KAOS)
+# Responsibility Model
 
-<!-- Each leaf goal assigned to a responsible agent.
-     Software agents take Requirements; environment agents take Expectations. -->
+<!-- Each leaf goal assigned to exactly one responsible agent.
+     Software agents take Requirements; environment agents take Expectations.
+     Replace every <...>. Delete guidance comments when done. -->
 
 ## Agents
-<!-- Each agent (software component or environment actor) and what it is. -->
+
+- **<Agent>** — <what it is (software component or environment actor)>
 
 ## Responsibility Assignments
-<!-- Agent → the leaf goals it is responsible for.
-     [Agent] is responsible for: [leaf goal], [leaf goal], ... -->
+
+<!-- Every leaf goal owned by exactly one agent — no orphans. -->
+- **<Agent>** is responsible for: <leaf goal id>, <leaf goal id>

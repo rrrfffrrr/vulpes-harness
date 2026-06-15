@@ -2,20 +2,30 @@
 
 <!-- The single sanctioned synthesis of the four models, top (scope/strategic goals) to
      bottom (requirements). Self-contained; reads as current truth. Consolidating model
-     content here is expected (this artifact is exempt from the no-repetition rule). -->
+     content here is expected (exempt from the no-repetition rule).
+     Replace every <...>. Delete guidance comments when done. -->
 
 ## Scope
-<!-- The system boundary: what is in scope and what is explicitly out. -->
+
+<!-- Synthesize from top-level goals + the requirement-vs-expectation split. -->
+**In scope:** <what the system does>
+
+**Out of scope:** <what is left to the environment or deferred>
 
 ## Goals
-<!-- Goal specification top-to-bottom: business/strategic goals down to leaf
-     requirements and expectations. -->
+
+<!-- Goal specification top-to-bottom: strategic goals down to leaf requirements. -->
+- **<G1>: <goal>** — <subgoals / leaves>
 
 ## Glossary
-<!-- Domain terms. -->
+
+- **<term>**: <definition>
 
 ## Responsibilities
-<!-- Which agent is responsible for what. -->
+
+- **<Agent>**: <leaf goals it owns>
 
 ## Behavior
-<!-- Operations and scenarios. -->
+
+<!-- Key invariants and representative operation flows. -->
+- <invariant or flow>

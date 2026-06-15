@@ -1,24 +1,31 @@
-# Goal Model (KAOS)
+# Goal Model
 
 <!-- Semi-formal: natural language + AND/OR structure. No temporal logic.
      Every goal phrased with a pattern keyword: Achieve / Maintain / Avoid / Cease.
-     Leaf goals marked [Requirement] (software) or [Expectation] (environment). -->
+     Replace every <...> below. Delete guidance comments when done. -->
 
 ## Goal Hierarchy
+
 <!-- One or more top-level business goals; no synthetic super-root. Refine to leaves.
-     - G1: Achieve <...>
-       - (AND) G1.1: Maintain <...>
-       - (AND) G1.2: Achieve <...>
-         - (OR) G1.2.a <...> [Requirement] / (OR) G1.2.b <...> [Requirement]
-     Mark each leaf [Requirement] or [Expectation]. -->
+     Mark each leaf [Requirement] (software) or [Expectation] (environment). -->
+- **G1: Achieve <top-level goal>**
+  - (AND) G1.1: Maintain <subgoal — all needed> [Requirement]
+  - (AND) G1.2: Achieve <subgoal>
+    - (OR) G1.2.a <alternative> [Requirement]
+    - (OR) G1.2.b <alternative> [Requirement]
 
 ## Domain Properties
+
 <!-- Facts/laws that hold regardless of the system. -->
+- DP1: <descriptive fact about the environment>
 
 ## Obstacles
-<!-- For each obstacle: the goal it threatens, the obstacle, and the resolution with its
-     kind ∈ {prevent, reduce, mitigate, restore, weaken-goal, substitute-agent}.
-     [Goal] → [Obstacle] → [Resolution] (kind: <kind>) -->
+
+<!-- kind ∈ {prevent, reduce, mitigate, restore, weaken-goal, substitute-agent} -->
+- **[<goal id>] → [Obstacle: <name>]** <condition that violates the goal>
+  → **[Resolution]** <how it is resolved> **(kind: <kind>)**
 
 ## Resolved Conflicts
-<!-- If business requirements conflicted: the conflict and the rule chosen here. Omit if none. -->
+
+<!-- If business requirements conflicted: the conflict and the rule chosen. Omit section if none. -->
+- **<conflict in plain words>:** 채택 규칙 — <the rule chosen here>

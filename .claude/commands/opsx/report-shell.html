@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--
+  OPSX Report shell — fixed skeleton for /opsx:report output.
+  The report command fills the {{PLACEHOLDER}} slots; it does NOT rewrite the CSS or JS below.
+  Self-contained: all CSS/JS inline. Mermaid bundle (if any diagrams) goes in {{MERMAID_BUNDLE}}.
+  Theme: light/dark via data-theme on <html>, toggled by the button; default light.
+-->
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+  :root{
+    --maxw: 960px;                /* report cmd may set 900px for planning */
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,"D2Coding","Nanum Gothic Coding",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Segoe UI",Roboto,sans-serif;
+  }
+  html[data-theme="light"]{
+    --bg:#fbfcfd; --panel:#ffffff; --panel2:#f4f7fa; --ink:#1f2328; --muted:#5b636c;
+    --line:#e2e6ea; --accent:#1f5a8c; --accent2:#2f6b3f; --chip:#f1f4f7;
+    --warn:#9a5b00; --bad:#b3261e; --good:#2f6b3f; --tabbg:#eef1f4;
+  }
+  html[data-theme="dark"]{
+    --bg:#0f1216; --panel:#161b22; --panel2:#1b222c; --ink:#e6edf3; --muted:#9fb0c0;
+    --line:#2a3441; --accent:#4ea1ff; --accent2:#7ee787; --chip:#243041;
+    --warn:#f0a35e; --bad:#ff6b6b; --good:#2ea043; --tabbg:#11161d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:15px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 22px 80px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code,.mono{font-family:var(--mono);font-size:.92em}
+  h1{font-size:24px;margin:.2em 0}
+  h2{font-size:19px;margin:1.4em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+  h3{font-size:16px;margin:1.2em 0 .4em}
+  h3 .muted{font-weight:400;font-size:13px;color:var(--accent2);opacity:.8}
+  table{border-collapse:collapse;width:100%;margin:.6em 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);font-weight:600}
+  blockquote,.callout{margin:.5em 0;padding:.5em .9em;border-left:3px solid var(--accent);background:var(--panel2);border-radius:4px}
+  .chip{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:10px;background:var(--chip);color:var(--accent);margin-left:4px}
+  .chip.req{color:var(--accent2)} .chip.and{color:var(--muted)} .chip.or{color:var(--warn)}
+  pre{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto}
+  pre code{font-family:var(--mono);font-size:12.5px;white-space:pre;color:var(--ink)}
+  /* topbar */
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+  .themebtn{font:inherit;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:5px 11px}
+  /* top region (cover/meta + summary) */
+  .cover{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:16px}
+  .meta{font-size:13px;color:var(--muted);margin-top:6px}
+  .meta b{color:var(--ink)}
+  .role-hint{background:var(--panel2);border:1px dashed var(--line);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:14px}
+  /* tabs (bottom region) */
+  .tabbar{display:flex;flex-wrap:wrap;gap:4px;position:sticky;top:0;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line);z-index:5}
+  .tabbar button{font:inherit;font-size:13px;cursor:pointer;border:1px solid transparent;background:var(--tabbg);color:var(--muted);border-radius:8px 8px 0 0;padding:7px 13px}
+  .tabbar button.active{background:var(--panel);color:var(--ink);border-color:var(--line);border-bottom-color:var(--panel);font-weight:600}
+  .stage{display:none;animation:fade .18s ease}
+  .stage.active{display:block}
+  @keyframes fade{from{opacity:.3}to{opacity:1}}
+  /* diagram dual-tab widget */
+  .dgm{border:1px solid var(--line);border-radius:10px;margin:1em 0;overflow:hidden}
+  .dgm-tabs{display:flex;gap:0;background:var(--panel2);border-bottom:1px solid var(--line)}
+  .dgm-tabs button{font:inherit;font-size:12px;cursor:pointer;border:none;background:transparent;color:var(--muted);padding:6px 14px}
+  .dgm-tabs button.active{color:var(--ink);font-weight:600;box-shadow:inset 0 -2px 0 var(--accent)}
+  .dgm-tabs button.failed{color:var(--bad);cursor:not-allowed}
+  .dgm-pane{display:none;padding:10px 12px}
+  .dgm-pane.active{display:block}
+  .dgm-cap{font-size:12px;color:var(--muted);padding:6px 12px;border-top:1px solid var(--line)}
+  /* diagram navigator (overview + per-group details) — side list inside the artifact tab.
+     Used ONLY when a diagram is split (3+ groups). A non-split diagram uses .dgm directly. */
+  .dgm-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;margin:1em 0;overflow:hidden}
+  .dgm-nav-list{flex:0 0 168px;background:var(--panel2);border-right:1px solid var(--line);padding:8px}
+  .dgm-nav-list button{display:block;width:100%;text-align:left;font:inherit;font-size:13px;cursor:pointer;border:none;background:transparent;color:var(--muted);border-radius:6px;padding:6px 9px;margin-bottom:2px}
+  .dgm-nav-list button.active{background:var(--panel);color:var(--ink);font-weight:600}
+  .dgm-nav-list .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:4px 9px 2px}
+  .dgm-nav-body{flex:1 1 auto;min-width:0}
+  .dgm-view{display:none}
+  .dgm-view.active{display:block}
+  .dgm-view > .dgm{border:none;margin:0}
+  @media (max-width:640px){ .dgm-nav{flex-direction:column} .dgm-nav-list{flex-basis:auto;border-right:none;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px} .dgm-nav-list button{width:auto} .dgm-nav-list .lbl{width:100%} }
+  .noscript-warn{background:var(--panel2);border:1px solid var(--warn);border-radius:8px;padding:12px 16px;color:var(--warn)}
+  footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  @media print{ .tabbar,.themebtn{display:none} .stage{display:block!important} .dgm-pane{display:block!important} .dgm-view{display:block!important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div></div>
+    <button class="themebtn" id="themebtn" type="button">🌓 테마</button>
+  </div>
+
+  <!-- ===== TOP REGION: cover/meta + key summary (always visible) ===== -->
+  <div class="cover">
+    {{COVER_AND_SUMMARY}}
+  </div>
+
+  <noscript>
+    <div class="noscript-warn">JavaScript가 비활성화되어 탭 전환·다이어그램 렌더가 동작하지 않습니다. JavaScript를 켜면 모든 탭과 다이어그램(렌더 실패 시 ASCII)을 볼 수 있습니다.</div>
+  </noscript>
+
+  <!-- ===== BOTTOM REGION: per-stage tabs ===== -->
+  <div class="tabbar" id="tabbar">
+    {{TABBAR_BUTTONS}}   <!-- <button data-stage="goal" class="active">목표 모델</button> ... -->
+  </div>
+
+  {{STAGE_PANELS}}
+  <!-- Each stage panel: <section class="stage active" id="stage-goal"> ...content... </section>
+       (first stage has class "stage active"; the rest just "stage")
+
+     DIAGRAM WIDGET — two forms:
+
+     (a) SINGLE diagram (1–2 groups) — a .dgm with Mermaid + ASCII panes:
+     <div class="dgm">
+       <div class="dgm-tabs"><button data-pane="mermaid" class="active">Mermaid</button><button data-pane="ascii">ASCII</button></div>
+       <div class="dgm-pane active" data-pane="mermaid"><div class="mermaid-src" style="display:none">flowchart LR
+A-->B</div><div class="mermaid-out"></div></div>
+       <div class="dgm-pane" data-pane="ascii"><pre><code>... drawn ASCII art ...</code></pre></div>
+       <div class="dgm-cap">caption</div>
+     </div>
+
+     (b) SPLIT diagram (3+ groups) — a .dgm-nav: side list (Overview/Group A/...) + one .dgm per view.
+         Default view = overview (its button + .dgm-view both get class "active"):
+     <div class="dgm-nav">
+       <div class="dgm-nav-list">
+         <button data-view="ov" class="active">개요</button>
+         <button data-view="g1">Zone A</button>
+         <button data-view="g2">Zone B</button>
+       </div>
+       <div class="dgm-nav-body">
+         <div class="dgm-view active" data-view="ov"><div class="dgm">...overview .dgm-tabs/panes...</div></div>
+         <div class="dgm-view" data-view="g1"><div class="dgm">...group A detail...</div></div>
+         <div class="dgm-view" data-view="g2"><div class="dgm">...group B detail...</div></div>
+       </div>
+     </div>
+  -->
+
+  <footer>{{FOOTER}}</footer>
+</div>
+
+{{MERMAID_BUNDLE}}       <!-- if diagrams: <script>…mermaid.min.js…</script>  else: empty -->
+
+<script>
+(function(){
+  "use strict";
+  /* theme toggle (persist in-session) */
+  var html = document.documentElement, tb = document.getElementById('themebtn');
+  if(tb){ tb.addEventListener('click', function(){
+    html.setAttribute('data-theme', html.getAttribute('data-theme')==='dark'?'light':'dark');
+    if(document.querySelector('.dgm') && typeof renderDiagrams==='function'){ renderDiagrams(); }  /* re-render Mermaid to match the new theme */
+  }); }
+
+  /* stage tabs */
+  var stageBtns = document.querySelectorAll('#tabbar button');
+  var stages = document.querySelectorAll('.stage');
+  function showStage(name){
+    for(var i=0;i<stageBtns.length;i++){ stageBtns[i].classList.toggle('active', stageBtns[i].getAttribute('data-stage')===name); }
+    for(var j=0;j<stages.length;j++){ stages[j].classList.toggle('active', stages[j].id==='stage-'+name); }
+  }
+  for(var k=0;k<stageBtns.length;k++){
+    stageBtns[k].addEventListener('click', function(){
+      var name=this.getAttribute('data-stage'); showStage(name);
+      if(history.replaceState){ history.replaceState(null,'','#stage-'+name); }
+    });
+  }
+  /* deep-link: open stage from hash on load AND on hashchange (so in-page tab links work) */
+  function openFromHash(){
+    var h=(location.hash||'').replace('#stage-','');
+    if(!h) return;
+    for(var i=0;i<stageBtns.length;i++){ if(stageBtns[i].getAttribute('data-stage')===h){ showStage(h); return; } }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
+  /* diagram widget tabs + mermaid render with ASCII fallback */
+  function setPane(w, which){
+    var panes=w.querySelectorAll('.dgm-pane'), btns=w.querySelectorAll('.dgm-tabs button');
+    for(var i=0;i<panes.length;i++){ panes[i].classList.toggle('active', panes[i].getAttribute('data-pane')===which); }
+    for(var j=0;j<btns.length;j++){ btns[j].classList.toggle('active', btns[j].getAttribute('data-pane')===which); }
+  }
+  function markFailed(w){
+    var mb=w.querySelector('.dgm-tabs button[data-pane="mermaid"]');
+    w.setAttribute('data-failed','1');
+    if(mb){ mb.classList.add('failed'); mb.textContent='Mermaid (렌더 불가)'; mb.disabled=true; }
+    setPane(w,'ascii');
+  }
+  document.querySelectorAll('.dgm').forEach(function(w){
+    w.querySelectorAll('.dgm-tabs button').forEach(function(b){
+      b.addEventListener('click', function(){ if(!b.classList.contains('failed')) setPane(w, b.getAttribute('data-pane')); });
+    });
+  });
+
+  /* diagram navigator: side list (overview / per-group detail) inside an artifact tab */
+  function setView(nav, name){
+    var views=nav.querySelectorAll('.dgm-view'), btns=nav.querySelectorAll('.dgm-nav-list button');
+    for(var i=0;i<views.length;i++){ views[i].classList.toggle('active', views[i].getAttribute('data-view')===name); }
+    for(var j=0;j<btns.length;j++){ btns[j].classList.toggle('active', btns[j].getAttribute('data-view')===name); }
+  }
+  document.querySelectorAll('.dgm-nav').forEach(function(nav){
+    nav.querySelectorAll('.dgm-nav-list button').forEach(function(b){
+      b.addEventListener('click', function(){ setView(nav, b.getAttribute('data-view')); });
+    });
+  });
+
+  var dgmRenderSeq = 0;  /* unique render id per pass — re-render (theme switch) must not reuse ids */
+  function renderDiagrams(){
+    var ok = (typeof window.mermaid!=='undefined') && window.mermaid && typeof window.mermaid.render==='function';
+    var widgets = document.querySelectorAll('.dgm');
+    if(!ok){ widgets.forEach(markFailed); return; }
+    try{ window.mermaid.initialize({startOnLoad:false, securityLevel:'loose',
+      theme: html.getAttribute('data-theme')==='dark'?'dark':'default'}); }catch(e){ widgets.forEach(markFailed); return; }
+    var pass = ++dgmRenderSeq;
+    widgets.forEach(function(w, idx){
+      if(w.getAttribute('data-failed')==='1'){ return; }  /* don't retry a permanently-failed widget */
+      var src=w.querySelector('.mermaid-src'); var tgt=w.querySelector('.mermaid-out');
+      if(!src||!tgt){ return; }
+      try{
+        var r=window.mermaid.render('m'+pass+'_'+idx, src.textContent);
+        if(r&&typeof r.then==='function'){ r.then(function(o){ tgt.innerHTML=o.svg; }).catch(function(){ markFailed(w); }); }
+        else if(r&&r.svg){ tgt.innerHTML=r.svg; }
+        else { markFailed(w); }
+      }catch(e){ markFailed(w); }
+    });
+  }
+  if(document.querySelector('.dgm')){
+    if(document.readyState!=='loading') renderDiagrams();
+    else document.addEventListener('DOMContentLoaded', renderDiagrams);
+  }
+})();
+</script>
+</body>
+</html>

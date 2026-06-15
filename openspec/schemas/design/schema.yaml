@@ -1,0 +1,190 @@
+name: design
+version: 1
+description: "Technical architecture design — no implementation/apply step. Builds on a planning change's KAOS/BABOK artifacts. Methodology: Kruchten 4+1 views (logical/process/physical + scenarios) framed as ISO/IEC 42010 viewpoints, structured with arc42 sections, decisions captured as Nygard ADRs, and a BABOK traceability matrix back to the planning goals/operations. Core views are always required; role-specific views (process, data, ml-serving) are CONDITIONAL — recommended from the planning artifacts and confirmed with the user, created only when the system actually has that concern."
+# Authoring principles (all artifacts):
+#  - This is SOLUTION/technical design, one level below planning. Planning answered
+#    What/Why (goals, requirements); design answers How (structure, technology, runtime,
+#    deployment). Do NOT restate planning requirements as prose — reference them by id
+#    (G1.1.1, operation names) and link in design-traceability only.
+#  - NO CODE and NO implementation tasks. Diagrams-as-text (mermaid/ascii), interface
+#    signatures, schemas, and config-level detail are fine; source files are not.
+#  - Every view is a 42010 viewpoint: state which STAKEHOLDERS (roles) and CONCERNS it
+#    frames at the top, so each role can find its own view. The role-to-view map lives in
+#    architecture-overview; individual views do not duplicate it.
+#  - State each fact once. A structural fact belongs to exactly one view. ADRs hold the
+#    rationale; views state the resulting structure, not the deliberation.
+#  - Conditional views: create process-view when there is non-trivial runtime/concurrency,
+#    data-view when there is persistent state/a database, ml-serving-view when there is
+#    model inference. If a concern is absent, OMIT the view — do not create an empty file.
+#  - Prose is plain and direct. Tech stack and version pins are explicit, not vague.
+artifacts:
+  - id: architecture-overview
+    generates: architecture-overview.md
+    description: >-
+      The entry point for every role. Solution strategy, technology stack, architecture
+      style, global constraints, and the ISO/IEC 42010 stakeholder-concern-view map that
+      tells each role which views to read. Lists which conditional views this design includes.
+    template: architecture-overview.md
+    instruction: |
+      Synthesize the top-level technical approach from the planning requirements-document.
+      Cover (arc42 sections 1,3,4): the solution strategy (key architectural decisions in
+      one line each, full rationale deferred to ADRs), the technology stack with explicit
+      choices and version intent, the architecture style (e.g. modular monolith, services,
+      event-driven), and the technical/organizational constraints inherited from planning
+      (e.g. on-premise-only, no cloud).
+      Then build the ISO/IEC 42010 VIEW MAP: a table of stakeholder ROLE -> concerns ->
+      which view(s) that role should read. Cover at least: frontend, backend, data/DBA,
+      infra/DevOps, ML engineer, security/compliance, QA. This map is the single place
+      that links roles to views — no other artifact repeats it.
+      Finally, state WHICH conditional views (process-view, data-view, ml-serving-view)
+      this particular design includes and the one-line reason each was or was not included.
+      Reference planning goals by id where a decision traces to one; do not restate them.
+    requires: []
+
+  - id: logical-view
+    generates: logical-view.md
+    description: >-
+      4+1 Logical View (arc42 section 5 Building Block View). The functional decomposition:
+      components/modules, their responsibilities, and the interfaces between them.
+      Primary readers: frontend and backend engineers.
+    template: logical-view.md
+    instruction: |
+      Build the 4+1 Logical View as a hierarchical building-block decomposition.
+      State the stakeholders (frontend, backend) and concerns this view frames at the top.
+      Decompose the system into containers and components (C4 Container/Component level):
+      each block's responsibility, and the interfaces it exposes/consumes (operation
+      signatures and contracts at the level of name + inputs/outputs + purpose, NOT code).
+      Map components to the planning responsibility-model AGENTS where they correspond,
+      by id — the system-to-be agents become design components.
+      Diagrams as mermaid/ascii. Do not describe deployment (physical) or runtime
+      sequencing (process) here — only static functional structure.
+    requires:
+      - architecture-overview
+
+  - id: process-view
+    generates: process-view.md
+    description: >-
+      4+1 Process View (arc42 section 6 Runtime View). CONDITIONAL — include when there is
+      non-trivial runtime behavior, concurrency, or inter-process communication.
+      Runtime flows, threading/process model, messaging, sequencing. Readers: backend, ML, QA.
+    template: process-view.md
+    instruction: |
+      Build the 4+1 Process View. State stakeholders (backend, ML, QA) and concerns at the top.
+      Describe the runtime/concurrency model (processes, threads, queues, streams) and the
+      key runtime FLOWS as sequences (Given/When/Then or sequence diagrams), each tracing
+      to a planning operation by name. Cover communication style (sync/async), backpressure,
+      timing/latency constraints, and failure/retry behavior for the critical paths.
+      Reference logical-view components by name; do not redefine them.
+      Omit this artifact entirely if the system has no non-trivial runtime concern.
+    requires:
+      - architecture-overview
+      - logical-view
+
+  - id: data-view
+    generates: data-view.md
+    description: >-
+      Data architecture. CONDITIONAL — include when the system has persistent state or a
+      database. Logical schema, ownership, retention, migration, integrity. Readers: DBA, backend.
+    template: data-view.md
+    instruction: |
+      Build the Data View. State stakeholders (DBA, backend) and concerns at the top.
+      Give the logical data model (entities -> tables/collections with key fields and types
+      at a logical level), ownership per component, relationships and integrity rules,
+      indexing/partitioning intent, retention/deletion policy, and migration/versioning
+      approach. Derive entities from the planning object-model by name; do not restate the
+      conceptual model — give the SOLUTION-level schema.
+      Honor planning invariants (e.g. data-minimization, retention windows) explicitly.
+      Omit this artifact entirely if the system has no persistent state.
+    requires:
+      - architecture-overview
+      - logical-view
+
+  - id: ml-serving-view
+    generates: ml-serving-view.md
+    description: >-
+      ML/inference architecture. CONDITIONAL — include when the system performs model
+      inference. Pipeline, model serving, hardware/accelerator resources, model lifecycle.
+      Readers: ML engineers, infra.
+    template: ml-serving-view.md
+    instruction: |
+      Build the ML Serving View. State stakeholders (ML engineer, infra) and concerns at top.
+      Describe the inference pipeline end-to-end (input -> pre-process -> model(s) -> post ->
+      output), each model's role and serving mode (batch/stream/real-time), the accelerator/
+      hardware resource plan, model lifecycle (versioning, update, rollback), and throughput/
+      latency targets. Note any on-premise/edge constraints (no external model APIs, local
+      weights). Trace inference steps to the planning operations they implement by name.
+      Omit this artifact entirely if the system performs no model inference.
+    requires:
+      - architecture-overview
+      - logical-view
+
+  - id: deployment-view
+    generates: deployment-view.md
+    description: >-
+      4+1 Physical View (arc42 section 7 + C4 Deployment). Topology: nodes, networks,
+      infrastructure, and how building blocks map onto them. Readers: DevOps/infra.
+    template: deployment-view.md
+    instruction: |
+      Build the 4+1 Physical/Deployment View. State stakeholders (DevOps, infra) and concerns.
+      Show the deployment topology: nodes/hosts/racks, networks and trust zones, and the
+      mapping of logical-view containers onto physical nodes (a deployment diagram in
+      mermaid/ascii). Cover scaling, redundancy/availability, and infrastructure-level
+      constraints inherited from planning (e.g. on-premise rack, no cloud, network isolation).
+      Reference logical-view containers by name; do not redefine their responsibilities.
+    requires:
+      - architecture-overview
+      - logical-view
+
+  - id: crosscutting-concepts
+    generates: crosscutting-concepts.md
+    description: >-
+      arc42 section 8 Crosscutting Concepts. Concerns that span all views: security, auth,
+      logging, observability, error handling, regulatory compliance. Readers: security + all.
+    template: crosscutting-concepts.md
+    instruction: |
+      Capture concepts that cut across multiple views (arc42 section 8). At minimum: security
+      and access control, authentication/authorization, data protection and encryption,
+      logging/audit, observability, error handling, and regulatory compliance mapping.
+      For a regulated system, map each compliance concept to the planning goals/obstacles it
+      satisfies (by id) and to the governing rule. State the concept and HOW the design
+      realizes it across views; reference the views/components affected by name.
+    requires:
+      - architecture-overview
+      - logical-view
+
+  - id: adr
+    generates: adr.md
+    description: >-
+      Architecture Decision Records (Nygard format). One record per significant decision:
+      context, decision, status, consequences, alternatives. The rationale store for all views.
+    template: adr.md
+    instruction: |
+      Record each significant architecture decision as a Nygard ADR: Title, Status
+      (proposed/accepted/superseded), Context, Decision, Consequences (positive AND
+      negative/trade-offs), and Alternatives considered with why-rejected.
+      Cover every non-obvious choice surfaced in the views (tech stack picks, style,
+      data store, serving mode, topology). Where a decision resolves a planning obstacle
+      or is forced by a planning constraint, reference it by id.
+      Decisions are appended over time and never rewritten — supersede instead.
+    requires:
+      - architecture-overview
+
+  - id: design-traceability
+    generates: design-traceability.md
+    description: >-
+      BABOK RTM for design — links planning goals/operations/agents to design views,
+      components, ADRs, and the role-view coverage. The single place all design linking lives.
+    template: design-traceability.md
+    instruction: |
+      Produce a bidirectional traceability matrix linking the planning layer to the design
+      layer: planning goal/operation/agent (by id) -> design component (logical-view) ->
+      view(s) covering it -> ADR(s) deciding it. Add a role-coverage table confirming every
+      role in the architecture-overview view map has at least one view to read.
+      Note any planning operation with no design component yet (gap) and any included view's
+      stakeholder left without coverage. All design linking lives HERE, not in view prose.
+    requires:
+      - architecture-overview
+      - logical-view
+      - deployment-view
+      - crosscutting-concepts
+      - adr
