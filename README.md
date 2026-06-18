@@ -5,7 +5,6 @@ OpenSpec 기획·개발 워크플로를 위한 재사용 가능한 하네스. �
 기본 `openspec init`이 깔아주는 개발(spec-driven) 워크플로에 더해 다음을 포함한다:
 - **기획(planning) 워크플로** — `opsx:plan` 커맨드 + `planning` 스키마 (KAOS/GORE + BABOK)
 - **기술 설계(design) 워크플로** — `opsx:design` 커맨드 + `design` 스키마 (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR + BABOK RTM)
-- **보고서(report)** — `opsx:report` 커맨드 + 고정 HTML 셸 + 정보구조(IA) 정본. change 산출물을 단일 자기완결 HTML(상단 요약 + 단계별 탭, 다이어그램 작도)로 렌더
 
 planning·design 워크플로 모두 apply(구현) 단계가 없다 — 코드가 아니라 산출물 문서를 만든다.
 
@@ -25,9 +24,6 @@ openspec/schemas/design/        design 스키마 — 기술 설계 전용 (apply
 .claude/commands/opsx/          opsx 슬래시 커맨드
   plan.md                       기획 (planning 스키마)
   design.md                     기술 설계 (design 스키마, planning을 source로)
-  report.md                     보고서 렌더 (planning/design → 단일 HTML)
-  report-shell.html             보고서 고정 셸 (CSS·탭 JS·다이어그램 navigator, 라이트/다크)
-  REPORT-IA.md                  보고서 정보구조 정본 (report.md가 따름)
   propose.md  apply.md  archive.md  explore.md   개발 (spec-driven)
 .claude/skills/openspec-*/      opsx 스킬 (propose / apply / archive / explore)
 ```
@@ -65,12 +61,11 @@ openspec/specs/           (빈 폴더)
 
 이 하네스가 기본 init에 **추가**하는 것:
 
-- `opsx/plan.md`, `opsx/design.md`, `opsx/report.md` — 기획·설계·보고서 커맨드
-- `opsx/report-shell.html`, `opsx/REPORT-IA.md` — 보고서 셸 + 정보구조 정본
+- `opsx/plan.md`, `opsx/design.md` — 기획·설계 커맨드
 - `openspec/schemas/planning/` — planning 스키마 + 7개 산출물 템플릿
 - `openspec/schemas/design/` — design 스키마 + 9개 산출물 템플릿
 
-즉 `openspec init`만으로는 기획·설계·보고서 워크플로가 복원되지 않는다. 이 하네스가 그 차이를 담는다.
+즉 `openspec init`만으로는 기획·설계 워크플로가 복원되지 않는다. 이 하네스가 그 차이를 담는다.
 
 ## 전제조건
 
