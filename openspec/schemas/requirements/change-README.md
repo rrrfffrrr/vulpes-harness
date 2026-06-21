@@ -1,6 +1,6 @@
-# How to read this folder - planning
+# How to read this folder - requirements
 
-This change holds **planning** schema (KAOS/GORE + BABOK) artifacts. The "what and why" - formal requirements. No implementation (apply) step.
+This change holds **requirements** schema (KAOS/GORE + BABOK) artifacts. The "what and why" - formal requirements. No implementation (apply) step.
 
 **Start here ->** [`requirements-document.md`](requirements-document.md) - the single synthesis of the four models. For a quick read, this one is enough.
 
@@ -16,5 +16,5 @@ This change holds **planning** schema (KAOS/GORE + BABOK) artifacts. The "what a
 
 ---
 
-Workflow: **plan -> (gdd/design) -> propose -> apply**
+Workflow: **require -> (gdd/architect) -> propose -> apply**
 Status: `openspec status --change <name>`

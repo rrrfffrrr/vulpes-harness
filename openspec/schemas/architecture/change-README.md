@@ -1,6 +1,6 @@
-# How to read this folder - design
+# How to read this folder - architecture
 
-This change holds **design** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) artifacts - the "how", the technical structure. No implementation (apply) step.
+This change holds **architecture** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) artifacts - the "how", the technical structure. No implementation (apply) step.
 
 **Start here ->** [`architecture-overview.md`](architecture-overview.md) - the role <-> concern <-> view map points each role to the views to read.
 
@@ -14,11 +14,11 @@ This change holds **design** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nyga
 6. `deployment-view.md` - physical topology
 7. `crosscutting-concepts.md` - security / logging / compliance, etc.
 8. `adr.md` - architecture decision records (rationale)
-9. `design-traceability.md` - planning <-> design trace, role coverage
+9. `design-traceability.md` - requirements <-> architecture trace, role coverage
 
 *process / data / ml-serving views exist only when that concern is present.*
 
 ---
 
-Workflow: **plan -> design -> propose -> apply**
+Workflow: **require -> architect -> propose -> apply**
 Status: `openspec status --change <name>`

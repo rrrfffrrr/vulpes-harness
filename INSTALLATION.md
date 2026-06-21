@@ -1,9 +1,9 @@
 # Installation
 
-This harness layers the **plan/gdd/design layer** on top of the base (spec-driven) that `openspec init` installs. Only two trees go into a project:
+This harness layers the **require/gdd/architect layer** on top of the base (spec-driven) that `openspec init` installs. Only two trees go into a project:
 
-- `openspec/schemas/{planning,gdd,design}/` - schemas + templates + `change-README.md`
-- `.claude/commands/opsx/{plan,gdd,design}.md` - opsx slash commands
+- `openspec/schemas/{requirements,gdd,architecture}/` - schemas + templates + `change-README.md`
+- `.claude/commands/opsx/{require,gdd,architect}.md` - opsx slash commands
 
 The base (`propose/apply/archive/explore` commands/skills, spec-driven schema) is not in the harness - `openspec init` creates it, matched to the installed version.
 
@@ -38,30 +38,30 @@ git clone <harness-repo-url> ../vulpes-harness
 bash:
 ```bash
 HARNESS=../vulpes-harness
-cp -r "$HARNESS"/openspec/schemas/planning openspec/schemas/
-cp -r "$HARNESS"/openspec/schemas/gdd      openspec/schemas/
-cp -r "$HARNESS"/openspec/schemas/design   openspec/schemas/
-cp "$HARNESS"/.claude/commands/opsx/plan.md   .claude/commands/opsx/
-cp "$HARNESS"/.claude/commands/opsx/gdd.md    .claude/commands/opsx/
-cp "$HARNESS"/.claude/commands/opsx/design.md .claude/commands/opsx/
+cp -r "$HARNESS"/openspec/schemas/requirements  openspec/schemas/
+cp -r "$HARNESS"/openspec/schemas/gdd           openspec/schemas/
+cp -r "$HARNESS"/openspec/schemas/architecture  openspec/schemas/
+cp "$HARNESS"/.claude/commands/opsx/require.md   .claude/commands/opsx/
+cp "$HARNESS"/.claude/commands/opsx/gdd.md       .claude/commands/opsx/
+cp "$HARNESS"/.claude/commands/opsx/architect.md .claude/commands/opsx/
 ```
 
 PowerShell:
 ```powershell
 $H = "..\vulpes-harness"
-Copy-Item "$H\openspec\schemas\planning","$H\openspec\schemas\gdd","$H\openspec\schemas\design" openspec\schemas\ -Recurse -Force
-Copy-Item "$H\.claude\commands\opsx\plan.md","$H\.claude\commands\opsx\gdd.md","$H\.claude\commands\opsx\design.md" .claude\commands\opsx\ -Force
+Copy-Item "$H\openspec\schemas\requirements","$H\openspec\schemas\gdd","$H\openspec\schemas\architecture" openspec\schemas\ -Recurse -Force
+Copy-Item "$H\.claude\commands\opsx\require.md","$H\.claude\commands\opsx\gdd.md","$H\.claude\commands\opsx\architect.md" .claude\commands\opsx\ -Force
 ```
 
 ### B. symlink - updates flow automatically (Windows needs Developer Mode / admin)
 
 ```bash
-ln -s "$(realpath ../vulpes-harness/openspec/schemas/planning)" openspec/schemas/planning
-ln -s "$(realpath ../vulpes-harness/openspec/schemas/gdd)"      openspec/schemas/gdd
-ln -s "$(realpath ../vulpes-harness/openspec/schemas/design)"   openspec/schemas/design
-ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/plan.md)"   .claude/commands/opsx/plan.md
-ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/gdd.md)"    .claude/commands/opsx/gdd.md
-ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/design.md)" .claude/commands/opsx/design.md
+ln -s "$(realpath ../vulpes-harness/openspec/schemas/requirements)"  openspec/schemas/requirements
+ln -s "$(realpath ../vulpes-harness/openspec/schemas/gdd)"           openspec/schemas/gdd
+ln -s "$(realpath ../vulpes-harness/openspec/schemas/architecture)" openspec/schemas/architecture
+ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/require.md)"   .claude/commands/opsx/require.md
+ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/gdd.md)"       .claude/commands/opsx/gdd.md
+ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/architect.md)" .claude/commands/opsx/architect.md
 ```
 
 ### C. git submodule / subtree
@@ -71,18 +71,18 @@ The whole harness lands at one path, which does not match the `openspec/schemas`
 ## 3. Verify
 
 ```bash
-openspec schemas                 # planning, gdd, design should appear
+openspec schemas                 # requirements, gdd, architecture should appear
 openspec schema validate gdd     # OK: Schema 'gdd' is valid
-ls .claude/commands/opsx         # plan.md gdd.md design.md (+ the 4 base ones)
+ls .claude/commands/opsx         # require.md gdd.md architect.md (+ the 4 base ones)
 ```
 
 ## 4. Use
 
 ```
-/opsx:plan   -> /opsx:gdd or /opsx:design   -> /opsx:propose   -> /opsx:apply
+/opsx:require   -> /opsx:gdd or /opsx:architect   -> /opsx:propose   -> /opsx:apply
 ```
 
-- Change names are fixed as `{program}-{schema}` (e.g. `myapp-plan`). The command asks once for the program name (default = repo folder name).
+- Change names are fixed as `{program}-{schema}` (e.g. `myapp-requirements`). The command asks once for the program name (default = repo folder name).
 - Each change folder's `README.md` is a reading guide auto-copied from the schema's `change-README.md` - do not edit it.
 
 ## 5. Updating

@@ -1,10 +1,10 @@
-name: design
+name: architecture
 version: 1
-description: "Technical architecture design - no implementation/apply step. Builds on a planning change's KAOS/BABOK artifacts. Methodology: Kruchten 4+1 views (logical/process/physical + scenarios) framed as ISO/IEC 42010 viewpoints, structured with arc42 sections, decisions captured as Nygard ADRs, and a BABOK traceability matrix back to the planning goals/operations. Core views are always required; role-specific views (process, data, ml-serving) are CONDITIONAL - recommended from the planning artifacts and confirmed with the user, created only when the system actually has that concern."
+description: "Technical architecture design - no implementation/apply step. Builds on a requirements change's KAOS/BABOK artifacts. Methodology: Kruchten 4+1 views (logical/process/physical + scenarios) framed as ISO/IEC 42010 viewpoints, structured with arc42 sections, decisions captured as Nygard ADRs, and a BABOK traceability matrix back to the requirements goals/operations. Core views are always required; role-specific views (process, data, ml-serving) are CONDITIONAL - recommended from the requirements artifacts and confirmed with the user, created only when the system actually has that concern."
 # Authoring principles (all artifacts):
-#  - This is SOLUTION/technical design, one level below planning. Planning answered
-#    What/Why (goals, requirements); design answers How (structure, technology, runtime,
-#    deployment). Do NOT restate planning requirements as prose - reference them by id
+#  - This is SOLUTION/technical design, one level below requirements. Requirements answered
+#    What/Why (goals, requirements); architecture answers How (structure, technology, runtime,
+#    deployment). Do NOT restate the requirements as prose - reference them by id
 #    (G1.1.1, operation names) and link in design-traceability only.
 #  - NO CODE and NO implementation tasks. Diagrams-as-text (mermaid/ascii), interface
 #    signatures, schemas, and config-level detail are fine; source files are not.
@@ -26,11 +26,11 @@ artifacts:
       tells each role which views to read. Lists which conditional views this design includes.
     template: architecture-overview.md
     instruction: |
-      Synthesize the top-level technical approach from the planning requirements-document.
+      Synthesize the top-level technical approach from the requirements-document.
       Cover (arc42 sections 1,3,4): the solution strategy (key architectural decisions in
       one line each, full rationale deferred to ADRs), the technology stack with explicit
       choices and version intent, the architecture style (e.g. modular monolith, services,
-      event-driven), and the technical/organizational constraints inherited from planning
+      event-driven), and the technical/organizational constraints inherited from requirements
       (e.g. on-premise-only, no cloud).
       Then build the ISO/IEC 42010 VIEW MAP: a table of stakeholder ROLE -> concerns ->
       which view(s) that role should read. Cover at least: frontend, backend, data/DBA,
@@ -38,7 +38,7 @@ artifacts:
       that links roles to views - no other artifact repeats it.
       Finally, state WHICH conditional views (process-view, data-view, ml-serving-view)
       this particular design includes and the one-line reason each was or was not included.
-      Reference planning goals by id where a decision traces to one; do not restate them.
+      Reference requirements goals by id where a decision traces to one; do not restate them.
     requires: []
 
   - id: logical-view
@@ -54,7 +54,7 @@ artifacts:
       Decompose the system into containers and components (C4 Container/Component level):
       each block's responsibility, and the interfaces it exposes/consumes (operation
       signatures and contracts at the level of name + inputs/outputs + purpose, NOT code).
-      Map components to the planning responsibility-model AGENTS where they correspond,
+      Map components to the requirements responsibility-model AGENTS where they correspond,
       by id - the system-to-be agents become design components.
       Diagrams as mermaid/ascii. Do not describe deployment (physical) or runtime
       sequencing (process) here - only static functional structure.
@@ -72,7 +72,7 @@ artifacts:
       Build the 4+1 Process View. State stakeholders (backend, ML, QA) and concerns at the top.
       Describe the runtime/concurrency model (processes, threads, queues, streams) and the
       key runtime FLOWS as sequences (Given/When/Then or sequence diagrams), each tracing
-      to a planning operation by name. Cover communication style (sync/async), backpressure,
+      to a requirements operation by name. Cover communication style (sync/async), backpressure,
       timing/latency constraints, and failure/retry behavior for the critical paths.
       Reference logical-view components by name; do not redefine them.
       Omit this artifact entirely if the system has no non-trivial runtime concern.
@@ -91,9 +91,9 @@ artifacts:
       Give the logical data model (entities -> tables/collections with key fields and types
       at a logical level), ownership per component, relationships and integrity rules,
       indexing/partitioning intent, retention/deletion policy, and migration/versioning
-      approach. Derive entities from the planning object-model by name; do not restate the
+      approach. Derive entities from the requirements object-model by name; do not restate the
       conceptual model - give the SOLUTION-level schema.
-      Honor planning invariants (e.g. data-minimization, retention windows) explicitly.
+      Honor requirements invariants (e.g. data-minimization, retention windows) explicitly.
       Omit this artifact entirely if the system has no persistent state.
     requires:
       - architecture-overview
@@ -112,7 +112,7 @@ artifacts:
       output), each model's role and serving mode (batch/stream/real-time), the accelerator/
       hardware resource plan, model lifecycle (versioning, update, rollback), and throughput/
       latency targets. Note any on-premise/edge constraints (no external model APIs, local
-      weights). Trace inference steps to the planning operations they implement by name.
+      weights). Trace inference steps to the requirements operations they implement by name.
       Omit this artifact entirely if the system performs no model inference.
     requires:
       - architecture-overview
@@ -129,7 +129,7 @@ artifacts:
       Show the deployment topology: nodes/hosts/racks, networks and trust zones, and the
       mapping of logical-view containers onto physical nodes (a deployment diagram in
       mermaid/ascii). Cover scaling, redundancy/availability, and infrastructure-level
-      constraints inherited from planning (e.g. on-premise rack, no cloud, network isolation).
+      constraints inherited from requirements (e.g. on-premise rack, no cloud, network isolation).
       Reference logical-view containers by name; do not redefine their responsibilities.
     requires:
       - architecture-overview
@@ -145,7 +145,7 @@ artifacts:
       Capture concepts that cut across multiple views (arc42 section 8). At minimum: security
       and access control, authentication/authorization, data protection and encryption,
       logging/audit, observability, error handling, and regulatory compliance mapping.
-      For a regulated system, map each compliance concept to the planning goals/obstacles it
+      For a regulated system, map each compliance concept to the requirements goals/obstacles it
       satisfies (by id) and to the governing rule. State the concept and HOW the design
       realizes it across views; reference the views/components affected by name.
     requires:
@@ -163,8 +163,8 @@ artifacts:
       (proposed/accepted/superseded), Context, Decision, Consequences (positive AND
       negative/trade-offs), and Alternatives considered with why-rejected.
       Cover every non-obvious choice surfaced in the views (tech stack picks, style,
-      data store, serving mode, topology). Where a decision resolves a planning obstacle
-      or is forced by a planning constraint, reference it by id.
+      data store, serving mode, topology). Where a decision resolves a requirements obstacle
+      or is forced by a requirements constraint, reference it by id.
       Decisions are appended over time and never rewritten - supersede instead.
     requires:
       - architecture-overview
@@ -172,15 +172,15 @@ artifacts:
   - id: design-traceability
     generates: design-traceability.md
     description: >-
-      BABOK RTM for design - links planning goals/operations/agents to design views,
+      BABOK RTM for design - links requirements goals/operations/agents to design views,
       components, ADRs, and the role-view coverage. The single place all design linking lives.
     template: design-traceability.md
     instruction: |
-      Produce a bidirectional traceability matrix linking the planning layer to the design
-      layer: planning goal/operation/agent (by id) -> design component (logical-view) ->
+      Produce a bidirectional traceability matrix linking the requirements layer to the architecture
+      layer: requirements goal/operation/agent (by id) -> design component (logical-view) ->
       view(s) covering it -> ADR(s) deciding it. Add a role-coverage table confirming every
       role in the architecture-overview view map has at least one view to read.
-      Note any planning operation with no design component yet (gap) and any included view's
+      Note any requirements operation with no design component yet (gap) and any included view's
       stakeholder left without coverage. All design linking lives HERE, not in view prose.
     requires:
       - architecture-overview

@@ -1,4 +1,4 @@
-name: planning
+name: requirements
 version: 1
 description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
 # Authoring principles (all artifacts):
@@ -120,7 +120,7 @@ artifacts:
   - id: requirements-document
     generates: requirements-document.md
     description: >-
-      The KAOS synthesized requirements document - the single final planning artifact.
+      The KAOS synthesized requirements document - the single final requirements artifact.
       Consolidates the four models top-to-bottom: scope, business/strategic goals down to
       requirements, glossary, responsibilities, behavior.
     template: requirements-document.md

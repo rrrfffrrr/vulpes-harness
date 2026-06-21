@@ -1,7 +1,7 @@
 # Overview
 
 <!-- The one-page framing every role reads first. Skimmable: pillars and USPs are one line.
-     If a planning change exists, reference its top-level goals by id instead of restating.
+     If a requirements change exists, reference its top-level goals by id instead of restating.
      Replace every <...>. Delete guidance comments when done. -->
 
 ## Elevator Pitch

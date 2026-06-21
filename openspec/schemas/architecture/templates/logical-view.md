@@ -1,7 +1,7 @@
 # Logical View
 
 <!-- 4+1 Logical / arc42 sec.5 Building Block View. Static functional structure only - no
-     deployment, no runtime sequencing. Map components to planning agents by id.
+     deployment, no runtime sequencing. Map components to requirements agents by id.
      Replace every <...> and example row. Delete guidance comments when done. -->
 
 ## Stakeholders & Concerns
@@ -19,7 +19,7 @@
 
 ### <Component>
 - Responsibility: <what it does>
-- Realizes (planning agent): <agent id, if any>
+- Realizes (requirements agent): <agent id, if any>
 
 ## Interfaces
 

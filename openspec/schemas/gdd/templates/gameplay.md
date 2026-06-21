@@ -1,7 +1,7 @@
 # Gameplay
 
 <!-- How the game PLAYS (not internal systems - that is mechanics). Diagrams for the loop
-     and state transitions. Reference planning goals/operations by id where they define it.
+     and state transitions. Reference requirements goals/operations by id where they define it.
      Replace every <...>. Delete guidance comments when done. -->
 
 ## Core Loop
