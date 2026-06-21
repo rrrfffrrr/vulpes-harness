@@ -1,7 +1,7 @@
 # Architecture Overview
 
 <!-- Entry point for every role. Solution strategy + tech stack + style + constraints,
-     then the ISO/IEC 42010 role-concern-view map. Reference planning by id; do not restate.
+     then the ISO/IEC 42010 role-concern-view map. Reference requirements by id; do not restate.
      Replace every <...> and example row. Delete guidance comments when done. -->
 
 ## Solution Strategy
@@ -21,7 +21,7 @@
 
 ## Constraints
 
-<!-- Technical/organizational constraints inherited from planning. -->
+<!-- Technical/organizational constraints inherited from requirements. -->
 - <constraint>
 
 ## Stakeholder / Concern / View Map (ISO/IEC 42010)

@@ -10,7 +10,7 @@
 
 ## Data Protection & Encryption
 
-<!-- At-rest / in-transit. Honor planning data invariants. -->
+<!-- At-rest / in-transit. Honor requirements data invariants. -->
 - <encryption / data-boundary approach>
 
 ## Logging, Audit & Observability
@@ -24,8 +24,8 @@
 ## Regulatory Compliance Mapping
 
 <!-- For a regulated system. Omit if not regulated. -->
-| Concept | Planning goal/obstacle | Governing rule | How design satisfies |
-|---------|------------------------|----------------|----------------------|
+| Concept | Requirements goal/obstacle | Governing rule | How design satisfies |
+|---------|----------------------------|----------------|----------------------|
 | <concept> | <goal/obstacle id> | <rule> | <how> |
 
 ## Other Concepts

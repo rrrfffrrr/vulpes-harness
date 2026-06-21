@@ -27,5 +27,5 @@
 
 ## Infrastructure Constraints
 
-<!-- Inherited from planning (e.g. on-premise rack, no cloud, network isolation). -->
+<!-- Inherited from requirements (e.g. on-premise rack, no cloud, network isolation). -->
 - <constraint>

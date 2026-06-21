@@ -1,7 +1,7 @@
 # Technical
 
 <!-- Technical frame at GDD altitude - the team-facing summary, NOT detailed architecture
-     (that is the design schema). Reference planning/design by id for specified details.
+     (that is the architecture schema). Reference requirements/architecture by id for specified details.
      Replace every <...>. Delete guidance comments when done. -->
 
 ## Engine & Key Tech

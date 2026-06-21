@@ -1,7 +1,7 @@
 # Mechanics & Systems
 
 <!-- Systems and RULES in detail - not screens (ux-ui) or visuals (art-direction).
-     Reference planning invariants/operations by id; add the player-facing feel/tuning.
+     Reference requirements invariants/operations by id; add the player-facing feel/tuning.
      Replace every <...>. Delete guidance comments when done. -->
 
 ## Systems

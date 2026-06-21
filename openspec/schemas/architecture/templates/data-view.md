@@ -1,7 +1,7 @@
 # Data View
 
 <!-- CONDITIONAL - omit if no persistent state. Solution-level schema, not the conceptual
-     object-model. Derive entities from planning object-model by name. Honor invariants.
+     object-model. Derive entities from requirements object-model by name. Honor invariants.
      Replace every <...> and example row. Delete guidance comments when done. -->
 
 ## Stakeholders & Concerns
@@ -29,5 +29,5 @@
 
 ## Retention & Migration
 
-<!-- Honor planning data-minimization/retention invariants. -->
+<!-- Honor requirements data-minimization/retention invariants. -->
 - <retention/deletion policy; migration/versioning approach>

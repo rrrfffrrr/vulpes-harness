@@ -3,8 +3,8 @@ version: 1
 description: "Game Design Document - the cross-discipline blueprint of the intended game: what it is, how it plays, how it looks and sounds, how it is built and sold. A living document written for the whole team (design, art, audio, engineering, production, business), structured as standard GDD sections from a high-concept overview down to a feature-priority and production scope. Core sections are always required; world/narrative and monetization are CONDITIONAL - included only when the game has that concern. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - A GDD describes the INTENDED GAME - what it is, how it plays, looks, sounds, is built
-#    and sold. It is NOT engineering internals (that is the design schema) and NOT a verbatim
-#    capture of stakeholder requirements (that is the planning schema). Player-facing and
+#    and sold. It is NOT engineering internals (that is the architecture schema) and NOT a verbatim
+#    capture of stakeholder requirements (that is the requirements schema). Player-facing and
 #    team-facing design intent, in plain language any discipline can read.
 #  - Living document: it reflects the current intended game as a single present-tense truth.
 #    No change-history, no process commentary (Git records change).
@@ -16,7 +16,7 @@ description: "Game Design Document - the cross-discipline blueprint of the inten
 #  - Show, don't only tell. Use diagrams/flowcharts/screen-flow/mockups as text
 #    (mermaid/ascii). Reference external mood boards, reference images, and prototypes by LINK
 #    - do not embed binaries or paste long asset dumps.
-#  - If a planning change exists for this game (openspec/changes/*/requirements-document.md),
+#  - If a requirements change exists for this game (openspec/changes/*/requirements-document.md),
 #    REFERENCE its goals/requirements by id (G1.3, BR30, INV8) rather than re-deriving the
 #    formal model. The GDD gives the human-readable, player-facing design on top of it.
 #  - Conditional sections: world-narrative when the game has setting/story/characters;
@@ -40,7 +40,7 @@ artifacts:
       core FANTASY/player experience in one paragraph; and the SCOPE boundary - what the MVP
       / first shippable version includes and what is explicitly out or later.
       Keep it skimmable - this is the framing, not the detail. Each pillar and USP is one line.
-      If a planning change exists, reference its top-level goals by id instead of restating.
+      If a requirements change exists, reference its top-level goals by id instead of restating.
     requires: []
 
   - id: gameplay
@@ -57,7 +57,7 @@ artifacts:
       between-session, including game STATES and transitions, e.g. title -> run -> results);
       PROGRESSION shape at the experience level (early/mid/late game feel); and WIN / LOSE /
       FAIL conditions and DIFFICULTY framing.
-      Use a flow diagram for the core loop and for state transitions. Reference planning
+      Use a flow diagram for the core loop and for state transitions. Reference requirements
       goals/operations by id where they define the loop; do not restate the formal spec.
     requires:
       - overview
@@ -76,7 +76,7 @@ artifacts:
       they balance. State the BALANCING INTENT (target pacing, key tuning values or ranges,
       what should feel scarce vs abundant) - concrete numbers where known, named ranges where
       not.
-      This is rules and systems, NOT screens (ux-ui) or visuals (art-direction). If a planning
+      This is rules and systems, NOT screens (ux-ui) or visuals (art-direction). If a requirements
       object-model/operation-model exists, reference invariants/operations by id rather than
       re-deriving them; add the player-facing tuning and feel the formal model omits.
     requires:
@@ -162,17 +162,17 @@ artifacts:
     description: >-
       The technical frame at GDD altitude. Engine and key tech, target platforms and minimum
       spec, performance targets, save/network/backend approach, third-party dependencies, and
-      build/release intent. Not detailed architecture (that is the design schema).
+      build/release intent. Not detailed architecture (that is the architecture schema).
     template: tech.md
     instruction: |
       State the TECHNICAL frame at design-document altitude (the deep architecture is the
-      design schema's job). Cover: the ENGINE and key tech/libraries with version intent; the
+      architecture schema's job). Cover: the ENGINE and key tech/libraries with version intent; the
       target PLATFORMS and MINIMUM device SPEC; PERFORMANCE targets (frame rate, load times,
       memory/battery budget); SAVE / persistence and NETWORK / backend / cloud approach;
       third-party DEPENDENCIES and services (ads/IAP SDK, analytics, auth); and BUILD / RELEASE
       intent (store targets, certification needs). Note hard technical CONSTRAINTS the game
       must honor.
-      Reference planning/design artifacts by id for anything already specified there rather
+      Reference requirements/architecture artifacts by id for anything already specified there rather
       than restating; keep this to the team-facing technical summary a GDD carries.
     requires:
       - overview

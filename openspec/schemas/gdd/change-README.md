@@ -21,5 +21,5 @@ This change holds **gdd** schema (Game Design Document) artifacts - how the inte
 
 ---
 
-Workflow: **plan -> gdd -> propose -> apply**
+Workflow: **require -> gdd -> propose -> apply**
 Status: `openspec status --change <name>`
