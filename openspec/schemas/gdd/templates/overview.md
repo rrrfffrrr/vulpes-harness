@@ -7,7 +7,7 @@
 ## Elevator Pitch
 
 <!-- Title + one sentence: what the game is, for whom, why it's compelling. -->
-**<title>** — <one-sentence pitch>
+**<title>** - <one-sentence pitch>
 
 ## Genre & Platform
 
@@ -18,7 +18,7 @@
 ## Design Pillars
 
 <!-- 3-5 guiding principles every later decision must serve. One line each. -->
-- <pillar — what it means>
+- <pillar - what it means>
 
 ## Unique Selling Points
 
@@ -33,5 +33,5 @@
 ## Scope (MVP Boundary)
 
 <!-- What the first shippable version includes, and what is explicitly out / later. -->
-- **In (MVP)**: <…>
-- **Out / later**: <…>
+- **In (MVP)**: <...>
+- **Out / later**: <...>

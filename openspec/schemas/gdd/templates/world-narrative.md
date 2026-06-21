@@ -1,6 +1,6 @@
 # World & Narrative
 
-<!-- CONDITIONAL — only if the game has setting/story/characters. Otherwise omit this file.
+<!-- CONDITIONAL - only if the game has setting/story/characters. Otherwise omit this file.
      Fiction in service of pillars and gameplay. Looks live in art-direction, not here.
      Replace every <...>. Delete guidance comments when done. -->
 
@@ -16,13 +16,13 @@
 
 ## Characters
 
-<!-- Role, personality, function — not art. -->
+<!-- Role, personality, function - not art. -->
 ### <character>
-- **Role**: <…>
-- **Personality / function**: <…>
+- **Role**: <...>
+- **Personality / function**: <...>
 
 ## Content / Level Structure
 
-<!-- Worlds, levels, biomes, chapters — how content is organized and paced, and what
+<!-- Worlds, levels, biomes, chapters - how content is organized and paced, and what
      authoring each unit needs. -->
-- <unit — how it's organized, pacing, authoring needs>
+- <unit - how it's organized, pacing, authoring needs>

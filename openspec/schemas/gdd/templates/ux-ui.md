@@ -6,9 +6,9 @@
 
 ## Screen / Menu Flow
 
-<!-- The map: title → menus → game → results → back. -->
+<!-- The map: title -> menus -> game -> results -> back. -->
 ```
-<screen> → <screen> → <screen>
+<screen> -> <screen> -> <screen>
 ```
 
 ## Key Screens
@@ -27,7 +27,7 @@
 <!-- Every input and what it does, per input method. -->
 | Input | Action |
 |-------|--------|
-| <touch/button> | <…> |
+| <touch/button> | <...> |
 
 ## Onboarding / Tutorial
 
@@ -37,4 +37,4 @@
 ## Accessibility
 
 <!-- Text size, colorblind, remap, audio-independent feedback, input assists. -->
-- <…>
+- <...>

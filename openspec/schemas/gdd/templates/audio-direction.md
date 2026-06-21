@@ -7,8 +7,8 @@
 ## Music
 
 <!-- Genre, mood, adaptive/looping needs, key tracks per state/area + reference links. -->
-- **Direction**: <…>
-- **Key tracks**: <track — where it plays>
+- **Direction**: <...>
+- **Key tracks**: <track - where it plays>
 - **References**: <links>
 
 ## Sound Effects
@@ -16,7 +16,7 @@
 <!-- Key SFX the gameplay needs and what each must communicate. -->
 | SFX | Triggered by | Communicates |
 |-----|--------------|--------------|
-| <name> | <mechanic / UI event> | <…> |
+| <name> | <mechanic / UI event> | <...> |
 
 ## Voice & Ambience
 
@@ -26,4 +26,4 @@
 ## Audio's Role in Feel & Feedback
 
 <!-- Which mechanics need audio confirmation, mix priorities, accessibility (no audio-only cues). -->
-- <…>
+- <...>
