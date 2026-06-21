@@ -1,6 +1,6 @@
 # Logical View
 
-<!-- 4+1 Logical / arc42 §5 Building Block View. Static functional structure only — no
+<!-- 4+1 Logical / arc42 sec.5 Building Block View. Static functional structure only - no
      deployment, no runtime sequencing. Map components to planning agents by id.
      Replace every <...> and example row. Delete guidance comments when done. -->
 
@@ -23,6 +23,6 @@
 
 ## Interfaces
 
-| Interface | Provider | Consumer(s) | Inputs → Outputs | Purpose |
+| Interface | Provider | Consumer(s) | Inputs -> Outputs | Purpose |
 |-----------|----------|-------------|------------------|---------|
-| <name> | <component> | <component> | <in → out> | <purpose> |
+| <name> | <component> | <component> | <in -> out> | <purpose> |

@@ -1,6 +1,6 @@
 # Data View
 
-<!-- CONDITIONAL — omit if no persistent state. Solution-level schema, not the conceptual
+<!-- CONDITIONAL - omit if no persistent state. Solution-level schema, not the conceptual
      object-model. Derive entities from planning object-model by name. Honor invariants.
      Replace every <...> and example row. Delete guidance comments when done. -->
 
@@ -17,7 +17,7 @@
 
 ## Ownership
 
-- <component> → <data it owns>
+- <component> -> <data it owns>
 
 ## Integrity & Relationships
 

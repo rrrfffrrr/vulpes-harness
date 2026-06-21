@@ -6,7 +6,7 @@ description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure.
 #    content, NOT word count.
 #  - State each fact once. Within the four KAOS models (goal/object/responsibility/operation)
 #    a fact appears in exactly one model. The requirements-document is the ONE sanctioned
-#    aggregation and restates model content — it is exempt from the no-repetition rule.
+#    aggregation and restates model content - it is exempt from the no-repetition rule.
 #    No other repetition, anywhere.
 #  - No meta/filler, no process commentary, no change-history (Git records change).
 #  - No cross-references between artifacts in prose; linking is the traceability matrix's job.
@@ -15,13 +15,13 @@ description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure.
 #  - Prose is plain and direct. Parentheses are only for a value/identifier/abbreviation
 #    a term needs (kind=entity, < 640px, Owner/Admin/Member) or structural markers
 #    (AND/OR). Do NOT defer essential content into parentheses or pile up bilingual
-#    glosses — if it matters, it is part of the sentence; define a term's gloss once
+#    glosses - if it matters, it is part of the sentence; define a term's gloss once
 #    (in the glossary) and use one form thereafter.
 artifacts:
   - id: business-requirements
     generates: business-requirements.md
     description: >-
-      Raw business requirements — the stakeholder's own statements, preserved verbatim.
+      Raw business requirements - the stakeholder's own statements, preserved verbatim.
       The single source of truth all models derive from.
     template: business-requirements.md
     instruction: |
@@ -30,7 +30,7 @@ artifacts:
       summarize, reorder, or drop detail. Group by topic only for readability.
       Classify each as [Goal] (something the system should achieve) or [Constraint]
       (a fixed choice such as a tech-stack or policy decision).
-      No analysis or design here — just the raw statements and their kind.
+      No analysis or design here - just the raw statements and their kind.
       If two statements conflict, keep BOTH verbatim and mark them as a conflict to be
       resolved in the goal model (do not resolve it here).
     requires: []
@@ -38,7 +38,7 @@ artifacts:
   - id: goal-model
     generates: goal-model.md
     description: >-
-      KAOS goal model — goals refined top-down via AND/OR into leaf goals
+      KAOS goal model - goals refined top-down via AND/OR into leaf goals
       (requirements assigned to the software, expectations assigned to the environment),
       with domain properties and obstacles. Semi-formal (no temporal logic).
     template: goal-model.md
@@ -48,12 +48,12 @@ artifacts:
       AND-refinement (all subgoals needed) / OR-refinement (alternatives) to leaf level.
       Goal IDs encode the refinement kind: a dotted-number suffix (G1.2) marks an
       AND-refined subgoal; a trailing letter (G1.2.a) marks an OR-refined alternative.
-      Phrase every goal with a KAOS pattern keyword — Achieve / Maintain / Avoid / Cease —
+      Phrase every goal with a KAOS pattern keyword - Achieve / Maintain / Avoid / Cease -
       so goals stay goals, not feature bullets.
       Each leaf is a REQUIREMENT (responsibility of the software-to-be) or an EXPECTATION
       (responsibility of an environment agent). Having zero expectations is acceptable for
-      a software-only system — do not invent them.
-      Record DOMAIN PROPERTIES — descriptive facts about the environment assumed true
+      a software-only system - do not invent them.
+      Record DOMAIN PROPERTIES - descriptive facts about the environment assumed true
       regardless of the system (not things the system enforces; those are requirements or
       object-model invariants). Record OBSTACLES
       (conditions that violate a goal); for each obstacle name a resolution and its kind
@@ -67,7 +67,7 @@ artifacts:
   - id: object-model
     generates: object-model.md
     description: >-
-      KAOS object model — the entities, relationships, and attributes referenced by goals,
+      KAOS object model - the entities, relationships, and attributes referenced by goals,
       plus a glossary. Conceptual/requirements-level (what exists and its rules), not
       solution design or a database schema.
     template: object-model.md
@@ -77,7 +77,7 @@ artifacts:
       (with cardinality); invariants; and a glossary of domain terms.
       Cardinality lives only in Relationships. Invariants cover only rules NOT expressible
       as a cardinality (e.g., uniqueness, conditional rules). This is conceptual /
-      requirements-level — what exists and its rules — not solution design or code.
+      requirements-level - what exists and its rules - not solution design or code.
     requires:
       - business-requirements
       - goal-model
@@ -85,7 +85,7 @@ artifacts:
   - id: responsibility-model
     generates: responsibility-model.md
     description: >-
-      KAOS agent/responsibility model — which agent (software component or environment
+      KAOS agent/responsibility model - which agent (software component or environment
       actor) is responsible for each leaf goal (requirement/expectation).
     template: responsibility-model.md
     instruction: |
@@ -99,13 +99,13 @@ artifacts:
   - id: operation-model
     generates: operation-model.md
     description: >-
-      KAOS operation model — leaf goals operationalized into operations with
+      KAOS operation model - leaf goals operationalized into operations with
       pre/post/trigger conditions, and scenarios that exercise them.
     template: operation-model.md
     instruction: |
       Operationalize leaf goals into OPERATIONS, each with pre-condition, post-condition,
       and trigger (semi-formal natural language, no temporal logic). Do NOT restate which
-      agent owns the operation — agent ownership lives in the responsibility model and is
+      agent owns the operation - agent ownership lives in the responsibility model and is
       joined via the traceability matrix. Coverage: at least one nominal scenario per
       operation, plus one scenario per resolved obstacle whose resolution adds runtime
       behavior; for resolutions that change a goal rather than add behavior (weaken-goal,
@@ -120,7 +120,7 @@ artifacts:
   - id: requirements-document
     generates: requirements-document.md
     description: >-
-      The KAOS synthesized requirements document — the single final planning artifact.
+      The KAOS synthesized requirements document - the single final planning artifact.
       Consolidates the four models top-to-bottom: scope, business/strategic goals down to
       requirements, glossary, responsibilities, behavior.
     template: requirements-document.md
@@ -128,11 +128,11 @@ artifacts:
       Consolidate the four models into one coherent, self-contained document, ordered top
       (scope and business/strategic goals) to bottom (requirements). Sections: Scope; Goals
       (goal specification); Glossary; Responsibilities; Behavior. Scope is NOT copied from a
-      model — synthesize it from the top-level goals and the requirement-vs-expectation
+      model - synthesize it from the top-level goals and the requirement-vs-expectation
       (software-vs-environment) split: what the system does (in) and what is left to the
       environment or deferred (out). The other four sections restate model content; this is
       the ONE sanctioned aggregation, exempt from the no-repetition rule. Self-contained,
-      reads as current truth — no cross-references, no change-history.
+      reads as current truth - no cross-references, no change-history.
     requires:
       - goal-model
       - object-model
@@ -142,15 +142,15 @@ artifacts:
   - id: traceability
     generates: traceability.md
     description: >-
-      BABOK requirements traceability matrix (RTM) — a separate artifact linking
-      business requirements ↔ goals ↔ leaf requirements/expectations ↔ agents ↔ operations.
+      BABOK requirements traceability matrix (RTM) - a separate artifact linking
+      business requirements <-> goals <-> leaf requirements/expectations <-> agents <-> operations.
     template: traceability.md
     instruction: |
-      Produce a bidirectional traceability matrix linking: raw business requirements ↔
-      goals ↔ leaf requirements/expectations ↔ responsible agents ↔ operations. Draw the
+      Produce a bidirectional traceability matrix linking: raw business requirements <->
+      goals <-> leaf requirements/expectations <-> responsible agents <-> operations. Draw the
       ids and edges from the models (business-requirements, goal, responsibility, operation),
       not only the synthesis document. The Kind column uses: derive (decomposition),
-      satisfy, depends. Give a rationale (its own column) on the business-requirement→goal
+      satisfy, depends. Give a rationale (its own column) on the business-requirement->goal
       links, including constraint/decision BRs that yield no leaf goal; the other tables use
       Kind only. All linking lives HERE, never in the model prose.
     requires:

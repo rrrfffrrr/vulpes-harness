@@ -6,16 +6,16 @@
 
 ## Objects (Entities)
 
-- **<Entity>** — <what it represents>
+- **<Entity>** - <what it represents>
 
 ## Relationships
 
 <!-- Cardinality lives ONLY here. -->
-- <Entity A> **<cardinality>** <Entity B> — <relationship meaning>
+- <Entity A> **<cardinality>** <Entity B> - <relationship meaning>
 
 ## Attributes
 
-- **<Entity>**: <attribute — meaning>, <attribute — meaning>
+- **<Entity>**: <attribute - meaning>, <attribute - meaning>
 
 ## Invariants
 
