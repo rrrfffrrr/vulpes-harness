@@ -1,6 +1,6 @@
 # Crosscutting Concepts
 
-<!-- arc42 §8. Concerns spanning multiple views. State the concept and HOW the design
+<!-- arc42 sec.8. Concerns spanning multiple views. State the concept and HOW the design
      realizes it across views; reference affected views/components by name.
      Replace every <...> and example row. Delete guidance comments when done. -->
 

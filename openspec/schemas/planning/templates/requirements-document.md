@@ -15,7 +15,7 @@
 ## Goals
 
 <!-- Goal specification top-to-bottom: strategic goals down to leaf requirements. -->
-- **<G1>: <goal>** — <subgoals / leaves>
+- **<G1>: <goal>** - <subgoals / leaves>
 
 ## Glossary
 

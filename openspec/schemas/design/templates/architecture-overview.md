@@ -6,7 +6,7 @@
 
 ## Solution Strategy
 
-<!-- arc42 §4. Key architectural decisions, one line each. Full rationale lives in ADRs. -->
+<!-- arc42 sec.4. Key architectural decisions, one line each. Full rationale lives in ADRs. -->
 - <key decision> (ADR-NNN)
 
 ## Technology Stack
@@ -24,7 +24,7 @@
 <!-- Technical/organizational constraints inherited from planning. -->
 - <constraint>
 
-## Stakeholder · Concern · View Map (ISO/IEC 42010)
+## Stakeholder / Concern / View Map (ISO/IEC 42010)
 
 <!-- The single place roles are linked to views. Every role finds its reading list here. -->
 | Role | Concerns | Views to read |

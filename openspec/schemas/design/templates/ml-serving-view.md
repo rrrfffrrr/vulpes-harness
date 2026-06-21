@@ -1,6 +1,6 @@
 # ML Serving View
 
-<!-- CONDITIONAL — omit if no model inference. Trace inference steps to planning operations
+<!-- CONDITIONAL - omit if no model inference. Trace inference steps to planning operations
      by name. Note on-premise/edge constraints (local weights, no external model APIs).
      Replace every <...> and example row. Delete guidance comments when done. -->
 

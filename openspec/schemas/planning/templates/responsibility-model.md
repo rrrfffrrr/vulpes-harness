@@ -6,9 +6,9 @@
 
 ## Agents
 
-- **<Agent>** — <what it is (software component or environment actor)>
+- **<Agent>** - <what it is (software component or environment actor)>
 
 ## Responsibility Assignments
 
-<!-- Every leaf goal owned by exactly one agent — no orphans. -->
+<!-- Every leaf goal owned by exactly one agent - no orphans. -->
 - **<Agent>** is responsible for: <leaf goal id>, <leaf goal id>

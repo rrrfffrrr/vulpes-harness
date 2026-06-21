@@ -11,4 +11,4 @@
 ## Conflicts
 
 <!-- Pairs of statements that contradict each other. Resolution happens in the goal model. -->
-- <BR vs BR — what conflicts, in plain words>
+- <BR vs BR - what conflicts, in plain words>
