@@ -1,6 +1,6 @@
 # Process View
 
-<!-- 4+1 Process / arc42 §6 Runtime View. CONDITIONAL — omit if no non-trivial runtime/
+<!-- 4+1 Process / arc42 sec.6 Runtime View. CONDITIONAL - omit if no non-trivial runtime/
      concurrency. Reference logical-view components by name; do not redefine them.
      Replace every <...>. Delete guidance comments when done. -->
 

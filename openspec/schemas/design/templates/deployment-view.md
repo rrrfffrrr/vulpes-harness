@@ -1,6 +1,6 @@
 # Deployment View
 
-<!-- 4+1 Physical / arc42 §7 + C4 Deployment. Topology + mapping of logical-view containers
+<!-- 4+1 Physical / arc42 sec.7 + C4 Deployment. Topology + mapping of logical-view containers
      onto nodes. Reference containers by name; do not redefine responsibilities.
      Replace every <...> and example row. Delete guidance comments when done. -->
 
@@ -15,7 +15,7 @@
 <deployment diagram>
 ```
 
-## Container → Node Mapping
+## Container -> Node Mapping
 
 | Container | Node | Notes |
 |-----------|------|-------|
