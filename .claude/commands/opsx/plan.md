@@ -72,7 +72,7 @@ Summarize: change name + location, artifacts created (one line each), and: "Plan
 - Change name is `{program}-plan` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
 - The folder README.md is a verbatim copy of `openspec/schemas/planning/change-README.md` - never hand-write or edit it per project.
 - The user often narrates the plan one line (one message) at a time. RECEIVE each line, reflect it back accurately, and capture it in the artifacts. Do NOT interrupt that flow with "how far should this go / should we stop / scope?" questions. Only ask about a genuine fork in behavior, not to limit work.
-- Do NOT manufacture "out of scope / 후속" deferrals. Only exclude what the user explicitly excluded.
+- Do NOT manufacture "out of scope / later" deferrals. Only exclude what the user explicitly excluded.
 - Read dependency artifacts before creating the next one.
 - **Superseding a plan:** the singleton convention means you normally keep refining the same `{program}-plan`. If the user wants a clean restart that replaces it, move the OLD change into `openspec/changes/archive/<name>/` with a plain folder move (`mv`), NOT `openspec archive` (that promotes artifacts into specs, wrong for planning). Confirm first; tell them the old plan is preserved under `archive/`, not deleted.
 - Verify each artifact file exists after writing before proceeding.

@@ -6,7 +6,7 @@
 
 ## Stakeholders & Concerns
 
-- <roles (e.g. ML engineer, infra)>. 관심사: <concerns this view frames>
+- <roles (e.g. ML engineer, infra)>. Concerns: <concerns this view frames>
 
 ## Inference Pipeline
 

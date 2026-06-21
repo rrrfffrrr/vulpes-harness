@@ -1,25 +1,24 @@
-# 이 폴더 읽는 법 - design
+# How to read this folder - design
 
-**design** 스키마(Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) 산출물입니다.
-"어떻게" - 기술 구조. 구현(apply) 단계는 없습니다.
+This change holds **design** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) artifacts - the "how", the technical structure. No implementation (apply) step.
 
-**여기부터 ->** [`architecture-overview.md`](architecture-overview.md) - 역할<->관심사<->뷰 맵이 직군별 읽을 뷰를 안내.
+**Start here ->** [`architecture-overview.md`](architecture-overview.md) - the role <-> concern <-> view map points each role to the views to read.
 
-**읽는 순서**
+**Reading order:**
 
-1. `architecture-overview.md` - 전략/스택/스타일/제약 + 뷰 맵
-2. `logical-view.md` - 기능 분해(컴포넌트/인터페이스)
-3. `process-view.md` - 런타임/동시성 흐름 *(해당 시)*
-4. `data-view.md` - 데이터 아키텍처 *(해당 시)*
-5. `ml-serving-view.md` - 추론 파이프라인 *(해당 시)*
-6. `deployment-view.md` - 물리 토폴로지
-7. `crosscutting-concepts.md` - 보안/로깅/컴플라이언스 등 횡단 개념
-8. `adr.md` - 아키텍처 결정 기록(근거)
-9. `design-traceability.md` - planning<->design 추적/역할 커버리지
+1. `architecture-overview.md` - strategy / stack / style / constraints + view map
+2. `logical-view.md` - functional decomposition (components / interfaces)
+3. `process-view.md` - runtime / concurrency flows *(if present)*
+4. `data-view.md` - data architecture *(if present)*
+5. `ml-serving-view.md` - inference pipeline *(if present)*
+6. `deployment-view.md` - physical topology
+7. `crosscutting-concepts.md` - security / logging / compliance, etc.
+8. `adr.md` - architecture decision records (rationale)
+9. `design-traceability.md` - planning <-> design trace, role coverage
 
-*process/data/ml-serving 뷰는 해당 관심사가 있을 때만 존재합니다.*
+*process / data / ml-serving views exist only when that concern is present.*
 
 ---
 
-흐름: **plan -> design -> propose -> apply**
-상태 확인: `openspec status --change <이름>`
+Workflow: **plan -> design -> propose -> apply**
+Status: `openspec status --change <name>`
