@@ -28,4 +28,4 @@
 ## Resolved Conflicts
 
 <!-- If business requirements conflicted: the conflict and the rule chosen. Omit section if none. -->
-- **<conflict in plain words>:** 채택 규칙 - <the rule chosen here>
+- **<conflict in plain words>:** Adopted rule - <the rule chosen here>

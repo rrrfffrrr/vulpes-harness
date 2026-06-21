@@ -6,7 +6,7 @@
 
 ## Stakeholders & Concerns
 
-- <roles (e.g. frontend, backend)>. 관심사: <concerns this view frames>
+- <roles (e.g. frontend, backend)>. Concerns: <concerns this view frames>
 
 ## Building Block Decomposition
 

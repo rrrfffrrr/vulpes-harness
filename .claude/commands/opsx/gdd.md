@@ -92,7 +92,7 @@ Summarize: GDD change name + location, which conditional sections were included 
 - State each fact once; each concern in exactly one section. `production` is the only synthesis artifact and may restate features by reference.
 - If a planning change exists, reference its goals/requirements/invariants by id rather than re-deriving the formal model - add the player-facing design on top.
 - The user often narrates the GDD one line (one message) at a time. RECEIVE each line, reflect it back accurately, and capture it in the right section. Do NOT interrupt that flow with scope/stop questions. Only ask about a genuine fork.
-- Do NOT manufacture "out of scope / 후속" deferrals. Only exclude what the user explicitly excluded.
+- Do NOT manufacture "out of scope / later" deferrals. Only exclude what the user explicitly excluded.
 - Omit a conditional section entirely if its concern is absent - never create an empty placeholder.
 - The change does not close. There is no apply step in the gdd schema.
 - Read source planning + dependency GDD artifacts before creating the next one. Verify each file exists after writing.
