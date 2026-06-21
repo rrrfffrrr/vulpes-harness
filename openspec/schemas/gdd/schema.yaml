@@ -1,8 +1,8 @@
 name: gdd
 version: 1
-description: "Game Design Document — the cross-discipline blueprint of the intended game: what it is, how it plays, how it looks and sounds, how it is built and sold. A living document written for the whole team (design, art, audio, engineering, production, business), structured as standard GDD sections from a high-concept overview down to a feature-priority and production scope. Core sections are always required; world/narrative and monetization are CONDITIONAL — included only when the game has that concern. No implementation/apply step."
+description: "Game Design Document - the cross-discipline blueprint of the intended game: what it is, how it plays, how it looks and sounds, how it is built and sold. A living document written for the whole team (design, art, audio, engineering, production, business), structured as standard GDD sections from a high-concept overview down to a feature-priority and production scope. Core sections are always required; world/narrative and monetization are CONDITIONAL - included only when the game has that concern. No implementation/apply step."
 # Authoring principles (all artifacts):
-#  - A GDD describes the INTENDED GAME — what it is, how it plays, looks, sounds, is built
+#  - A GDD describes the INTENDED GAME - what it is, how it plays, looks, sounds, is built
 #    and sold. It is NOT engineering internals (that is the design schema) and NOT a verbatim
 #    capture of stakeholder requirements (that is the planning schema). Player-facing and
 #    team-facing design intent, in plain language any discipline can read.
@@ -12,16 +12,16 @@ description: "Game Design Document — the cross-discipline blueprint of the int
 #    content, NOT word count. Cut filler, not coverage.
 #  - State each fact once. Each concern lives in exactly one section (a mechanic's rules in
 #    mechanics, its UI in ux-ui, its art in art-direction). The production artifact is the ONE
-#    sanctioned synthesis (feature list / scope) and may restate by reference — it is exempt.
+#    sanctioned synthesis (feature list / scope) and may restate by reference - it is exempt.
 #  - Show, don't only tell. Use diagrams/flowcharts/screen-flow/mockups as text
 #    (mermaid/ascii). Reference external mood boards, reference images, and prototypes by LINK
-#    — do not embed binaries or paste long asset dumps.
+#    - do not embed binaries or paste long asset dumps.
 #  - If a planning change exists for this game (openspec/changes/*/requirements-document.md),
 #    REFERENCE its goals/requirements by id (G1.3, BR30, INV8) rather than re-deriving the
 #    formal model. The GDD gives the human-readable, player-facing design on top of it.
 #  - Conditional sections: world-narrative when the game has setting/story/characters;
 #    monetization when the game is commercial (F2P/IAP/ads/premium pricing). If a concern is
-#    absent, OMIT the file — do not create an empty placeholder.
+#    absent, OMIT the file - do not create an empty placeholder.
 #  - Prose is plain and direct. Define a term once (in overview or where introduced) and use
 #    one form thereafter. Version pins and concrete numbers are explicit, not vague.
 artifacts:
@@ -37,9 +37,9 @@ artifacts:
       a one-sentence ELEVATOR PITCH; genre and sub-genre; target PLATFORM(s) and target
       AUDIENCE (who plays this and why); the DESIGN PILLARS (3-5 guiding principles every
       later decision must serve); the UNIQUE SELLING POINTS (what makes it stand out); the
-      core FANTASY/player experience in one paragraph; and the SCOPE boundary — what the MVP
+      core FANTASY/player experience in one paragraph; and the SCOPE boundary - what the MVP
       / first shippable version includes and what is explicitly out or later.
-      Keep it skimmable — this is the framing, not the detail. Each pillar and USP is one line.
+      Keep it skimmable - this is the framing, not the detail. Each pillar and USP is one line.
       If a planning change exists, reference its top-level goals by id instead of restating.
     requires: []
 
@@ -51,10 +51,10 @@ artifacts:
     template: gameplay.md
     instruction: |
       Describe how the game PLAYS, not its internal systems (that is mechanics). Cover: the
-      CORE LOOP (the repeating cycle the player does — show it as a diagram/flow); the
+      CORE LOOP (the repeating cycle the player does - show it as a diagram/flow); the
       MOMENT-TO-MOMENT experience (what a single minute feels like, what the player perceives
-      and decides); the GAME FLOW and SESSION structure (from launch → a play session →
-      between-session, including game STATES and transitions, e.g. title → run → results);
+      and decides); the GAME FLOW and SESSION structure (from launch -> a play session ->
+      between-session, including game STATES and transitions, e.g. title -> run -> results);
       PROGRESSION shape at the experience level (early/mid/late game feel); and WIN / LOSE /
       FAIL conditions and DIFFICULTY framing.
       Use a flow diagram for the core loop and for state transitions. Reference planning
@@ -65,7 +65,7 @@ artifacts:
   - id: mechanics
     generates: mechanics.md
     description: >-
-      The game's systems and rules in detail — every distinct mechanic, the progression
+      The game's systems and rules in detail - every distinct mechanic, the progression
       systems, the in-game economy (resources, sources, sinks), and the balancing intent.
     template: mechanics.md
     instruction: |
@@ -74,7 +74,7 @@ artifacts:
       it feeds the core loop. Cover PROGRESSION systems (levels, unlocks, upgrades, skill
       trees) and the in-game ECONOMY: each resource/currency, its SOURCES and SINKS, and how
       they balance. State the BALANCING INTENT (target pacing, key tuning values or ranges,
-      what should feel scarce vs abundant) — concrete numbers where known, named ranges where
+      what should feel scarce vs abundant) - concrete numbers where known, named ranges where
       not.
       This is rules and systems, NOT screens (ux-ui) or visuals (art-direction). If a planning
       object-model/operation-model exists, reference invariants/operations by id rather than
@@ -86,15 +86,15 @@ artifacts:
   - id: world-narrative
     generates: world-narrative.md
     description: >-
-      CONDITIONAL — include when the game has a setting, story, or characters. The world and
+      CONDITIONAL - include when the game has a setting, story, or characters. The world and
       its fiction: setting and theme, narrative/lore, characters, and the content/level
       structure that delivers them.
     template: world-narrative.md
     instruction: |
       Build the world and fiction. Cover: SETTING and THEME (where/when, tone, mood); the
       NARRATIVE / story arc and how it is delivered (cutscenes, environmental, systemic) if
-      any; CHARACTERS (player avatar, NPCs, antagonists — role, personality, function, not
-      art); and the CONTENT / LEVEL structure (worlds, levels, biomes, chapters — how content
+      any; CHARACTERS (player avatar, NPCs, antagonists - role, personality, function, not
+      art); and the CONTENT / LEVEL structure (worlds, levels, biomes, chapters - how content
       is organized and paced, and what authoring each unit needs).
       Keep fiction in service of the pillars and gameplay; note where story gates or motivates
       mechanics. Reference art-direction for how things LOOK rather than describing visuals
@@ -114,10 +114,10 @@ artifacts:
       pixel, low-poly, hand-painted) with reference/mood-board LINKS; COLOR palette and
       lighting/mood; CHARACTER art direction (silhouette, proportion, readability); ENVIRONMENT
       / world art direction; ANIMATION style and key animation needs; VFX direction; and the
-      UI/HUD ART style (how the interface looks — its layout/flow is ux-ui, not here).
+      UI/HUD ART style (how the interface looks - its layout/flow is ux-ui, not here).
       Show, don't only tell: link references and mockups; describe the rules that keep art
       consistent (resolution, grid, palette limits). Do NOT redefine UI screen flow (ux-ui) or
-      the fiction (world-narrative) — reference them by name.
+      the fiction (world-narrative) - reference them by name.
     requires:
       - overview
 
@@ -130,9 +130,9 @@ artifacts:
     instruction: |
       Define the AUDIO direction for the sound team. Cover: MUSIC direction (genre, mood,
       adaptive/looping needs, key tracks per state/area) with reference LINKS; SOUND EFFECTS
-      (the key SFX the gameplay needs — UI, actions, feedback, and what each must communicate);
+      (the key SFX the gameplay needs - UI, actions, feedback, and what each must communicate);
       VOICE and AMBIENCE if any; and the role audio plays in FEEDBACK and FEEL (which mechanics
-      need audio confirmation, mix priorities, accessibility — e.g. not relying on audio alone).
+      need audio confirmation, mix priorities, accessibility - e.g. not relying on audio alone).
       Tie key SFX to the mechanics/UI events that trigger them by name. Link references rather
       than describing sound in vague adjectives alone.
     requires:
@@ -145,10 +145,10 @@ artifacts:
       layout, the control/input scheme, onboarding/tutorial, and accessibility.
     template: ux-ui.md
     instruction: |
-      Design the UX and UI. Cover: the SCREEN / MENU FLOW as a map (title → menus → game →
-      results → back — a diagram); each KEY SCREEN and its layout and the actions on it (wire
-      mockups as ascii/mermaid, not final art — art style is art-direction); the CONTROL /
-      INPUT scheme (touch/gamepad/keyboard — every input and what it does); ONBOARDING /
+      Design the UX and UI. Cover: the SCREEN / MENU FLOW as a map (title -> menus -> game ->
+      results -> back - a diagram); each KEY SCREEN and its layout and the actions on it (wire
+      mockups as ascii/mermaid, not final art - art style is art-direction); the CONTROL /
+      INPUT scheme (touch/gamepad/keyboard - every input and what it does); ONBOARDING /
       TUTORIAL (how a new player learns the core loop); and ACCESSIBILITY (text size, colorblind,
       remap, audio-independent feedback, input assists).
       Reference the gameplay states and mechanics each screen serves by name; describe LAYOUT
@@ -180,7 +180,7 @@ artifacts:
   - id: monetization
     generates: monetization.md
     description: >-
-      CONDITIONAL — include when the game is commercial. The business model: pricing or F2P,
+      CONDITIONAL - include when the game is commercial. The business model: pricing or F2P,
       IAP / ads / battle-pass, the real-money side of the economy, and retention/LiveOps.
     template: monetization.md
     instruction: |
@@ -200,19 +200,19 @@ artifacts:
   - id: production
     generates: production.md
     description: >-
-      The synthesis for production and business — market positioning, the prioritized feature
+      The synthesis for production and business - market positioning, the prioritized feature
       list (MoSCoW), milestones/roadmap, and risks with a cut list. The single place scope and
       priority are decided; it restates other sections by reference.
     template: production.md
     instruction: |
-      Synthesize the production and business view. Cover: MARKET & POSITIONING — target market,
+      Synthesize the production and business view. Cover: MARKET & POSITIONING - target market,
       key competitors and how this game differs, and the success METRICS / KPIs that define
       "working"; the prioritized FEATURE LIST using MoSCoW (Must / Should / Could / Won't-now),
       drawn from the other sections by reference (do not re-describe each feature, link it);
       the MILESTONES / roadmap (MVP/vertical-slice/alpha/beta/launch with what each contains);
       and RISKS with mitigations and an explicit CUT LIST (what gets dropped first if scope
       slips).
-      This is the ONE synthesis artifact — it may restate features by reference to consolidate
+      This is the ONE synthesis artifact - it may restate features by reference to consolidate
       scope. Keep priorities and milestones concrete and decision-ready.
     requires:
       - overview
