@@ -17,7 +17,7 @@
   ```
 - **엣지**: `stroke="#557" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arr)"`
 - **엣지는 직각(`]` 브래킷)** - 곡선 금지. 모서리/끝은 `stroke-linejoin="round"` + `stroke-linecap="round"`로 둥글게.
-- **되돌이/자기루프**는 대상 노드의 깔끔한 면(예: 상단 중앙)에 부착. 렌더 때문에 없는 노드/상태를 만들지 말 것(모델 진실 우선).
+- **되돌이/자기루프**는 대상 노드의 깔끔한 면(예: 상단 중앙)에 부착. **브래킷 돌출 높이는 최소로 - 노드 행에 바짝 붙인다**(큰 고정 오프셋은 위아래 폭을 비대하게 만든다). 렌더 때문에 없는 노드/상태를 만들지 말 것(모델 진실 우선).
 - **노드 박스**: `rx="6"`, 기본 `fill="#eef2ff" stroke="#557"`, 보조/메뉴류 `fill="#f3f0ff" stroke="#779"`.
 - **노드 텍스트**: `fill="#1a2a55"`(보조 `#33305a`), `text-anchor="middle"`.
 - **엣지 라벨**: `fill="#555"`, `text-anchor="middle"`, **짧게** (상세는 본문 산문에).
