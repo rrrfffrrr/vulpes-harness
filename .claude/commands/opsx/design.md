@@ -35,28 +35,35 @@ This pipeline answers HOW (structure, technology, runtime, deployment); planning
    - Auto-recommend: include **process-view** if there is non-trivial runtime/concurrency/real-time flow; **data-view** if there is persistent state or a database; **ml-serving-view** if the system performs model inference.
    - Present the recommendation (each view: include yes/no + one-line reason) and **ask the user to confirm or adjust** before creating the change. Core views are not negotiable.
 
-3. **Create the design change**
+3. **Determine the change name — `{program}-design`.** The design schema has no apply step and is a **project-level singleton** — normally one technical design per program.
+   - If a `*-design` change already exists, that is this project's design — **continue it** (add/refine artifacts); do not create a second unless the user explicitly wants a separate one.
+   - Otherwise, ask the **program name** once: default to the project/repo directory name (or the source planning program, e.g. `tycoon` from `tycoon-plan`); the user may give a different fixed name. The change name is then `{program}-design`.
+   - To keep multiple parallel designs (e.g. two products in one repo), the user gives distinct program names → `{a}-design`, `{b}-design`.
+
+4. **Create the design change**
    ```bash
-   openspec new change "<name>" --schema design
+   openspec new change "{program}-design" --schema design
    ```
 
-4. **Get the artifact build order**
+5. **Write the folder README (reading guide).** Copy `openspec/schemas/design/change-README.md` to `openspec/changes/{program}-design/README.md`, overwriting the stub `openspec new change` created. This static guide is identical for every design change — copy verbatim, do NOT hand-edit it per project.
+
+6. **Get the artifact build order**
    ```bash
-   openspec status --change "<name>" --json
+   openspec status --change "{program}-design" --json
    ```
    Build in dependency order: `architecture-overview → logical-view → (process/data/ml-serving) → deployment-view → crosscutting-concepts → adr → design-traceability`.
 
-5. **Create artifacts in sequence**
+7. **Create artifacts in sequence**
 
    For each artifact that is `ready`:
-   - Get instructions: `openspec instructions <artifact-id> --change "<name>" --json`
+   - Get instructions: `openspec instructions <artifact-id> --change "{program}-design" --json`
    - Read the relevant source planning files AND any completed dependency design files for context.
    - **For conditional views the user excluded in step 2: do NOT create the file.** Leave it absent — the schema lists it but an omitted view simply stays incomplete, which is correct for "no such concern."
    - Create the artifact using the `template` as structure and the `instruction` as guidance.
    - `context`/`rules` are constraints for YOU — do NOT copy them into the file.
-   - Re-run `openspec status --change "<name>" --json` and continue with the next `ready` artifact.
+   - Re-run `openspec status --change "{program}-design" --json` and continue with the next `ready` artifact.
 
-6. **Show final status**: `openspec status --change "<name>"`
+8. **Show final status**: `openspec status --change "{program}-design"`
 
 **Methodology guidance (apply when filling artifacts)**
 
@@ -81,5 +88,6 @@ Summarize: design change name + location, which conditional views were included 
 - The user often narrates decisions one line (one message) at a time. RECEIVE each line, reflect it back, capture it in the right view/ADR. Do NOT interrupt with scope/stop questions. Only ask about a genuine fork.
 - Omit a conditional view entirely if its concern is absent — never create an empty placeholder.
 - The change does not close. There is no apply step in the design schema.
+- Change name is `{program}-design` (project singleton). Don't invent per-feature names; continue the existing `*-design` unless the user wants a separate program.
+- The folder README.md is a verbatim copy of `openspec/schemas/design/change-README.md` — never hand-write or edit it per project.
 - Read source planning + dependency design artifacts before creating the next one. Verify each file exists after writing.
-- If a change with that name already exists, ask whether to continue it (add/refine artifacts) or create a new one.
