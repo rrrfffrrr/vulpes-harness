@@ -11,7 +11,7 @@ All three have no apply (implementation) step - they produce living documents, n
 
 Documentation diagrams follow [DIAGRAM-STYLE.md](DIAGRAM-STYLE.md) - hand-authored SVG committed to the repo + shared style tokens (size/layout are per-diagram).
 
-> **Prerequisite: run `openspec init` first.** This harness does **not** include the base (spec-driven schema + `propose/apply/archive/explore` commands/skills) - `openspec init` generates those, matched to the installed version. The harness only holds the plan/gdd/design layer that init does not create (avoiding duplication/version drift). So it is not used standalone; it is layered on after init.
+> **Prerequisite: run `openspec init` first.** This harness does **not** include the base (spec-driven schema + `propose/apply/archive/explore` commands/skills) - `openspec init` generates those, matched to the installed version. The harness only holds the plan/gdd/design layer that init does not create (avoiding duplication and version drift). So it is not used standalone; you layer it on after running init.
 
 ## Workflow
 
@@ -22,7 +22,7 @@ openspec init                          # installs base (spec-driven)
 ```
 
 - **plan** = the common first stage for any project (formal requirements).
-- **gdd / design** = the per-project middle artifacts. gdd = games, design = technical structure (common, games included). One project may have both.
+- **gdd / design** = the per-project middle artifacts. gdd = games, design = technical structure (used by any software, games included). One project may have both.
 - **propose / apply** = the spec-driven development stages that init provides.
 
 ## Layout
@@ -71,7 +71,7 @@ business-requirements
           -> traceability
 ```
 
-A new requirement is preserved verbatim as the next `BR<n>` in `business-requirements.md`, then propagated traceably to every affected artifact.
+A new requirement is preserved verbatim as the next `BR<n>` in `business-requirements.md`, then traced through to every affected artifact.
 
 ## Goal ID convention
 

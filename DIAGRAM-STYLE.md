@@ -1,10 +1,10 @@
 # SVG Diagram Style
 
-Documentation diagrams are **hand-authored SVG committed to the repo** and embedded via `<img>`. Auto-layout engines (mermaid, D2, Graphviz, etc.) **cannot control edge attachment/layout and have limited theming** — all were evaluated, all share the same problem. So "must-look-good" diagrams are drawn by these rules, not delegated to an engine. Quick drafts / simple flows may use mermaid.
+Documentation diagrams are **hand-authored SVG committed to the repo** and embedded via `<img>`. Auto-layout engines (mermaid, D2, Graphviz, etc.) **cannot control edge attachment or layout and offer limited theming** - we evaluated them all and they hit the same wall. So "must-look-good" diagrams are drawn by these rules, not delegated to an engine. Quick drafts / simple flows may use mermaid.
 
 > GitHub blocks inline `<svg>` in Markdown, so **commit the diagram as a .svg file** and embed it as an image. Then it renders on GitHub/GitLab/VS Code alike.
 
-> **viewBox fits the content tightly (important)**: set `viewBox` (`minX minY W H`; origin need not be 0) to the actual content bounds — accounting for text ascenders/descenders, arrow markers, and `stroke` width — with only the **minimum safe margin of 4px** to avoid clipping. No generous margins: at a fixed display width (`width=NN%`), large margins render the content smaller and **hurt legibility**. Content bounds differ per diagram, so viewBox/size/layout **cannot be common** (per-diagram).
+> **viewBox fits the content tightly (important)**: set `viewBox` (`minX minY W H`; the origin need not be 0) to the actual content bounds (accounting for text ascenders/descenders, arrow markers, and `stroke` width), leaving only the **minimum safe margin of 4px** to avoid clipping. No generous margins: at a fixed display width (`width=NN%`), large margins render the content smaller and **hurt legibility**. Content bounds differ per diagram, so viewBox/size/layout **cannot be common** (per-diagram).
 
 ## Fixed - shared style tokens (identical across all diagrams)
 
@@ -17,7 +17,7 @@ Documentation diagrams are **hand-authored SVG committed to the repo** and embed
   ```
 - **Edges**: `stroke="#557" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arr)"`
 - **Edges are orthogonal (`]` brackets)** - no curves. Round the corners/ends with `stroke-linejoin="round"` + `stroke-linecap="round"`.
-- **Return/self-loop** attaches to a clean node face (e.g. top center). **Keep bracket protrusion minimal - hug the node row** (a large fixed offset bloats vertical size). Never invent a node/state just to make it render (model truth first).
+- **Return/self-loop** attaches to a clean node face (e.g. top center). **Keep bracket protrusion minimal - hug the node row** (a large fixed offset wastes vertical space). Never invent a node/state just to make it render (model truth first).
 - **Node box**: `rx="6"`, primary `fill="#eef2ff" stroke="#557"`, secondary/menu `fill="#f3f0ff" stroke="#779"`.
 - **Node text**: `fill="#1a2a55"` (secondary `#33305a`), `text-anchor="middle"`.
 - **Edge labels**: `fill="#555"`, `text-anchor="middle"`, **short** (detail goes in prose).
