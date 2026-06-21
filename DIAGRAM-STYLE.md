@@ -4,6 +4,8 @@
 
 > GitHub은 마크다운 내 인라인 `<svg>`를 막으므로 **반드시 .svg 파일로 커밋**하고 이미지로 임베드한다. 그러면 GitHub/GitLab/VS Code 어디서나 렌더된다.
 
+> **잘림 방지 (중요)**: `viewBox`는 모든 요소를 충분한 여백과 함께 감싸야 한다 - 텍스트의 ascender, 화살표 마커, `stroke-width`까지 고려해 가장자리에 **~12px 이상 패딩**을 둔다. 라벨/도형을 `viewBox` 경계(`0` 또는 `W`/`H`)에 붙이지 말 것. (상단 라벨을 `y`가 0에 가깝게 두면 윗부분이 잘린다.)
+
 ## 고정 - 공통 스타일 토큰 (모든 다이어그램 동일)
 
 - **루트**: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" width="W" height="H" font-family="sans-serif" font-size="13">`
