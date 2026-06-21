@@ -6,7 +6,7 @@
 
 ## Stakeholders & Concerns
 
-- <roles (e.g. DBA, backend)>. 관심사: <concerns this view frames>
+- <roles (e.g. DBA, backend)>. Concerns: <concerns this view frames>
 
 ## Logical Data Model
 

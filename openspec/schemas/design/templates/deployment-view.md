@@ -6,7 +6,7 @@
 
 ## Stakeholders & Concerns
 
-- <roles (e.g. DevOps, infra, hardware)>. 관심사: <concerns this view frames>
+- <roles (e.g. DevOps, infra, hardware)>. Concerns: <concerns this view frames>
 
 ## Topology
 

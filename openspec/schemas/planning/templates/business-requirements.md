@@ -6,7 +6,7 @@
 
 ## BR1: <topic>  [Goal | Constraint]
 > "<verbatim statement>"
-> 결정: "<verbatim decision or clarification, if any>"
+> Decision: "<verbatim decision or clarification, if any>"
 
 ## Conflicts
 

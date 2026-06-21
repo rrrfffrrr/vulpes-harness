@@ -1,21 +1,20 @@
-# 이 폴더 읽는 법 - planning
+# How to read this folder - planning
 
-**planning** 스키마(KAOS/GORE + BABOK) 산출물입니다.
-"무엇을/왜" - 정형 요구를 모읍니다. 구현(apply) 단계는 없습니다.
+This change holds **planning** schema (KAOS/GORE + BABOK) artifacts. The "what and why" - formal requirements. No implementation (apply) step.
 
-**여기부터 ->** [`requirements-document.md`](requirements-document.md) - 네 모델을 종합한 단일 진실. 빠르게 보려면 이것만.
+**Start here ->** [`requirements-document.md`](requirements-document.md) - the single synthesis of the four models. For a quick read, this one is enough.
 
-**읽는 순서**
+**Reading order (for humans):**
 
-1. `requirements-document.md` - 종합 (Scope/Goals/Glossary/Responsibilities/Behavior)
-2. `business-requirements.md` - 이해관계자 원문 요구(BR) 보존
-3. `goal-model.md` - 목표 트리(AND/OR)/도메인 속성/장애/해소
-4. `object-model.md` - 개체/관계/불변식(INV)
-5. `responsibility-model.md` - leaf 목표별 책임 주체
-6. `operation-model.md` - 연산(pre/post/trigger)/시나리오
-7. `traceability.md` - BR<->목표<->책임<->연산 추적
+1. `requirements-document.md` - synthesis (Scope / Goals / Glossary / Responsibilities / Behavior)
+2. `business-requirements.md` - stakeholder statements (BR), verbatim
+3. `goal-model.md` - goal tree (AND/OR), domain properties, obstacles + resolutions
+4. `object-model.md` - entities, relationships, invariants (INV)
+5. `responsibility-model.md` - the agent responsible for each leaf goal
+6. `operation-model.md` - operations (pre/post/trigger), scenarios
+7. `traceability.md` - BR <-> goal <-> leaf <-> agent <-> operation matrix
 
 ---
 
-흐름: **plan -> (gdd/design) -> propose -> apply**
-상태 확인: `openspec status --change <이름>`
+Workflow: **plan -> (gdd/design) -> propose -> apply**
+Status: `openspec status --change <name>`

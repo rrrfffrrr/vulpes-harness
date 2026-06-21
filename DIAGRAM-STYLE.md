@@ -1,48 +1,48 @@
-# SVG 다이어그램 스타일
+# SVG Diagram Style
 
-문서용 다이어그램은 **손수 작성한 SVG를 repo에 커밋**하고 `<img>`로 임베드한다. 자동 레이아웃 엔진(mermaid, D2, Graphviz 등)은 **엣지 부착/레이아웃을 제어할 수 없고 테마가 제한적**이다 - 실사용 평가에서 모두 동일 문제였다. 그래서 "잘 보여야 하는" 다이어그램은 엔진에 맡기지 않고 이 규칙으로 직접 그린다. 빠른 초안/단순 흐름은 mermaid도 가능.
+Documentation diagrams are **hand-authored SVG committed to the repo** and embedded via `<img>`. Auto-layout engines (mermaid, D2, Graphviz, etc.) **cannot control edge attachment/layout and have limited theming** — all were evaluated, all share the same problem. So "must-look-good" diagrams are drawn by these rules, not delegated to an engine. Quick drafts / simple flows may use mermaid.
 
-> GitHub은 마크다운 내 인라인 `<svg>`를 막으므로 **반드시 .svg 파일로 커밋**하고 이미지로 임베드한다. 그러면 GitHub/GitLab/VS Code 어디서나 렌더된다.
+> GitHub blocks inline `<svg>` in Markdown, so **commit the diagram as a .svg file** and embed it as an image. Then it renders on GitHub/GitLab/VS Code alike.
 
-> **viewBox는 콘텐츠에 타이트하게 (중요)**: `viewBox`(`minX minY W H`, 원점은 0이 아니어도 됨)를 실제 콘텐츠 경계에 맞춘다 - 텍스트 ascender/descender, 화살표 마커, `stroke` 두께를 포함해 **잘리지 않을 최소 안전 여백 4px만** 둔다. 넉넉한 여백은 금물: 표시 폭(`width=NN%`)이 고정된 상태에서 여백이 크면 콘텐츠가 작게 렌더돼 **가시성이 떨어진다.** 콘텐츠 경계는 다이어그램마다 다르므로 viewBox/크기/배치는 **공통일 수 없다**(다이어그램별 가변).
+> **viewBox fits the content tightly (important)**: set `viewBox` (`minX minY W H`; origin need not be 0) to the actual content bounds — accounting for text ascenders/descenders, arrow markers, and `stroke` width — with only the **minimum safe margin of 4px** to avoid clipping. No generous margins: at a fixed display width (`width=NN%`), large margins render the content smaller and **hurt legibility**. Content bounds differ per diagram, so viewBox/size/layout **cannot be common** (per-diagram).
 
-## 고정 - 공통 스타일 토큰 (모든 다이어그램 동일)
+## Fixed - shared style tokens (identical across all diagrams)
 
-- **루트**: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" width="W" height="H" font-family="sans-serif" font-size="13">`
-- **화살표 마커**:
+- **Root**: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" width="W" height="H" font-family="sans-serif" font-size="13">`
+- **Arrow marker**:
   ```xml
   <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
     <path d="M0,0 L7,3 L0,6 Z" fill="#557"/>
   </marker>
   ```
-- **엣지**: `stroke="#557" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arr)"`
-- **엣지는 직각(`]` 브래킷)** - 곡선 금지. 모서리/끝은 `stroke-linejoin="round"` + `stroke-linecap="round"`로 둥글게.
-- **되돌이/자기루프**는 대상 노드의 깔끔한 면(예: 상단 중앙)에 부착. **브래킷 돌출 높이는 최소로 - 노드 행에 바짝 붙인다**(큰 고정 오프셋은 위아래 폭을 비대하게 만든다). 렌더 때문에 없는 노드/상태를 만들지 말 것(모델 진실 우선).
-- **노드 박스**: `rx="6"`, 기본 `fill="#eef2ff" stroke="#557"`, 보조/메뉴류 `fill="#f3f0ff" stroke="#779"`.
-- **노드 텍스트**: `fill="#1a2a55"`(보조 `#33305a`), `text-anchor="middle"`.
-- **엣지 라벨**: `fill="#555"`, `text-anchor="middle"`, **짧게** (상세는 본문 산문에).
-- **텍스트의 비-openspec 유니코드는 ASCII로** (ASCII 선호 규칙; `->` `/` 등).
-- **임베드**: `<img alt="..." src="x.svg" width="NN%">`.
+- **Edges**: `stroke="#557" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arr)"`
+- **Edges are orthogonal (`]` brackets)** - no curves. Round the corners/ends with `stroke-linejoin="round"` + `stroke-linecap="round"`.
+- **Return/self-loop** attaches to a clean node face (e.g. top center). **Keep bracket protrusion minimal - hug the node row** (a large fixed offset bloats vertical size). Never invent a node/state just to make it render (model truth first).
+- **Node box**: `rx="6"`, primary `fill="#eef2ff" stroke="#557"`, secondary/menu `fill="#f3f0ff" stroke="#779"`.
+- **Node text**: `fill="#1a2a55"` (secondary `#33305a`), `text-anchor="middle"`.
+- **Edge labels**: `fill="#555"`, `text-anchor="middle"`, **short** (detail goes in prose).
+- **ASCII over Unicode symbols** in text (`->` `/` etc.).
+- **Embed**: `<img alt="..." src="x.svg" width="NN%">`.
 
-## 가변 - 다이어그램별 (공통일 수 없음)
+## Variable - per-diagram (cannot be common)
 
-- `viewBox`의 W x H, 전체 방향(가로/세로)
-- 노드 위치/크기, 라벨 위치, 분배 방식(예: 허브는 트렁크->버스->분기)
-- 표시 크기 `width="NN%"` (기본 50%, 가독성에 맞춰 조절 - 넓은 건 60%+)
+- `viewBox` W x H, overall orientation (horizontal/vertical)
+- node positions/sizes, label positions, distribution shape (e.g. a hub: trunk -> bus -> branches)
+- display size `width="NN%"` (default 50%, tune for legibility - wide ones 60%+)
 
-## 레이아웃 원칙 (다이어그램별로 보면서 조정)
+## Layout principles (tune per diagram, by eye)
 
-크기/배치는 매번 눈으로 다듬는 영역이다 - 좌표를 박제하지 말고 아래 휴리스틱으로 조정한다 (그래프 드로잉 미학 + 플로차트 통념).
+Size/placement is adjusted by eye every time - don't freeze coordinates; tune with these heuristics (graph-drawing aesthetics + flowchart conventions).
 
-- **방향 일관**: 한 다이어그램은 한 방향(좌->우 또는 위->아래)으로, 끝까지 유지.
-- **엣지 교차 최소화** (가장 중요): 교차가 생기면 노드 순서/위치를 바꾸거나 다이어그램을 분리. 엣지가 노드 위를 가로지르지 않게.
-- **굴절(bend) 최소화**: 직각 라우팅이라도 꺾임을 적게.
-- **정렬 + 균등 간격**: 노드 크기/간격을 일정하게(그리드처럼). 들쭉날쭉 금지.
-- **겹침 0**: 노드끼리, 라벨끼리, 라벨-엣지가 겹치지 않게.
-- **라벨 간결**: 짧게/동사로 시작; 분기는 예/아니오 류.
-- **색은 구조 강조용** 2-4색(스타일 토큰 범위 내).
-- **간격 균형 vs 여백 타이트**: 콘텐츠 *내부* 간격은 답답하지 않게 두되, *바깥* viewBox 여백은 4px로 타이트. (내부 균형 != 바깥 여백)
+- **Consistent direction**: one direction per diagram (left->right or top->bottom), kept throughout.
+- **Minimize edge crossings** (most important): if crossings appear, reorder/reposition nodes or split the diagram. Don't route edges across nodes.
+- **Minimize bends**: few bends even with orthogonal routing.
+- **Alignment + even spacing**: uniform node size/spacing (grid-like). No raggedness.
+- **No overlap**: nodes, labels, and label-vs-edge.
+- **Concise labels**: short / verb-first; branches as yes/no.
+- **Color for structure**: 2-4 colors (within the style tokens).
+- **Inner balance vs outer tightness**: keep *inner* spacing breathable, but the *outer* viewBox margin tight at 4px. (Inner balance != outer margin.)
 
-## 예시
+## Examples
 
 `management-tycoon: openspec/changes/tycoon-gdd/{core-loop,game-flow,screen-flow}.svg`
