@@ -9,6 +9,8 @@ OpenSpec 기획/설계 워크플로를 위한 재사용 하네스. 프로젝트 
 
 세 워크플로 모두 apply(구현) 단계가 없다 - 코드가 아니라 산출물 문서를 만드는 살아있는 문서다.
 
+문서용 다이어그램은 [DIAGRAM-STYLE.md](DIAGRAM-STYLE.md) 규칙을 따른다 - 손수 작성한 SVG 커밋 + 공통 스타일 토큰(크기/배치는 다이어그램별 가변).
+
 > **전제: `openspec init` 먼저.** 이 하네스는 base(spec-driven 스키마 + `propose/apply/archive/explore` 커맨드/스킬)를 **포함하지 않는다** - 그건 `openspec init`이 설치 버전에 맞춰 생성한다. 하네스는 init이 만들지 않는 plan/gdd/design 계층만 담는다(중복/버전 드리프트 방지). 따라서 단독으로는 쓰지 않고 init 후 얹는다.
 
 ## 워크플로 흐름
