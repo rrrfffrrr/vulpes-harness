@@ -1,20 +1,27 @@
-# Object Model (KAOS)
+# Object Model
 
 <!-- The conceptual structure the goals refer to. Conceptual / requirements-level
-     (what exists + its rules), not solution design or a database schema. -->
+     (what exists + its rules), not solution design or a database schema.
+     Replace every <...>. Delete guidance comments when done. -->
 
 ## Objects (Entities)
-<!-- Each object/entity and what it represents. (Attributes go in their own section.) -->
+
+- **<Entity>** — <what it represents>
 
 ## Relationships
-<!-- How objects relate, WITH cardinality. Cardinality lives only here. -->
+
+<!-- Cardinality lives ONLY here. -->
+- <Entity A> **<cardinality>** <Entity B> — <relationship meaning>
 
 ## Attributes
-<!-- Per object: attributes and meaning. -->
+
+- **<Entity>**: <attribute — meaning>, <attribute — meaning>
 
 ## Invariants
-<!-- Rules that must always hold and are NOT expressible as a cardinality
-     (e.g., uniqueness, conditional rules). -->
+
+<!-- Rules that must always hold and are NOT expressible as a cardinality. -->
+- INV1: <rule that must always hold>
 
 ## Glossary
-<!-- Domain terms and definitions (derived from the objects above). -->
+
+- **<term>**: <definition>

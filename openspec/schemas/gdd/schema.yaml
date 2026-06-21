@@ -1,0 +1,222 @@
+name: gdd
+version: 1
+description: "Game Design Document — the cross-discipline blueprint of the intended game: what it is, how it plays, how it looks and sounds, how it is built and sold. A living document written for the whole team (design, art, audio, engineering, production, business), structured as standard GDD sections from a high-concept overview down to a feature-priority and production scope. Core sections are always required; world/narrative and monetization are CONDITIONAL — included only when the game has that concern. No implementation/apply step."
+# Authoring principles (all artifacts):
+#  - A GDD describes the INTENDED GAME — what it is, how it plays, looks, sounds, is built
+#    and sold. It is NOT engineering internals (that is the design schema) and NOT a verbatim
+#    capture of stakeholder requirements (that is the planning schema). Player-facing and
+#    team-facing design intent, in plain language any discipline can read.
+#  - Living document: it reflects the current intended game as a single present-tense truth.
+#    No change-history, no process commentary (Git records change).
+#  - Cover every distinct, relevant element exhaustively. Detail = breadth/depth of distinct
+#    content, NOT word count. Cut filler, not coverage.
+#  - State each fact once. Each concern lives in exactly one section (a mechanic's rules in
+#    mechanics, its UI in ux-ui, its art in art-direction). The production artifact is the ONE
+#    sanctioned synthesis (feature list / scope) and may restate by reference — it is exempt.
+#  - Show, don't only tell. Use diagrams/flowcharts/screen-flow/mockups as text
+#    (mermaid/ascii). Reference external mood boards, reference images, and prototypes by LINK
+#    — do not embed binaries or paste long asset dumps.
+#  - If a planning change exists for this game (openspec/changes/*/requirements-document.md),
+#    REFERENCE its goals/requirements by id (G1.3, BR30, INV8) rather than re-deriving the
+#    formal model. The GDD gives the human-readable, player-facing design on top of it.
+#  - Conditional sections: world-narrative when the game has setting/story/characters;
+#    monetization when the game is commercial (F2P/IAP/ads/premium pricing). If a concern is
+#    absent, OMIT the file — do not create an empty placeholder.
+#  - Prose is plain and direct. Define a term once (in overview or where introduced) and use
+#    one form thereafter. Version pins and concrete numbers are explicit, not vague.
+artifacts:
+  - id: overview
+    generates: overview.md
+    description: >-
+      The entry point for every role. High-concept pitch, genre, target platform and
+      audience, design pillars, unique selling points, and the scope/MVP boundary. The
+      one-page answer to "what is this game?" that frames every other section.
+    template: overview.md
+    instruction: |
+      Write the high-concept overview that every discipline reads first. Cover: the title and
+      a one-sentence ELEVATOR PITCH; genre and sub-genre; target PLATFORM(s) and target
+      AUDIENCE (who plays this and why); the DESIGN PILLARS (3-5 guiding principles every
+      later decision must serve); the UNIQUE SELLING POINTS (what makes it stand out); the
+      core FANTASY/player experience in one paragraph; and the SCOPE boundary — what the MVP
+      / first shippable version includes and what is explicitly out or later.
+      Keep it skimmable — this is the framing, not the detail. Each pillar and USP is one line.
+      If a planning change exists, reference its top-level goals by id instead of restating.
+    requires: []
+
+  - id: gameplay
+    generates: gameplay.md
+    description: >-
+      How the game actually plays. The core gameplay loop, moment-to-moment experience, the
+      session/game flow and states, and win/lose/fail and difficulty framing.
+    template: gameplay.md
+    instruction: |
+      Describe how the game PLAYS, not its internal systems (that is mechanics). Cover: the
+      CORE LOOP (the repeating cycle the player does — show it as a diagram/flow); the
+      MOMENT-TO-MOMENT experience (what a single minute feels like, what the player perceives
+      and decides); the GAME FLOW and SESSION structure (from launch → a play session →
+      between-session, including game STATES and transitions, e.g. title → run → results);
+      PROGRESSION shape at the experience level (early/mid/late game feel); and WIN / LOSE /
+      FAIL conditions and DIFFICULTY framing.
+      Use a flow diagram for the core loop and for state transitions. Reference planning
+      goals/operations by id where they define the loop; do not restate the formal spec.
+    requires:
+      - overview
+
+  - id: mechanics
+    generates: mechanics.md
+    description: >-
+      The game's systems and rules in detail — every distinct mechanic, the progression
+      systems, the in-game economy (resources, sources, sinks), and the balancing intent.
+    template: mechanics.md
+    instruction: |
+      Detail every distinct SYSTEM and its RULES. For each mechanic: what it is, the rules
+      (inputs, outputs, costs, limits, edge cases), how the player interacts with it, and how
+      it feeds the core loop. Cover PROGRESSION systems (levels, unlocks, upgrades, skill
+      trees) and the in-game ECONOMY: each resource/currency, its SOURCES and SINKS, and how
+      they balance. State the BALANCING INTENT (target pacing, key tuning values or ranges,
+      what should feel scarce vs abundant) — concrete numbers where known, named ranges where
+      not.
+      This is rules and systems, NOT screens (ux-ui) or visuals (art-direction). If a planning
+      object-model/operation-model exists, reference invariants/operations by id rather than
+      re-deriving them; add the player-facing tuning and feel the formal model omits.
+    requires:
+      - overview
+      - gameplay
+
+  - id: world-narrative
+    generates: world-narrative.md
+    description: >-
+      CONDITIONAL — include when the game has a setting, story, or characters. The world and
+      its fiction: setting and theme, narrative/lore, characters, and the content/level
+      structure that delivers them.
+    template: world-narrative.md
+    instruction: |
+      Build the world and fiction. Cover: SETTING and THEME (where/when, tone, mood); the
+      NARRATIVE / story arc and how it is delivered (cutscenes, environmental, systemic) if
+      any; CHARACTERS (player avatar, NPCs, antagonists — role, personality, function, not
+      art); and the CONTENT / LEVEL structure (worlds, levels, biomes, chapters — how content
+      is organized and paced, and what authoring each unit needs).
+      Keep fiction in service of the pillars and gameplay; note where story gates or motivates
+      mechanics. Reference art-direction for how things LOOK rather than describing visuals
+      here.
+      OMIT this artifact entirely if the game has no setting, story, or characters.
+    requires:
+      - overview
+
+  - id: art-direction
+    generates: art-direction.md
+    description: >-
+      The visual direction. Overall art style and references, color/palette and mood,
+      character and environment art direction, animation, VFX, and the UI/HUD art style.
+    template: art-direction.md
+    instruction: |
+      Define the VISUAL direction for the art team. Cover: the overall ART STYLE (e.g. 2D
+      pixel, low-poly, hand-painted) with reference/mood-board LINKS; COLOR palette and
+      lighting/mood; CHARACTER art direction (silhouette, proportion, readability); ENVIRONMENT
+      / world art direction; ANIMATION style and key animation needs; VFX direction; and the
+      UI/HUD ART style (how the interface looks — its layout/flow is ux-ui, not here).
+      Show, don't only tell: link references and mockups; describe the rules that keep art
+      consistent (resolution, grid, palette limits). Do NOT redefine UI screen flow (ux-ui) or
+      the fiction (world-narrative) — reference them by name.
+    requires:
+      - overview
+
+  - id: audio-direction
+    generates: audio-direction.md
+    description: >-
+      The audio direction. Music direction and tracks, sound effects, voice/ambience, and how
+      audio reinforces feel and feedback.
+    template: audio-direction.md
+    instruction: |
+      Define the AUDIO direction for the sound team. Cover: MUSIC direction (genre, mood,
+      adaptive/looping needs, key tracks per state/area) with reference LINKS; SOUND EFFECTS
+      (the key SFX the gameplay needs — UI, actions, feedback, and what each must communicate);
+      VOICE and AMBIENCE if any; and the role audio plays in FEEDBACK and FEEL (which mechanics
+      need audio confirmation, mix priorities, accessibility — e.g. not relying on audio alone).
+      Tie key SFX to the mechanics/UI events that trigger them by name. Link references rather
+      than describing sound in vague adjectives alone.
+    requires:
+      - overview
+
+  - id: ux-ui
+    generates: ux-ui.md
+    description: >-
+      The player-facing interface and flow. Screen/menu flow map, key screens and their
+      layout, the control/input scheme, onboarding/tutorial, and accessibility.
+    template: ux-ui.md
+    instruction: |
+      Design the UX and UI. Cover: the SCREEN / MENU FLOW as a map (title → menus → game →
+      results → back — a diagram); each KEY SCREEN and its layout and the actions on it (wire
+      mockups as ascii/mermaid, not final art — art style is art-direction); the CONTROL /
+      INPUT scheme (touch/gamepad/keyboard — every input and what it does); ONBOARDING /
+      TUTORIAL (how a new player learns the core loop); and ACCESSIBILITY (text size, colorblind,
+      remap, audio-independent feedback, input assists).
+      Reference the gameplay states and mechanics each screen serves by name; describe LAYOUT
+      and FLOW, not visual styling (art-direction) or rules (mechanics).
+    requires:
+      - overview
+      - gameplay
+
+  - id: tech
+    generates: tech.md
+    description: >-
+      The technical frame at GDD altitude. Engine and key tech, target platforms and minimum
+      spec, performance targets, save/network/backend approach, third-party dependencies, and
+      build/release intent. Not detailed architecture (that is the design schema).
+    template: tech.md
+    instruction: |
+      State the TECHNICAL frame at design-document altitude (the deep architecture is the
+      design schema's job). Cover: the ENGINE and key tech/libraries with version intent; the
+      target PLATFORMS and MINIMUM device SPEC; PERFORMANCE targets (frame rate, load times,
+      memory/battery budget); SAVE / persistence and NETWORK / backend / cloud approach;
+      third-party DEPENDENCIES and services (ads/IAP SDK, analytics, auth); and BUILD / RELEASE
+      intent (store targets, certification needs). Note hard technical CONSTRAINTS the game
+      must honor.
+      Reference planning/design artifacts by id for anything already specified there rather
+      than restating; keep this to the team-facing technical summary a GDD carries.
+    requires:
+      - overview
+
+  - id: monetization
+    generates: monetization.md
+    description: >-
+      CONDITIONAL — include when the game is commercial. The business model: pricing or F2P,
+      IAP / ads / battle-pass, the real-money side of the economy, and retention/LiveOps.
+    template: monetization.md
+    instruction: |
+      Define how the game MAKES MONEY. Cover: the BUSINESS MODEL (premium price, free-to-play,
+      subscription, hybrid); the MONETIZATION mechanics (IAP catalog and price tiers, ads
+      placement/format, battle-pass/season, cosmetics) and how each ties to the in-game
+      economy SINKS without breaking fairness; the REAL-MONEY currency and its relationship to
+      soft currencies (reference the mechanics economy by id/name, do not redefine it);
+      RETENTION / LiveOps levers (daily rewards, events, mailbox) at the business level; and
+      KEY monetization assumptions/KPIs (ARPU/conversion intent) if known.
+      Keep player FAIRNESS and store-policy compliance explicit. OMIT this artifact entirely
+      if the game has no monetization (e.g. a free non-commercial or jam build).
+    requires:
+      - overview
+      - mechanics
+
+  - id: production
+    generates: production.md
+    description: >-
+      The synthesis for production and business — market positioning, the prioritized feature
+      list (MoSCoW), milestones/roadmap, and risks with a cut list. The single place scope and
+      priority are decided; it restates other sections by reference.
+    template: production.md
+    instruction: |
+      Synthesize the production and business view. Cover: MARKET & POSITIONING — target market,
+      key competitors and how this game differs, and the success METRICS / KPIs that define
+      "working"; the prioritized FEATURE LIST using MoSCoW (Must / Should / Could / Won't-now),
+      drawn from the other sections by reference (do not re-describe each feature, link it);
+      the MILESTONES / roadmap (MVP/vertical-slice/alpha/beta/launch with what each contains);
+      and RISKS with mitigations and an explicit CUT LIST (what gets dropped first if scope
+      slips).
+      This is the ONE synthesis artifact — it may restate features by reference to consolidate
+      scope. Keep priorities and milestones concrete and decision-ready.
+    requires:
+      - overview
+      - gameplay
+      - mechanics
+      - ux-ui
+      - tech
