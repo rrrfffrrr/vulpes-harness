@@ -1,5 +1,6 @@
 ---
 name: opsx-architect
+version: "1.0.0"
 description: Technical architecture from a requirements change - 4+1 views + arc42 + ISO 42010 + ADRs. No implementation.
 ---
 
