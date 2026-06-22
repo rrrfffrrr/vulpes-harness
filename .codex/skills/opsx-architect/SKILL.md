@@ -1,8 +1,6 @@
 ---
-name: "OPSX: Architect"
+name: opsx-architect
 description: Technical architecture from a requirements change - 4+1 views + arc42 + ISO 42010 + ADRs. No implementation.
-category: Workflow
-tags: [workflow, architect, architecture, 4+1, arc42, adr, experimental]
 ---
 
 Architect a system - technical architecture, separate from both requirements and development. This uses the `architecture` schema (Kruchten 4+1 views, framed as ISO/IEC 42010 viewpoints, structured with arc42, decisions as Nygard ADRs, traced back to requirements with a BABOK RTM). It produces:

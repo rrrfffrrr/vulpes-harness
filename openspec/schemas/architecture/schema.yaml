@@ -6,7 +6,7 @@ description: "Technical architecture design - no implementation/apply step. Buil
 #    What/Why (goals, requirements); architecture answers How (structure, technology, runtime,
 #    deployment). Do NOT restate the requirements as prose - reference them by id
 #    (G1.1.1, operation names) and link in design-traceability only.
-#  - NO CODE and NO implementation tasks. Diagrams-as-text (mermaid/ascii), interface
+#  - NO CODE and NO implementation tasks. Diagrams follow openspec/DIAGRAM-STYLE.md; interface
 #    signatures, schemas, and config-level detail are fine; source files are not.
 #  - Every view is a 42010 viewpoint: state which STAKEHOLDERS (roles) and CONCERNS it
 #    frames at the top, so each role can find its own view. The role-to-view map lives in

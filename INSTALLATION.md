@@ -1,92 +1,44 @@
-# Installation
+# Installing vulpes-harness
 
-This harness layers the **require/gdd/architect layer** on top of the base (spec-driven) that `openspec init` installs. Only two trees go into a project:
+Procedure to add the harness to a project, on top of OpenSpec.
+Run every command from the project root.
+Wherever a tool name appears (`claude`, `codex`), use the one(s) the project actually uses.
 
-- `openspec/schemas/{requirements,gdd,architecture}/` - schemas + templates + `change-README.md`
-- `.claude/commands/opsx/{require,gdd,architect}.md` - opsx slash commands
+## Prerequisites
 
-The base (`propose/apply/archive/explore` commands/skills, spec-driven schema) is not in the harness - `openspec init` creates it, matched to the installed version.
+- Node.js (LTS).
+- OpenSpec CLI >= 1.4.x: `npm i -g @fission-ai/openspec`.
 
-## 0. Prerequisites
-
-- Node.js (LTS)
-- OpenSpec CLI >= 1.4.x
-
-  ```bash
-  npm i -g @fission-ai/openspec     # global install
-  # or without installing: npx @fission-ai/openspec@latest <command>
-  ```
-
-## 1. Install the base (in the project repo)
+## 1. Install the OpenSpec base
 
 ```bash
-openspec init . --tools claude
+openspec init . --tools claude,codex   # or just claude / codex
 ```
 
--> creates `openspec/` (spec-driven schema) + `.claude/commands/opsx/{propose,apply,archive,explore}.md` + `.claude/skills/openspec-*`.
+Creates `openspec/` and the base commands for each tool listed.
 
-## 2. Layer the harness (pick one)
+## 2. Copy the harness in
 
-First get the harness (use its path if you already have it locally):
+Get the harness from https://github.com/rrrfffrrr/vulpes-harness and copy these into your project at the same paths:
 
-```bash
-git clone <harness-repo-url> ../vulpes-harness
-```
+- `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`
+- `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`  (Claude)
+- `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`  (Codex)
 
-### A. Copy - simplest / Windows-friendly (recommended)
+Also copy `DIAGRAM-STYLE.md` into `openspec/` - the gdd and architecture diagrams reference it.
 
-bash:
-```bash
-HARNESS=../vulpes-harness
-cp -r "$HARNESS"/openspec/schemas/requirements  openspec/schemas/
-cp -r "$HARNESS"/openspec/schemas/gdd           openspec/schemas/
-cp -r "$HARNESS"/openspec/schemas/architecture  openspec/schemas/
-cp "$HARNESS"/.claude/commands/opsx/require.md   .claude/commands/opsx/
-cp "$HARNESS"/.claude/commands/opsx/gdd.md       .claude/commands/opsx/
-cp "$HARNESS"/.claude/commands/opsx/architect.md .claude/commands/opsx/
-```
-
-PowerShell:
-```powershell
-$H = "..\vulpes-harness"
-Copy-Item "$H\openspec\schemas\requirements","$H\openspec\schemas\gdd","$H\openspec\schemas\architecture" openspec\schemas\ -Recurse -Force
-Copy-Item "$H\.claude\commands\opsx\require.md","$H\.claude\commands\opsx\gdd.md","$H\.claude\commands\opsx\architect.md" .claude\commands\opsx\ -Force
-```
-
-### B. symlink - updates flow automatically (Windows needs Developer Mode / admin)
-
-```bash
-ln -s "$(realpath ../vulpes-harness/openspec/schemas/requirements)"  openspec/schemas/requirements
-ln -s "$(realpath ../vulpes-harness/openspec/schemas/gdd)"           openspec/schemas/gdd
-ln -s "$(realpath ../vulpes-harness/openspec/schemas/architecture)" openspec/schemas/architecture
-ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/require.md)"   .claude/commands/opsx/require.md
-ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/gdd.md)"       .claude/commands/opsx/gdd.md
-ln -s "$(realpath ../vulpes-harness/.claude/commands/opsx/architect.md)" .claude/commands/opsx/architect.md
-```
-
-### C. git submodule / subtree
-
-The whole harness lands at one path, which does not match the `openspec/schemas` / `.claude/commands` locations - you would need a submodule plus symlinks from those paths into it. For simplicity, use A.
+Copy only the lines for the tool(s) you installed in step 1.
+Commit the copied files, and copy them again to update.
 
 ## 3. Verify
 
 ```bash
-openspec schemas                 # requirements, gdd, architecture should appear
-openspec schema validate gdd     # OK: Schema 'gdd' is valid
-ls .claude/commands/opsx         # require.md gdd.md architect.md (+ the 4 base ones)
+openspec schemas                 # lists requirements, gdd, architecture
+openspec schema validate gdd     # Schema 'gdd' is valid
 ```
 
-## 4. Use
+If a schema is missing, redo the copy in step 2.
 
-```
-/opsx:require   -> /opsx:gdd or /opsx:architect   -> /opsx:propose   -> /opsx:apply
-```
+## Next
 
-- Change names are fixed as `{program}-{schema}` (e.g. `myapp-requirements`). The command asks once for the program name (default = repo folder name).
-- Each change folder's `README.md` is a reading guide auto-copied from the schema's `change-README.md` - do not edit it.
-
-## 5. Updating
-
-- **Copy (A)**: `git pull` the harness, then re-run 2-A to overwrite.
-- **symlink (B)**: `git pull` the harness and you are done.
-- To refresh an existing change folder's `README.md` to the latest guide, copy the schema's `change-README.md` into that folder again.
+Run the workflows: `/opsx:require` -> `/opsx:gdd` or `/opsx:architect` -> `/opsx:propose`.
