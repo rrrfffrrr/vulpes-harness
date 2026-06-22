@@ -82,7 +82,8 @@ This pipeline answers HOW (structure, technology, runtime, deployment); requirem
 Summarize: architecture change name + location, which conditional views were included (and why), artifacts created (one line each), and: "Technical architecture complete - no implementation step. The change stays open; re-run `/opsx:architect <name>` to add more architecture decisions. Run `/opsx:propose` (spec-driven) when ready to build."
 
 **Guardrails**
-- This is ARCHITECTURE (HOW), not requirements (WHAT/WHY) and not implementation. NO code, NO tasks. Diagrams-as-text, interface signatures, schemas, config-level detail are fine; source files are not.
+- This is ARCHITECTURE (HOW), not requirements (WHAT/WHY) and not implementation. NO code, NO tasks. Diagrams, interface signatures, schemas, config-level detail are fine; source files are not.
+- Diagrams follow `openspec/DIAGRAM-STYLE.md`.
 - Do NOT restate the requirements as prose - reference them by id and link only in design-traceability.
 - Reference each fact once; a structural fact belongs to exactly one view. Rationale lives in ADRs, not in view prose.
 - The user often narrates decisions one line (one message) at a time. RECEIVE each line, reflect it back, capture it in the right view/ADR. Do NOT interrupt with scope/stop questions. Only ask about a genuine fork.

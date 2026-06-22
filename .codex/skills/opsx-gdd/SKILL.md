@@ -86,7 +86,7 @@ Summarize: GDD change name + location, which conditional sections were included 
 - This is a GDD - the intended game (WHAT it is and HOW it plays/looks/sounds/sells). NOT formal requirements (`/opsx:require`), NOT architecture (`/opsx:architect`), NOT code/tasks.
 - Change name is `{program}-gdd` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
 - The folder README.md is a verbatim copy of `openspec/schemas/gdd/change-README.md` - never hand-write or edit it per project.
-- Show, don't only tell: diagrams/flows/mockups as mermaid/ascii; LINK mood boards and reference images - never embed binaries or paste long asset dumps.
+- Show, don't only tell: diagrams/flows/mockups follow `openspec/DIAGRAM-STYLE.md`. LINK mood boards and reference images - never embed binaries or paste long asset dumps.
 - State each fact once; each concern in exactly one section. `production` is the only synthesis artifact and may restate features by reference.
 - If a requirements change exists, reference its goals/requirements/invariants by id rather than re-deriving the formal model - add the player-facing design on top.
 - The user often narrates the GDD one line (one message) at a time. RECEIVE each line, reflect it back accurately, and capture it in the right section. Do NOT interrupt that flow with scope/stop questions. Only ask about a genuine fork.

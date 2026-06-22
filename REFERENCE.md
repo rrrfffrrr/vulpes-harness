@@ -13,6 +13,7 @@ openspec/schemas/<schema>/   schema.yaml + templates/ + change-README.md
 - The Claude command and Codex skill for a workflow share one body - edit both.
 - Add a schema: a new folder under `openspec/schemas/` plus a matching opsx command and Codex skill.
 - Other asset types like hooks and prompts live under `.claude/`/`.codex/`.
+- `DIAGRAM-STYLE.md` installs to `openspec/DIAGRAM-STYLE.md`; the gdd and architecture diagrams follow it.
 
 ## Change naming
 
