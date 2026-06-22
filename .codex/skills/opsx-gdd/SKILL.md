@@ -1,8 +1,6 @@
 ---
-name: "OPSX: GDD"
+name: opsx-gdd
 description: Author a Game Design Document - the cross-discipline blueprint of the intended game (overview, gameplay, mechanics, art, audio, UX, tech, monetization, production). No implementation.
-category: Workflow
-tags: [workflow, gdd, game-design, experimental]
 ---
 
 Author a Game Design Document - the cross-discipline blueprint of the intended game, separate from formal requirements and from development. This uses the `gdd` schema (standard GDD sections, from a high-concept overview down to a production scope). It produces:

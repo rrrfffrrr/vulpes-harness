@@ -1,96 +1,46 @@
 # vulpes-harness
 
-A reusable harness for the OpenSpec require/architect workflow. Kept separate from project repos and versioned in one place.
+[English](README.md) | [한국어](README.ko.md)
 
-A **layer on top of** the development (spec-driven) workflow that `openspec init` installs by default. It adds:
-- **require** - `opsx:require` + the `requirements` schema (KAOS/GORE + BABOK)
-- **game design (gdd)** - `opsx:gdd` + the `gdd` schema (standard GDD sections)
-- **technical architecture (architect)** - `opsx:architect` + the `architecture` schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR + BABOK RTM)
+vulpes-harness adds repeatable planning commands to AI coding tools like Claude Code and Codex.
+Requirements and architecture come out structured and consistent instead of ad-hoc.
+You run them as slash commands, and each one writes what you tell it into Markdown documents in your repo.
 
-All three have no apply (implementation) step - they produce living documents, not code.
+## Install
 
-Documentation diagrams follow [DIAGRAM-STYLE.md](DIAGRAM-STYLE.md) - hand-authored SVG committed to the repo + shared style tokens (size/layout are per-diagram).
+Add the harness to your project once - see [INSTALLATION.md](INSTALLATION.md).
 
-> **Prerequisite: run `openspec init` first.** This harness does **not** include the base (spec-driven schema + `propose/apply/archive/explore` commands/skills) - `openspec init` generates those, matched to the installed version. The harness only holds the require/gdd/architect layer that init does not create (avoiding duplication and version drift). So it is not used standalone; you layer it on after running init.
+## How to use
 
-## Workflow
+Work on one kind of document at a time.
+Within the same task, add or revise as things come up - don't wait.
+Finish one before moving to the next - don't mix different tasks.
 
-```
-openspec init                          # installs base (spec-driven)
-  -> require -> [ gdd | architect ] -> propose -> apply
-   (gather reqs) (game/tech design)     (specify)  (build)
-```
+<img alt="workflow" src="workflow.svg" width="80%">
 
-- **require** = the common first stage for any project (formal requirements).
-- **gdd / architect** = the per-project middle artifacts. gdd = games, architect = technical structure (used by any software, games included). One project may have both.
-- **propose / apply** = the spec-driven development stages that init provides.
+- Requirements: `/opsx:require {content}`
+- Architecture: `/opsx:architect {content}`
+- Prepare: `/opsx:propose {content}`
+- Build: `/opsx:apply {content}`
 
-## Layout
+## Schemas
 
-```
-openspec/schemas/requirements/  requirements schema (no apply)
-  schema.yaml                   7 artifact instructions (goal ID convention, etc. - SSOT)
-  templates/                    business-requirements / goal-model / object-model /
-                                responsibility-model / operation-model /
-                                requirements-document / traceability
-  change-README.md              reading guide copied into the change folder (static, shared)
-openspec/schemas/gdd/           gdd schema (no apply)
-  schema.yaml                   10 artifacts (8 core + 2 conditional)
-  templates/                    overview / gameplay / mechanics / world-narrative /
-                                art-direction / audio-direction / ux-ui / tech /
-                                monetization / production
-  change-README.md              reading guide (static, shared)
-openspec/schemas/architecture/  architecture schema (no apply)
-  schema.yaml                   9 artifacts (core views + conditional views)
-  templates/                    architecture-overview / logical-view / process-view /
-                                data-view / ml-serving-view / deployment-view /
-                                crosscutting-concepts / adr / design-traceability
-  change-README.md              reading guide (static, shared)
-.claude/commands/opsx/          require.md / gdd.md / architect.md  (opsx slash commands)
-```
+### require
 
-## Change naming
+The requirements schema, using KAOS/GORE and BABOK.
+Produces business requirements, goal/object/responsibility/operation models, a synthesized requirements document, and a traceability matrix.
 
-The no-apply schemas (requirements/gdd/architecture) are **project singletons** - fix the change name as `{program}-{schema}` (e.g. `tycoon-requirements`, `tycoon-gdd`).
+### architect
 
-- If a `*-{schema}` change exists, the command continues it; otherwise it **asks once for the program name** (default suggestion = the repo folder name; a different fixed name is allowed).
-- For several in one repo, use distinct program names in parallel (`{a}-requirements`, `{b}-requirements`).
+The architecture schema, using Kruchten 4+1, arc42, ISO/IEC 42010, Nygard ADRs, and a BABOK RTM.
+Produces an architecture overview, logical/process/data/deployment views, crosscutting concepts, ADRs, and a design-traceability matrix.
 
-## Change-folder README (reading order)
+### gdd
 
-Each schema folder's `change-README.md` is that schema's "start here + reading order" guide. The opsx command **copies it verbatim** into the new change folder as `README.md` (overwriting the stub `openspec` created). It is a static shared asset, so do not edit it per project - update only the harness `change-README.md`.
+The game design schema, using the standard GDD sections.
+Produces the overview, gameplay, mechanics, world/narrative, art and audio direction, UX/UI, tech, monetization, and production sections.
+Game projects only.
 
-## Artifact dependency order (requirements)
+## Reference
 
-```
-business-requirements
-  -> goal-model
-    -> object-model, responsibility-model
-      -> operation-model
-        -> requirements-document
-          -> traceability
-```
-
-A new requirement is preserved verbatim as the next `BR<n>` in `business-requirements.md`, then traced through to every affected artifact.
-
-## Goal ID convention
-
-- `G<n>.<m>` (dotted number) = AND-refinement (all subgoals required)
-- `G<n>.<m>.<a>` (trailing letter) = OR-refinement (alternative)
-
-The SSOT for the definition is the goal-model instruction in `openspec/schemas/requirements/schema.yaml`.
-
-## Prerequisites
-
-- Command behavior (Claude reading the instructions and writing artifacts) needs no install - it is just Markdown under `.claude/`.
-- The `openspec` CLI (`openspec init`, `openspec new change --schema <s>`, `openspec status --change <id>`, `openspec schema validate <s>`) requires the CLI (>= 1.4.x recommended).
-
-  ```
-  npm i -g @fission-ai/openspec     # global install
-  # or without installing
-  npx @fission-ai/openspec@latest <command>
-  ```
-
-## Using it in a project
-
-See [INSTALLATION.md](INSTALLATION.md). In short: `openspec init` (base) -> layer the harness `openspec/schemas/` and `.claude/commands/opsx/` (copy or symlink) -> `/opsx:require` -> `/opsx:gdd` or `/opsx:architect` -> `/opsx:propose`.
+Layout, naming, and conventions are in [REFERENCE.md](REFERENCE.md).
