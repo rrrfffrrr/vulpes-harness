@@ -3,18 +3,19 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Frontend Traceability Matrix
+# Frontend traceability matrix
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
      Include the Endpoint column only when a backend change exists.
-     Replace every example row. Delete guidance comments when done. -->
+     Replace every example row.
+     Delete guidance comments when done. -->
 
-## Requirement <-> Screen <-> Flow <-> Component
+## Requirement <-> screen <-> flow <-> component
 
 | Requirement (goal / operation) | Screen | Flow | Components | Endpoint (backend) |
 |--------------------------------|--------|------|------------|---------------------|
-| <id / name> | <screen> | <flow> | <components> | <METHOD path or -> |
+| `<id / name>` | `<screen>` | `<flow>` | `<components>` | `<METHOD path or ->` |
 
 ## Gaps
 
-- <requirements with no screen; screens no flow reaches; components no screen uses; conditional artifacts excluded (overview's reason)>
+- `<requirements with no screen; screens no flow reaches; components no screen uses; conditional artifacts excluded (overview's reason)>`

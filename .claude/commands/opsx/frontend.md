@@ -9,6 +9,7 @@ tags: [workflow, frontend, ui, detail-design, ifml, experimental]
 Design the application UI in detail - the implementable UI spec for web, mobile, and desktop apps, one level below architecture and separate from development. This uses the `frontend` schema (IFML 1.0 interaction-flow semantics, Harel statecharts as UML 2.5.1 state machines, NN/g wireflows, Atomic Design + Open UI-style component anatomy, the five-state UI Stack, WCAG 2.2). It produces:
 
 **Core artifacts (always):**
+
 - overview.md (platforms/stacks, breakpoint set, interaction-state enum, accessibility target, reader map)
 - components.md (shared components: anatomy, variants/sizes, per-state behavior, keyboard/assistive behavior, content rules)
 - screens.md (per screen: layout + breakpoint behavior, the five UI Stack states, data, forms with exact error copy, emitted event names)
@@ -16,6 +17,7 @@ Design the application UI in detail - the implementable UI spec for web, mobile,
 - traceability.md (requirement <-> screen <-> flow <-> component matrix)
 
 **Conditional artifact (only when the product has that concern):**
+
 - design-tokens.md - token-based styling (DTCG: color/typography/dimension/motion/themes)
 
 This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state and event; architecture already answered structure/technology. There is **no implementation/apply step** and the change stays open - you can keep adding screens and refining components over time.
@@ -38,6 +40,7 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
    - To keep multiple parallel frontend designs, the user gives distinct program names -> `{a}-frontend`, `{b}-frontend`.
 
 4. **Create the frontend change**
+
    ```bash
    openspec new change "{program}-frontend" --schema frontend
    ```
@@ -45,9 +48,11 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 5. **Write the folder README (reading guide).** Copy `openspec/schemas/frontend/templates/README.md` to `openspec/changes/{program}-frontend/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/frontend/templates/README.ko.md` to `openspec/changes/{program}-frontend/README.ko.md`. These static guides are identical for every frontend change - copy verbatim, do NOT hand-edit them per project.
 
 6. **Get the artifact build order**
+
    ```bash
    openspec status --change "{program}-frontend" --json
    ```
+
    Build in dependency order: `overview -> (design-tokens) -> components -> screens -> flows -> traceability`.
 
 7. **Create artifacts in sequence**
@@ -76,6 +81,7 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 Summarize: frontend change name + location, whether design-tokens was included (and why), artifacts created (one line each), and: "Frontend detail design complete - no implementation step. The change stays open; re-run `/opsx:frontend` to add screens or refine components. Run `/opsx:propose` (spec-driven) when ready to build."
 
 **Guardrails**
+
 - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), below architecture and above implementation. NO code. Wire mockups, state tables, and token tables are the medium; source files are not.
 - Diagrams follow `openspec/DIAGRAM-STYLE.md`.
 - Do NOT restate architecture or requirements - reference them by name/id.
@@ -90,3 +96,4 @@ Summarize: frontend change name + location, whether design-tokens was included (
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/frontend/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source architecture + dependency frontend artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
+- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.

@@ -3,31 +3,34 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Art Direction
+# Art direction
 
-<!-- Visual direction for the art team. Show, don't only tell - LINK references/mockups.
-     UI screen flow/layout is ux-ui; the fiction is world-narrative. Reference, don't redefine.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- Visual direction for the art team.
+     Show, don't only tell - LINK references/mockups.
+     UI screen flow/layout is ux-ui; the fiction is world-narrative.
+     Reference, don't redefine.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-## Art Style
+## Art style
 
 <!-- Overall style (e.g. 2D pixel, low-poly) + reference / mood-board links. -->
 - **Style**: <...>
-- **References**: <links>
+- **References**: `<links>`
 
-## Color & Mood
+## Color & mood
 
 <!-- Palette, lighting, mood. -->
-<paragraph>
+`<paragraph>`
 
-## Character Art
+## Character art
 
 <!-- Silhouette, proportion, readability. -->
-<paragraph>
+`<paragraph>`
 
-## Environment Art
+## Environment art
 
-<paragraph>
+`<paragraph>`
 
 ## Animation
 
@@ -38,12 +41,12 @@ document-version: 0
 
 - <...>
 
-## UI / HUD Art Style
+## UI / HUD art style
 
 <!-- How the interface LOOKS (its layout/flow is ux-ui). -->
 - <...>
 
-## Consistency Rules
+## Consistency rules
 
 <!-- Rules that keep art consistent: resolution, grid, palette limits, etc. -->
 - <...>

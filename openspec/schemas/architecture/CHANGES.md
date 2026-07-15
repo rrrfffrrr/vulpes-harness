@@ -1,6 +1,7 @@
 # Changelog - architecture schema
 
-Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions follow the harness release version (`metadata.version` in `schema.yaml`); templates' `schema-version` frontmatter mirrors it.
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+Versions follow the harness release version (`metadata.version` in `schema.yaml`); templates' `schema-version` frontmatter mirrors it.
 
 ## [1.1.0] - Unreleased
 
@@ -8,10 +9,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions follo
 
 - `schema-version` / `document-version` frontmatter on every template - artifacts now record the schema semver they were authored against and a per-document revision counter.
 - Korean reading guide `templates/README.ko.md`; both guides carry an English/Korean switcher link.
+- Authoring principle: prose follows the new `openspec/WRITING-STYLE.md` - semantic line breaks, plain language, scannable structure, consistent terminology, findability, ISO 8601 dates.
 
 ### Changed
 
-- Artifact renames (the change folder already namespaces them): `architecture-overview` -> `overview`, `design-traceability` -> `traceability`. Rework documents authored against 1.0.0 by renaming the two files; content structure is unchanged.
+- Artifact renames (the change folder already namespaces them): `architecture-overview` -> `overview`, `design-traceability` -> `traceability`.
+  Rework documents authored against 1.0.0 by renaming the two files; content structure is unchanged.
 - Reading guide moved from `change-README.md` to `templates/README.md` (copied into the change folder name-preserving, alongside `README.ko.md`).
 
 ## [1.0.0] - 2026-06-22

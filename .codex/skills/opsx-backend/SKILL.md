@@ -7,14 +7,16 @@ description: Backend detail design from an architecture change - interface contr
 Design the backend in detail - exact interface contracts, one level below architecture and separate from development. This uses the `backend` schema (OpenAPI 3.2 + JSON Schema 2020-12 contracts under RFC 9110 semantics, RFC 9457 errors, RFC 9111 caching, BCP 14 keywords, UML 2.5.1 sequences, C4 Component inventory). It produces:
 
 **Core artifacts (always):**
+
 - overview.md (interface surfaces + styles, state management, reader map)
-- conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, LRO)
+- conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, long-running operations (LRO))
 - components.md (middleware pipeline in order + shared components, C4 Component level)
 - endpoints.md (per-endpoint contracts - deviations from conventions only)
 - sequences.md (runtime flows incl. client-observable failure paths)
 - traceability.md (operation <-> interface <-> component <-> sequence matrix)
 
 **Conditional artifacts (only when the system has that concern):**
+
 - events.md - message/event-driven APIs (AsyncAPI 3.1 structure, CloudEvents envelope)
 - webhooks.md - outbound callbacks (Standard Webhooks conventions)
 
@@ -39,6 +41,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
    - To keep multiple parallel backend designs, the user gives distinct program names -> `{a}-backend`, `{b}-backend`.
 
 4. **Create the backend change**
+
    ```bash
    openspec new change "{program}-backend" --schema backend
    ```
@@ -46,9 +49,11 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 5. **Write the folder README (reading guide).** Copy `openspec/schemas/backend/templates/README.md` to `openspec/changes/{program}-backend/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/backend/templates/README.ko.md` to `openspec/changes/{program}-backend/README.ko.md`. These static guides are identical for every backend change - copy verbatim, do NOT hand-edit them per project.
 
 6. **Get the artifact build order**
+
    ```bash
    openspec status --change "{program}-backend" --json
    ```
+
    Build in dependency order: `overview -> conventions, components -> endpoints -> sequences, (events, webhooks) -> traceability`.
 
 7. **Create artifacts in sequence**
@@ -79,6 +84,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 Summarize: backend change name + location, which conditional artifacts were included (and why), artifacts created (one line each), and: "Backend detail design complete - no implementation step. The change stays open; re-run `/opsx:backend` to add or refine contracts. Run `/opsx:propose` (spec-driven) when ready to build."
 
 **Guardrails**
+
 - This is INTERFACE-LEVEL detail design, below architecture (structure/technology) and above implementation. NO code, NO tasks. Payload schemas, header tables, and sequence diagrams are fine; source files are not.
 - Diagrams follow `openspec/DIAGRAM-STYLE.md`.
 - Do NOT restate architecture - reference components, views, and ADRs by name/id.
@@ -92,3 +98,4 @@ Summarize: backend change name + location, which conditional artifacts were incl
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/backend/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source architecture + dependency backend artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
+- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.

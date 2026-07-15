@@ -5,39 +5,44 @@ document-version: 0
 
 # UX / UI
 
-<!-- Player-facing interface and FLOW. Layout and flow here; visual styling is art-direction;
-     rules are mechanics. Mockups as ascii/mermaid, not final art.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- Player-facing interface and FLOW.
+     Layout and flow here; visual styling is art-direction; rules are mechanics.
+     Mockups as ascii/mermaid, not final art.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-## Screen / Menu Flow
+## Screen / menu flow
 
 <!-- The map: title -> menus -> game -> results -> back. -->
-```
+```text
 <screen> -> <screen> -> <screen>
 ```
 
-## Key Screens
+## Key screens
 
 <!-- One block per important screen: layout + the actions on it. -->
-### <screen name>
-- **Serves**: <which gameplay state / mechanic>
+### `<screen name>`
+
+- **Serves**: `<which gameplay state / mechanic>`
 - **Layout**:
-```
+
+```text
 <ascii / mermaid wire mockup>
 ```
-- **Actions**: <buttons / inputs and what they do>
 
-## Controls / Input
+- **Actions**: `<buttons / inputs and what they do>`
+
+## Controls / input
 
 <!-- Every input and what it does, per input method. -->
 | Input | Action |
 |-------|--------|
-| <touch/button> | <...> |
+| `<touch/button>` | <...> |
 
-## Onboarding / Tutorial
+## Onboarding / tutorial
 
 <!-- How a new player learns the core loop. -->
-<paragraph>
+`<paragraph>`
 
 ## Accessibility
 

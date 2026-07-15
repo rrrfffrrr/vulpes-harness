@@ -19,6 +19,9 @@ description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure.
 #    (AND/OR). Do NOT defer essential content into parentheses or pile up bilingual
 #    glosses - if it matters, it is part of the sentence; define a term's gloss once
 #    (in the glossary) and use one form thereafter.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
 artifacts:
   - id: business-requirements
     generates: business-requirements.md

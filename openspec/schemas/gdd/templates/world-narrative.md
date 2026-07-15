@@ -3,31 +3,36 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# World & Narrative
+# World & narrative
 
-<!-- CONDITIONAL - only if the game has setting/story/characters. Otherwise omit this file.
-     Fiction in service of pillars and gameplay. Looks live in art-direction, not here.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- CONDITIONAL - only if the game has setting/story/characters.
+     Otherwise omit this file.
+     Fiction in service of pillars and gameplay.
+     Looks live in art-direction, not here.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-## Setting & Theme
+## Setting & theme
 
 <!-- Where/when, tone, mood. -->
-<paragraph>
+`<paragraph>`
 
 ## Narrative
 
-<!-- Story arc and how it is delivered (cutscene / environmental / systemic). Omit if none. -->
-<paragraph>
+<!-- Story arc and how it is delivered (cutscene / environmental / systemic).
+     Omit if none. -->
+`<paragraph>`
 
 ## Characters
 
 <!-- Role, personality, function - not art. -->
-### <character>
+### `<character>`
+
 - **Role**: <...>
 - **Personality / function**: <...>
 
-## Content / Level Structure
+## Content / level structure
 
 <!-- Worlds, levels, biomes, chapters - how content is organized and paced, and what
      authoring each unit needs. -->
-- <unit - how it's organized, pacing, authoring needs>
+- `<unit - how it's organized, pacing, authoring needs>`

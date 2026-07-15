@@ -10,7 +10,8 @@ There is no build or test suite; verification is `openspec schema validate` plus
 - `.claude/commands/opsx/` : Claude slash commands (require / gdd / architect / backend / frontend)
 - `.codex/skills/opsx-*/` : Codex mirrors of the commands - bodies must stay identical below the frontmatter
 - `openspec/AGENTS.md`, `openspec/CLAUDE.md` : the agent guide INSTALLED into target projects (different audience from this file)
-- `openspec/DIAGRAM-STYLE.md` : diagram rules the gdd/architecture/backend/frontend schemas follow
+- `openspec/DIAGRAM-STYLE.md` : diagram rules the schemas follow
+- `openspec/WRITING-STYLE.md` : prose rules for generated artifacts (reader-first, search-friendly)
 - `INSTALLATION.md` : copy-based install procedure
 - `README.md` / `README.ko.md` : user docs (change together)
 - `assets/workflow.svg`, `assets/workflow-game.svg` : pipeline diagrams (app / game)
@@ -32,6 +33,7 @@ Breaking one of these breaks installed projects - check before committing.
 ## Checks
 
 - `openspec schema validate <name>` for every edited schema (`requirements` | `gdd` | `architecture` | `backend` | `frontend`). Requires OpenSpec CLI >= 1.4.x (`npm i -g @fission-ai/openspec`).
+- `npx -y markdownlint-cli2 "**/*.md"` - markdown conventions; rules and deliberate deviations live in `.markdownlint.yaml`.
 - Command/skill parity - must print OK for all five:
 
   ```bash
@@ -52,6 +54,9 @@ Breaking one of these breaks installed projects - check before committing.
 | `feature/<name>` | Branch from `develop` → merge back to `develop` (delete after merge). | — |
 | `fix/<name>` | Bugs found during review. Branch from `release` → merge to `release` + `develop`. | — |
 | `hotfix/<name>` | Production bugs. Branch from `main` → merge to `main` + `develop` (+ active `release`). | — |
+
+- Commit messages follow Conventional Commits 1.0.0 (conventionalcommits.org): `feat:` / `fix:` / `refactor:` / `docs:` / `chore:`.
+- Per-schema `CHANGES.md` follows Keep a Changelog with one deliberate deviation: the unreleased section is pre-named `## [x.y.z] - Unreleased` (not `## [Unreleased]`), because the version-lockstep invariant pre-assigns the release version across schema metadata and template frontmatter.
 
 ## Workflow: the work loop
 

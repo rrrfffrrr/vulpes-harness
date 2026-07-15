@@ -22,6 +22,9 @@ description: "Backend detail design - no implementation/apply step. Builds on an
 #    system sends outbound callbacks. If the concern is absent, OMIT the file.
 #  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
 #    over vague ranges.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
 artifacts:
   - id: overview
     generates: overview.md

@@ -26,6 +26,9 @@ description: "Game Design Document - the cross-discipline blueprint of the inten
 #    absent, OMIT the file - do not create an empty placeholder.
 #  - Prose is plain and direct. Define a term once (in overview or where introduced) and use
 #    one form thereafter. Version pins and concrete numbers are explicit, not vague.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
 artifacts:
   - id: overview
     generates: overview.md
