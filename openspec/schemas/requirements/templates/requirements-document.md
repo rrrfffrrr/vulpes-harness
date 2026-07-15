@@ -9,30 +9,30 @@ document-version: 0
      top (scope/strategic goals) to bottom (requirements).
      Self-contained; reads as current truth.
      Consolidating model content here is expected (exempt from the no-repetition rule).
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Scope
 
 <!-- Synthesize from top-level goals + the requirement-vs-expectation split. -->
-**In scope:** <what the system does>
+**In scope:** `<what the system does>`
 
-**Out of scope:** <what is left to the environment or deferred>
+**Out of scope:** `<what is left to the environment or deferred>`
 
 ## Goals
 
 <!-- Goal specification top-to-bottom: strategic goals down to leaf requirements. -->
-- **<G1>: <goal>** - <subgoals / leaves>
+- **`<G1>`: `<goal>`** - `<subgoals / leaves>`
 
 ## Glossary
 
-- **<term>**: <definition>
+- **`<term>`**: `<definition>`
 
 ## Responsibilities
 
-- **<Agent>**: <leaf goals it owns>
+- **`<Agent>`**: `<leaf goals it owns>`
 
 ## Behavior
 
 <!-- Key invariants and representative operation flows. -->
-- <invariant or flow>
+- `<invariant or flow>`

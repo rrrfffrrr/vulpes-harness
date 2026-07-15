@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- C4 Component altitude.
      Deepens architecture logical-view components by name - do not rename them.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Middleware pipeline
@@ -16,7 +16,7 @@ document-version: 0
      Failure behavior names a problem type from conventions.md. -->
 | # | Stage | Responsibility | On rejection |
 |---|-------|----------------|--------------|
-| 1 | <e.g. auth> | <one line> | <status + problem type> |
+| 1 | `<e.g. auth>` | `<one line>` | `<status + problem type>` |
 
 ## Shared components
 
@@ -24,7 +24,7 @@ document-version: 0
      Interface = name + inputs/outputs + purpose, NOT code. -->
 | Component (logical-view name) | Responsibility | Exposes | Used by |
 |-------------------------------|----------------|---------|---------|
-| <name> | <one line> | <interface summary> | <components/endpoints> |
+| `<name>` | `<one line>` | `<interface summary>` | `<components/endpoints>` |
 
 <!-- Mark components that exist only at this detail level: (detail-level). -->
 
@@ -34,4 +34,4 @@ document-version: 0
      Bounded-context vocabulary where it helps. -->
 | Domain concept | Owning component | Notes |
 |----------------|------------------|-------|
-| <concept> | <component> | <invariants it guards> |
+| `<concept>` | `<component>` | `<invariants it guards>` |

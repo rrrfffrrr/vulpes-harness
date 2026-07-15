@@ -13,8 +13,8 @@ document-version: 0
 
 | Requirements operation | Interface (endpoint / channel / webhook) | Component(s) | Sequence |
 |------------------------|------------------------------------------|--------------|----------|
-| <operation name> | <METHOD path / channel / webhook type> | <component> | <flow name> |
+| `<operation name>` | `<METHOD path / channel / webhook type>` | `<component>` | `<flow name>` |
 
 ## Gaps
 
-- <operations with no interface; interfaces tracing to no operation; components no flow exercises; conditional artifacts excluded (overview's reason)>
+- `<operations with no interface; interfaces tracing to no operation; components no flow exercises; conditional artifacts excluded (overview's reason)>`

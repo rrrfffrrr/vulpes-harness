@@ -8,7 +8,7 @@ document-version: 0
 <!-- Navigation map covers EVERY screen in screens.md.
      Statecharts only for non-trivial internal state.
      Diagrams per openspec/DIAGRAM-STYLE.md.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Navigation map
@@ -16,7 +16,8 @@ document-version: 0
 <!-- Wireflow: screens as nodes, user events as labeled edges. -->
 ```mermaid
 flowchart LR
-  <ScreenA> -->|<event>| <ScreenB>
+  %% Replace with real screens (nodes) and user events (edge labels).
+  ScreenA -->|event| ScreenB
 ```
 
 ## Event -> transition tables
@@ -24,23 +25,24 @@ flowchart LR
 <!-- Per screen, for transitions the map alone cannot carry (guards, parameters).
      IFML semantics. -->
 
-### <Screen name>
+### `<Screen name>`
 
 | Event (on) | Guard | Action | Target |
 |------------|-------|--------|--------|
-| <event (component)> | <condition or -> | <what happens> | <screen/state> |
+| `<event (component)>` | `<condition or ->` | `<what happens>` | `<screen/state>` |
 
 ## Statecharts
 
 <!-- ONLY for interactions with non-trivial internal state.
      UML state machine notation. -->
 
-### <Interaction name>
+### `<Interaction name>`
 
-Traces to: <requirements operation/goal>
+Traces to: `<requirements operation/goal>`
 
 ```mermaid
 stateDiagram-v2
-  [*] --> <State>
-  <State> --> <State2>: <event [guard]>
+  %% Replace with the interaction's real states and events.
+  [*] --> StateA
+  StateA --> StateB: event [guard]
 ```

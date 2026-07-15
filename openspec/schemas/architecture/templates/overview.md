@@ -9,7 +9,7 @@ document-version: 0
      Solution strategy + tech stack + style + constraints,
      then the ISO/IEC 42010 role-concern-view map.
      Reference requirements by id; do not restate.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Solution strategy
@@ -17,22 +17,22 @@ document-version: 0
 <!-- arc42 sec.4.
      Key architectural decisions, one line each.
      Full rationale lives in ADRs. -->
-- <key decision> (ADR-NNN)
+- `<key decision>` (ADR-NNN)
 
 ## Technology stack
 
 <!-- Explicit choices with version intent. -->
-- **<tier (frontend/backend/data/infra/ML)>**: <choices + version intent>
+- **`<tier (frontend/backend/data/infra/ML)>`**: `<choices + version intent>`
 
 ## Architecture style
 
 <!-- e.g. modular monolith, microservices, event-driven. -->
-<one paragraph + why (link ADR)>
+`<one paragraph + why (link ADR)>`
 
 ## Constraints
 
 <!-- Technical/organizational constraints inherited from requirements. -->
-- <constraint>
+- `<constraint>`
 
 ## Role / concern / view map (ISO/IEC 42010)
 
@@ -40,13 +40,13 @@ document-version: 0
      Every role finds its reading list here. -->
 | Role | Concerns | Views to read |
 |------|----------|---------------|
-| <role> | <concerns> | <view, view> |
+| `<role>` | `<concerns>` | `<view, view>` |
 
 ## Conditional views included
 
 <!-- Which of process-view / data-view / ml-serving-view this design includes, and why. -->
 | View | Included? | Reason |
 |------|-----------|--------|
-| process-view | <Yes/No> | <reason> |
-| data-view | <Yes/No> | <reason> |
-| ml-serving-view | <Yes/No> | <reason> |
+| process-view | `<Yes/No>` | `<reason>` |
+| data-view | `<Yes/No>` | `<reason>` |
+| ml-serving-view | `<Yes/No>` | `<reason>` |

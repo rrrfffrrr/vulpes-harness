@@ -8,7 +8,7 @@ document-version: 0
 <!-- Player-facing interface and FLOW.
      Layout and flow here; visual styling is art-direction; rules are mechanics.
      Mockups as ascii/mermaid, not final art.
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Screen / menu flow
@@ -21,28 +21,28 @@ document-version: 0
 ## Key screens
 
 <!-- One block per important screen: layout + the actions on it. -->
-### <screen name>
+### `<screen name>`
 
-- **Serves**: <which gameplay state / mechanic>
+- **Serves**: `<which gameplay state / mechanic>`
 - **Layout**:
 
 ```text
 <ascii / mermaid wire mockup>
 ```
 
-- **Actions**: <buttons / inputs and what they do>
+- **Actions**: `<buttons / inputs and what they do>`
 
 ## Controls / input
 
 <!-- Every input and what it does, per input method. -->
 | Input | Action |
 |-------|--------|
-| <touch/button> | <...> |
+| `<touch/button>` | <...> |
 
 ## Onboarding / tutorial
 
 <!-- How a new player learns the core loop. -->
-<paragraph>
+`<paragraph>`
 
 ## Accessibility
 

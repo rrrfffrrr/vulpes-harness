@@ -14,8 +14,8 @@ document-version: 0
 
 | Requirement (goal / operation) | Screen | Flow | Components | Endpoint (backend) |
 |--------------------------------|--------|------|------------|---------------------|
-| <id / name> | <screen> | <flow> | <components> | <METHOD path or -> |
+| `<id / name>` | `<screen>` | `<flow>` | `<components>` | `<METHOD path or ->` |
 
 ## Gaps
 
-- <requirements with no screen; screens no flow reaches; components no screen uses; conditional artifacts excluded (overview's reason)>
+- `<requirements with no screen; screens no flow reaches; components no screen uses; conditional artifacts excluded (overview's reason)>`

@@ -7,32 +7,32 @@ document-version: 0
 
 <!-- Systems and RULES in detail - not screens (ux-ui) or visuals (art-direction).
      Reference requirements invariants/operations by id; add the player-facing feel/tuning.
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Systems
 
 <!-- One block per distinct mechanic/system. -->
-### <system name>
+### `<system name>`
 
 - **What it is**: <...>
-- **Rules**: <inputs, outputs, costs, limits, edge cases>
-- **Player interaction**: <how the player uses it>
-- **Feeds the loop**: <how it connects to the core loop>
+- **Rules**: `<inputs, outputs, costs, limits, edge cases>`
+- **Player interaction**: `<how the player uses it>`
+- **Feeds the loop**: `<how it connects to the core loop>`
 
 ## Progression
 
 <!-- Levels, unlocks, upgrades, skill trees - what deepens over time. -->
-- <progression system - what it gates/grants>
+- `<progression system - what it gates/grants>`
 
 ## Economy
 
 <!-- Each resource/currency, its sources and sinks, and how they balance. -->
 | Resource | Sources | Sinks | Notes |
 |----------|---------|-------|-------|
-| <name> | <how earned> | <how spent> | <...> |
+| `<name>` | `<how earned>` | `<how spent>` | <...> |
 
 ## Balancing intent
 
 <!-- Target pacing, key tuning values/ranges, what should feel scarce vs abundant. -->
-- <intent - concrete numbers where known, named ranges where not>
+- `<intent - concrete numbers where known, named ranges where not>`

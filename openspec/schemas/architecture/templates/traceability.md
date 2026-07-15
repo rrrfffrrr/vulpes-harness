@@ -14,15 +14,15 @@ document-version: 0
 
 | Requirements (goal / operation / agent id) | Architecture component (logical-view) | View(s) | ADR(s) |
 |--------------------------------------------|---------------------------------------|---------|--------|
-| <requirements id> | <component> | <view> | <ADR-NNN> |
+| `<requirements id>` | `<component>` | `<view>` | `<ADR-NNN>` |
 
 ## Role coverage
 
 <!-- Every role in the overview view map has at least one view to read. -->
 | Role | Views available | Covered? |
 |------|-----------------|----------|
-| <role> | <view, view> | <Yes/No> |
+| `<role>` | `<view, view>` | `<Yes/No>` |
 
 ## Gaps
 
-- <requirements operations with no architecture component; uncovered stakeholders; ADRs still 'proposed'>
+- `<requirements operations with no architecture component; uncovered stakeholders; ADRs still 'proposed'>`

@@ -9,7 +9,7 @@ document-version: 0
      System-wide UI vocabulary lives HERE, once:
      breakpoints, interaction states, accessibility target.
      Reference architecture/requirements by id; do not restate.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Platforms & UI stacks
@@ -17,7 +17,7 @@ document-version: 0
 <!-- From the architecture technology stack, by reference. -->
 | Platform | UI stack (architecture ref) |
 |----------|------------------------------|
-| <web / mobile / desktop> | <stack + version intent> |
+| `<web / mobile / desktop>` | `<stack + version intent>` |
 
 ## Breakpoint set
 
@@ -25,7 +25,7 @@ document-version: 0
      Screens describe behavior per class. -->
 | Class | Range | Typical |
 |-------|-------|---------|
-| <compact> | <range> | <phone> |
+| `<compact>` | `<range>` | `<phone>` |
 
 ## Interaction-state enum
 
@@ -34,8 +34,8 @@ document-version: 0
 
 ## Accessibility target
 
-- Conformance: <WCAG 2.2 level>
-- Non-web platforms: <how the criteria apply>
+- Conformance: `<WCAG 2.2 level>`
+- Non-web platforms: `<how the criteria apply>`
 
 ## Reader map
 
@@ -49,4 +49,4 @@ document-version: 0
 
 | Artifact | Included? | Reason |
 |----------|-----------|--------|
-| design-tokens | <Yes/No> | <reason> |
+| design-tokens | `<Yes/No>` | `<reason>` |

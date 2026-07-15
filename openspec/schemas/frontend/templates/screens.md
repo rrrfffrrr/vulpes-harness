@@ -7,12 +7,12 @@ document-version: 0
 
 <!-- Repeat the screen block per screen.
      Components by components.md name - never respecify.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
-## <Screen name>
+## `<Screen name>`
 
-<one-line purpose> (traces to: <requirement/goal id>)
+`<one-line purpose>` (traces to: `<requirement/goal id>`)
 
 ### Layout
 
@@ -24,22 +24,22 @@ document-version: 0
 
 | Breakpoint | Behavior |
 |------------|----------|
-| <class> | <revealed / divided / resized / repositioned / swapped elements> |
+| `<class>` | `<revealed / divided / resized / repositioned / swapped elements>` |
 
 ### UI Stack states
 
 | State | Shows |
 |-------|-------|
-| Ideal | <content> |
-| Empty | <first-use/no-data view + copy> |
-| Loading | <indicator/skeleton> |
-| Partial | <some data + how more loads> |
-| Error | <error view + exact copy + recovery action> |
+| Ideal | `<content>` |
+| Empty | `<first-use/no-data view + copy>` |
+| Loading | `<indicator/skeleton>` |
+| Partial | `<some data + how more loads>` |
+| Error | `<error view + exact copy + recovery action>` |
 
 ### Components & data
 
-- **Components**: <components.md names>
-- **Data**: <fields displayed; source - reference backend endpoints by METHOD+path when a backend change exists>
+- **Components**: `<components.md names>`
+- **Data**: `<fields displayed; source - reference backend endpoints by METHOD+path when a backend change exists>`
 
 ### Forms
 
@@ -47,11 +47,11 @@ document-version: 0
      Validation is part of the contract. -->
 | Field | Rules | Error copy (exact) |
 |-------|-------|---------------------|
-| <field> | <constraints> | "<copy>" |
+| `<field>` | `<constraints>` | "`<copy>`" |
 
-- Focus order: <order, where non-obvious>
+- Focus order: `<order, where non-obvious>`
 
 ### Events emitted
 
 <!-- Analytics event NAMES only - cross-references to the project's tracking plan. -->
-- <event.name>
+- `<event.name>`

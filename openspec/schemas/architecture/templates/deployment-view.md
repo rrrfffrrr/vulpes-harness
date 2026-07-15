@@ -8,35 +8,36 @@ document-version: 0
 <!-- 4+1 Physical / arc42 sec.7 + C4 Deployment.
      Topology + mapping of logical-view containers onto nodes.
      Reference containers by name; do not redefine responsibilities.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns
 
-- <roles (e.g. DevOps, infra, hardware)>. Concerns: <concerns this view frames>
+- `<roles (e.g. DevOps, infra, hardware)>`. Concerns: `<concerns this view frames>`
 
 ## Topology
 
 <!-- Nodes/hosts/racks, networks, trust zones. -->
 ```mermaid
 flowchart TB
-  subgraph <zone/network>
-    <node>[<host/service>]
+  %% Replace with the real zones, nodes, and connections.
+  subgraph zone
+    node1[host or service]
   end
-  <node> --> <node2>
+  node1 --> node2[host or service]
 ```
 
 ## Container -> node mapping
 
 | Container | Node | Notes |
 |-----------|------|-------|
-| <container> | <node> | <notes> |
+| `<container>` | `<node>` | `<notes>` |
 
 ## Scaling & availability
 
-- <scaling approach, redundancy, availability targets>
+- `<scaling approach, redundancy, availability targets>`
 
 ## Infrastructure constraints
 
 <!-- Inherited from requirements (e.g. on-premise rack, no cloud, network isolation). -->
-- <constraint>
+- `<constraint>`

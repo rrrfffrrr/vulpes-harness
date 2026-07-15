@@ -9,18 +9,18 @@ document-version: 0
      Otherwise omit this file.
      Reference the mechanics economy by id/name; do not redefine it.
      Keep fairness explicit.
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Business model
 
 <!-- Premium price / free-to-play / subscription / hybrid. -->
-<paragraph>
+`<paragraph>`
 
 ## Monetization mechanics
 
 <!-- IAP catalog & price tiers, ads placement/format, battle-pass/season, cosmetics. -->
-- <mechanic - how it works, price tier>
+- `<mechanic - how it works, price tier>`
 
 ## Real-money & in-game economy
 

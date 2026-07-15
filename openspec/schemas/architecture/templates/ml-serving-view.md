@@ -8,35 +8,36 @@ document-version: 0
 <!-- CONDITIONAL - omit if no model inference.
      Trace inference steps to requirements operations by name.
      Note on-premise/edge constraints (local weights, no external model APIs).
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns
 
-- <roles (e.g. ML engineer, infra)>. Concerns: <concerns this view frames>
+- `<roles (e.g. ML engineer, infra)>`. Concerns: `<concerns this view frames>`
 
 ## Inference pipeline
 
 <!-- End to end: input -> pre-process -> model(s) -> post-process -> output. -->
 ```mermaid
 flowchart LR
-  <input> --> <pre-process> --> <model> --> <post-process> --> <output>
+  %% Replace with the real pipeline stages.
+  input --> pre[pre-process] --> model --> post[post-process] --> output
 ```
 
 ## Models
 
 | Model | Role | Serving mode | Notes |
 |-------|------|--------------|-------|
-| <model> | <role> | <batch/stream/real-time> | <notes> |
+| `<model>` | `<role>` | `<batch/stream/real-time>` | `<notes>` |
 
 ## Hardware / accelerator plan
 
-- <GPU/accelerator resources, placement, capacity>
+- `<GPU/accelerator resources, placement, capacity>`
 
 ## Model lifecycle
 
-- <versioning, update, rollback, evaluation gate>
+- `<versioning, update, rollback, evaluation gate>`
 
 ## Performance targets
 
-- <throughput/latency targets per model or pipeline>
+- `<throughput/latency targets per model or pipeline>`

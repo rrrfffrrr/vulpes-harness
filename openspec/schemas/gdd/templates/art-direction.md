@@ -9,28 +9,28 @@ document-version: 0
      Show, don't only tell - LINK references/mockups.
      UI screen flow/layout is ux-ui; the fiction is world-narrative.
      Reference, don't redefine.
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Art style
 
 <!-- Overall style (e.g. 2D pixel, low-poly) + reference / mood-board links. -->
 - **Style**: <...>
-- **References**: <links>
+- **References**: `<links>`
 
 ## Color & mood
 
 <!-- Palette, lighting, mood. -->
-<paragraph>
+`<paragraph>`
 
 ## Character art
 
 <!-- Silhouette, proportion, readability. -->
-<paragraph>
+`<paragraph>`
 
 ## Environment art
 
-<paragraph>
+`<paragraph>`
 
 ## Animation
 

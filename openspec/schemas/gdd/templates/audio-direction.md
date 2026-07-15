@@ -8,27 +8,27 @@ document-version: 0
 <!-- Audio direction for the sound team.
      Tie key SFX to the events that trigger them.
      LINK references rather than vague adjectives alone.
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Music
 
 <!-- Genre, mood, adaptive/looping needs, key tracks per state/area + reference links. -->
 - **Direction**: <...>
-- **Key tracks**: <track - where it plays>
-- **References**: <links>
+- **Key tracks**: `<track - where it plays>`
+- **References**: `<links>`
 
 ## Sound effects
 
 <!-- Key SFX the gameplay needs and what each must communicate. -->
 | SFX | Triggered by | Communicates |
 |-----|--------------|--------------|
-| <name> | <mechanic / UI event> | <...> |
+| `<name>` | `<mechanic / UI event>` | <...> |
 
 ## Voice & ambience
 
 <!-- Omit if none. -->
-<paragraph>
+`<paragraph>`
 
 ## Audio's role in feel & feedback
 

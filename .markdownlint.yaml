@@ -5,9 +5,11 @@ default: true
 # SemBr (openspec/WRITING-STYLE.md): one sentence per line - sentence length governs, not column width.
 MD013: false
 
-# Deliberate inline HTML: <img> embeds (openspec/DIAGRAM-STYLE.md) and <placeholder> tokens in templates.
-# Caveat: GitHub preview may hide single-word placeholders (parsed as tags) - read templates raw.
-MD033: false
+# Inline HTML is limited to <img> embeds (openspec/DIAGRAM-STYLE.md).
+# Template placeholders are backtick-wrapped code spans (`<name>`), so anything else this rule
+# flags is a real render hazard - GitHub strips unknown tags from output.
+MD033:
+  allowed_elements: ["img"]
 
 # Command/skill files and agent guides open with frontmatter or a comment plus prose, not a heading.
 MD041: false

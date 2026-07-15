@@ -8,12 +8,12 @@ document-version: 0
 <!-- 4+1 Logical / arc42 sec.5 Building Block View.
      Static functional structure only - no deployment, no runtime sequencing.
      Map components to requirements agents by id.
-     Replace every <...> and example row.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns
 
-- <roles (e.g. frontend, backend)>. Concerns: <concerns this view frames>
+- `<roles (e.g. frontend, backend)>`. Concerns: `<concerns this view frames>`
 
 ## Building block decomposition
 
@@ -22,21 +22,22 @@ document-version: 0
      mermaid/ascii diagram. -->
 ```mermaid
 flowchart TB
-  subgraph <container>
-    <component>[<component>]
+  %% Replace with the real containers and components.
+  subgraph container1[container]
+    comp1[component]
   end
-  <component> --> <component2>
+  comp1 --> comp2[component]
 ```
 
 ## Components
 
-### <Component>
+### `<Component>`
 
-- Responsibility: <what it does>
-- Realizes (requirements agent): <agent id, if any>
+- Responsibility: `<what it does>`
+- Realizes (requirements agent): `<agent id, if any>`
 
 ## Interfaces
 
 | Interface | Provider | Consumer(s) | Inputs -> Outputs | Purpose |
 |-----------|----------|-------------|------------------|---------|
-| <name> | <component> | <component> | <in -> out> | <purpose> |
+| `<name>` | `<component>` | `<component>` | `<in ->` out> | `<purpose>` |

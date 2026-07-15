@@ -9,24 +9,24 @@ document-version: 0
      Otherwise omit this file.
      Fiction in service of pillars and gameplay.
      Looks live in art-direction, not here.
-     Replace every <...>.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Setting & theme
 
 <!-- Where/when, tone, mood. -->
-<paragraph>
+`<paragraph>`
 
 ## Narrative
 
 <!-- Story arc and how it is delivered (cutscene / environmental / systemic).
      Omit if none. -->
-<paragraph>
+`<paragraph>`
 
 ## Characters
 
 <!-- Role, personality, function - not art. -->
-### <character>
+### `<character>`
 
 - **Role**: <...>
 - **Personality / function**: <...>
@@ -35,4 +35,4 @@ document-version: 0
 
 <!-- Worlds, levels, biomes, chapters - how content is organized and paced, and what
      authoring each unit needs. -->
-- <unit - how it's organized, pacing, authoring needs>
+- `<unit - how it's organized, pacing, authoring needs>`
