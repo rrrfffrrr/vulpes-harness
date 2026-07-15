@@ -9,7 +9,7 @@ document-version: 0
      Solution strategy + tech stack + style + constraints,
      then the ISO/IEC 42010 role-concern-view map.
      Reference requirements by id; do not restate.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Solution strategy

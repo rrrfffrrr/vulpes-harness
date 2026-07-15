@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- Shared/reused components only - one-off screen arrangements live in screens.md.
      Repeat the component block per component.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## `<Component name>`

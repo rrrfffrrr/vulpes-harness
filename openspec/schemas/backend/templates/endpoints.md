@@ -9,7 +9,7 @@ document-version: 0
      Record only DEVIATIONS from conventions.md - never repeat shared rules.
      Field constraints ARE the contract:
      state them on the fields, with the validation-failure problem type.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example block; repeat the endpoint block per endpoint.
+     Replace every `<...>` placeholder and example block, dropping the backticks unless the value is a literal; repeat the endpoint block per endpoint.
      Delete guidance comments when done. -->
 
 ## `<Resource>`

@@ -8,7 +8,7 @@ document-version: 0
 <!-- Entry point.
      Interface surfaces, state management, reader map, conditional artifacts.
      Reference architecture components/ADRs by name/id; do not restate them.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Scope

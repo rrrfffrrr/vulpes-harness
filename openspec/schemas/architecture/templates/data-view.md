@@ -9,7 +9,7 @@ document-version: 0
      Solution-level schema, not the conceptual object-model.
      Derive entities from requirements object-model by name.
      Honor invariants.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns

@@ -9,7 +9,7 @@ document-version: 0
      System-wide UI vocabulary lives HERE, once:
      breakpoints, interaction states, accessibility target.
      Reference architecture/requirements by id; do not restate.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Platforms & UI stacks

@@ -9,7 +9,7 @@ document-version: 0
      Concerns spanning multiple views.
      State the concept and HOW the design realizes it across views;
      reference affected views/components by name.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Security & access control

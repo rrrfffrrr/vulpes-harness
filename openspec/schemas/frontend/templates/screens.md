@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- Repeat the screen block per screen.
      Components by components.md name - never respecify.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## `<Screen name>`

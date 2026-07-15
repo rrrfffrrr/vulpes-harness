@@ -8,7 +8,7 @@ document-version: 0
 <!-- Semi-formal: natural language + AND/OR structure.
      No temporal logic.
      Every goal phrased with a pattern keyword: Achieve / Maintain / Avoid / Cease.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal below.
+     Replace every `<...>` placeholder below, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Goal hierarchy

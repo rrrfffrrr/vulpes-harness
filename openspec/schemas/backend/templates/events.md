@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- CONDITIONAL - only when the system has message/event-driven APIs.
      AsyncAPI structure; envelope stated once; deviations from conventions.md only.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row; repeat the channel block per channel.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal; repeat the channel block per channel.
      Delete guidance comments when done. -->
 
 ## Envelope

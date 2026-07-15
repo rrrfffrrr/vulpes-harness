@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- C4 Component altitude.
      Deepens architecture logical-view components by name - do not rename them.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Middleware pipeline

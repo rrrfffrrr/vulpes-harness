@@ -8,7 +8,7 @@ document-version: 0
 <!-- 4+1 Physical / arc42 sec.7 + C4 Deployment.
      Topology + mapping of logical-view containers onto nodes.
      Reference containers by name; do not redefine responsibilities.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns

@@ -8,7 +8,7 @@ document-version: 0
 <!-- The shared rulebook.
      Every rule stated ONCE here with BCP 14 keywords (MUST/SHOULD/MAY);
      endpoints/events/webhooks record only deviations.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Authentication & authorization

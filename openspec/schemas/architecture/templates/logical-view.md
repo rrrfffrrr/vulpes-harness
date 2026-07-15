@@ -8,7 +8,7 @@ document-version: 0
 <!-- 4+1 Logical / arc42 sec.5 Building Block View.
      Static functional structure only - no deployment, no runtime sequencing.
      Map components to requirements agents by id.
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns

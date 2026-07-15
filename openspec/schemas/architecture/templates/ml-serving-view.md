@@ -8,7 +8,7 @@ document-version: 0
 <!-- CONDITIONAL - omit if no model inference.
      Trace inference steps to requirements operations by name.
      Note on-premise/edge constraints (local weights, no external model APIs).
-     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal and example row.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
 ## Stakeholders & concerns
