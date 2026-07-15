@@ -16,7 +16,7 @@ document-version: 0
 
 ## Role Coverage
 
-<!-- Every role in the architecture-overview view map has at least one view to read. -->
+<!-- Every role in the overview view map has at least one view to read. -->
 | Role | Views available | Covered? |
 |------|-----------------|----------|
 | <role> | <view, view> | <Yes/No> |

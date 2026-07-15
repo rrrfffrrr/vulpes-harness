@@ -1,0 +1,152 @@
+name: frontend
+version: 1
+metadata:
+  version: "1.1.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
+# Authoring principles (all artifacts):
+#  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
+#    below architecture. Architecture answered structure/technology; this schema answers what
+#    each screen shows, how every component looks and behaves per state, and how the UI moves
+#    between screens on events. Reference architecture components and requirements by
+#    name/id - do not restate them.
+#  - NO CODE. Wire mockups (ascii/mermaid per openspec/DIAGRAM-STYLE.md), state tables,
+#    token tables, and event->transition tables are the medium; source files are not.
+#  - State each fact once: system-wide vocabulary (breakpoint set, interaction-state enum,
+#    accessibility target) lives in overview; component facts live in components; screens
+#    reference components by name and record only screen-specific behavior.
+#  - Every screen covers all five UI Stack states (ideal/empty/loading/partial/error).
+#    Every component states its behavior for each interaction state from the overview enum.
+#  - Accessibility is specified where it applies: keyboard interaction and labeling per
+#    component, focus order and reading order per screen; the conformance target (WCAG 2.2
+#    level) is declared once in overview.
+#  - Form fields carry their validation rules and exact error copy - validation is part of
+#    the screen contract, not an afterthought.
+#  - Screens may list the analytics events they emit BY NAME as cross-references to the
+#    project's tracking plan; the tracking taxonomy itself is a separate artifact owned
+#    elsewhere - never define it here.
+#  - Conditional artifact: design-tokens when styling is token-based. If the concern is
+#    absent, OMIT the file.
+#  - Prose is plain and direct; concrete values (px, ms, copy text) over vague ranges.
+artifacts:
+  - id: overview
+    generates: overview.md
+    description: >-
+      The entry point. Platforms and UI stacks, the breakpoint set, the interaction-state
+      enum, the accessibility target, reader map, and which conditional artifacts this
+      design includes.
+    template: overview.md
+    instruction: |
+      Frame the UI detail design from the architecture change. Cover: the PLATFORMS and UI
+      STACKS this spec targets (from the architecture technology stack, by reference); the
+      BREAKPOINT SET - the named window-size classes this product uses and the ranges they
+      map to; the INTERACTION-STATE ENUM - the component states this spec uses everywhere
+      (e.g. enabled/disabled/hovered/focused/pressed/selected), declared once here; the
+      ACCESSIBILITY TARGET - the WCAG 2.2 conformance level and how it applies on non-web
+      platforms; the READER MAP (designers / UI engineers / QA - what each reads first);
+      and the CONDITIONAL ARTIFACTS table - whether design-tokens is included, with a
+      one-line reason.
+      Reference architecture and requirements by id; do not restate them.
+    requires: []
+
+  - id: design-tokens
+    generates: design-tokens.md
+    description: >-
+      CONDITIONAL - include when styling is token-based. The named design decisions:
+      color, typography, dimension, motion (easing/duration), and themes as token
+      collections (DTCG-aligned).
+    template: design-tokens.md
+    instruction: |
+      Define the design tokens (DTCG vocabulary: a token has a name, a $type, and a
+      $value). Cover the groups the product uses: COLOR (semantic roles, not raw palette
+      dumps - primary/surface/error/... with values), TYPOGRAPHY (families, the type
+      scale), DIMENSION (spacing scale, radii, breakpoint values if tokenized), MOTION
+      (named easing curves and duration tokens - every animated transition in components/
+      screens references these by name), and THEMES - each theme (e.g. light/dark) as a
+      collection of token VALUES over the same token names; components never restate
+      per-theme behavior, they reference tokens.
+      Name tokens once here; components and screens consume them by name.
+      Omit this artifact entirely if styling is not token-based.
+    requires:
+      - overview
+
+  - id: components
+    generates: components.md
+    description: >-
+      The shared component inventory: per component its anatomy, variants/sizes, behavior
+      per interaction state, keyboard/assistive behavior, content guidelines, and
+      composition level (Atomic Design).
+    template: components.md
+    instruction: |
+      Specify every shared/reused component. Per component: its LEVEL (atom/molecule/
+      organism); ANATOMY - the named parts that compose it; VARIANTS and SIZES with
+      concrete dimensions; STATES - behavior/appearance per interaction state from the
+      overview enum (only states that apply); BEHAVIOR - pointer AND keyboard interaction
+      (the APG pattern it follows where one exists), plus labeling/announcement for
+      assistive tech; CONTENT guidelines - the microcopy rules for its text parts (casing,
+      length, verb form); and TOKENS consumed (when design-tokens exists) or concrete
+      values (when not). Add an RTL/mirroring note only for components whose layout or
+      iconography must mirror.
+      One-off screen-specific arrangements do not belong here - only shared components.
+    requires:
+      - overview
+
+  - id: screens
+    generates: screens.md
+    description: >-
+      The per-screen specification: layout and breakpoint behavior, the five UI Stack
+      states, components used, data displayed, form validation with exact error copy, and
+      emitted analytics event names.
+    template: screens.md
+    instruction: |
+      Specify every screen. Per screen: PURPOSE (one line, tracing to the requirement/goal
+      it serves by id); LAYOUT - a wire mockup (ascii or mermaid) of the ideal state plus
+      the BREAKPOINT BEHAVIOR - what is revealed/divided/resized/repositioned/swapped at
+      each breakpoint from the overview set; the FIVE UI STACK STATES - what the screen
+      shows when ideal, empty, loading, partial, and error (copy included); COMPONENTS
+      used, by components.md name - never respecify them; DATA displayed - the fields and
+      where they come from (when a backend change exists, reference its endpoints by
+      METHOD+path); FORMS - per field the validation rules and the EXACT error copy, plus
+      focus order; and EVENTS EMITTED - analytics event names only, as cross-references to
+      the project's tracking plan.
+      Screen-specific accessibility: focus order and reading order where non-obvious.
+    requires:
+      - components
+
+  - id: flows
+    generates: flows.md
+    description: >-
+      How the UI moves: the wireflow navigation map, event->transition tables (IFML
+      semantics), and statecharts for complex stateful interactions.
+    template: flows.md
+    instruction: |
+      Specify navigation and interaction flow. Cover: the NAVIGATION MAP - a wireflow
+      (screens as nodes, user events as labeled edges) covering every screen in
+      screens.md; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
+      component -> action -> target screen/state) for transitions the map alone cannot
+      carry (guards, parameters); and STATECHARTS (UML state machine notation, mermaid)
+      ONLY for interactions with non-trivial internal state (multi-step editors, drag
+      interactions, connection-dependent UI) - simple open/close needs no statechart.
+      Every flow traces to the requirements operation or goal it realizes, by name.
+      Diagrams per openspec/DIAGRAM-STYLE.md.
+    requires:
+      - screens
+
+  - id: traceability
+    generates: traceability.md
+    description: >-
+      The linking matrix: requirements/goals <-> screens <-> flows <-> components
+      (<-> backend endpoints when a backend change exists). All cross-artifact linking
+      lives here.
+    template: traceability.md
+    instruction: |
+      Produce the bidirectional matrix linking: requirements goals/operations (by id/name)
+      <-> screens <-> the flows that reach them <-> the components they use. When a
+      backend change exists, add the endpoint column (METHOD+path) for data each screen
+      displays. Draw names from the artifacts themselves.
+      Include a GAPS section: requirements with no screen, screens no flow reaches,
+      components no screen uses, and conditional artifacts excluded (with the overview's
+      reason). All linking lives HERE - never in artifact prose beyond the single inline
+      trace each screen/flow carries.
+    requires:
+      - screens
+      - flows

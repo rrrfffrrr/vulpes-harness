@@ -20,8 +20,14 @@ Add the harness to your project once - see [INSTALLATION.md](INSTALLATION.md).
 
 <img alt="workflow" src="assets/workflow.svg" width="80%">
 
+For game projects:
+
+<img alt="game workflow" src="assets/workflow-game.svg" width="90%">
+
 - Requirements: `/opsx:require {content}`
 - Architecture: `/opsx:architect {content}`
+- Backend detail: `/opsx:backend {content}`
+- Frontend detail: `/opsx:frontend {content}`
 - Prepare: `/opsx:propose {content}`
 - Build: `/opsx:apply {content}`
 
@@ -37,7 +43,19 @@ Produces business requirements, goal/object/responsibility/operation models, a s
 
 The architecture schema, using Kruchten 4+1, arc42, ISO/IEC 42010, Nygard ADRs, and a BABOK RTM.
 
-Produces an architecture overview, logical/process/data/deployment views, crosscutting concepts, ADRs, and a design-traceability matrix.
+Produces an architecture overview, logical/process/data/deployment views, crosscutting concepts, ADRs, and a traceability matrix.
+
+### backend
+
+The backend detail-design schema, using OpenAPI/JSON Schema, RFC 9110/9457/9111, BCP 14, UML sequences, and C4 components.
+
+Produces an overview, API conventions, components, endpoint contracts, runtime sequences, optional events/webhooks, and a traceability matrix.
+
+### frontend
+
+The frontend detail-design schema for web, mobile, and desktop apps, using IFML, UML state machines, wireflows, Atomic Design, the UI Stack, and WCAG 2.2.
+
+Produces an overview, optional design tokens, a component inventory, screens, flows, and a traceability matrix.
 
 ### gdd
 
