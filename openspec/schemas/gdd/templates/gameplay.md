@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Gameplay
 
 <!-- How the game PLAYS (not internal systems - that is mechanics). Diagrams for the loop

@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Data View
 
 <!-- CONDITIONAL - omit if no persistent state. Solution-level schema, not the conceptual

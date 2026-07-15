@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Market & Production
 
 <!-- The ONE synthesis artifact - market positioning + scope/priority decisions. May restate

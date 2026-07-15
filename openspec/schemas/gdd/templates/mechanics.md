@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Mechanics & Systems
 
 <!-- Systems and RULES in detail - not screens (ux-ui) or visuals (art-direction).

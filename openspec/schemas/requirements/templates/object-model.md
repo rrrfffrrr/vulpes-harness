@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Object Model
 
 <!-- The conceptual structure the goals refer to. Conceptual / requirements-level

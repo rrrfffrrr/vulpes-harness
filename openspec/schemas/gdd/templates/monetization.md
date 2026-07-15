@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Monetization
 
 <!-- CONDITIONAL - only if the game is commercial. Otherwise omit this file.

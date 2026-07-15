@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # ML Serving View
 
 <!-- CONDITIONAL - omit if no model inference. Trace inference steps to requirements operations

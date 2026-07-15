@@ -1,6 +1,6 @@
 ---
 name: opsx-architect
-version: "1.0.0"
+version: "1.1.0"
 description: Technical architecture from a requirements change - 4+1 views + arc42 + ISO 42010 + ADRs. No implementation.
 ---
 
@@ -91,3 +91,4 @@ Summarize: architecture change name + location, which conditional views were inc
 - Change name is `{program}-architecture` (project singleton). Don't invent per-feature names; continue the existing `*-architecture` unless the user wants a separate program.
 - The folder README.md is a verbatim copy of `openspec/schemas/architecture/change-README.md` - never hand-write or edit it per project.
 - Read source requirements + dependency architecture artifacts before creating the next one. Verify each file exists after writing.
+- **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema.

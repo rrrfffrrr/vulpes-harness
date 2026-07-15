@@ -25,12 +25,19 @@ Get the harness from https://github.com/rrrfffrrr/vulpes-harness and copy these 
 
 - `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`
 - `openspec/DIAGRAM-STYLE.md`  (diagram rules for gdd and architecture)
+- `openspec/AGENTS.md` and `openspec/CLAUDE.md`  (agent guide to the openspec folder; CLAUDE.md just imports AGENTS.md)
 - `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`  (Claude)
 - `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`  (Codex)
 
 Copy only the lines for the tool(s) you installed in step 1.
 
 Commit the copied files, and copy them again to update.
+
+Exception - `openspec/AGENTS.md` and `openspec/CLAUDE.md` are not a blind `cp` when the target file already exists:
+
+- `AGENTS.md`: add or replace only the `# vulpes-harness` h1 section.
+  Every other h1 section is project-owned - keep them as-is.
+- `CLAUDE.md`: make sure the `@AGENTS.md` import line is present; keep the rest of the file.
 
 ## 3. Verify
 

@@ -2,6 +2,8 @@
 
 This change holds **architecture** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) artifacts - the "how", the technical structure. No implementation (apply) step.
 
+Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
+
 **Start here ->** [`architecture-overview.md`](architecture-overview.md) - the role <-> concern <-> view map points each role to the views to read.
 
 **Reading order:**

@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Architecture Overview
 
 <!-- Entry point for every role. Solution strategy + tech stack + style + constraints,

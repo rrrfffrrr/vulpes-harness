@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Audio Direction
 
 <!-- Audio direction for the sound team. Tie key SFX to the events that trigger them.

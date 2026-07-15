@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Goal Model
 
 <!-- Semi-formal: natural language + AND/OR structure. No temporal logic.

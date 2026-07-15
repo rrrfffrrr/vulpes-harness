@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Logical View
 
 <!-- 4+1 Logical / arc42 sec.5 Building Block View. Static functional structure only - no

@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Architecture Decision Records
 
 <!-- Nygard format. Append-only: never rewrite an accepted ADR - supersede it.
