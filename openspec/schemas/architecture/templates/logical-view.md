@@ -20,13 +20,14 @@ document-version: 0
 <!-- Hierarchical.
      Containers -> components (C4).
      mermaid/ascii diagram. -->
-```
+```text
 <diagram>
 ```
 
 ## Components
 
 ### <Component>
+
 - Responsibility: <what it does>
 - Realizes (requirements agent): <agent id, if any>
 

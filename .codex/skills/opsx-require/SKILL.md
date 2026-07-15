@@ -5,6 +5,7 @@ description: Specify the requirements for a change using KAOS/GORE + BABOK - bus
 ---
 
 Capture the requirements for a change - requirements engineering, separate from development. This uses the `requirements` schema (KAOS/GORE under a BABOK structure). It produces:
+
 - business-requirements.md (stakeholder statements, verbatim - the single source of truth)
 - goal-model.md (KAOS goal hierarchy AND/OR, domain properties, obstacles, resolved conflicts)
 - object-model.md (entities, relationships, attributes, invariants, glossary)
@@ -29,6 +30,7 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
    - To keep multiple parallel requirements changes (e.g. two products in one repo), the user gives distinct program names -> `{a}-requirements`, `{b}-requirements`.
 
 3. **Create the requirements change**
+
    ```bash
    openspec new change "{program}-requirements" --schema requirements
    ```
@@ -36,9 +38,11 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
 4. **Write the folder README (reading guide).** Copy `openspec/schemas/requirements/templates/README.md` to `openspec/changes/{program}-requirements/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/requirements/templates/README.ko.md` to `openspec/changes/{program}-requirements/README.ko.md`. These static guides are identical for every requirements change - copy verbatim, do NOT hand-edit them per project.
 
 5. **Get the artifact build order**
+
    ```bash
    openspec status --change "{program}-requirements" --json
    ```
+
    Parse `artifacts` (status + dependencies). Build in dependency order: `business-requirements -> goal-model -> object-model, responsibility-model -> operation-model -> requirements-document -> traceability`.
 
 6. **Create artifacts in sequence**
@@ -67,6 +71,7 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
 Summarize: change name + location, artifacts created (one line each), and: "Requirements complete - no implementation step. Run `/opsx:propose` (spec-driven) when ready to build, using these requirements artifacts as the source."
 
 **Guardrails**
+
 - This is REQUIREMENTS. Do NOT produce technical design, tasks, or implementation. Do NOT try to move to apply - the requirements schema has no apply step.
 - Change name is `{program}-requirements` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/requirements/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.

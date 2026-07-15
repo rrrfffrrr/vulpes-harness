@@ -15,9 +15,10 @@ document-version: 0
 
 <!-- The repeating cycle the player does.
      Show it as a flow. -->
-```
+```text
 <step> -> <step> -> <step> -> (back to start)
 ```
+
 <one paragraph: what closes the loop and why the player repeats it>
 
 ## Moment-to-moment
@@ -29,9 +30,10 @@ document-version: 0
 
 <!-- Launch -> session -> between-session.
      States and transitions. -->
-```
+```text
 <state> -> <state> -> <state>
 ```
+
 - **<state>**: <what happens here>
 
 ## Progression feel

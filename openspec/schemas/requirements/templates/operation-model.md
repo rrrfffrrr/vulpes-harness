@@ -14,6 +14,7 @@ document-version: 0
 ## Operations
 
 ### Operation: <name>
+
 - Pre-condition: <what must hold before>
 - Post-condition: <what holds after>
 - Trigger: <what initiates it>
@@ -23,6 +24,7 @@ document-version: 0
 <!-- At least one per operation, plus one per resolved obstacle that adds runtime behavior.
      For weaken-goal / out-of-software substitute-agent resolutions, note "no scenario applies". -->
 ### Scenario: <name>
+
 - Given <context>
 - When <action/operation>
 - Then <outcome; reference the satisfied goal by name>

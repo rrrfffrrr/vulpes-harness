@@ -33,6 +33,7 @@ Breaking one of these breaks installed projects - check before committing.
 ## Checks
 
 - `openspec schema validate <name>` for every edited schema (`requirements` | `gdd` | `architecture` | `backend` | `frontend`). Requires OpenSpec CLI >= 1.4.x (`npm i -g @fission-ai/openspec`).
+- `npx -y markdownlint-cli2 "**/*.md"` - markdown conventions; rules and deliberate deviations live in `.markdownlint.yaml`.
 - Command/skill parity - must print OK for all five:
 
   ```bash

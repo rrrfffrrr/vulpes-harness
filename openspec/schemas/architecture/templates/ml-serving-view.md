@@ -18,7 +18,7 @@ document-version: 0
 ## Inference pipeline
 
 <!-- End to end: input -> pre-process -> model(s) -> post-process -> output. -->
-```
+```text
 <pipeline diagram>
 ```
 

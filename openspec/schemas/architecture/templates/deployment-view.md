@@ -18,7 +18,7 @@ document-version: 0
 ## Topology
 
 <!-- Nodes/hosts/racks, networks, trust zones. -->
-```
+```text
 <deployment diagram>
 ```
 

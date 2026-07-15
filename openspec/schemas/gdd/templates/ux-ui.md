@@ -14,7 +14,7 @@ document-version: 0
 ## Screen / menu flow
 
 <!-- The map: title -> menus -> game -> results -> back. -->
-```
+```text
 <screen> -> <screen> -> <screen>
 ```
 
@@ -22,11 +22,14 @@ document-version: 0
 
 <!-- One block per important screen: layout + the actions on it. -->
 ### <screen name>
+
 - **Serves**: <which gameplay state / mechanic>
 - **Layout**:
-```
+
+```text
 <ascii / mermaid wire mockup>
 ```
+
 - **Actions**: <buttons / inputs and what they do>
 
 ## Controls / input

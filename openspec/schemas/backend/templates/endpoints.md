@@ -43,6 +43,6 @@ document-version: 0
 
 - **Example**
 
-  ```
+  ```text
   <one request/response pair; do not duplicate schema details>
   ```

@@ -10,6 +10,7 @@ document-version: 0
      Where a decision resolves a requirements obstacle or is forced by a constraint, cite by id. -->
 
 ## ADR-001: <title>
+
 - **Status:** proposed | accepted | superseded by ADR-NNN
 - **Context:** <forces at play; requirements constraint/obstacle by id if relevant>
 - **Decision:** <the choice made>

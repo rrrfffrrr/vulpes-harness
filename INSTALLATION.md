@@ -21,7 +21,7 @@ Creates `openspec/` and the base commands for each tool listed.
 
 ## 2. Copy the harness in
 
-Get the harness from https://github.com/rrrfffrrr/vulpes-harness and copy these into your project at the same paths:
+Get the harness from <https://github.com/rrrfffrrr/vulpes-harness> and copy these into your project at the same paths:
 
 - `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`, `openspec/schemas/backend/`, `openspec/schemas/frontend/`
 - `openspec/DIAGRAM-STYLE.md` and `openspec/WRITING-STYLE.md`  (diagram and prose rules for the schemas)

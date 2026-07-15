@@ -25,7 +25,8 @@ document-version: 0
 ## Runtime flows
 
 ### Flow: <name>  (operation: <OperationName>)
-```
+
+```text
 <sequence diagram or Given-When-Then>
 ```
 

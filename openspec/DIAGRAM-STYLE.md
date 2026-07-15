@@ -7,7 +7,7 @@ Quick drafts / simple flows may use mermaid.
 
 > GitHub blocks inline `<svg>` in Markdown, so **commit the diagram as a .svg file** and embed it as an image.
 > Then it renders on GitHub/GitLab/VS Code alike.
-
+>
 > **viewBox fits the content tightly (important)**: set `viewBox` (`minX minY W H`; the origin need not be 0) to the actual content bounds (accounting for text ascenders/descenders, arrow markers, and `stroke` width), leaving only the **minimum safe margin of 4px** to avoid clipping.
 > No generous margins: at a fixed display width (`width=NN%`), large margins render the content smaller and **hurt legibility**.
 > Content bounds differ per diagram, so viewBox/size/layout **cannot be common** (per-diagram).
@@ -16,11 +16,13 @@ Quick drafts / simple flows may use mermaid.
 
 - **Root**: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" width="W" height="H" font-family="sans-serif" font-size="13">`
 - **Arrow marker**:
+
   ```xml
   <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
     <path d="M0,0 L7,3 L0,6 Z" fill="#557"/>
   </marker>
   ```
+
 - **Edges**: `stroke="#557" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arr)"`
 - **Edges are orthogonal (`]` brackets)** - no curves.
   Round the corners/ends with `stroke-linejoin="round"` + `stroke-linecap="round"`.

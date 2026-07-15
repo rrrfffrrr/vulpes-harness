@@ -9,6 +9,7 @@ tags: [workflow, gdd, game-design, experimental]
 Author a Game Design Document - the cross-discipline blueprint of the intended game, separate from formal requirements and from development. This uses the `gdd` schema (standard GDD sections, from a high-concept overview down to a production scope). It produces:
 
 **Core sections (always):**
+
 - overview.md (elevator pitch, genre, platform, audience, design pillars, USPs, scope/MVP)
 - gameplay.md (core loop, moment-to-moment, game flow & states, win/lose, difficulty)
 - mechanics.md (systems & rules, progression, economy sources/sinks, balancing intent)
@@ -19,6 +20,7 @@ Author a Game Design Document - the cross-discipline blueprint of the intended g
 - production.md (market & positioning, KPIs, MoSCoW feature list, milestones, risks & cut list)
 
 **Conditional sections (only when the game has that concern):**
+
 - world-narrative.md - the game has a setting, story, or characters
 - monetization.md - the game is commercial (F2P/IAP/ads/premium pricing)
 
@@ -44,6 +46,7 @@ This is a GDD (the intended game - what it is, how it plays/looks/sounds, how it
    - To keep multiple parallel GDDs (e.g. two products in one repo), the user gives distinct program names -> `{a}-gdd`, `{b}-gdd`.
 
 5. **Create the GDD change**
+
    ```bash
    openspec new change "{program}-gdd" --schema gdd
    ```
@@ -51,9 +54,11 @@ This is a GDD (the intended game - what it is, how it plays/looks/sounds, how it
 6. **Write the folder README (reading guide).** Copy `openspec/schemas/gdd/templates/README.md` to `openspec/changes/{program}-gdd/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/gdd/templates/README.ko.md` to `openspec/changes/{program}-gdd/README.ko.md`. These static guides are identical for every gdd change - copy verbatim, do NOT hand-edit them per project.
 
 7. **Get the artifact build order**
+
    ```bash
    openspec status --change "{program}-gdd" --json
    ```
+
    Build in dependency order: `overview -> gameplay -> mechanics -> (world-narrative) -> art-direction -> audio-direction -> ux-ui -> tech -> (monetization) -> production`.
 
 8. **Create artifacts in sequence**
@@ -86,6 +91,7 @@ This is a GDD (the intended game - what it is, how it plays/looks/sounds, how it
 Summarize: GDD change name + location, which conditional sections were included (and why), artifacts created (one line each), and: "GDD complete - no implementation step. The change stays open; re-run `/opsx:gdd` to keep it current. Run `/opsx:architect` for technical architecture or `/opsx:propose` (spec-driven) when ready to build."
 
 **Guardrails**
+
 - This is a GDD - the intended game (WHAT it is and HOW it plays/looks/sounds/sells). NOT formal requirements (`/opsx:require`), NOT architecture (`/opsx:architect`), NOT code/tasks.
 - Change name is `{program}-gdd` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/gdd/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.

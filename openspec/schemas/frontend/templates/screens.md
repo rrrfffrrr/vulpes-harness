@@ -16,7 +16,7 @@ document-version: 0
 
 ### Layout
 
-```
+```text
 <wire mockup of the ideal state (ascii or mermaid, per openspec/DIAGRAM-STYLE.md)>
 ```
 

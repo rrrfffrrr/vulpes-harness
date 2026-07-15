@@ -13,6 +13,7 @@ document-version: 0
      Delete guidance comments when done. -->
 
 ## BR1: <topic>  [Goal | Constraint]
+>
 > "<verbatim statement>"
 > Decision: "<verbatim decision or clarification, if any>"
 

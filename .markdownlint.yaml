@@ -1,0 +1,23 @@
+# Markdown conventions for this repo (markdownlint).
+# Deliberate deviations are documented per rule; everything else is enforced.
+default: true
+
+# SemBr (openspec/WRITING-STYLE.md): one sentence per line - sentence length governs, not column width.
+MD013: false
+
+# Deliberate inline HTML: <img> embeds (openspec/DIAGRAM-STYLE.md) and <placeholder> tokens in templates.
+# Caveat: GitHub preview may hide single-word placeholders (parsed as tags) - read templates raw.
+MD033: false
+
+# Command/skill files and agent guides open with frontmatter or a comment plus prose, not a heading.
+MD041: false
+
+# Bold section markers (e.g. **Guardrails**) are the command-file convention.
+MD036: false
+
+# Keep a Changelog repeats "Added"/"Changed" under each version.
+MD024:
+  siblings_only: true
+
+# Table pipe alignment is not enforced - alignment churn pollutes sentence-scoped diffs.
+MD060: false

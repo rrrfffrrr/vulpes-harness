@@ -55,10 +55,10 @@ These rules govern prose; diagram rules live in `DIAGRAM-STYLE.md`.
 
 Verified 2026-07-15.
 
-- Semantic Line Breaks: https://sembr.org/
-- ISO 24495-1:2023 Plain language - governing principles: https://www.iso.org/standard/78907.html
-- Google developer documentation style guide (CC BY 4.0): https://developers.google.com/style
-- Microsoft Writing Style Guide (scannable content; one word per concept): https://learn.microsoft.com/en-us/style-guide/welcome/
+- Semantic Line Breaks: <https://sembr.org/>
+- ISO 24495-1:2023 Plain language - governing principles: <https://www.iso.org/standard/78907.html>
+- Google developer documentation style guide (CC BY 4.0): <https://developers.google.com/style>
+- Microsoft Writing Style Guide (scannable content; one word per concept): <https://learn.microsoft.com/en-us/style-guide/welcome/>
 - NN/g reading research: [How Users Read on the Web, 1997](https://www.nngroup.com/articles/how-users-read-on-the-web/) - [F-shaped pattern, 2017 update](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) - [Inverted Pyramid, 2018](https://www.nngroup.com/articles/inverted-pyramid/) - [First 2 Words, 2009](https://www.nngroup.com/articles/first-2-words-a-signal-for-scanning/)
-- GOV.UK clear titles (search-term-first): https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-titles/
-- ISO 8601-1:2019 date/time format: https://www.iso.org/standard/70907.html
+- GOV.UK clear titles (search-term-first): <https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-titles/>
+- ISO 8601-1:2019 date/time format: <https://www.iso.org/standard/70907.html>

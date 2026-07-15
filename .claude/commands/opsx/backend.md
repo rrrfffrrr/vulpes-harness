@@ -9,6 +9,7 @@ tags: [workflow, backend, api, detail-design, openapi, experimental]
 Design the backend in detail - exact interface contracts, one level below architecture and separate from development. This uses the `backend` schema (OpenAPI 3.2 + JSON Schema 2020-12 contracts under RFC 9110 semantics, RFC 9457 errors, RFC 9111 caching, BCP 14 keywords, UML 2.5.1 sequences, C4 Component inventory). It produces:
 
 **Core artifacts (always):**
+
 - overview.md (interface surfaces + styles, state management, reader map)
 - conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, long-running operations (LRO))
 - components.md (middleware pipeline in order + shared components, C4 Component level)
@@ -17,6 +18,7 @@ Design the backend in detail - exact interface contracts, one level below archit
 - traceability.md (operation <-> interface <-> component <-> sequence matrix)
 
 **Conditional artifacts (only when the system has that concern):**
+
 - events.md - message/event-driven APIs (AsyncAPI 3.1 structure, CloudEvents envelope)
 - webhooks.md - outbound callbacks (Standard Webhooks conventions)
 
@@ -41,6 +43,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
    - To keep multiple parallel backend designs, the user gives distinct program names -> `{a}-backend`, `{b}-backend`.
 
 4. **Create the backend change**
+
    ```bash
    openspec new change "{program}-backend" --schema backend
    ```
@@ -48,9 +51,11 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 5. **Write the folder README (reading guide).** Copy `openspec/schemas/backend/templates/README.md` to `openspec/changes/{program}-backend/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/backend/templates/README.ko.md` to `openspec/changes/{program}-backend/README.ko.md`. These static guides are identical for every backend change - copy verbatim, do NOT hand-edit them per project.
 
 6. **Get the artifact build order**
+
    ```bash
    openspec status --change "{program}-backend" --json
    ```
+
    Build in dependency order: `overview -> conventions, components -> endpoints -> sequences, (events, webhooks) -> traceability`.
 
 7. **Create artifacts in sequence**
@@ -81,6 +86,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 Summarize: backend change name + location, which conditional artifacts were included (and why), artifacts created (one line each), and: "Backend detail design complete - no implementation step. The change stays open; re-run `/opsx:backend` to add or refine contracts. Run `/opsx:propose` (spec-driven) when ready to build."
 
 **Guardrails**
+
 - This is INTERFACE-LEVEL detail design, below architecture (structure/technology) and above implementation. NO code, NO tasks. Payload schemas, header tables, and sequence diagrams are fine; source files are not.
 - Diagrams follow `openspec/DIAGRAM-STYLE.md`.
 - Do NOT restate architecture - reference components, views, and ADRs by name/id.

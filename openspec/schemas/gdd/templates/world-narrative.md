@@ -27,6 +27,7 @@ document-version: 0
 
 <!-- Role, personality, function - not art. -->
 ### <character>
+
 - **Role**: <...>
 - **Personality / function**: <...>
 

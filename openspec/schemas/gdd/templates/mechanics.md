@@ -14,6 +14,7 @@ document-version: 0
 
 <!-- One block per distinct mechanic/system. -->
 ### <system name>
+
 - **What it is**: <...>
 - **Rules**: <inputs, outputs, costs, limits, edge cases>
 - **Player interaction**: <how the player uses it>
