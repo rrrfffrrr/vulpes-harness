@@ -46,7 +46,7 @@ This is a GDD (the intended game - what it is, how it plays/looks/sounds, how it
    openspec new change "{program}-gdd" --schema gdd
    ```
 
-6. **Write the folder README (reading guide).** Copy `openspec/schemas/gdd/change-README.md` to `openspec/changes/{program}-gdd/README.md`, overwriting the stub `openspec new change` created. This static guide is identical for every gdd change - copy verbatim, do NOT hand-edit it per project.
+6. **Write the folder README (reading guide).** Copy `openspec/schemas/gdd/change-README.md` to `openspec/changes/{program}-gdd/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/gdd/change-README.ko.md` to `openspec/changes/{program}-gdd/README.ko.md`. These static guides are identical for every gdd change - copy verbatim, do NOT hand-edit them per project.
 
 7. **Get the artifact build order**
    ```bash
@@ -86,7 +86,7 @@ Summarize: GDD change name + location, which conditional sections were included 
 **Guardrails**
 - This is a GDD - the intended game (WHAT it is and HOW it plays/looks/sounds/sells). NOT formal requirements (`/opsx:require`), NOT architecture (`/opsx:architect`), NOT code/tasks.
 - Change name is `{program}-gdd` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
-- The folder README.md is a verbatim copy of `openspec/schemas/gdd/change-README.md` - never hand-write or edit it per project.
+- The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/gdd/change-README.md` / `change-README.ko.md` - never hand-write or edit them per project.
 - Show, don't only tell: diagrams/flows/mockups follow `openspec/DIAGRAM-STYLE.md`. LINK mood boards and reference images - never embed binaries or paste long asset dumps.
 - State each fact once; each concern in exactly one section. `production` is the only synthesis artifact and may restate features by reference.
 - If a requirements change exists, reference its goals/requirements/invariants by id rather than re-deriving the formal model - add the player-facing design on top.
