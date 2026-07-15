@@ -20,8 +20,12 @@ document-version: 0
 <!-- Hierarchical.
      Containers -> components (C4).
      mermaid/ascii diagram. -->
-```text
-<diagram>
+```mermaid
+flowchart TB
+  subgraph <container>
+    <component>[<component>]
+  end
+  <component> --> <component2>
 ```
 
 ## Components

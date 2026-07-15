@@ -26,8 +26,14 @@ document-version: 0
 
 ### Flow: <name>  (operation: <OperationName>)
 
-```text
-<sequence diagram or Given-When-Then>
+<!-- Sequence diagram (mermaid, per openspec/DIAGRAM-STYLE.md) - or Given/When/Then prose for simple flows. -->
+
+```mermaid
+sequenceDiagram
+  participant <A> as <component>
+  participant <B> as <component>
+  <A>->><B>: <message>
+  <B>-->><A>: <reply>
 ```
 
 ## Timing & failure

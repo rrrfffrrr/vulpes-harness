@@ -16,11 +16,16 @@
 `specs/` is NOT the whole current truth.
 The vulpes-harness schemas keep project-level singleton changes that are living documents - permanently open, no apply step:
 
-- `changes/{program}-requirements/` - KAOS/GORE + BABOK requirements. Start: `requirements-document.md`
-- `changes/{program}-gdd/` - Game Design Document. Start: `overview.md`
-- `changes/{program}-architecture/` - technical architecture (4+1 / arc42 / ADR). Start: `overview.md`
-- `changes/{program}-backend/` - backend interface contracts (OpenAPI / RFC / C4). Start: `overview.md`
-- `changes/{program}-frontend/` - frontend app-UI detail design (IFML / wireflows / UI Stack). Start: `overview.md`
+- `changes/{program}-requirements/` - KAOS/GORE + BABOK requirements.
+  Start: `requirements-document.md`
+- `changes/{program}-gdd/` - Game Design Document.
+  Start: `overview.md`
+- `changes/{program}-architecture/` - technical architecture (4+1 / arc42 / ADR).
+  Start: `overview.md`
+- `changes/{program}-backend/` - backend interface contracts (OpenAPI / RFC / C4).
+  Start: `overview.md`
+- `changes/{program}-frontend/` - frontend app-UI detail design (IFML / wireflows / UI Stack).
+  Start: `overview.md`
 
 Each of these folders has a `README.md` index (file -> role, reading order).
 Read it before reading or editing any artifact in the folder.
@@ -28,8 +33,10 @@ Treat these changes as current truth alongside `specs/`.
 
 ## Rules
 
-- NEVER run `openspec archive` on a `*-requirements` / `*-gdd` / `*-architecture` change - archive promotes artifacts into `specs/`, which is wrong for these schemas. To supersede one, `mv` the folder into `changes/archive/`.
+- NEVER run `openspec archive` on a `*-requirements` / `*-gdd` / `*-architecture` change - archive promotes artifacts into `specs/`, which is wrong for these schemas.
+  To supersede one, `mv` the folder into `changes/archive/`.
 - Update standing documents only via `/opsx:require`, `/opsx:gdd`, `/opsx:architect`, `/opsx:backend`, `/opsx:frontend` - continue the existing singleton change; never create per-feature copies.
 - Artifact prose follows `WRITING-STYLE.md` (this folder): semantic line breaks, plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals.
-- Every artifact in these changes starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write). Increment `document-version` by 1 whenever you revise an artifact; never change `schema-version` by hand (per-version schema changes: `schemas/<schema>/CHANGES.md`).
+- Every artifact in these changes starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write).
+  Increment `document-version` by 1 whenever you revise an artifact; never change `schema-version` by hand (per-version schema changes: `schemas/<schema>/CHANGES.md`).
 - Ordinary spec-driven changes (`/opsx:propose` -> `/opsx:apply` -> `/opsx:archive`) are unaffected by all of the above.

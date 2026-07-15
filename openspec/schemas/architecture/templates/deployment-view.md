@@ -18,8 +18,12 @@ document-version: 0
 ## Topology
 
 <!-- Nodes/hosts/racks, networks, trust zones. -->
-```text
-<deployment diagram>
+```mermaid
+flowchart TB
+  subgraph <zone/network>
+    <node>[<host/service>]
+  end
+  <node> --> <node2>
 ```
 
 ## Container -> node mapping
