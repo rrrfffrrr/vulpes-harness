@@ -19,6 +19,9 @@ description: "Technical architecture design - no implementation/apply step. Buil
 #    data-view when there is persistent state/a database, ml-serving-view when there is
 #    model inference. If a concern is absent, OMIT the view - do not create an empty file.
 #  - Prose is plain and direct. Tech stack and version pins are explicit, not vague.
+#  - Prose uses semantic line breaks (sembr.org): start each sentence on its own line; break
+#    long sentences after clause boundaries. Rendering is unchanged; sources stay readable
+#    and document-version diffs stay sentence-scoped.
 artifacts:
   - id: overview
     generates: overview.md

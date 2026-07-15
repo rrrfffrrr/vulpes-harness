@@ -8,6 +8,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions follo
 
 - `schema-version` / `document-version` frontmatter on every template - artifacts now record the schema semver they were authored against and a per-document revision counter.
 - Korean reading guide `templates/README.ko.md`; both guides carry an English/Korean switcher link.
+- Authoring principle: artifact prose uses semantic line breaks (sembr.org) - one sentence per line.
 
 ### Changed
 
