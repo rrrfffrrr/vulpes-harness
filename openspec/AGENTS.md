@@ -1,4 +1,4 @@
-<!-- vulpes-harness 1.1.0 - the "# vulpes-harness" section is harness-managed: update it by re-copying from the harness repo. Every other h1 section (e.g. "# Project") is project-owned; the harness never touches those. -->
+<!-- vulpes-harness 1.1.1 - the "# vulpes-harness" section is harness-managed: update it by re-copying from the harness repo. Every other h1 section (e.g. "# Project") is project-owned; the harness never touches those. -->
 
 # vulpes-harness
 
@@ -39,4 +39,6 @@ Treat these changes as current truth alongside `specs/`.
 - Artifact prose follows `WRITING-STYLE.md` (this folder): semantic line breaks, plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals.
 - Every artifact in these changes starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write).
   Increment `document-version` by 1 whenever you revise an artifact; never change `schema-version` by hand (per-version schema changes: `schemas/<schema>/CHANGES.md`).
+- If an artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), apply the Migration sections in `schemas/<schema>/CHANGES.md` in order before editing further.
+  Migrate from a clean git working tree and commit the migration by itself, labeled with the change name and target schema version in the project's own commit convention - git is the backup and the history; no backup copies, no migration log.
 - Ordinary spec-driven changes (`/opsx:propose` -> `/opsx:apply` -> `/opsx:archive`) are unaffected by all of the above.

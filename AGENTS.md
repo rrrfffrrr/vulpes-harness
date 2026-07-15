@@ -27,7 +27,7 @@ Breaking one of these breaks installed projects - check before committing.
 - **English/Korean sync**: root `README.md` <-> `README.ko.md` and per-schema `templates/README.md` <-> `README.ko.md` change together.
 - **Named-methodology grounding**: every schema stands on named, cited standards (see each `schema.yaml` description). Structural changes research the standard first - no improvised structure.
 - **The frontend schema contains zero game references** - positive scoping only (web, mobile, desktop). Game UI is a separate future schema.
-- **Renames/moves** update `INSTALLATION.md` (copy list) and the affected `CHANGES.md` in the same change.
+- **Renames/moves** update `INSTALLATION.md` (copy list) and the affected `CHANGES.md` in the same change; when installed documents need rework, that `CHANGES.md` entry also carries a `### Migration (from x.y.z)` section.
 - `openspec/AGENTS.md` installed-copy contract: only its `# vulpes-harness` h1 section is harness-managed; other h1 sections are project-owned and survive updates.
 
 ## Checks
