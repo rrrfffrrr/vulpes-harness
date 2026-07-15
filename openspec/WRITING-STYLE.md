@@ -9,6 +9,10 @@ These rules govern prose; diagram rules live in `DIAGRAM-STYLE.md`.
 - Start each sentence on its own line.
   Break long sentences after clause boundaries (`,` `;` `:`).
 - A line break MUST NOT change the rendered output ([SemBr](https://sembr.org/)).
+- Multi-sentence list items break into continuation lines (indented under the item); blockquotes continue with a `>` line.
+- Where a literal line break is impossible - table cells, headings, inside a link or code span - keep to one short sentence or fragment instead.
+  A cell that needs several sentences is prose in the wrong place: move it out of the table.
+  Never fake a break with `<br>`.
 - Why: sources stay readable, a grep hit returns a whole sentence, and document-version diffs stay sentence-scoped.
 
 ## Plain language
