@@ -5,6 +5,12 @@ Versions follow the harness release version (`metadata.version` in `schema.yaml`
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
 
+## [1.2.0] - Unreleased
+
+### Changed
+
+- Version lockstep with the 1.2.0 harness release (adds the game-ui schema) - no changes to this schema's artifacts; no migration needed.
+
 ## [1.1.1] - 2026-07-15
 
 ### Added
