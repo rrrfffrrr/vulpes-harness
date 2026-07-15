@@ -25,9 +25,11 @@ For game projects:
 <img alt="game workflow" src="assets/workflow-game.svg" width="90%">
 
 - Requirements: `/opsx:require {content}`
+- GDD: `/opsx:gdd {content}`
 - Architecture: `/opsx:architect {content}`
 - Backend detail: `/opsx:backend {content}`
 - Frontend detail: `/opsx:frontend {content}`
+- Game UI detail: `/opsx:game-ui {content}`
 - Prepare: `/opsx:propose {content}`
 - Build: `/opsx:apply {content}`
 
@@ -62,5 +64,13 @@ Produces an overview, optional design tokens, a component inventory, screens, fl
 The game design schema, using the standard GDD sections.
 
 Produces the overview, gameplay, mechanics, world/narrative, art and audio direction, UX/UI, tech, monetization, and production sections.
+
+Game projects only.
+
+### game-ui
+
+The game UI detail-design schema, using the diegetic/non-diegetic/spatial/meta UI-layer taxonomy, Game UI Database screen vocabulary, SMPTE safe areas, Game Accessibility Guidelines/XAG, action-based input, and UML state machines.
+
+Produces an overview, optional design tokens, widgets, screens, HUD, flows, input, settings, and a traceability matrix.
 
 Game projects only.
