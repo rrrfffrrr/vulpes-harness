@@ -1,33 +1,41 @@
-# Data View
+---
+schema-version: 1.1.0
+document-version: 0
+---
 
-<!-- CONDITIONAL - omit if no persistent state. Solution-level schema, not the conceptual
-     object-model. Derive entities from requirements object-model by name. Honor invariants.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+# Data view
 
-## Stakeholders & Concerns
+<!-- CONDITIONAL - omit if no persistent state.
+     Solution-level schema, not the conceptual object-model.
+     Derive entities from requirements object-model by name.
+     Honor invariants.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-- <roles (e.g. DBA, backend)>. Concerns: <concerns this view frames>
+## Stakeholders & concerns
 
-## Logical Data Model
+- `<roles (e.g. DBA, backend)>`. Concerns: `<concerns this view frames>`
+
+## Logical data model
 
 <!-- Entities -> tables/collections with key fields + logical types. -->
 | Table | Key fields (logical) | From object-model |
 |-------|----------------------|-------------------|
-| <table> | <fields> | <entity> |
+| `<table>` | `<fields>` | `<entity>` |
 
 ## Ownership
 
-- <component> -> <data it owns>
+- `<component>` -> `<data it owns>`
 
-## Integrity & Relationships
+## Integrity & relationships
 
-- <keys, relationships, integrity rules>
+- `<keys, relationships, integrity rules>`
 
-## Indexing & Partitioning
+## Indexing & partitioning
 
-- <access-pattern-driven indexing/partitioning>
+- `<access-pattern-driven indexing/partitioning>`
 
-## Retention & Migration
+## Retention & migration
 
 <!-- Honor requirements data-minimization/retention invariants. -->
-- <retention/deletion policy; migration/versioning approach>
+- `<retention/deletion policy; migration/versioning approach>`

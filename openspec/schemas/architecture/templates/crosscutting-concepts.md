@@ -1,33 +1,43 @@
-# Crosscutting Concepts
+---
+schema-version: 1.1.0
+document-version: 0
+---
 
-<!-- arc42 sec.8. Concerns spanning multiple views. State the concept and HOW the design
-     realizes it across views; reference affected views/components by name.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+# Crosscutting concepts
 
-## Security & Access Control
+<!-- arc42 sec.8.
+     Concerns spanning multiple views.
+     State the concept and HOW the design realizes it across views;
+     reference affected views/components by name.
+     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-- <trust zones, authn/authz model, least-privilege>
+## Security & access control
 
-## Data Protection & Encryption
+- `<trust zones, authn/authz model, least-privilege>`
 
-<!-- At-rest / in-transit. Honor requirements data invariants. -->
-- <encryption / data-boundary approach>
+## Data protection & encryption
 
-## Logging, Audit & Observability
+<!-- At-rest / in-transit.
+     Honor requirements data invariants. -->
+- `<encryption / data-boundary approach>`
 
-- <audit log scope/retention, metrics, tracing>
+## Logging, audit & observability
 
-## Error Handling & Resilience
+- `<audit log scope/retention, metrics, tracing>`
 
-- <failure model, degradation, retry/fallback policy>
+## Error handling & resilience
 
-## Regulatory Compliance Mapping
+- `<failure model, degradation, retry/fallback policy>`
 
-<!-- For a regulated system. Omit if not regulated. -->
+## Regulatory compliance mapping
+
+<!-- For a regulated system.
+     Omit if not regulated. -->
 | Concept | Requirements goal/obstacle | Governing rule | How design satisfies |
 |---------|----------------------------|----------------|----------------------|
-| <concept> | <goal/obstacle id> | <rule> | <how> |
+| `<concept>` | `<goal/obstacle id>` | `<rule>` | `<how>` |
 
-## Other Concepts
+## Other concepts
 
-- <any further crosscutting concept (i18n, config, time, etc.)>
+- `<any further crosscutting concept (i18n, config, time, etc.)>`

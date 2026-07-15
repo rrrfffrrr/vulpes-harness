@@ -1,12 +1,13 @@
 ---
 name: "OPSX: Require"
-version: "1.0.0"
+version: "1.1.0"
 description: Specify the requirements for a change using KAOS/GORE + BABOK - business requirements, goal/object/responsibility/operation models, synthesized requirements document, traceability. No implementation.
 category: Workflow
 tags: [workflow, require, babok, kaos, gore, experimental]
 ---
 
 Capture the requirements for a change - requirements engineering, separate from development. This uses the `requirements` schema (KAOS/GORE under a BABOK structure). It produces:
+
 - business-requirements.md (stakeholder statements, verbatim - the single source of truth)
 - goal-model.md (KAOS goal hierarchy AND/OR, domain properties, obstacles, resolved conflicts)
 - object-model.md (entities, relationships, attributes, invariants, glossary)
@@ -31,16 +32,19 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
    - To keep multiple parallel requirements changes (e.g. two products in one repo), the user gives distinct program names -> `{a}-requirements`, `{b}-requirements`.
 
 3. **Create the requirements change**
+
    ```bash
    openspec new change "{program}-requirements" --schema requirements
    ```
 
-4. **Write the folder README (reading guide).** Copy `openspec/schemas/requirements/change-README.md` to `openspec/changes/{program}-requirements/README.md`, overwriting the stub `openspec new change` created. This static guide is identical for every requirements change - copy verbatim, do NOT hand-edit it per project.
+4. **Write the folder README (reading guide).** Copy `openspec/schemas/requirements/templates/README.md` to `openspec/changes/{program}-requirements/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/requirements/templates/README.ko.md` to `openspec/changes/{program}-requirements/README.ko.md`. These static guides are identical for every requirements change - copy verbatim, do NOT hand-edit them per project.
 
 5. **Get the artifact build order**
+
    ```bash
    openspec status --change "{program}-requirements" --json
    ```
+
    Parse `artifacts` (status + dependencies). Build in dependency order: `business-requirements -> goal-model -> object-model, responsibility-model -> operation-model -> requirements-document -> traceability`.
 
 6. **Create artifacts in sequence**
@@ -69,11 +73,14 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
 Summarize: change name + location, artifacts created (one line each), and: "Requirements complete - no implementation step. Run `/opsx:propose` (spec-driven) when ready to build, using these requirements artifacts as the source."
 
 **Guardrails**
+
 - This is REQUIREMENTS. Do NOT produce technical design, tasks, or implementation. Do NOT try to move to apply - the requirements schema has no apply step.
 - Change name is `{program}-requirements` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
-- The folder README.md is a verbatim copy of `openspec/schemas/requirements/change-README.md` - never hand-write or edit it per project.
+- The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/requirements/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - The user often narrates the requirements one line (one message) at a time. RECEIVE each line, reflect it back accurately, and capture it in the artifacts. Do NOT interrupt that flow with "how far should this go / should we stop / scope?" questions. Only ask about a genuine fork in behavior, not to limit work.
 - Do NOT manufacture "out of scope / later" deferrals. Only exclude what the user explicitly excluded.
 - Read dependency artifacts before creating the next one.
 - **Superseding a requirements change:** the singleton convention means you normally keep refining the same `{program}-requirements`. If the user wants a clean restart that replaces it, move the OLD change into `openspec/changes/archive/<name>/` with a plain folder move (`mv`), NOT `openspec archive` (that promotes artifacts into specs, wrong for requirements). Confirm first; tell them the old requirements change is preserved under `archive/`, not deleted.
 - Verify each artifact file exists after writing before proceeding.
+- **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
+- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.

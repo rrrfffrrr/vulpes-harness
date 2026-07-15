@@ -1,7 +1,7 @@
 name: requirements
 version: 1
 metadata:
-  version: "1.0.0"   # harness release version
+  version: "1.1.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - Cover every distinct, relevant item exhaustively. Detail = breadth/depth of distinct
@@ -19,6 +19,9 @@ description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure.
 #    (AND/OR). Do NOT defer essential content into parentheses or pile up bilingual
 #    glosses - if it matters, it is part of the sentence; define a term's gloss once
 #    (in the glossary) and use one form thereafter.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
 artifacts:
   - id: business-requirements
     generates: business-requirements.md

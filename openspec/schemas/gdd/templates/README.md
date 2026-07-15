@@ -1,6 +1,11 @@
-# How to read this folder - gdd
+# How to read these artifacts - gdd
 
-This change holds **gdd** schema (Game Design Document) artifacts - how the intended game plays, looks, sounds, and ships. A living document; no implementation (apply) step.
+[English](README.md) | [한국어](README.ko.md)
+
+**gdd** schema (Game Design Document) artifacts - how the intended game plays, looks, sounds, and ships.
+A living document; no implementation (apply) step.
+
+Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 
 **Start here ->** [`overview.md`](overview.md) - get the whole picture, then jump to the section you need.
 

@@ -1,41 +1,48 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Technical
 
-<!-- Technical frame at GDD altitude - the team-facing summary, NOT detailed architecture
-     (that is the architecture schema). Reference requirements/architecture by id for specified details.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- Technical frame at GDD altitude - the team-facing summary,
+     NOT detailed architecture (that is the architecture schema).
+     Reference requirements/architecture by id for specified details.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-## Engine & Key Tech
+## Engine & key tech
 
 <!-- Engine + key libraries with version intent. -->
 - **Engine**: <...>
 - **Key libraries**: <...>
 
-## Platforms & Minimum Spec
+## Platforms & minimum spec
 
-- **Targets**: <platforms>
+- **Targets**: `<platforms>`
 - **Minimum device spec**: <...>
 
-## Performance Targets
+## Performance targets
 
 <!-- Frame rate, load times, memory/battery budget. -->
 - <...>
 
-## Save, Network & Backend
+## Save, network & backend
 
 <!-- Persistence, cloud, online/backend approach. -->
 - <...>
 
-## Third-Party Dependencies & Services
+## Third-party dependencies & services
 
 <!-- Ads/IAP SDK, analytics, auth, etc. -->
 - <...>
 
-## Build & Release
+## Build & release
 
 <!-- Store targets, certification needs. -->
 - <...>
 
-## Technical Constraints
+## Technical constraints
 
 <!-- Hard constraints the game must honor. -->
 - <...>

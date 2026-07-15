@@ -21,21 +21,28 @@ Creates `openspec/` and the base commands for each tool listed.
 
 ## 2. Copy the harness in
 
-Get the harness from https://github.com/rrrfffrrr/vulpes-harness and copy these into your project at the same paths:
+Get the harness from <https://github.com/rrrfffrrr/vulpes-harness> and copy these into your project at the same paths:
 
-- `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`
-- `openspec/DIAGRAM-STYLE.md`  (diagram rules for gdd and architecture)
-- `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`  (Claude)
-- `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`  (Codex)
+- `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`, `openspec/schemas/backend/`, `openspec/schemas/frontend/`
+- `openspec/DIAGRAM-STYLE.md` and `openspec/WRITING-STYLE.md`  (diagram and prose rules for the schemas)
+- `openspec/AGENTS.md` and `openspec/CLAUDE.md`  (agent guide to the openspec folder; CLAUDE.md just imports AGENTS.md)
+- `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`, `backend.md`, `frontend.md`  (Claude)
+- `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`, `opsx-backend/`, `opsx-frontend/`  (Codex)
 
 Copy only the lines for the tool(s) you installed in step 1.
 
 Commit the copied files, and copy them again to update.
 
+Exception - `openspec/AGENTS.md` and `openspec/CLAUDE.md` are not a blind `cp` when the target file already exists:
+
+- `AGENTS.md`: add or replace only the `# vulpes-harness` h1 section.
+  Every other h1 section is project-owned - keep them as-is.
+- `CLAUDE.md`: make sure the `@AGENTS.md` import line is present; keep the rest of the file.
+
 ## 3. Verify
 
 ```bash
-openspec schemas                 # lists requirements, gdd, architecture
+openspec schemas                 # lists requirements, gdd, architecture, backend, frontend
 openspec schema validate gdd     # Schema 'gdd' is valid
 ```
 
@@ -43,4 +50,4 @@ If a schema is missing, redo the copy in step 2.
 
 ## Next
 
-Run the workflows: `/opsx:require` -> `/opsx:gdd` or `/opsx:architect` -> `/opsx:propose`.
+Run the workflows: `/opsx:require` -> `/opsx:gdd` or `/opsx:architect` -> `/opsx:backend` / `/opsx:frontend` -> `/opsx:propose`.

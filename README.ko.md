@@ -20,8 +20,14 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 
 <img alt="작업 진행" src="assets/workflow.svg" width="80%">
 
+게임 프로젝트는:
+
+<img alt="게임 작업 진행" src="assets/workflow-game.svg" width="90%">
+
 - 요구사항: `/opsx:require {내용}`
 - 아키텍처: `/opsx:architect {내용}`
+- 백엔드 상세: `/opsx:backend {내용}`
+- 프론트엔드 상세: `/opsx:frontend {내용}`
 - 작업 준비: `/opsx:propose {내용}`
 - 실행: `/opsx:apply {내용}`
 
@@ -38,6 +44,18 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 아키텍처 스키마. Kruchten 4+1, arc42, ISO/IEC 42010, Nygard ADR, BABOK RTM 기반.
 
 아키텍처 개요, 논리/프로세스/데이터/배포 뷰, 횡단 관심사, ADR, 설계 추적표를 산출.
+
+### backend
+
+백엔드 상세 설계 스키마. OpenAPI/JSON Schema, RFC 9110/9457/9111, BCP 14, UML 시퀀스, C4 컴포넌트 기반.
+
+개요, API 규약, 컴포넌트, 엔드포인트 계약, 런타임 시퀀스, (조건부) 이벤트·웹훅, 추적표를 산출.
+
+### frontend
+
+웹/모바일/데스크톱 앱 UI 상세 설계 스키마. IFML, UML 상태 머신, wireflow, Atomic Design, UI Stack, WCAG 2.2 기반.
+
+개요, (조건부) 디자인 토큰, 컴포넌트 인벤토리, 화면, 플로, 추적표를 산출.
 
 ### gdd
 

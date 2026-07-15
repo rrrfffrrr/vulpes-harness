@@ -1,0 +1,200 @@
+name: backend
+version: 1
+metadata:
+  version: "1.1.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event and webhook sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks), created only when the system has that concern."
+# Authoring principles (all artifacts):
+#  - This is INTERFACE-LEVEL detail design, one level below architecture. Architecture answered
+#    structure/technology/deployment; this schema answers the exact contracts: what each
+#    endpoint/channel accepts and returns, in which order components interact at runtime, and
+#    which guarantees the interface makes. Do NOT restate architecture - reference its
+#    components, views, and ADRs by name/id.
+#  - NO CODE and NO implementation tasks. Payload schemas, header tables, sequence diagrams,
+#    and config-level values are fine; source files are not.
+#  - Contract language uses BCP 14 keywords (MUST/SHOULD/MAY) with their RFC 2119/8174 meaning.
+#  - State each fact once: shared rules live in conventions; endpoints/events/webhooks record
+#    only DEVIATIONS from conventions, never repetitions of them.
+#  - Document externally observable behavior only: the consistency/atomicity guarantees a
+#    client can rely on (batch atomicity, read-after-write, write-vs-event gaps), not internal
+#    DB transaction boundaries. Observability conventions, SLOs, and capacity belong to the
+#    architecture crosscutting-concepts - do not duplicate them here.
+#  - Conditional artifacts: events when there are message/event-driven APIs; webhooks when the
+#    system sends outbound callbacks. If the concern is absent, OMIT the file.
+#  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
+#    over vague ranges.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
+artifacts:
+  - id: overview
+    generates: overview.md
+    description: >-
+      The entry point. Interface surfaces and styles (REST/RPC/events) with one-line
+      rationale, state-management approach, reader map, and which conditional artifacts
+      this design includes.
+    template: overview.md
+    instruction: |
+      Frame the backend detail design from the architecture change. Cover: the SCOPE -
+      which services/containers (architecture logical-view names) this design gives
+      contracts for; the INTERFACE STYLE per surface (e.g. REST, GraphQL, gRPC,
+      event-driven) with a one-line rationale each, referencing the architecture ADR that
+      fixed it rather than re-arguing; the STATE-MANAGEMENT approach - stateless
+      (token-carried, RFC 7519 JWT) or stateful (server session via RFC 6265 cookies) per
+      surface, referencing the architecture decision; the READER MAP (API consumers /
+      backend engineers / QA - what each reads first); and the CONDITIONAL ARTIFACTS table
+      - whether events and webhooks are included, with a one-line reason each.
+      Reference architecture components and ADRs by name/id; do not restate them.
+    requires: []
+
+  - id: conventions
+    generates: conventions.md
+    description: >-
+      The shared contract rulebook, stated once: auth scopes, versioning/deprecation,
+      error catalog with retryability, pagination/filtering, rate-limit contract,
+      idempotency, concurrency control, caching defaults, long-running operations.
+    template: conventions.md
+    instruction: |
+      Write the rules every interface follows, each stated ONCE here - endpoints record
+      only deviations. Cover: AUTHENTICATION & AUTHORIZATION - the scheme and the full
+      scope/permission taxonomy (every scope named, with meaning); VERSIONING &
+      DEPRECATION - how versions are expressed, the compatibility promise (what changes
+      are non-breaking), and the deprecation procedure; the ERROR CATALOG - every problem
+      type (RFC 9457: type/title/status/detail) with which are safe to retry and how
+      clients should back off; PAGINATION/FILTERING/SORTING conventions for list
+      endpoints; the RATE-LIMIT response contract (429 + Retry-After and any quota
+      headers) - the enforcement infrastructure and limit values are architecture/ops
+      concerns, only the response contract lives here; IDEMPOTENCY - which unsafe methods
+      accept an idempotency key and the replay semantics; CONCURRENCY CONTROL - the
+      ETag/If-Match rules for updates; response CACHING defaults (RFC 9111 Cache-Control
+      policy per resource class); the LONG-RUNNING OPERATION pattern (202 + status
+      resource) if any endpoint uses it; and NAMING conventions (paths, fields, casing).
+      Use BCP 14 keywords for every rule.
+    requires:
+      - overview
+
+  - id: components
+    generates: components.md
+    description: >-
+      C4 Component-level inventory of the middleware pipeline (in order) and shared
+      backend components, deepening the architecture logical-view.
+    template: components.md
+    instruction: |
+      Inventory the shared building blocks every request/message passes through or uses.
+      Cover: the MIDDLEWARE PIPELINE as an ordered list (order is a contract - auth before
+      rate-limit before validation, etc.) with each stage's responsibility and
+      failure behavior (what status/problem type a rejection produces); SHARED COMPONENTS
+      (validators, serializers, clients, repositories at C4 Component altitude) with
+      responsibility and the interfaces they expose to other components; and OWNERSHIP
+      BOUNDARIES - which component owns which domain concept (bounded-context vocabulary
+      where it helps).
+      Deepen the architecture logical-view components by name - do not redefine or rename
+      them; if a component exists only at this detail level, mark it as such.
+    requires:
+      - overview
+
+  - id: endpoints
+    generates: endpoints.md
+    description: >-
+      The per-endpoint contracts, grouped by resource: request/response shapes per status,
+      auth scopes, and interface guarantees - recording only deviations from conventions.
+    template: endpoints.md
+    instruction: |
+      Write the contract for EVERY endpoint, grouped by resource. Per endpoint: PURPOSE
+      (one line, naming the requirements operation it implements); AUTH (required scopes
+      and any object-ownership check, per the conventions taxonomy); REQUEST - method,
+      path with parameters, headers beyond convention, and the body schema (field, type,
+      constraints, required/optional - JSON Schema vocabulary at table level, not raw
+      schema dumps); RESPONSES - per status code, the body schema and when that status
+      occurs, including every applicable problem type from the conventions error catalog;
+      and GUARANTEES - idempotency, concurrency (If-Match required?), caching, and
+      consistency/atomicity notes (is the write atomic with its side effects? is the read
+      after-write consistent?) ONLY where they deviate from or refine conventions.
+      Validation rules and their failure responses are part of the contract - state them
+      on the fields, not in prose. One request/response example pair per endpoint is
+      enough; do not duplicate schema information into examples.
+      For non-REST surfaces (GraphQL/gRPC) document the same contract facts in that
+      surface's native units (operations/methods) under the same resource grouping.
+    requires:
+      - conventions
+      - components
+
+  - id: sequences
+    generates: sequences.md
+    description: >-
+      Runtime sequences for the key flows: client through middleware and components to
+      stores, including error/retry paths on critical flows. UML 2.5.1 Interaction
+      semantics rendered per DIAGRAM-STYLE.
+    template: sequences.md
+    instruction: |
+      Diagram the runtime flows that involve more than one component - happy path AND the
+      failure paths that change what a client observes (timeout, retry, partial failure,
+      compensation). Use sequence diagrams (mermaid, per openspec/DIAGRAM-STYLE.md) with
+      UML Interaction semantics: lifelines are the components/middleware stages from
+      components.md (same names), messages are the endpoint calls or events by name.
+      Each flow states which endpoints/channels it realizes and which requirements
+      operation it traces to. Cover every critical path: flows with consistency
+      guarantees, LRO flows, and event-producing writes (show WHEN the event is published
+      relative to the write). Do not diagram single-component request handling - the
+      middleware pipeline in components.md already covers it.
+    requires:
+      - components
+      - endpoints
+
+  - id: events
+    generates: events.md
+    description: >-
+      CONDITIONAL - include when the system has message/event-driven APIs. Channels,
+      operations, message schemas, envelope, and delivery guarantees (AsyncAPI 3.1
+      structure, CloudEvents envelope).
+    template: events.md
+    instruction: |
+      Document the event/message surface in AsyncAPI structure: CHANNELS (name, protocol
+      per the AsyncAPI binding vocabulary, direction send/receive); per channel the
+      OPERATIONS and MESSAGES - payload schema in the same table form as endpoints,
+      sharing JSON Schema vocabulary; the ENVELOPE - which CloudEvents attributes
+      (id/source/type/time/...) or equivalent wrap every message, stated once; and
+      DELIVERY GUARANTEES per channel - at-least-once/at-most-once, ordering scope,
+      retry/redelivery behavior, and the consistency relation to the write path (what a
+      consumer may assume about store state when it sees the event; reference the
+      sequences flow that shows it).
+      Deviations from conventions (errors, naming) only - shared rules stay in
+      conventions.md. Omit this artifact entirely if the system has no event-driven API.
+    requires:
+      - conventions
+      - components
+
+  - id: webhooks
+    generates: webhooks.md
+    description: >-
+      CONDITIONAL - include when the system sends outbound callbacks. Webhook event types,
+      payloads, signing/verification, and retry policy (Standard Webhooks conventions).
+    template: webhooks.md
+    instruction: |
+      Document the outbound callbacks the system delivers to consumer-registered URLs,
+      following Standard Webhooks conventions: the EVENT TYPES (name, when fired, payload
+      schema in the shared table form); DELIVERY - the signing scheme and headers the
+      consumer verifies, timeout, the retry/backoff schedule, and what makes delivery
+      count as failed/exhausted; and RECEIVER REQUIREMENTS - what a consumer endpoint MUST
+      do (status to return, verification steps, idempotent handling of redelivery).
+      Reference the events.md channel or sequences.md flow that triggers each type where
+      one exists. Omit this artifact entirely if the system sends no outbound callbacks.
+    requires:
+      - conventions
+
+  - id: traceability
+    generates: traceability.md
+    description: >-
+      The linking matrix: requirements operations <-> endpoints/channels/webhooks <->
+      components <-> sequences. All cross-artifact linking lives here.
+    template: traceability.md
+    instruction: |
+      Produce the bidirectional matrix linking: requirements operations (by name) <->
+      endpoints, event channels, and webhook types <-> the components that realize them
+      <-> the sequences that show them. Draw ids and names from the artifacts themselves.
+      Include a GAPS section: requirements operations with no interface, endpoints tracing
+      to no operation, components no flow exercises, and conditional artifacts excluded
+      (with the overview's reason). All linking lives HERE - never in artifact prose
+      beyond the single inline operation reference each contract carries.
+    requires:
+      - endpoints
+      - sequences

@@ -1,26 +1,43 @@
-# Process View
+---
+schema-version: 1.1.0
+document-version: 0
+---
 
-<!-- 4+1 Process / arc42 sec.6 Runtime View. CONDITIONAL - omit if no non-trivial runtime/
-     concurrency. Reference logical-view components by name; do not redefine them.
-     Replace every <...>. Delete guidance comments when done. -->
+# Process view
 
-## Stakeholders & Concerns
+<!-- 4+1 Process / arc42 sec.6 Runtime View.
+     CONDITIONAL - omit if no non-trivial runtime/concurrency.
+     Reference logical-view components by name; do not redefine them.
+     Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
+     Delete guidance comments when done. -->
 
-- <roles (e.g. backend, ML, QA)>. Concerns: <concerns this view frames>
+## Stakeholders & concerns
 
-## Runtime / Concurrency Model
+- `<roles (e.g. backend, ML, QA)>`. Concerns: `<concerns this view frames>`
 
-<!-- Processes, threads, queues, streams. Sync vs async. How units communicate. -->
-<description>
+## Runtime / concurrency model
 
-## Runtime Flows
+<!-- Processes, threads, queues, streams.
+     Sync vs async.
+     How units communicate. -->
+`<description>`
 
-### Flow: <name>  (operation: <OperationName>)
+## Runtime flows
+
+### Flow: `<name>`  (operation: `<OperationName>`)
+
+<!-- Sequence diagram (mermaid, per openspec/DIAGRAM-STYLE.md) - or Given/When/Then prose for simple flows. -->
+
+```mermaid
+sequenceDiagram
+  %% Replace with the flow's real components (logical-view names) and messages.
+  participant A as ComponentA
+  participant B as ComponentB
+  A->>B: message
+  B-->>A: reply
 ```
-<sequence diagram or Given-When-Then>
-```
 
-## Timing & Failure
+## Timing & failure
 
 <!-- Latency/timing constraints, backpressure, failure/retry on critical paths. -->
-- <timing or failure behavior>
+- `<timing or failure behavior>`
