@@ -2,7 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md)
 
-**frontend** 스키마(IFML + UML 상태 머신 + wireflow + Atomic Design/Open UI 해부도 + UI Stack + WCAG 2.2) 아티팩트 - 웹/모바일/데스크톱 앱 UI의 구현 가능한 스펙, 아키텍처 한 단계 아래. 구현(apply) 단계 없음.
+**frontend** 스키마(IFML + UML 상태 머신 + wireflow + Atomic Design/Open UI 해부도 + UI Stack + WCAG 2.2) 아티팩트 - 웹/모바일/데스크톱 앱 UI의 구현 가능한 스펙, 아키텍처 한 단계 아래.
+구현(apply) 단계 없음.
 
 모든 아티팩트는 frontmatter로 시작: `schema-version`(작성 당시 스키마 semver)과 `document-version`(리비전 카운터 - 최초 작성 0, 개정마다 +1).
 

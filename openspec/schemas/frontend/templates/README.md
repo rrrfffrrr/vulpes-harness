@@ -2,7 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md)
 
-**frontend** schema (IFML + UML state machines + wireflows + Atomic Design/Open UI anatomy + UI Stack + WCAG 2.2) artifacts - the implementable UI spec for web, mobile, and desktop apps, one level below architecture. No implementation (apply) step.
+**frontend** schema (IFML + UML state machines + wireflows + Atomic Design/Open UI anatomy + UI Stack + WCAG 2.2) artifacts - the implementable UI spec for web, mobile, and desktop apps, one level below architecture.
+No implementation (apply) step.
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 

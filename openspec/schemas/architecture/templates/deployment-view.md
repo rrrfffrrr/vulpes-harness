@@ -3,13 +3,15 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Deployment View
+# Deployment view
 
-<!-- 4+1 Physical / arc42 sec.7 + C4 Deployment. Topology + mapping of logical-view containers
-     onto nodes. Reference containers by name; do not redefine responsibilities.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+<!-- 4+1 Physical / arc42 sec.7 + C4 Deployment.
+     Topology + mapping of logical-view containers onto nodes.
+     Reference containers by name; do not redefine responsibilities.
+     Replace every <...> and example row.
+     Delete guidance comments when done. -->
 
-## Stakeholders & Concerns
+## Stakeholders & concerns
 
 - <roles (e.g. DevOps, infra, hardware)>. Concerns: <concerns this view frames>
 
@@ -20,17 +22,17 @@ document-version: 0
 <deployment diagram>
 ```
 
-## Container -> Node Mapping
+## Container -> node mapping
 
 | Container | Node | Notes |
 |-----------|------|-------|
 | <container> | <node> | <notes> |
 
-## Scaling & Availability
+## Scaling & availability
 
 - <scaling approach, redundancy, availability targets>
 
-## Infrastructure Constraints
+## Infrastructure constraints
 
 <!-- Inherited from requirements (e.g. on-premise rack, no cloud, network isolation). -->
 - <constraint>

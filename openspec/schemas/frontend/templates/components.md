@@ -3,10 +3,11 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Component Inventory
+# Component inventory
 
 <!-- Shared/reused components only - one-off screen arrangements live in screens.md.
-     Repeat the component block per component. Replace every <...> and example row.
+     Repeat the component block per component.
+     Replace every <...> and example row.
      Delete guidance comments when done. -->
 
 ## <Component name>

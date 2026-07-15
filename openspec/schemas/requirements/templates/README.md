@@ -2,11 +2,14 @@
 
 [English](README.md) | [한국어](README.ko.md)
 
-**requirements** schema (KAOS/GORE + BABOK) artifacts. The "what and why" - formal requirements. No implementation (apply) step.
+**requirements** schema (KAOS/GORE + BABOK) artifacts.
+The "what and why" - formal requirements.
+No implementation (apply) step.
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 
-**Start here ->** [`requirements-document.md`](requirements-document.md) - the single synthesis of the four models. For a quick read, this one is enough.
+**Start here ->** [`requirements-document.md`](requirements-document.md) - the single synthesis of the four models.
+For a quick read, the synthesis is enough.
 
 **Reading order (for humans):**
 

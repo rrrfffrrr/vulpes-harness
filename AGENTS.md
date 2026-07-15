@@ -54,6 +54,9 @@ Breaking one of these breaks installed projects - check before committing.
 | `fix/<name>` | Bugs found during review. Branch from `release` → merge to `release` + `develop`. | — |
 | `hotfix/<name>` | Production bugs. Branch from `main` → merge to `main` + `develop` (+ active `release`). | — |
 
+- Commit messages follow Conventional Commits 1.0.0 (conventionalcommits.org): `feat:` / `fix:` / `refactor:` / `docs:` / `chore:`.
+- Per-schema `CHANGES.md` follows Keep a Changelog with one deliberate deviation: the unreleased section is pre-named `## [x.y.z] - Unreleased` (not `## [Unreleased]`), because the version-lockstep invariant pre-assigns the release version across schema metadata and template frontmatter.
+
 ## Workflow: the work loop
 
 A reported symptom is an **example**, not the problem itself. Never jump symptom → patch. In order:

@@ -3,9 +3,10 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Architecture Decision Records
+# Architecture decision records
 
-<!-- Nygard format. Append-only: never rewrite an accepted ADR - supersede it.
+<!-- Nygard format.
+     Append-only: never rewrite an accepted ADR - supersede it.
      Where a decision resolves a requirements obstacle or is forced by a constraint, cite by id. -->
 
 ## ADR-001: <title>

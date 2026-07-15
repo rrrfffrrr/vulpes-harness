@@ -3,7 +3,7 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Event & Message APIs
+# Event & message APIs
 
 <!-- CONDITIONAL - only when the system has message/event-driven APIs.
      AsyncAPI structure; envelope stated once; deviations from conventions.md only.
@@ -12,7 +12,8 @@ document-version: 0
 
 ## Envelope
 
-<!-- Stated once for all messages. CloudEvents attributes or equivalent. -->
+<!-- Stated once for all messages.
+     CloudEvents attributes or equivalent. -->
 | Attribute | Value/format |
 |-----------|--------------|
 | <id / source / type / time / ...> | <format> |

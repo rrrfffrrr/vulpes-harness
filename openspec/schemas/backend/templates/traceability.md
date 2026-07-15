@@ -3,12 +3,13 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Backend Traceability Matrix
+# Backend traceability matrix
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
-     Replace every example row. Delete guidance comments when done. -->
+     Replace every example row.
+     Delete guidance comments when done. -->
 
-## Operation <-> Interface <-> Component <-> Sequence
+## Operation <-> interface <-> component <-> sequence
 
 | Requirements operation | Interface (endpoint / channel / webhook) | Component(s) | Sequence |
 |------------------------|------------------------------------------|--------------|----------|

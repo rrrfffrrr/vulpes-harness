@@ -1,4 +1,4 @@
-# Writing Style
+# Writing style
 
 Prose rules for every artifact the harness generates, written for two readers:
 a human scanning for an answer, and anyone (or any tool) searching the document.

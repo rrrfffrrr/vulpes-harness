@@ -2,7 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md)
 
-**gdd** schema (Game Design Document) artifacts - how the intended game plays, looks, sounds, and ships. A living document; no implementation (apply) step.
+**gdd** schema (Game Design Document) artifacts - how the intended game plays, looks, sounds, and ships.
+A living document; no implementation (apply) step.
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 

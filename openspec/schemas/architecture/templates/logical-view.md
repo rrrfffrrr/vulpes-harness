@@ -3,19 +3,23 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Logical View
+# Logical view
 
-<!-- 4+1 Logical / arc42 sec.5 Building Block View. Static functional structure only - no
-     deployment, no runtime sequencing. Map components to requirements agents by id.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+<!-- 4+1 Logical / arc42 sec.5 Building Block View.
+     Static functional structure only - no deployment, no runtime sequencing.
+     Map components to requirements agents by id.
+     Replace every <...> and example row.
+     Delete guidance comments when done. -->
 
-## Stakeholders & Concerns
+## Stakeholders & concerns
 
 - <roles (e.g. frontend, backend)>. Concerns: <concerns this view frames>
 
-## Building Block Decomposition
+## Building block decomposition
 
-<!-- Hierarchical. Containers -> components (C4). mermaid/ascii diagram. -->
+<!-- Hierarchical.
+     Containers -> components (C4).
+     mermaid/ascii diagram. -->
 ```
 <diagram>
 ```

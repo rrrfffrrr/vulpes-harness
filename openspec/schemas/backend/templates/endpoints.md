@@ -3,11 +3,13 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Endpoint Contracts
+# Endpoint contracts
 
-<!-- Grouped by resource. Record only DEVIATIONS from conventions.md - never repeat shared rules.
-     Field constraints ARE the contract: state them on the fields, with the validation-failure
-     problem type. Replace every <...> and example block; repeat the endpoint block per endpoint.
+<!-- Grouped by resource.
+     Record only DEVIATIONS from conventions.md - never repeat shared rules.
+     Field constraints ARE the contract:
+     state them on the fields, with the validation-failure problem type.
+     Replace every <...> and example block; repeat the endpoint block per endpoint.
      Delete guidance comments when done. -->
 
 ## <Resource>

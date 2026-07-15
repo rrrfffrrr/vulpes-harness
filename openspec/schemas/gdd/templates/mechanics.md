@@ -3,11 +3,12 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Mechanics & Systems
+# Mechanics & systems
 
 <!-- Systems and RULES in detail - not screens (ux-ui) or visuals (art-direction).
      Reference requirements invariants/operations by id; add the player-facing feel/tuning.
-     Replace every <...>. Delete guidance comments when done. -->
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
 ## Systems
 
@@ -30,7 +31,7 @@ document-version: 0
 |----------|---------|-------|-------|
 | <name> | <how earned> | <how spent> | <...> |
 
-## Balancing Intent
+## Balancing intent
 
 <!-- Target pacing, key tuning values/ranges, what should feel scarce vs abundant. -->
 - <intent - concrete numbers where known, named ranges where not>

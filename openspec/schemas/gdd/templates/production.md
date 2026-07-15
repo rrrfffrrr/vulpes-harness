@@ -3,37 +3,39 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Market & Production
+# Market & production
 
-<!-- The ONE synthesis artifact - market positioning + scope/priority decisions. May restate
-     features BY REFERENCE to consolidate scope. Keep priorities and milestones decision-ready.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- The ONE synthesis artifact - market positioning + scope/priority decisions.
+     May restate features BY REFERENCE to consolidate scope.
+     Keep priorities and milestones decision-ready.
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
-## Market & Positioning
+## Market & positioning
 
 <!-- Target market, key competitors and how this game differs. -->
 - **Target market**: <...>
 - **Competitors**: <competitor - how we differ>
 - **Positioning**: <one line - where this sits>
 
-## Success Metrics / KPIs
+## Success metrics / KPIs
 
 <!-- What defines "working". -->
 - <metric - target>
 
-## Feature List (MoSCoW)
+## Feature list (MoSCoW)
 
 <!-- Drawn from the other sections by reference - link, don't re-describe. -->
 | Feature | Priority | Section |
 |---------|----------|---------|
 | <feature> | Must / Should / Could / Won't-now | <which section defines it> |
 
-## Milestones / Roadmap
+## Milestones / roadmap
 
 <!-- MVP / vertical-slice / alpha / beta / launch - what each contains. -->
 - **<milestone>**: <contents>
 
-## Risks & Cut List
+## Risks & cut list
 
 <!-- Risks with mitigations, and what gets dropped first if scope slips. -->
 - **Risk**: <...> -> **Mitigation**: <...>

@@ -3,11 +3,13 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Operation Model
+# Operation model
 
-<!-- Leaf goals operationalized into operations. Semi-formal: conditions in natural
-     language, not temporal logic. Agent ownership lives in the responsibility model.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- Leaf goals operationalized into operations.
+     Semi-formal: conditions in natural language, not temporal logic.
+     Agent ownership lives in the responsibility model.
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
 ## Operations
 

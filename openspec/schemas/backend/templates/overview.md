@@ -3,32 +3,35 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Backend Overview
+# Backend overview
 
-<!-- Entry point. Interface surfaces, state management, reader map, conditional artifacts.
+<!-- Entry point.
+     Interface surfaces, state management, reader map, conditional artifacts.
      Reference architecture components/ADRs by name/id; do not restate them.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+     Replace every <...> and example row.
+     Delete guidance comments when done. -->
 
 ## Scope
 
 <!-- Which services/containers (architecture logical-view names) this design gives contracts for. -->
 - <service/container (logical-view name)>
 
-## Interface Surfaces
+## Interface surfaces
 
-<!-- One row per surface. Style rationale is one line + the ADR that fixed it. -->
+<!-- One row per surface.
+     Style rationale is one line + the ADR that fixed it. -->
 | Surface | Style | Consumers | Rationale (ADR) |
 |---------|-------|-----------|-----------------|
 | <name> | <REST / GraphQL / gRPC / events> | <who calls it> | <one line> (ADR-NNN) |
 
-## State Management
+## State management
 
 <!-- Per surface: stateless (RFC 7519 token-carried) or stateful (RFC 6265 server session), and why (ADR ref). -->
 | Surface | Model | Mechanism | Rationale (ADR) |
 |---------|-------|-----------|-----------------|
 | <name> | <stateless/stateful> | <JWT bearer / session cookie / ...> | <one line> (ADR-NNN) |
 
-## Reader Map
+## Reader map
 
 | Reader | Start with | Then |
 |--------|-----------|------|
@@ -36,7 +39,7 @@ document-version: 0
 | Backend engineer | components.md | sequences.md |
 | QA | endpoints.md | traceability.md |
 
-## Conditional Artifacts Included
+## Conditional artifacts included
 
 | Artifact | Included? | Reason |
 |----------|-----------|--------|

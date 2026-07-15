@@ -5,8 +5,10 @@ document-version: 0
 
 # Screens
 
-<!-- Repeat the screen block per screen. Components by components.md name - never respecify.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+<!-- Repeat the screen block per screen.
+     Components by components.md name - never respecify.
+     Replace every <...> and example row.
+     Delete guidance comments when done. -->
 
 ## <Screen name>
 
@@ -24,7 +26,7 @@ document-version: 0
 |------------|----------|
 | <class> | <revealed / divided / resized / repositioned / swapped elements> |
 
-### UI Stack States
+### UI Stack states
 
 | State | Shows |
 |-------|-------|
@@ -34,21 +36,22 @@ document-version: 0
 | Partial | <some data + how more loads> |
 | Error | <error view + exact copy + recovery action> |
 
-### Components & Data
+### Components & data
 
 - **Components**: <components.md names>
 - **Data**: <fields displayed; source - reference backend endpoints by METHOD+path when a backend change exists>
 
 ### Forms
 
-<!-- Only if the screen has input. Validation is part of the contract. -->
+<!-- Only if the screen has input.
+     Validation is part of the contract. -->
 | Field | Rules | Error copy (exact) |
 |-------|-------|---------------------|
 | <field> | <constraints> | "<copy>" |
 
 - Focus order: <order, where non-obvious>
 
-### Events Emitted
+### Events emitted
 
 <!-- Analytics event NAMES only - cross-references to the project's tracking plan. -->
 - <event.name>

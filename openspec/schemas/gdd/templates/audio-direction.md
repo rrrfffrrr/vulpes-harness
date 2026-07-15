@@ -3,11 +3,13 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Audio Direction
+# Audio direction
 
-<!-- Audio direction for the sound team. Tie key SFX to the events that trigger them.
+<!-- Audio direction for the sound team.
+     Tie key SFX to the events that trigger them.
      LINK references rather than vague adjectives alone.
-     Replace every <...>. Delete guidance comments when done. -->
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
 ## Music
 
@@ -16,19 +18,19 @@ document-version: 0
 - **Key tracks**: <track - where it plays>
 - **References**: <links>
 
-## Sound Effects
+## Sound effects
 
 <!-- Key SFX the gameplay needs and what each must communicate. -->
 | SFX | Triggered by | Communicates |
 |-----|--------------|--------------|
 | <name> | <mechanic / UI event> | <...> |
 
-## Voice & Ambience
+## Voice & ambience
 
 <!-- Omit if none. -->
 <paragraph>
 
-## Audio's Role in Feel & Feedback
+## Audio's role in feel & feedback
 
 <!-- Which mechanics need audio confirmation, mix priorities, accessibility (no audio-only cues). -->
 - <...>

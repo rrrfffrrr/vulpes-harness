@@ -5,18 +5,20 @@ document-version: 0
 
 # UX / UI
 
-<!-- Player-facing interface and FLOW. Layout and flow here; visual styling is art-direction;
-     rules are mechanics. Mockups as ascii/mermaid, not final art.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- Player-facing interface and FLOW.
+     Layout and flow here; visual styling is art-direction; rules are mechanics.
+     Mockups as ascii/mermaid, not final art.
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
-## Screen / Menu Flow
+## Screen / menu flow
 
 <!-- The map: title -> menus -> game -> results -> back. -->
 ```
 <screen> -> <screen> -> <screen>
 ```
 
-## Key Screens
+## Key screens
 
 <!-- One block per important screen: layout + the actions on it. -->
 ### <screen name>
@@ -27,14 +29,14 @@ document-version: 0
 ```
 - **Actions**: <buttons / inputs and what they do>
 
-## Controls / Input
+## Controls / input
 
 <!-- Every input and what it does, per input method. -->
 | Input | Action |
 |-------|--------|
 | <touch/button> | <...> |
 
-## Onboarding / Tutorial
+## Onboarding / tutorial
 
 <!-- How a new player learns the core loop. -->
 <paragraph>

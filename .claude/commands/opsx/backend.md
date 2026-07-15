@@ -10,7 +10,7 @@ Design the backend in detail - exact interface contracts, one level below archit
 
 **Core artifacts (always):**
 - overview.md (interface surfaces + styles, state management, reader map)
-- conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, LRO)
+- conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, long-running operations (LRO))
 - components.md (middleware pipeline in order + shared components, C4 Component level)
 - endpoints.md (per-endpoint contracts - deviations from conventions only)
 - sequences.md (runtime flows incl. client-observable failure paths)

@@ -3,13 +3,15 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Object Model
+# Object model
 
-<!-- The conceptual structure the goals refer to. Conceptual / requirements-level
-     (what exists + its rules), not solution design or a database schema.
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- The conceptual structure the goals refer to.
+     Conceptual / requirements-level (what exists + its rules),
+     not solution design or a database schema.
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
-## Objects (Entities)
+## Objects (entities)
 
 - **<Entity>** - <what it represents>
 

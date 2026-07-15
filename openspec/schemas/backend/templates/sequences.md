@@ -3,12 +3,14 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Runtime Sequences
+# Runtime sequences
 
 <!-- Flows that cross more than one component - happy path AND client-observable failure paths.
-     Lifelines use components.md names; messages name endpoints/channels. UML Interaction
-     semantics, rendered per openspec/DIAGRAM-STYLE.md. Repeat the flow block per flow.
-     Replace every <...>. Delete guidance comments when done. -->
+     Lifelines use components.md names; messages name endpoints/channels.
+     UML Interaction semantics, rendered per openspec/DIAGRAM-STYLE.md.
+     Repeat the flow block per flow.
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
 ## <Flow name>
 
@@ -22,8 +24,7 @@ sequenceDiagram
   <A>-->>C: <status / reply>
 ```
 
-<!-- Failure path: only where it changes what the client observes (timeout, retry, partial
-     failure, compensation). For event-producing writes, show WHEN the event is published
-     relative to the write. -->
+<!-- Failure path: only where it changes what the client observes (timeout, retry, partial failure, compensation).
+     For event-producing writes, show WHEN the event is published relative to the write. -->
 
 **Failure path**: <what fails, what the client observes, recovery/compensation>

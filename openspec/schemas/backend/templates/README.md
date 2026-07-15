@@ -2,7 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md)
 
-**backend** schema (OpenAPI/JSON Schema contracts + RFC 9110/9457/9111 + BCP 14 + UML sequences + C4 components) artifacts - the exact interface contracts, one level below architecture. No implementation (apply) step.
+**backend** schema (OpenAPI/JSON Schema contracts + RFC 9110/9457/9111 + BCP 14 + UML sequences + C4 components) artifacts - the exact interface contracts, one level below architecture.
+No implementation (apply) step.
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 
@@ -11,7 +12,7 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 **Reading order:**
 
 1. `overview.md` - scope / interface surfaces / state management / reader map
-2. `conventions.md` - the shared rulebook: auth scopes, versioning, error catalog, pagination, rate limits, idempotency, concurrency, caching, LRO
+2. `conventions.md` - the shared rulebook: auth scopes, versioning, error catalog, pagination, rate limits, idempotency, concurrency, caching, long-running operations
 3. `components.md` - middleware pipeline (ordered) + shared components
 4. `endpoints.md` - per-endpoint contracts (deviations from conventions only)
 5. `sequences.md` - runtime flows, including client-observable failure paths

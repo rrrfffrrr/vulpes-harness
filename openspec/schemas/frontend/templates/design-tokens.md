@@ -3,9 +3,10 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Design Tokens
+# Design tokens
 
-<!-- CONDITIONAL - only when styling is token-based. DTCG vocabulary: name, $type, $value.
+<!-- CONDITIONAL - only when styling is token-based.
+     DTCG vocabulary: name, $type, $value.
      Tokens are named ONCE here; components/screens consume them by name.
      Replace every example row; keep only the groups the product uses.
      Delete guidance comments when done. -->
@@ -39,7 +40,8 @@ document-version: 0
 
 ## Themes
 
-<!-- Each theme = a collection of token VALUES over the same names. Components never restate per-theme behavior. -->
+<!-- Each theme = a collection of token VALUES over the same names.
+     Components never restate per-theme behavior. -->
 | Token | <light> | <dark> |
 |-------|---------|--------|
 | <color.surface> | <value> | <value> |

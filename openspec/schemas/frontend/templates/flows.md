@@ -5,11 +5,13 @@ document-version: 0
 
 # Flows
 
-<!-- Navigation map covers EVERY screen in screens.md. Statecharts only for non-trivial
-     internal state. Diagrams per openspec/DIAGRAM-STYLE.md.
-     Replace every <...> and example row. Delete guidance comments when done. -->
+<!-- Navigation map covers EVERY screen in screens.md.
+     Statecharts only for non-trivial internal state.
+     Diagrams per openspec/DIAGRAM-STYLE.md.
+     Replace every <...> and example row.
+     Delete guidance comments when done. -->
 
-## Navigation Map
+## Navigation map
 
 <!-- Wireflow: screens as nodes, user events as labeled edges. -->
 ```mermaid
@@ -17,9 +19,10 @@ flowchart LR
   <ScreenA> -->|<event>| <ScreenB>
 ```
 
-## Event -> Transition Tables
+## Event -> transition tables
 
-<!-- Per screen, for transitions the map alone cannot carry (guards, parameters). IFML semantics. -->
+<!-- Per screen, for transitions the map alone cannot carry (guards, parameters).
+     IFML semantics. -->
 
 ### <Screen name>
 
@@ -29,7 +32,8 @@ flowchart LR
 
 ## Statecharts
 
-<!-- ONLY for interactions with non-trivial internal state. UML state machine notation. -->
+<!-- ONLY for interactions with non-trivial internal state.
+     UML state machine notation. -->
 
 ### <Interaction name>
 

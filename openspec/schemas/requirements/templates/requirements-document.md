@@ -3,12 +3,14 @@ schema-version: 1.1.0
 document-version: 0
 ---
 
-# Requirements Document
+# Requirements document
 
-<!-- The single sanctioned synthesis of the four models, top (scope/strategic goals) to
-     bottom (requirements). Self-contained; reads as current truth. Consolidating model
-     content here is expected (exempt from the no-repetition rule).
-     Replace every <...>. Delete guidance comments when done. -->
+<!-- The single sanctioned synthesis of the four models,
+     top (scope/strategic goals) to bottom (requirements).
+     Self-contained; reads as current truth.
+     Consolidating model content here is expected (exempt from the no-repetition rule).
+     Replace every <...>.
+     Delete guidance comments when done. -->
 
 ## Scope
 
