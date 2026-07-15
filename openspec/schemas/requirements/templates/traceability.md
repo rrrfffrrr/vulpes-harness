@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Traceability Matrix
 
 <!-- BABOK requirements traceability - separate from the model prose. All linking lives here.

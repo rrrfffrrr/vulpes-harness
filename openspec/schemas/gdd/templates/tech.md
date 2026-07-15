@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Technical
 
 <!-- Technical frame at GDD altitude - the team-facing summary, NOT detailed architecture

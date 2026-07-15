@@ -1,7 +1,7 @@
 name: gdd
 version: 1
 metadata:
-  version: "1.0.0"   # harness release version
+  version: "1.1.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Game Design Document - the cross-discipline blueprint of the intended game: what it is, how it plays, how it looks and sounds, how it is built and sold. A living document written for the whole team (design, art, audio, engineering, production, business), structured as standard GDD sections from a high-concept overview down to a feature-priority and production scope. Core sections are always required; world/narrative and monetization are CONDITIONAL - included only when the game has that concern. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - A GDD describes the INTENDED GAME - what it is, how it plays, looks, sounds, is built

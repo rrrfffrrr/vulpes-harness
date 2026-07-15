@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Operation Model
 
 <!-- Leaf goals operationalized into operations. Semi-formal: conditions in natural

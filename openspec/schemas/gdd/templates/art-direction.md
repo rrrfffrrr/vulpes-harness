@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Art Direction
 
 <!-- Visual direction for the art team. Show, don't only tell - LINK references/mockups.

@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # World & Narrative
 
 <!-- CONDITIONAL - only if the game has setting/story/characters. Otherwise omit this file.

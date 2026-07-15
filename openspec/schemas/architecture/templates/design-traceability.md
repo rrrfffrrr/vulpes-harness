@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Design Traceability Matrix
 
 <!-- BABOK RTM for the requirements->architecture link. All design linking lives here, not in view prose.

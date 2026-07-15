@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # UX / UI
 
 <!-- Player-facing interface and FLOW. Layout and flow here; visual styling is art-direction;

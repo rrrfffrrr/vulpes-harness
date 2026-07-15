@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Deployment View
 
 <!-- 4+1 Physical / arc42 sec.7 + C4 Deployment. Topology + mapping of logical-view containers

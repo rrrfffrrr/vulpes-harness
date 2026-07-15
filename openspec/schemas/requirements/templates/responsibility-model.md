@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Responsibility Model
 
 <!-- Each leaf goal assigned to exactly one responsible agent.

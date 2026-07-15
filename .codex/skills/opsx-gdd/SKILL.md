@@ -1,6 +1,6 @@
 ---
 name: opsx-gdd
-version: "1.0.0"
+version: "1.1.0"
 description: Author a Game Design Document - the cross-discipline blueprint of the intended game (overview, gameplay, mechanics, art, audio, UX, tech, monetization, production). No implementation.
 ---
 
@@ -95,3 +95,4 @@ Summarize: GDD change name + location, which conditional sections were included 
 - Omit a conditional section entirely if its concern is absent - never create an empty placeholder.
 - The change does not close. There is no apply step in the gdd schema.
 - Read source requirements + dependency GDD artifacts before creating the next one. Verify each file exists after writing.
+- **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema.

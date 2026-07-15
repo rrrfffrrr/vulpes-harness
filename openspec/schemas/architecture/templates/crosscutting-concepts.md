@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Crosscutting Concepts
 
 <!-- arc42 sec.8. Concerns spanning multiple views. State the concept and HOW the design

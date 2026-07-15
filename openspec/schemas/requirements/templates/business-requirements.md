@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Business Requirements
 
 <!-- Stakeholder's own statements, preserved verbatim. Single source of truth.

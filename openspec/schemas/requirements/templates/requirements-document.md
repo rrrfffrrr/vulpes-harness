@@ -1,3 +1,8 @@
+---
+schema-version: 1.1.0
+document-version: 0
+---
+
 # Requirements Document
 
 <!-- The single sanctioned synthesis of the four models, top (scope/strategic goals) to
