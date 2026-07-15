@@ -40,4 +40,5 @@ Treat these changes as current truth alongside `specs/`.
 - Every artifact in these changes starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write).
   Increment `document-version` by 1 whenever you revise an artifact; never change `schema-version` by hand (per-version schema changes: `schemas/<schema>/CHANGES.md`).
 - If an artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), apply the Migration sections in `schemas/<schema>/CHANGES.md` in order before editing further.
+  Migrate from a clean git working tree and commit the migration by itself (`chore: migrate <change> to schema <x.y.z>`) - git is the backup and the history; no backup copies, no migration log.
 - Ordinary spec-driven changes (`/opsx:propose` -> `/opsx:apply` -> `/opsx:archive`) are unaffected by all of the above.

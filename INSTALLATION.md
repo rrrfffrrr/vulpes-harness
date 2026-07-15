@@ -58,6 +58,7 @@ Updates REPLACE each unit whole instead of copying over it - an overlay copy lea
 2. Read each schema's `CHANGES.md` for what changed between your version and the new one.
 3. Existing documents migrate on next use: the next run of each `/opsx:*` command applies the pending Migration sections in order.
    To migrate immediately, ask your agent to apply them now.
+   Migrations run from a clean git working tree and land as their own commit - git is the backup and the migration history.
 
 `openspec schema validate` checks the schema definition only, so it passes even before documents migrate.
 Pending document migration shows up in `openspec status --change <name>` instead - renamed artifacts report as missing until migrated.
