@@ -22,9 +22,9 @@ description: "Backend detail design - no implementation/apply step. Builds on an
 #    system sends outbound callbacks. If the concern is absent, OMIT the file.
 #  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
 #    over vague ranges.
-#  - Prose uses semantic line breaks (sembr.org): start each sentence on its own line; break
-#    long sentences after clause boundaries. Rendering is unchanged; sources stay readable
-#    and document-version diffs stay sentence-scoped.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
 artifacts:
   - id: overview
     generates: overview.md

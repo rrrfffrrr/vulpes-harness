@@ -8,7 +8,8 @@
 - `changes/` - in-flight spec-driven changes AND the standing documents below
 - `changes/archive/` - completed changes and superseded standing documents
 - `schemas/` - vulpes-harness workflow schemas (requirements, gdd, architecture, backend, frontend)
-- `DIAGRAM-STYLE.md` - diagram rules for the gdd and architecture schemas
+- `DIAGRAM-STYLE.md` - diagram rules for the schemas
+- `WRITING-STYLE.md` - prose rules for artifact writing (reader-first, search-friendly)
 
 ## Standing documents live in changes/
 
@@ -29,6 +30,6 @@ Treat these changes as current truth alongside `specs/`.
 
 - NEVER run `openspec archive` on a `*-requirements` / `*-gdd` / `*-architecture` change - archive promotes artifacts into `specs/`, which is wrong for these schemas. To supersede one, `mv` the folder into `changes/archive/`.
 - Update standing documents only via `/opsx:require`, `/opsx:gdd`, `/opsx:architect`, `/opsx:backend`, `/opsx:frontend` - continue the existing singleton change; never create per-feature copies.
-- Artifact prose uses semantic line breaks (sembr.org): one sentence per line - rendering is unchanged and revision diffs stay sentence-scoped.
+- Artifact prose follows `WRITING-STYLE.md` (this folder): semantic line breaks, plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals.
 - Every artifact in these changes starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write). Increment `document-version` by 1 whenever you revise an artifact; never change `schema-version` by hand (per-version schema changes: `schemas/<schema>/CHANGES.md`).
 - Ordinary spec-driven changes (`/opsx:propose` -> `/opsx:apply` -> `/opsx:archive`) are unaffected by all of the above.

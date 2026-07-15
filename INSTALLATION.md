@@ -24,7 +24,7 @@ Creates `openspec/` and the base commands for each tool listed.
 Get the harness from https://github.com/rrrfffrrr/vulpes-harness and copy these into your project at the same paths:
 
 - `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`, `openspec/schemas/backend/`, `openspec/schemas/frontend/`
-- `openspec/DIAGRAM-STYLE.md`  (diagram rules for gdd and architecture)
+- `openspec/DIAGRAM-STYLE.md` and `openspec/WRITING-STYLE.md`  (diagram and prose rules for the schemas)
 - `openspec/AGENTS.md` and `openspec/CLAUDE.md`  (agent guide to the openspec folder; CLAUDE.md just imports AGENTS.md)
 - `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`, `backend.md`, `frontend.md`  (Claude)
 - `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`, `opsx-backend/`, `opsx-frontend/`  (Codex)
