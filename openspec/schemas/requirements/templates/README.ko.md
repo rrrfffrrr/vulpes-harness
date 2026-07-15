@@ -1,8 +1,8 @@
-# 이 폴더를 읽는 법 - requirements
+# 아티팩트 읽는 법 - requirements
 
 [English](README.md) | [한국어](README.ko.md)
 
-이 change는 **requirements** 스키마(KAOS/GORE + BABOK) 아티팩트를 담음. "무엇을, 왜" - 공식 요구사항. 구현(apply) 단계 없음.
+**requirements** 스키마(KAOS/GORE + BABOK) 아티팩트. "무엇을, 왜" - 공식 요구사항. 구현(apply) 단계 없음.
 
 모든 아티팩트는 frontmatter로 시작: `schema-version`(작성 당시 스키마 semver)과 `document-version`(리비전 카운터 - 최초 작성 0, 개정마다 +1).
 

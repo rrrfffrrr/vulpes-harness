@@ -1,8 +1,8 @@
-# 이 폴더를 읽는 법 - architecture
+# 아티팩트 읽는 법 - architecture
 
 [English](README.md) | [한국어](README.ko.md)
 
-이 change는 **architecture** 스키마(Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) 아티팩트를 담음 - "어떻게", 기술 구조. 구현(apply) 단계 없음.
+**architecture** 스키마(Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) 아티팩트 - "어떻게", 기술 구조. 구현(apply) 단계 없음.
 
 모든 아티팩트는 frontmatter로 시작: `schema-version`(작성 당시 스키마 semver)과 `document-version`(리비전 카운터 - 최초 작성 0, 개정마다 +1).
 

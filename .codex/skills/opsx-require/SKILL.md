@@ -33,7 +33,7 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
    openspec new change "{program}-requirements" --schema requirements
    ```
 
-4. **Write the folder README (reading guide).** Copy `openspec/schemas/requirements/change-README.md` to `openspec/changes/{program}-requirements/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/requirements/change-README.ko.md` to `openspec/changes/{program}-requirements/README.ko.md`. These static guides are identical for every requirements change - copy verbatim, do NOT hand-edit them per project.
+4. **Write the folder README (reading guide).** Copy `openspec/schemas/requirements/templates/README.md` to `openspec/changes/{program}-requirements/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/requirements/templates/README.ko.md` to `openspec/changes/{program}-requirements/README.ko.md`. These static guides are identical for every requirements change - copy verbatim, do NOT hand-edit them per project.
 
 5. **Get the artifact build order**
    ```bash
@@ -69,7 +69,7 @@ Summarize: change name + location, artifacts created (one line each), and: "Requ
 **Guardrails**
 - This is REQUIREMENTS. Do NOT produce technical design, tasks, or implementation. Do NOT try to move to apply - the requirements schema has no apply step.
 - Change name is `{program}-requirements` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
-- The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/requirements/change-README.md` / `change-README.ko.md` - never hand-write or edit them per project.
+- The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/requirements/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - The user often narrates the requirements one line (one message) at a time. RECEIVE each line, reflect it back accurately, and capture it in the artifacts. Do NOT interrupt that flow with "how far should this go / should we stop / scope?" questions. Only ask about a genuine fork in behavior, not to limit work.
 - Do NOT manufacture "out of scope / later" deferrals. Only exclude what the user explicitly excluded.
 - Read dependency artifacts before creating the next one.

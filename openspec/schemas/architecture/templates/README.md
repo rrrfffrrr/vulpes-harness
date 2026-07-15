@@ -1,8 +1,8 @@
-# How to read this folder - architecture
+# How to read these artifacts - architecture
 
 [English](README.md) | [한국어](README.ko.md)
 
-This change holds **architecture** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) artifacts - the "how", the technical structure. No implementation (apply) step.
+**architecture** schema (Kruchten 4+1 + arc42 + ISO/IEC 42010 + Nygard ADR) artifacts - the "how", the technical structure. No implementation (apply) step.
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 
