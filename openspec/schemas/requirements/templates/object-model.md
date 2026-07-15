@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.0
+schema-version: 1.1.1
 document-version: 0
 ---
 

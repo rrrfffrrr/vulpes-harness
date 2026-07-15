@@ -1,6 +1,6 @@
 ---
 name: "OPSX: GDD"
-version: "1.1.0"
+version: "1.1.1"
 description: Author a Game Design Document - the cross-discipline blueprint of the intended game (overview, gameplay, mechanics, art, audio, UX, tech, monetization, production). No implementation.
 category: Workflow
 tags: [workflow, gdd, game-design, experimental]
@@ -105,3 +105,4 @@ Summarize: GDD change name + location, which conditional sections were included 
 - Read source requirements + dependency GDD artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
 - **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue.

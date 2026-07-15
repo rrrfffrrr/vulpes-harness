@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Backend"
-version: "1.1.0"
+version: "1.1.1"
 description: Backend detail design from an architecture change - interface contracts, conventions, components, runtime sequences, events/webhooks. No implementation.
 category: Workflow
 tags: [workflow, backend, api, detail-design, openapi, experimental]
@@ -101,3 +101,4 @@ Summarize: backend change name + location, which conditional artifacts were incl
 - Read source architecture + dependency backend artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
 - **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue.
