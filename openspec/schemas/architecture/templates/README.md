@@ -6,11 +6,11 @@
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 
-**Start here ->** [`architecture-overview.md`](architecture-overview.md) - the role <-> concern <-> view map points each role to the views to read.
+**Start here ->** [`overview.md`](overview.md) - the role <-> concern <-> view map points each role to the views to read.
 
 **Reading order:**
 
-1. `architecture-overview.md` - strategy / stack / style / constraints + view map
+1. `overview.md` - strategy / stack / style / constraints + view map
 2. `logical-view.md` - functional decomposition (components / interfaces)
 3. `process-view.md` - runtime / concurrency flows *(if present)*
 4. `data-view.md` - data architecture *(if present)*
@@ -18,7 +18,7 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 6. `deployment-view.md` - physical topology
 7. `crosscutting-concepts.md` - security / logging / compliance, etc.
 8. `adr.md` - architecture decision records (rationale)
-9. `design-traceability.md` - requirements <-> architecture trace, role coverage
+9. `traceability.md` - requirements <-> architecture trace, role coverage
 
 *process / data / ml-serving views exist only when that concern is present.*
 
