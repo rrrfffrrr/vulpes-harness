@@ -46,7 +46,7 @@ This pipeline answers HOW (structure, technology, runtime, deployment); requirem
    openspec new change "{program}-architecture" --schema architecture
    ```
 
-5. **Write the folder README (reading guide).** Copy `openspec/schemas/architecture/change-README.md` to `openspec/changes/{program}-architecture/README.md`, overwriting the stub `openspec new change` created. This static guide is identical for every architecture change - copy verbatim, do NOT hand-edit it per project.
+5. **Write the folder README (reading guide).** Copy `openspec/schemas/architecture/templates/README.md` to `openspec/changes/{program}-architecture/README.md`, overwriting the stub `openspec new change` created, and `openspec/schemas/architecture/templates/README.ko.md` to `openspec/changes/{program}-architecture/README.ko.md`. These static guides are identical for every architecture change - copy verbatim, do NOT hand-edit them per project.
 
 6. **Get the artifact build order**
    ```bash
@@ -91,6 +91,6 @@ Summarize: architecture change name + location, which conditional views were inc
 - Omit a conditional view entirely if its concern is absent - never create an empty placeholder.
 - The change does not close. There is no apply step in the architecture schema.
 - Change name is `{program}-architecture` (project singleton). Don't invent per-feature names; continue the existing `*-architecture` unless the user wants a separate program.
-- The folder README.md is a verbatim copy of `openspec/schemas/architecture/change-README.md` - never hand-write or edit it per project.
+- The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/architecture/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source requirements + dependency architecture artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema.
