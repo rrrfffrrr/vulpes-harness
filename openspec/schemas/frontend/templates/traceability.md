@@ -18,4 +18,4 @@ document-version: 0
 
 ## Gaps
 
-- `<requirements with no screen; screens no flow reaches; components no screen uses; conditional artifacts excluded (overview's reason)>`
+- `<requirements with no screen; screens no flow reaches; components no screen uses; data.md resources no screen displays (when data exists); conditional artifacts excluded (overview's reason)>`

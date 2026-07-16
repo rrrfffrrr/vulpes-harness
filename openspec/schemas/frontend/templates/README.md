@@ -15,10 +15,11 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 2. `design-tokens.md` - color / typography / dimension / motion / themes as tokens *(if present)*
 3. `components.md` - shared components: anatomy, variants, states, behavior, content rules
 4. `screens.md` - per screen: layout + breakpoint behavior, the five UI Stack states, data, forms with exact error copy
-5. `flows.md` - navigation map, event->transition tables, statecharts for complex interactions
-6. `traceability.md` - requirement <-> screen <-> flow <-> component matrix
+5. `data.md` - client data layer: freshness, invalidation map, optimistic updates, offline *(if present)*
+6. `flows.md` - navigation map, event->transition tables, statecharts for complex interactions
+7. `traceability.md` - requirement <-> screen <-> flow <-> component matrix
 
-*design-tokens exists only when styling is token-based.*
+*design-tokens exists only when styling is token-based; data only when the app manages client-side server-state.*
 
 ---
 

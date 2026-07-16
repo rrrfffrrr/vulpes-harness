@@ -57,7 +57,7 @@ Produces an overview, API conventions, components, endpoint contracts, runtime s
 
 The frontend detail-design schema for web, mobile, and desktop apps, using IFML, UML state machines, wireflows, Atomic Design, the UI Stack, and WCAG 2.2.
 
-Produces an overview, optional design tokens, a component inventory, screens, flows, and a traceability matrix.
+Produces an overview, optional design tokens, a component inventory, screens, an optional client data layer, flows, and a traceability matrix.
 
 ### gdd
 

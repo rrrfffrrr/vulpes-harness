@@ -2,7 +2,7 @@ name: frontend
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
+description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
 #    below architecture. Architecture answered structure/technology; this schema answers what
@@ -24,8 +24,9 @@ description: "Frontend (application UI) detail design for web, mobile, and deskt
 #  - Screens may list the analytics events they emit BY NAME as cross-references to the
 #    project's tracking plan; the tracking taxonomy itself is a separate artifact owned
 #    elsewhere - never define it here.
-#  - Conditional artifact: design-tokens when styling is token-based. If the concern is
-#    absent, OMIT the file.
+#  - Conditional artifacts: design-tokens when styling is token-based; data when the app
+#    manages client-side server-state (caching, optimistic updates, offline) beyond
+#    fetching per render. If the concern is absent, OMIT the file.
 #  - Prose is plain and direct; concrete values (px, ms, copy text) over vague ranges.
 #  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
@@ -46,8 +47,8 @@ artifacts:
       (e.g. enabled/disabled/hovered/focused/pressed/selected), declared once here; the
       ACCESSIBILITY TARGET - the WCAG 2.2 conformance level and how it applies on non-web
       platforms; the READER MAP (designers / UI engineers / QA - what each reads first);
-      and the CONDITIONAL ARTIFACTS table - whether design-tokens is included, with a
-      one-line reason.
+      and the CONDITIONAL ARTIFACTS table - whether design-tokens and data are included,
+      with a one-line reason each.
       Reference architecture and requirements by id; do not restate them.
     requires: []
 
@@ -105,7 +106,10 @@ artifacts:
       it serves by id); LAYOUT - a wire mockup (ascii or mermaid) of the ideal state plus
       the BREAKPOINT BEHAVIOR - what is revealed/divided/resized/repositioned/swapped at
       each breakpoint from the overview set; the FIVE UI STACK STATES - what the screen
-      shows when ideal, empty, loading, partial, and error (copy included); COMPONENTS
+      shows when ideal, empty, loading, partial, and error (copy included) - when a
+      backend change exists, the ERROR state maps each applicable problem type from the
+      backend error catalog to what the screen shows (exact copy; retryable types keep
+      a retry affordance); COMPONENTS
       used, by components.md name - never respecify them; DATA displayed - the fields and
       where they come from (when a backend change exists, reference its endpoints by
       METHOD+path); FORMS - per field the validation rules and the EXACT error copy, plus
@@ -134,6 +138,32 @@ artifacts:
     requires:
       - screens
 
+  - id: data
+    generates: data.md
+    description: >-
+      CONDITIONAL - include when the app manages client-side server-state beyond
+      fetching per render. Per-resource freshness (RFC 9111/5861 vocabulary), the
+      invalidation map, optimistic updates with rollback, client retry aligned to the
+      backend error catalog, and offline behavior.
+    template: data.md
+    instruction: |
+      Specify how the UI holds and refreshes server data. State DEFAULTS once
+      (freshness window, revalidate triggers, cache scope, and the client retry policy
+      tied to the backend error catalog's retryability when a backend change exists) -
+      resources record only deviations. Per RESOURCE: the SOURCE (backend endpoints by
+      METHOD+path when a backend change exists); the SCREENS that display it
+      (screens.md names); FRESHNESS deviations (RFC 5861 vocabulary: how long it may
+      serve stale while revalidating); INVALIDATED BY - the mutations or events that
+      invalidate it (this invalidation map is the core contract of the artifact); and
+      OPTIMISTIC UPDATES - which mutations render optimistically and the rollback
+      behavior the user observes on failure. Add the OFFLINE section only when the app
+      works offline: read behavior (stale-if-error), write queueing/rejection with
+      copy, and the reconciliation the user observes on reconnect.
+      Stay library-agnostic - specify behavior, never a state library's API.
+      Omit this artifact entirely if the app fetches per render and holds nothing.
+    requires:
+      - screens
+
   - id: traceability
     generates: traceability.md
     description: >-
@@ -147,7 +177,8 @@ artifacts:
       backend change exists, add the endpoint column (METHOD+path) for data each screen
       displays. Draw names from the artifacts themselves.
       Include a GAPS section: requirements with no screen, screens no flow reaches,
-      components no screen uses, and conditional artifacts excluded (with the overview's
+      components no screen uses, data.md resources no screen displays (when data
+      exists), and conditional artifacts excluded (with the overview's
       reason). All linking lives HERE - never in artifact prose beyond the single inline
       trace each screen/flow carries.
     requires:
