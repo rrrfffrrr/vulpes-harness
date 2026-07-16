@@ -1,0 +1,138 @@
+name: persistence
+version: 1
+metadata:
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+description: "Persistence (data store) detail design - no implementation/apply step. Builds on an architecture change's data-view: the store-level data design one level below it. Methodology: ANSI/SPARC three-schema separation (the architecture data-view carries the conceptual/logical model; this schema owns the internal/physical level), polyglot persistence with per-store design (Sadalage & Fowler, NoSQL Distilled), access-pattern-driven modeling for non-relational stores, evolutionary database design for migrations (Ambler & Sadalage, Refactoring Databases - expand-contract), and a traceability matrix back to requirements objects/invariants and architecture components. Store blocks are keyed to the engine ADR: while an engine is undecided, its block stays at the engine-portable level and is marked OPEN."
+# Authoring principles (all artifacts):
+#  - This is STORE-LEVEL detail design, one level below the architecture data-view. The
+#    data-view answered the logical model, ownership, and intent (indexing/partitioning
+#    intent, retention policy, migration approach); this schema answers the full field-level
+#    model, store-native schemas, concrete keys/indexes/partitions, retention mechanics, and
+#    migration order. Reference data-view entities, components, and ADRs by name/id - do not
+#    restate them.
+#  - NO CODE and NO implementation tasks. Field tables, index/partition tables,
+#    access-pattern tables, and migration plans are the medium; DDL scripts and source files
+#    are not.
+#  - The logical detail (model) is store-agnostic. Every store-specific fact lives in that
+#    store's block in stores, keyed to the engine ADR that fixed the engine. If the engine is
+#    undecided or contested, the block records the portable design and marks the engine OPEN
+#    with the candidates - never silently assume an engine.
+#  - Access patterns drive store design: every store block lists the access patterns it
+#    serves (query-first modeling for non-relational stores); a structure serving no access
+#    pattern is a traceability gap.
+#  - Retention/PII classification lives per entity in model (honoring requirements
+#    invariants by id); the enforcing mechanism lives per store in stores; scheduled cleanup
+#    references the backend jobs artifact by name when one exists.
+#  - Externally observable interface behavior (endpoints, client-facing consistency
+#    guarantees) is the backend schema's terrain - this schema documents the stores
+#    themselves.
+#  - State each fact once: the store inventory lives in overview; entity facts live in
+#    model; store blocks record store-native structure and only deviations from the model.
+#  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
+#    over vague ranges.
+#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
+artifacts:
+  - id: overview
+    generates: overview.md
+    description: >-
+      The entry point. The store inventory (engine + deciding ADR or OPEN, owning
+      components), the data domains in scope, and the reader map.
+    template: overview.md
+    instruction: |
+      Frame the persistence detail design from the architecture change. Cover: the
+      STORE INVENTORY - one row per store with its engine and version intent, the
+      architecture ADR that decided it (or OPEN with the candidate engines when the
+      decision is pending or contested), and the owning components from the
+      data-view; the DATA DOMAINS in scope - which parts of the requirements
+      object-model this design covers; and the READER MAP (DBA / backend engineer /
+      ops - what each reads first).
+      Reference architecture data-view, components, and ADRs by name/id; do not
+      restate them.
+    requires: []
+
+  - id: model
+    generates: model.md
+    description: >-
+      The store-agnostic logical detail: per entity the full field list with
+      constraints, relationships and integrity rules, and the retention/PII
+      classification honoring requirements invariants.
+    template: model.md
+    instruction: |
+      Deepen the architecture data-view entities to full field level, store-agnostic.
+      Per ENTITY (data-view name, tracing to the requirements object by id): the FIELD
+      table - every field with its logical type, constraints (required/unique/range/
+      format), and nullability; RELATIONSHIPS and integrity rules between entities
+      (cardinality, cascade intent); and RETENTION & PII - the classification and
+      retention window per entity or field group, citing the requirements invariant it
+      honors by id.
+      No store-native types here - logical types only (the store mapping lives in
+      stores). Do not restate the data-view's ownership or intent; deepen it.
+    requires:
+      - overview
+
+  - id: stores
+    generates: stores.md
+    description: >-
+      Per-store design blocks: entities mapped to native units, keys/indexes/
+      partitions with the access patterns they serve, consistency/durability
+      settings, retention mechanisms, and an engine-specific section keyed to the
+      engine ADR (portable-only while OPEN).
+    template: stores.md
+    instruction: |
+      One block per store from the overview inventory. Per store: UNITS - the mapping
+      of model entities to store-native units (tables / collections / keyspaces /
+      measurements / streams) with keys, partition/shard choices, and indexes; ACCESS
+      PATTERNS - the queries/lookups this store serves and which unit/index serves
+      each (for non-relational stores the patterns come first and justify the
+      structure); CONSISTENCY & DURABILITY - the settings the design depends on
+      (isolation level, replication acknowledgment, read/write concerns) stated as
+      design decisions, not tuning advice; RETENTION MECHANISM - how the model's
+      retention classes are enforced in this store (TTL, partition drop, cleanup job -
+      reference the backend jobs artifact by name when one exists); and
+      ENGINE-SPECIFIC - features used beyond the portable level (e.g. partial
+      indexes, JSONB, generated columns), each keyed to the engine ADR. While the
+      engine is OPEN, keep the block portable-only, mark it OPEN, and list what the
+      pending decision blocks.
+    requires:
+      - model
+
+  - id: migrations
+    generates: migrations.md
+    description: >-
+      How the stored schema evolves: migration versioning and ordering, the
+      expand-contract rule for breaking changes, compatibility windows, seed/
+      reference data, and backfill execution.
+    template: migrations.md
+    instruction: |
+      Define how schema change ships, per evolutionary database design. Cover:
+      POLICY - how migrations are versioned and ordered, and the compatibility
+      window (which schema versions must coexist with running code); BREAKING
+      CHANGES - the expand-contract (parallel change) rule: expand, dual-write,
+      backfill, cut over reads, contract - and what qualifies as breaking; SEED /
+      REFERENCE DATA - what ships with the schema and how it is versioned; and
+      BACKFILLS - how historical data is transformed, referencing the backend jobs
+      artifact by name when one exists.
+      Plans and rules only - no migration scripts.
+    requires:
+      - stores
+
+  - id: traceability
+    generates: traceability.md
+    description: >-
+      The linking matrix: requirements objects/invariants <-> model entities <->
+      stores/native units <-> access patterns. All cross-artifact linking lives here.
+    template: traceability.md
+    instruction: |
+      Produce the bidirectional matrix linking: requirements objects and invariants
+      (by id) <-> model entities <-> the stores and native units that hold them <->
+      the access patterns they serve. Draw names from the artifacts themselves.
+      Include a GAPS section: entities with no store, structures serving no access
+      pattern, retention invariants without an enforcing mechanism, and stores whose
+      engine is OPEN (with what the pending decision blocks). All linking lives HERE -
+      never in artifact prose beyond the single inline trace each entity/block
+      carries.
+    requires:
+      - stores
+      - migrations
