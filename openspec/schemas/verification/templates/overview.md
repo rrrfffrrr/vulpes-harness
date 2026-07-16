@@ -17,7 +17,7 @@ document-version: 0
 | Change | Artifacts used |
 |--------|----------------|
 | `<{program}-requirements>` | operation-model (acceptance criteria) |
-| `<{program}-backend / -frontend / -persistence / -game-ui, as present>` | `<artifacts>` |
+| `<{program}-backend / -frontend / -persistence / -game-ui / -ml, as present>` | `<artifacts>` |
 
 ## Scope
 

@@ -37,7 +37,7 @@ artifacts:
       Frame the verification design. Cover: the TEST BASIS (ISTQB sense) - the exact
       changes and artifacts this verification builds on (the requirements
       operation-model with its acceptance criteria, and each detail-design change
-      present: backend, frontend, persistence, game-ui), by change name; the SCOPE -
+      present: backend, frontend, persistence, game-ui, ml), by change name; the SCOPE -
       which requirements operations this verification covers; OUT OF SCOPE stated
       explicitly - derived per-contract test cases (generated from the contracts, not
       designed here) and performance/SLO verification (architecture crosscutting

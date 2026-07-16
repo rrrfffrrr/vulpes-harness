@@ -115,8 +115,9 @@ artifacts:
       Build the ML Serving View. State stakeholders (ML engineer, infra) and concerns at top.
       Describe the inference pipeline end-to-end (input -> pre-process -> model(s) -> post ->
       output), each model's role and serving mode (batch/stream/real-time), the accelerator/
-      hardware resource plan, model lifecycle (versioning, update, rollback), and throughput/
-      latency targets. Note any on-premise/edge constraints (no external model APIs, local
+      hardware resource plan, the model lifecycle APPROACH (versioning/update/rollback
+      intent - the concrete procedures and release gates live in the ml detail schema
+      when one exists), and throughput/latency targets. Note any on-premise/edge constraints (no external model APIs, local
       weights). Trace inference steps to the requirements operations they implement by name.
       Omit this artifact entirely if the system performs no model inference.
     requires:

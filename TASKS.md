@@ -61,7 +61,7 @@ verification의 E2E 시나리오는 이 기준을 구체 시스템에 대해 실
 
 근거(전부 검증됨): ISO/IEC/IEEE 29119-3:2021(문서 타입), 29119-4:2021(기법 - 참조만), ISTQB test basis, BABOK v3 10.1, Specification by Example (Adzic, Manning 2011), Gherkin (cucumber.io).
 
-### 5. ml 상세 스키마 (조건부)
+### 5. ml 상세 스키마 (조건부) - 완료 (ml 스키마 신설 + ml-serving-view 경계 정리)
 
 별도 조건부 스키마로 신설한다 - architecture에 ml-serving-view가 있을 때만 존재.
 모델 계약은 추론 위치(서버/온디바이스/엣지) 불변이므로 backend나 frontend에 접으면 반대쪽 추론이 갈 곳을 잃는다.
