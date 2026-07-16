@@ -2,7 +2,7 @@ name: frontend
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists."
+description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link) and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
 #    below architecture. Architecture answered structure/technology; this schema answers what
@@ -27,6 +27,9 @@ description: "Frontend (application UI) detail design for web, mobile, and deskt
 #  - Conditional artifacts: design-tokens when styling is token-based; data when the app
 #    manages client-side server-state (caching, optimistic updates, offline) beyond
 #    fetching per render. If the concern is absent, OMIT the file.
+#  - Conditional sections: ROUTES in flows when the platform addresses screens by URL or
+#    deep link; LOCALIZATION POLICY in overview (+ per-component TEXT BUDGET) when the
+#    product ships more than one locale. If the concern is absent, OMIT the section.
 #  - Prose is plain and direct; concrete values (px, ms, copy text) over vague ranges.
 #  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
@@ -46,7 +49,11 @@ artifacts:
       map to; the INTERACTION-STATE ENUM - the component states this spec uses everywhere
       (e.g. enabled/disabled/hovered/focused/pressed/selected), declared once here; the
       ACCESSIBILITY TARGET - the WCAG 2.2 conformance level and how it applies on non-web
-      platforms; the READER MAP (designers / UI engineers / QA - what each reads first);
+      platforms; the LOCALIZATION POLICY (conditional section - when the product ships
+      more than one locale): target locales, text-expansion headroom (IGDA Localization
+      SIG budgets - 30-40% unless the project justifies otherwise), font fallback
+      expectations, date/number/currency formats per locale (Unicode CLDR vocabulary),
+      and the pseudo-localization pass; the READER MAP (designers / UI engineers / QA - what each reads first);
       and the CONDITIONAL ARTIFACTS table - whether design-tokens and data are included,
       with a one-line reason each.
       Reference architecture and requirements by id; do not restate them.
@@ -87,8 +94,10 @@ artifacts:
       overview enum (only states that apply); BEHAVIOR - pointer AND keyboard interaction
       (the APG pattern it follows where one exists), plus labeling/announcement for
       assistive tech; CONTENT guidelines - the microcopy rules for its text parts (casing,
-      length, verb form); and TOKENS consumed (when design-tokens exists) or concrete
-      values (when not). Add an RTL/mirroring note only for components whose layout or
+      length, verb form), plus - when the overview declares a localization policy - the
+      TEXT BUDGET per text part (length limit including the policy's expansion headroom,
+      and the truncation/wrap behavior when exceeded); and TOKENS consumed (when
+      design-tokens exists) or concrete values (when not). Add an RTL/mirroring note only for components whose layout or
       iconography must mirror.
       One-off screen-specific arrangements do not belong here - only shared components.
     requires:
@@ -128,7 +137,10 @@ artifacts:
     instruction: |
       Specify navigation and interaction flow. Cover: the NAVIGATION MAP - a wireflow
       (screens as nodes, user events as labeled edges) covering every screen in
-      screens.md; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
+      screens.md; ROUTES (conditional section - when the platform addresses screens by
+      URL or deep link): per screen the route pattern with parameters, the auth guard,
+      and the deep-link entry behavior (what state is restored, where back leads) -
+      route names mirror the navigation map's nodes; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
       component -> action -> target screen/state) for transitions the map alone cannot
       carry (guards, parameters); and STATECHARTS (UML state machine notation, mermaid)
       ONLY for interactions with non-trivial internal state (multi-step editors, drag

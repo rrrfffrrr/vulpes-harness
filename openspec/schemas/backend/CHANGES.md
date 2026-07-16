@@ -12,13 +12,15 @@ A version without a Migration section needs no document rework.
 - `jobs` conditional artifact - contracts for time-triggered/background work outside the request/event surface: trigger (POSIX cron vocabulary), run identity (Spring Batch JobInstance semantics), overlap policy (Kubernetes CronJob terms), restart/rerun (Jakarta Batch), input scope, effects vs event publish, failure, backfill.
 - `overview`'s conditional-artifacts table, the `sequences` critical-path list, and the `traceability` interface column now carry jobs.
 
+- `configuration` conditional artifact - the named catalog of config keys and feature flags (12-factor III): name, type, default, reading component, effect; flag lifecycle; secrets by name only. Per-environment values stay with ops.
+
 ### Changed
 
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 
 ### Migration (from 1.1.1)
 
-- Add a `jobs` row (`Yes/No` + one-line reason) to `overview.md`'s "Conditional artifacts included" table.
+- Add `jobs` and `configuration` rows (`Yes/No` + one-line reason) to `overview.md`'s "Conditional artifacts included" table.
 - If the system runs time-triggered or background work outside its request/event surface, author `jobs.md` from the new template and add those jobs to the `traceability.md` interface column; otherwise no further rework.
 
 ## [1.1.1] - 2026-07-15

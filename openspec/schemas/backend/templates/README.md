@@ -19,9 +19,10 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 6. `events.md` - channels / messages / delivery guarantees *(if present)*
 7. `webhooks.md` - outbound callbacks *(if present)*
 8. `jobs.md` - scheduled/background job contracts *(if present)*
-9. `traceability.md` - operation <-> interface <-> component <-> sequence matrix
+9. `configuration.md` - config keys & feature flags catalog *(if present)*
+10. `traceability.md` - operation <-> interface <-> component <-> sequence matrix
 
-*events, webhooks, and jobs exist only when the system has that concern.*
+*events, webhooks, jobs, and configuration exist only when the system has that concern.*
 
 ---
 

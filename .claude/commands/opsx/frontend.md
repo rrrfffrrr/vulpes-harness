@@ -70,12 +70,12 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 
 **Methodology guidance (apply when filling artifacts)**
 
-- **overview** - the system-wide UI vocabulary, declared ONCE: breakpoint classes with ranges, the interaction-state enum, the WCAG 2.2 conformance level (and how it applies off-web), reader map, conditional inclusion.
+- **overview** - the system-wide UI vocabulary, declared ONCE: breakpoint classes with ranges, the interaction-state enum, the WCAG 2.2 conformance level (and how it applies off-web), the localization policy (locales, expansion headroom, fallback fonts, CLDR formats) when multi-locale, reader map, conditional inclusion.
 - **design-tokens** - DTCG vocabulary (name/$type/$value): semantic color roles, type scale, spacing, named easing + duration tokens, themes as token-value collections. Components consume tokens by name.
-- **components** - shared components only: anatomy (named parts), variants/sizes with concrete dimensions, behavior per applicable interaction state, pointer + keyboard behavior (APG pattern where one exists), microcopy rules, RTL note only where mirroring matters.
+- **components** - shared components only: anatomy (named parts), variants/sizes with concrete dimensions, behavior per applicable interaction state, pointer + keyboard behavior (APG pattern where one exists), microcopy rules (+ text budgets when a localization policy exists), RTL note only where mirroring matters.
 - **screens** - per screen: purpose + requirement trace, wire mockup + per-breakpoint behavior (reveal/divide/resize/reposition/swap), ALL five UI Stack states with copy, components by name, data with endpoint references when a backend change exists, error states mapped to the backend error catalog's problem types (retryable types keep a retry affordance), per-field validation + exact error copy, analytics event names only.
 - **data** - defaults once (freshness window, revalidate triggers, cache scope, client retry per backend retryability); per resource: source endpoints, displaying screens, invalidation map, optimistic updates + rollback; offline section only when the app works offline. Behavior, never a state library's API.
-- **flows** - the navigation map covers every screen; event->transition tables for guarded/parameterized transitions; statecharts ONLY for non-trivial internal state.
+- **flows** - the navigation map covers every screen; a routes section (pattern/params/guard/deep-link entry) when the platform addresses screens by URL; event->transition tables for guarded/parameterized transitions; statecharts ONLY for non-trivial internal state.
 - **traceability** - requirement <-> screen <-> flow <-> component (+ endpoint column when a backend change exists), plus a gaps section.
 
 **Output**

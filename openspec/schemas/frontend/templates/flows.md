@@ -20,6 +20,14 @@ flowchart LR
   ScreenA -->|event| ScreenB
 ```
 
+## Routes
+
+<!-- Conditional section - only when the platform addresses screens by URL or deep link.
+     Route names mirror the navigation map's nodes. -->
+| Screen | Route pattern | Params | Guard | Deep-link entry |
+|--------|---------------|--------|-------|-----------------|
+| `<screen>` | `</path/:param>` | `<params>` | `<auth or ->` | `<state restored; where back leads>` |
+
 ## Event -> transition tables
 
 <!-- Per screen, for transitions the map alone cannot carry (guards, parameters).
