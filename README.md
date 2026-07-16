@@ -29,6 +29,7 @@ For game projects:
 - Architecture: `/opsx:architect {content}`
 - Backend detail: `/opsx:backend {content}`
 - Frontend detail: `/opsx:frontend {content}`
+- Persistence detail: `/opsx:persistence {content}`
 - Game UI detail: `/opsx:game-ui {content}`
 - Prepare: `/opsx:propose {content}`
 - Build: `/opsx:apply {content}`
@@ -58,6 +59,12 @@ Produces an overview, API conventions, components, endpoint contracts, runtime s
 The frontend detail-design schema for web, mobile, and desktop apps, using IFML, UML state machines, wireflows, Atomic Design, the UI Stack, and WCAG 2.2.
 
 Produces an overview, optional design tokens, a component inventory, screens, an optional client data layer, flows, and a traceability matrix.
+
+### persistence
+
+The persistence detail-design schema, using the ANSI/SPARC internal level, polyglot persistence, access-pattern-driven store design, and evolutionary database design.
+
+Produces an overview with the store inventory, a field-level logical model, per-store designs, a migration policy, and a traceability matrix.
 
 ### gdd
 

@@ -6,7 +6,7 @@ requirement -> architecture -> backend/frontend 파이프라인의 갭 분석(20
 
 ## 확정된 작업
 
-### 1. backend: jobs 아티팩트 (배치·스케줄·백그라운드 작업)
+### 1. backend: jobs 아티팩트 (배치·스케줄·백그라운드 작업) - 완료 (PR #44)
 
 backend의 인터페이스 표면은 endpoints / events / webhooks 세 종류뿐이라 시간 트리거 작업의 계약이 갈 곳이 없다.
 traceability 매트릭스에도 해당 열이 없어, 배치로만 구현되는 requirements operation은 기록 불가능한 GAP으로만 남는다.
@@ -16,7 +16,7 @@ traceability 매트릭스에도 해당 열이 없어, 배치로만 구현되는 
 - 근거 어휘 리서치: JSR-352 / Spring Batch (job/step/restartability) - 인용 검증 필요
 - 해당 CHANGES.md 기록 + 버전 lockstep
 
-### 2. frontend↔backend 이음새
+### 2. frontend↔backend 이음새 - 완료 (PR #45)
 
 두 상세 설계가 각자 완결이어도 그 사이가 비어 있다.
 
@@ -27,7 +27,7 @@ traceability 매트릭스에도 해당 열이 없어, 배치로만 구현되는 
 
 ## 결정 대기 (권고안 제시됨)
 
-### 3. 영속성(물리 데이터) 설계
+### 3. 영속성(물리 데이터) 설계 - 완료 (persistence 스키마 신설)
 
 ANSI/SPARC 3계층에서 개념(requirements object-model)과 논리(architecture data-view)는 주인이 있으나 물리 수준은 주인이 없다.
 backend는 원칙적으로 저장 계층을 배제하므로(externally observable behavior only), DBA 역할이 상세 설계 레벨에서 읽을 문서가 없다.
