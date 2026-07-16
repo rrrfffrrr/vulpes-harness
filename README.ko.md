@@ -25,9 +25,11 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 <img alt="게임 작업 진행" src="assets/workflow-game.svg" width="90%">
 
 - 요구사항: `/opsx:require {내용}`
+- GDD: `/opsx:gdd {내용}`
 - 아키텍처: `/opsx:architect {내용}`
 - 백엔드 상세: `/opsx:backend {내용}`
 - 프론트엔드 상세: `/opsx:frontend {내용}`
+- 게임 UI 상세: `/opsx:game-ui {내용}`
 - 작업 준비: `/opsx:propose {내용}`
 - 실행: `/opsx:apply {내용}`
 
@@ -62,5 +64,13 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 게임 디자인 스키마. 표준 GDD 구성 기반.
 
 개요, 게임플레이, 메카닉, 세계관과 서사, 아트와 오디오 디렉션, UX/UI, 기술, 수익화, 프로덕션을 산출.
+
+게임 프로젝트 전용.
+
+### game-ui
+
+게임 UI 상세 설계 스키마. diegetic/non-diegetic/spatial/meta UI 레이어 분류, Game UI Database 화면 어휘, SMPTE safe area, Game Accessibility Guidelines/XAG, 액션 기반 입력, UML 상태 머신 기반.
+
+개요, (조건부) 디자인 토큰, 위젯, 화면, HUD, 플로, 입력, 설정, 추적표를 산출.
 
 게임 프로젝트 전용.

@@ -1,7 +1,7 @@
 name: requirements
 version: 1
 metadata:
-  version: "1.1.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - Cover every distinct, relevant item exhaustively. Detail = breadth/depth of distinct

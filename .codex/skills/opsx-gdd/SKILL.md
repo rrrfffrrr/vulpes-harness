@@ -1,6 +1,6 @@
 ---
 name: opsx-gdd
-version: "1.1.1"
+version: "1.2.0"
 description: Author a Game Design Document - the cross-discipline blueprint of the intended game (overview, gameplay, mechanics, art, audio, UX, tech, monetization, production). No implementation.
 ---
 

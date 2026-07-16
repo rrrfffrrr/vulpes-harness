@@ -1,7 +1,7 @@
 name: backend
 version: 1
 metadata:
-  version: "1.1.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event and webhook sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks), created only when the system has that concern."
 # Authoring principles (all artifacts):
 #  - This is INTERFACE-LEVEL detail design, one level below architecture. Architecture answered

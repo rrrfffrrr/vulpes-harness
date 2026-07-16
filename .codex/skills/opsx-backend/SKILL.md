@@ -1,6 +1,6 @@
 ---
 name: opsx-backend
-version: "1.1.1"
+version: "1.2.0"
 description: Backend detail design from an architecture change - interface contracts, conventions, components, runtime sequences, events/webhooks. No implementation.
 ---
 

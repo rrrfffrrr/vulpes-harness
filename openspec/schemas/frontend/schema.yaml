@@ -1,7 +1,7 @@
 name: frontend
 version: 1
 metadata:
-  version: "1.1.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
