@@ -45,3 +45,4 @@ document-version: 0
 |----------|-----------|--------|
 | events | `<Yes/No>` | `<reason>` |
 | webhooks | `<Yes/No>` | `<reason>` |
+| jobs | `<Yes/No>` | `<reason>` |
