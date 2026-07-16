@@ -30,6 +30,7 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 - 백엔드 상세: `/opsx:backend {내용}`
 - 프론트엔드 상세: `/opsx:frontend {내용}`
 - 영속성 상세: `/opsx:persistence {내용}`
+- ML 상세: `/opsx:ml {내용}`
 - 게임 UI 상세: `/opsx:game-ui {내용}`
 - 검증 설계: `/opsx:verification {내용}`
 - 작업 준비: `/opsx:propose {내용}`
@@ -66,6 +67,12 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 영속성(데이터 스토어) 상세 설계 스키마. ANSI/SPARC internal 수준, 폴리글랏 퍼시스턴스, 액세스 패턴 주도 스토어 설계, 진화적 데이터베이스 설계 기반.
 
 스토어 인벤토리 개요, 필드 수준 논리 모델, 스토어별 설계, 마이그레이션 정책, 추적표를 산출.
+
+### ml
+
+ml-serving-view가 있는 시스템의 ML 상세 설계 스키마. Model Cards, Datasheets for Datasets, ML Test Score, ISO/IEC 5338 기반.
+
+모델 인벤토리, 열화/폴백 포함 모델별 계약, (조건부) 데이터셋 datasheet, 평가 릴리스 게이트, 수명주기 절차, 추적표를 산출.
 
 ### verification
 

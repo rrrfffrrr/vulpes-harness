@@ -30,6 +30,7 @@ For game projects:
 - Backend detail: `/opsx:backend {content}`
 - Frontend detail: `/opsx:frontend {content}`
 - Persistence detail: `/opsx:persistence {content}`
+- ML detail: `/opsx:ml {content}`
 - Game UI detail: `/opsx:game-ui {content}`
 - Verification: `/opsx:verification {content}`
 - Prepare: `/opsx:propose {content}`
@@ -66,6 +67,12 @@ Produces an overview, optional design tokens, a component inventory, screens, an
 The persistence detail-design schema, using the ANSI/SPARC internal level, polyglot persistence, access-pattern-driven store design, and evolutionary database design.
 
 Produces an overview with the store inventory, a field-level logical model, per-store designs, a migration policy, and a traceability matrix.
+
+### ml
+
+The ML detail-design schema for systems with an ml-serving-view, using Model Cards, Datasheets for Datasets, the ML Test Score, and ISO/IEC 5338.
+
+Produces a model inventory, per-model contracts with degradation/fallback, optional dataset datasheets, evaluation release gates, lifecycle procedures, and a traceability matrix.
 
 ### verification
 

@@ -9,7 +9,8 @@ A version without a Migration section needs no document rework.
 
 ### Changed
 
-- Version lockstep with the 1.2.0 harness release (adds the game-ui schema) - no changes to this schema's artifacts; no migration needed.
+- `ml-serving-view` demarcation against the new `ml` detail schema: the view keeps the model lifecycle APPROACH (versioning/update/rollback intent); concrete procedures and release gates live in the ml detail schema when one exists. Existing documents stay valid at architecture altitude - no migration needed.
+- Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 
 ## [1.1.1] - 2026-07-15
 

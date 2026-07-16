@@ -1,13 +1,13 @@
 # Vulpes harness
 
-vulpes-harness is a versioned bundle of planning assets for AI coding tools (Claude Code, Codex), layered on OpenSpec: eight workflow schemas plus the slash commands that drive them.
+vulpes-harness is a versioned bundle of planning assets for AI coding tools (Claude Code, Codex), layered on OpenSpec: nine workflow schemas plus the slash commands that drive them.
 This repository IS the harness - editing here changes what installed projects copy; it is not a project that merely uses the harness.
 There is no build or test suite; verification is `openspec schema validate` plus the invariants below.
 
 ## Index
 
 - `openspec/schemas/<name>/` : one schema - `schema.yaml` (artifacts + authoring principles), `templates/` (artifact skeletons + `README(.ko).md` reading guides), `CHANGES.md` (Keep a Changelog)
-- `.claude/commands/opsx/` : Claude slash commands (require / gdd / architect / backend / frontend / persistence / game-ui / verification)
+- `.claude/commands/opsx/` : Claude slash commands (require / gdd / architect / backend / frontend / persistence / ml / game-ui / verification)
 - `.codex/skills/opsx-*/` : Codex mirrors of the commands - bodies must stay identical below the frontmatter
 - `openspec/AGENTS.md`, `openspec/CLAUDE.md` : the agent guide INSTALLED into target projects (different audience from this file)
 - `openspec/DIAGRAM-STYLE.md` : diagram rules the schemas follow
@@ -32,12 +32,12 @@ Breaking one of these breaks installed projects - check before committing.
 
 ## Checks
 
-- `openspec schema validate <name>` for every edited schema (`requirements` | `gdd` | `architecture` | `backend` | `frontend` | `persistence` | `game-ui` | `verification`). Requires OpenSpec CLI >= 1.4.x (`npm i -g @fission-ai/openspec`).
+- `openspec schema validate <name>` for every edited schema (`requirements` | `gdd` | `architecture` | `backend` | `frontend` | `persistence` | `ml` | `game-ui` | `verification`). Requires OpenSpec CLI >= 1.4.x (`npm i -g @fission-ai/openspec`).
 - `npx -y markdownlint-cli2 "**/*.md"` - markdown conventions; rules and deliberate deviations live in `.markdownlint.yaml`.
-- Command/skill parity - must print OK for all eight:
+- Command/skill parity - must print OK for all nine:
 
   ```bash
-  for t in require gdd architect backend frontend persistence game-ui verification; do
+  for t in require gdd architect backend frontend persistence ml game-ui verification; do
     diff -q <(awk 'f{print} /^---$/{c++; if(c==2) f=1}' .claude/commands/opsx/$t.md) \
             <(awk 'f{print} /^---$/{c++; if(c==2) f=1}' .codex/skills/opsx-$t/SKILL.md) \
       >/dev/null && echo "OK $t" || echo "MISMATCH $t"
