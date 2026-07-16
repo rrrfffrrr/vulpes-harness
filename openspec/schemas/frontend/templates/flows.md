@@ -23,10 +23,14 @@ flowchart LR
 ## Routes
 
 <!-- Conditional section - only when the platform addresses screens by URL or deep link.
+     Mechanism-agnostic: https URLs (iOS Universal Links / Android App Links) and custom
+     schemes both fit the pattern column. The /.well-known association files that verify
+     the domain (apple-app-site-association, assetlinks.json - RFC 8615) are a
+     deployment/hosting concern - reference them, never specify them here.
      Route names mirror the navigation map's nodes. -->
 | Screen | Route pattern | Params | Guard | Deep-link entry |
 |--------|---------------|--------|-------|-----------------|
-| `<screen>` | `</path/:param>` | `<params>` | `<auth or ->` | `<state restored; where back leads>` |
+| `<screen>` | `<https://... or scheme:///path/:param>` | `<params>` | `<auth or ->` | `<state restored; where back leads; app-absent fallback for https links>` |
 
 ## Event -> transition tables
 

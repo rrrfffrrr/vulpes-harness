@@ -139,7 +139,10 @@ artifacts:
       (screens as nodes, user events as labeled edges) covering every screen in
       screens.md; ROUTES (conditional section - when the platform addresses screens by
       URL or deep link): per screen the route pattern with parameters, the auth guard,
-      and the deep-link entry behavior (what state is restored, where back leads) -
+      and the deep-link entry behavior (what state is restored, where back leads; for
+      https deep links, the app-not-installed fallback) - mechanism-agnostic: https
+      Universal/App Links and custom schemes both fit, and the /.well-known
+      domain-association files are a deployment concern referenced by name only;
       route names mirror the navigation map's nodes; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
       component -> action -> target screen/state) for transitions the map alone cannot
       carry (guards, parameters); and STATECHARTS (UML state machine notation, mermaid)
