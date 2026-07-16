@@ -7,9 +7,17 @@ A version without a Migration section needs no document rework.
 
 ## [1.2.0] - Unreleased
 
+### Added
+
+- Acceptance criteria per operation in `operation-model` (BABOK v3 technique 10.1): the measurable pass/fail conditions stakeholders accept the operation by. The new `verification` schema realizes them as cross-layer scenarios.
+
 ### Changed
 
-- Version lockstep with the 1.2.0 harness release (adds the game-ui schema) - no changes to this schema's artifacts; no migration needed.
+- Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
+
+### Migration (from 1.1.1)
+
+- Add an "Acceptance criteria" list (measurable, pass/fail) to every operation in `operation-model.md`; derive them from the operation's post-condition and the goal it operationalizes, and confirm them with stakeholders before relying on them.
 
 ## [1.1.1] - 2026-07-15
 

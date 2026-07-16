@@ -42,7 +42,7 @@ backend는 원칙적으로 저장 계층을 배제하므로(externally observabl
 
 근거: ANSI/SPARC 3-schema, NoSQL Distilled (Sadalage & Fowler, Addison-Wesley 2012 - 검증됨), 스토어별 모델링 관행(작성 시 검증).
 
-### 4. verification (인수·검증) 계층 - 2단 구성
+### 4. verification (인수·검증) 계층 - 2단 구성 - 완료 (verification 스키마 신설 + requirements 인수 기준)
 
 상세 설계가 이미 test basis이므로(ISTQB 정의: 테스트 케이스의 근거가 되는 문서 일체) 병렬 테스트 스키마는 중복이다.
 설계에서 파생 불가능한 것만 새로 소유한다.

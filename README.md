@@ -31,6 +31,7 @@ For game projects:
 - Frontend detail: `/opsx:frontend {content}`
 - Persistence detail: `/opsx:persistence {content}`
 - Game UI detail: `/opsx:game-ui {content}`
+- Verification: `/opsx:verification {content}`
 - Prepare: `/opsx:propose {content}`
 - Build: `/opsx:apply {content}`
 
@@ -65,6 +66,12 @@ Produces an overview, optional design tokens, a component inventory, screens, an
 The persistence detail-design schema, using the ANSI/SPARC internal level, polyglot persistence, access-pattern-driven store design, and evolutionary database design.
 
 Produces an overview with the store inventory, a field-level logical model, per-store designs, a migration policy, and a traceability matrix.
+
+### verification
+
+The acceptance & verification design schema, using the ISTQB test-basis vocabulary, ISO/IEC/IEEE 29119-3 documentation types, Specification by Example with Gherkin, and BABOK 10.1 acceptance criteria.
+
+Produces an overview with the test basis, cross-layer acceptance scenarios, test data/environment requirements, and a coverage traceability matrix - per-contract test cases stay derived from the detail designs, never written here.
 
 ### gdd
 
