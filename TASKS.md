@@ -80,7 +80,7 @@ data-view↔영속성 상세, logical-view↔backend components와 같은 계층
 
 근거(검증됨): Model Cards for Model Reporting (Mitchell et al., FAT* 2019), Datasheets for Datasets (Gebru et al. 2018), ISO/IEC 5338:2023, The ML Test Score (Breck et al., IEEE Big Data 2017).
 
-### 6. 설정 카탈로그 + route/i18n
+### 6. 설정 카탈로그 + route/i18n - 완료 (backend configuration 아티팩트 + frontend routes/localization 조건부 섹션)
 
 - 설정: backend 아티팩트로 키/플래그 카탈로그(이름·타입·기본값·적용 범위) 소유. 환경별 실제 값은 ops 소관으로 배제. 근거: 12-factor III (작성 시 검증)
 - route: frontend flows의 조건부 섹션(URL이 있는 플랫폼일 때 내비게이션 맵에 라우트 계약)

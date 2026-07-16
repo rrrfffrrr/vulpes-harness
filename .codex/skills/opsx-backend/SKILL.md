@@ -1,7 +1,7 @@
 ---
 name: opsx-backend
 version: "1.2.0"
-description: Backend detail design from an architecture change - interface contracts, conventions, components, runtime sequences, events/webhooks/jobs. No implementation.
+description: Backend detail design from an architecture change - interface contracts, conventions, components, runtime sequences, events/webhooks/jobs/configuration. No implementation.
 ---
 
 Design the backend in detail - exact interface contracts, one level below architecture and separate from development. This uses the `backend` schema (OpenAPI 3.2 + JSON Schema 2020-12 contracts under RFC 9110 semantics, RFC 9457 errors, RFC 9111 caching, BCP 14 keywords, UML 2.5.1 sequences, C4 Component inventory). It produces:
@@ -20,6 +20,7 @@ Design the backend in detail - exact interface contracts, one level below archit
 - events.md - message/event-driven APIs (AsyncAPI 3.1 structure, CloudEvents envelope)
 - webhooks.md - outbound callbacks (Standard Webhooks conventions)
 - jobs.md - time-triggered/background work (Spring Batch + Jakarta Batch vocabulary, Kubernetes CronJob overlap terms)
+- configuration.md - config keys & feature flags catalog (12-factor III; names/types/defaults/effects, never per-environment values)
 
 This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, returns, and guarantees); architecture already answered structure/technology. There is **no implementation/apply step** and the change stays open - you can keep adding and refining contracts over time.
 
@@ -33,7 +34,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 
 2. **Decide which CONDITIONAL artifacts to include - recommend, then confirm.**
    - Read the source architecture artifacts (`overview.md`, `logical-view.md`, `process-view.md` if present).
-   - Auto-recommend: include **events** if the architecture has message/event-driven communication; include **webhooks** if the system delivers outbound callbacks to consumers; include **jobs** if the system runs scheduled/batch/background work outside its request/event surface (the architecture process-view usually shows it).
+   - Auto-recommend: include **events** if the architecture has message/event-driven communication; include **webhooks** if the system delivers outbound callbacks to consumers; include **jobs** if the system runs scheduled/batch/background work outside its request/event surface (the architecture process-view usually shows it); include **configuration** if behavior varies between deploys (env config, feature flags).
    - Present the recommendation (each: include yes/no + one-line reason) and **ask the user to confirm or adjust** before creating the change. Core artifacts are not negotiable.
 
 3. **Determine the change name - `{program}-backend`.** The backend schema has no apply step and is a **project-level singleton** - normally one backend detail design per program.
@@ -55,7 +56,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
    openspec status --change "{program}-backend" --json
    ```
 
-   Build in dependency order: `overview -> conventions, components -> endpoints -> sequences, (events, webhooks, jobs) -> traceability`.
+   Build in dependency order: `overview -> conventions, components -> endpoints -> sequences, (events, webhooks, jobs, configuration) -> traceability`.
 
 7. **Create artifacts in sequence**
 
@@ -79,6 +80,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 - **events** - AsyncAPI channel structure, envelope stated once, delivery guarantees + consistency relation to the write path per channel.
 - **webhooks** - Standard Webhooks: event types, signing, retry schedule, receiver MUSTs.
 - **jobs** - defaults stated once (timezone, late start, overlap, retry); per job: trigger, run identity (identifying parameters), restart/rerun semantics, input scope, effects incl. write-vs-publish relation, failure, backfill.
+- **configuration** - per key: name/type/default/reading component/effect (altered surface by name); flags add lifecycle (temporary vs permanent); secrets by name + consumer only. Never per-environment values.
 - **traceability** - operation <-> interface <-> component <-> sequence, plus a gaps section.
 
 **Output**

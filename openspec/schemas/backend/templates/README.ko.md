@@ -19,9 +19,10 @@
 6. `events.md` - 채널 / 메시지 / 전달 보장 *(있을 때만)*
 7. `webhooks.md` - 아웃바운드 콜백 *(있을 때만)*
 8. `jobs.md` - 스케줄/백그라운드 잡 계약 *(있을 때만)*
-9. `traceability.md` - 오퍼레이션 <-> 인터페이스 <-> 컴포넌트 <-> 시퀀스 매트릭스
+9. `configuration.md` - 설정 키·피처 플래그 카탈로그 *(있을 때만)*
+10. `traceability.md` - 오퍼레이션 <-> 인터페이스 <-> 컴포넌트 <-> 시퀀스 매트릭스
 
-*events, webhooks, jobs는 시스템에 해당 요소가 있을 때만 존재.*
+*events, webhooks, jobs, configuration은 시스템에 해당 요소가 있을 때만 존재.*
 
 ---
 

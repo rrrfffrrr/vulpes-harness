@@ -29,6 +29,7 @@ document-version: 0
 
 - **Behavior**: `<pointer + keyboard interaction; APG pattern followed if one exists; label/announcement for assistive tech>`
 - **Content**: `<microcopy rules for its text parts - casing, length, verb form>`
+- **Text budget** *(only when the overview declares a localization policy)*: `<length limit per text part incl. expansion headroom; truncation/wrap behavior>`
 - **Tokens**: `<tokens consumed by name - or concrete values when design-tokens is absent>`
 
 <!-- Add an RTL/mirroring note only for components whose layout or iconography must mirror. -->

@@ -2,7 +2,7 @@ name: backend
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event, webhook, and job sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks / Spring Batch + Jakarta Batch job vocabulary with Kubernetes CronJob overlap terms), created only when the system has that concern."
+description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event, webhook, job, and configuration sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks / Spring Batch + Jakarta Batch job vocabulary with Kubernetes CronJob overlap terms / 12-factor III configuration catalog), created only when the system has that concern."
 # Authoring principles (all artifacts):
 #  - This is INTERFACE-LEVEL detail design, one level below architecture. Architecture answered
 #    structure/technology/deployment; this schema answers the exact contracts: what each
@@ -20,7 +20,8 @@ description: "Backend detail design - no implementation/apply step. Builds on an
 #    architecture crosscutting-concepts - do not duplicate them here.
 #  - Conditional artifacts: events when there are message/event-driven APIs; webhooks when the
 #    system sends outbound callbacks; jobs when the system runs time-triggered or background
-#    work outside its request/event surface. If the concern is absent, OMIT the file.
+#    work outside its request/event surface; configuration when behavior varies between
+#    deploys (env config, feature flags). If the concern is absent, OMIT the file.
 #  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
 #    over vague ranges.
 #  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
@@ -43,7 +44,8 @@ artifacts:
       (token-carried, RFC 7519 JWT) or stateful (server session via RFC 6265 cookies) per
       surface, referencing the architecture decision; the READER MAP (API consumers /
       backend engineers / QA - what each reads first); and the CONDITIONAL ARTIFACTS table
-      - whether events, webhooks, and jobs are included, with a one-line reason each.
+      - whether events, webhooks, jobs, and configuration are included, with a one-line
+      reason each.
       Reference architecture components and ADRs by name/id; do not restate them.
     requires: []
 
@@ -212,6 +214,27 @@ artifacts:
       rely on. Omit this artifact entirely if the system has no such work.
     requires:
       - conventions
+      - components
+
+  - id: configuration
+    generates: configuration.md
+    description: >-
+      CONDITIONAL - include when behavior varies between deploys. The named catalog of
+      configuration keys and feature flags: type, default, reading component, and
+      effect - per-environment values stay with ops (12-factor III).
+    template: configuration.md
+    instruction: |
+      Catalog every configuration key and feature flag whose meaning an operator or
+      component owner must know (12-factor III: config is what varies between
+      deploys). Per KEY: the name (verbatim), type, default, the component that reads
+      it (components.md name), and its EFFECT - what behavior changes, referencing the
+      endpoint/channel/job it alters by name where applicable. Per FEATURE FLAG:
+      additionally its LIFECYCLE - temporary rollout flag (with removal intent) vs
+      permanent operational toggle. SECRETS are listed by name and consuming component
+      only - never values, never storage/rotation mechanics (those are ops/
+      architecture-crosscutting concerns). Per-environment VALUES never appear here.
+      Omit this artifact entirely if nothing varies between deploys.
+    requires:
       - components
 
   - id: traceability
