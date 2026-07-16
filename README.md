@@ -51,7 +51,7 @@ Produces an architecture overview, logical/process/data/deployment views, crossc
 
 The backend detail-design schema, using OpenAPI/JSON Schema, RFC 9110/9457/9111, BCP 14, UML sequences, and C4 components.
 
-Produces an overview, API conventions, components, endpoint contracts, runtime sequences, optional events/webhooks, and a traceability matrix.
+Produces an overview, API conventions, components, endpoint contracts, runtime sequences, optional events/webhooks/jobs, and a traceability matrix.
 
 ### frontend
 

@@ -2,7 +2,7 @@ name: backend
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event and webhook sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks), created only when the system has that concern."
+description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event, webhook, and job sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks / Spring Batch + Jakarta Batch job vocabulary with Kubernetes CronJob overlap terms), created only when the system has that concern."
 # Authoring principles (all artifacts):
 #  - This is INTERFACE-LEVEL detail design, one level below architecture. Architecture answered
 #    structure/technology/deployment; this schema answers the exact contracts: what each
@@ -19,7 +19,8 @@ description: "Backend detail design - no implementation/apply step. Builds on an
 #    DB transaction boundaries. Observability conventions, SLOs, and capacity belong to the
 #    architecture crosscutting-concepts - do not duplicate them here.
 #  - Conditional artifacts: events when there are message/event-driven APIs; webhooks when the
-#    system sends outbound callbacks. If the concern is absent, OMIT the file.
+#    system sends outbound callbacks; jobs when the system runs time-triggered or background
+#    work outside its request/event surface. If the concern is absent, OMIT the file.
 #  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
 #    over vague ranges.
 #  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
@@ -42,7 +43,7 @@ artifacts:
       (token-carried, RFC 7519 JWT) or stateful (server session via RFC 6265 cookies) per
       surface, referencing the architecture decision; the READER MAP (API consumers /
       backend engineers / QA - what each reads first); and the CONDITIONAL ARTIFACTS table
-      - whether events and webhooks are included, with a one-line reason each.
+      - whether events, webhooks, and jobs are included, with a one-line reason each.
       Reference architecture components and ADRs by name/id; do not restate them.
     requires: []
 
@@ -133,8 +134,9 @@ artifacts:
       components.md (same names), messages are the endpoint calls or events by name.
       Each flow states which endpoints/channels it realizes and which requirements
       operation it traces to. Cover every critical path: flows with consistency
-      guarantees, LRO flows, and event-producing writes (show WHEN the event is published
-      relative to the write). Do not diagram single-component request handling - the
+      guarantees, LRO flows, event-producing writes (show WHEN the event is published
+      relative to the write), and multi-component job runs (jobs.md) whose failure or
+      restart behavior matters. Do not diagram single-component request handling - the
       middleware pipeline in components.md already covers it.
     requires:
       - components
@@ -181,16 +183,47 @@ artifacts:
     requires:
       - conventions
 
+  - id: jobs
+    generates: jobs.md
+    description: >-
+      CONDITIONAL - include when the system runs time-triggered or background work
+      outside its request/event surface. Per-job contracts: trigger, run identity,
+      overlap, restart/rerun semantics, effects, failure, backfill (Spring Batch +
+      Jakarta Batch vocabulary, Kubernetes CronJob overlap terms).
+    template: jobs.md
+    instruction: |
+      Document every scheduled/background job the system runs outside its
+      request/event surface. State DEFAULTS once (schedule timezone, late-start
+      policy, overlap policy, retry/backoff) - jobs record only deviations. Per job:
+      PURPOSE (one line, naming the requirements operation it implements); TRIGGER -
+      cron expression (POSIX five-field), interval, manual, or on-event (events.md
+      channel by name); RUN IDENTITY - the identifying parameters that make two runs
+      the same logical run (Spring Batch JobInstance semantics), which defines what
+      a rerun means; RESTART & RERUN - whether a failed run restarts from a
+      checkpoint or from the start, and whether rerunning a completed run is a no-op
+      or an idempotent recompute; INPUT SCOPE - full scan or incremental with the
+      watermark that bounds it; EFFECTS - what it writes and which events it
+      publishes (events.md channels by name), with the write-vs-publish relation
+      (reference the sequences flow that shows it); FAILURE - partial-failure
+      behavior and the state a failed run leaves behind; and BACKFILL - how past
+      periods are re-run, or that it is unsupported.
+      Job execution infrastructure (scheduler, queue, worker topology) is an
+      architecture concern - document only the contract consumers and operators can
+      rely on. Omit this artifact entirely if the system has no such work.
+    requires:
+      - conventions
+      - components
+
   - id: traceability
     generates: traceability.md
     description: >-
-      The linking matrix: requirements operations <-> endpoints/channels/webhooks <->
-      components <-> sequences. All cross-artifact linking lives here.
+      The linking matrix: requirements operations <-> endpoints/channels/webhooks/jobs
+      <-> components <-> sequences. All cross-artifact linking lives here.
     template: traceability.md
     instruction: |
       Produce the bidirectional matrix linking: requirements operations (by name) <->
-      endpoints, event channels, and webhook types <-> the components that realize them
-      <-> the sequences that show them. Draw ids and names from the artifacts themselves.
+      endpoints, event channels, webhook types, and jobs <-> the components that
+      realize them <-> the sequences that show them. Draw ids and names from the artifacts themselves.
       Include a GAPS section: requirements operations with no interface, endpoints tracing
       to no operation, components no flow exercises, and conditional artifacts excluded
       (with the overview's reason). All linking lives HERE - never in artifact prose

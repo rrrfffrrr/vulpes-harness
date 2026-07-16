@@ -11,9 +11,9 @@ document-version: 0
 
 ## Operation <-> interface <-> component <-> sequence
 
-| Requirements operation | Interface (endpoint / channel / webhook) | Component(s) | Sequence |
-|------------------------|------------------------------------------|--------------|----------|
-| `<operation name>` | `<METHOD path / channel / webhook type>` | `<component>` | `<flow name>` |
+| Requirements operation | Interface (endpoint / channel / webhook / job) | Component(s) | Sequence |
+|------------------------|------------------------------------------------|--------------|----------|
+| `<operation name>` | `<METHOD path / channel / webhook type / job name>` | `<component>` | `<flow name>` |
 
 ## Gaps
 
