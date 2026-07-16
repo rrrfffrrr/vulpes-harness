@@ -18,6 +18,8 @@ document-version: 0
 - Pre-condition: `<what must hold before>`
 - Post-condition: `<what holds after>`
 - Trigger: `<what initiates it>`
+- Acceptance criteria:
+  - `<measurable pass/fail condition stakeholders accept the operation by (BABOK 10.1)>`
 
 ## Scenarios
 

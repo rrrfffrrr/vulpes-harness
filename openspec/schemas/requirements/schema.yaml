@@ -105,11 +105,15 @@ artifacts:
     generates: operation-model.md
     description: >-
       KAOS operation model - leaf goals operationalized into operations with
-      pre/post/trigger conditions, and scenarios that exercise them.
+      pre/post/trigger conditions and BABOK 10.1 acceptance criteria, and scenarios
+      that exercise them.
     template: operation-model.md
     instruction: |
       Operationalize leaf goals into OPERATIONS, each with pre-condition, post-condition,
-      and trigger (semi-formal natural language, no temporal logic). Do NOT restate which
+      and trigger (semi-formal natural language, no temporal logic), plus ACCEPTANCE
+      CRITERIA - the measurable pass/fail conditions stakeholders accept the operation by
+      (BABOK v3 technique 10.1); every criterion is verifiable, not aspirational, and
+      belongs to exactly one operation. Do NOT restate which
       agent owns the operation - agent ownership lives in the responsibility model and is
       joined via the traceability matrix. Coverage: at least one nominal scenario per
       operation, plus one scenario per resolved obstacle whose resolution adds runtime
