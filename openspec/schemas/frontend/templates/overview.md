@@ -50,3 +50,4 @@ document-version: 0
 | Artifact | Included? | Reason |
 |----------|-----------|--------|
 | design-tokens | `<Yes/No>` | `<reason>` |
+| data | `<Yes/No>` | `<reason>` |

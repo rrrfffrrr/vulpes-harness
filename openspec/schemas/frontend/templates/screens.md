@@ -36,6 +36,14 @@ document-version: 0
 | Partial | `<some data + how more loads>` |
 | Error | `<error view + exact copy + recovery action>` |
 
+**Error mapping**
+
+<!-- Only when a backend change exists.
+     Problem types from the backend conventions error catalog; retryable types keep a retry affordance. -->
+| Problem type | Screen behavior | Copy (exact) |
+|--------------|-----------------|--------------|
+| `<type>` | `<error state variant / inline / toast + retry affordance if retryable>` | "`<copy>`" |
+
 ### Components & data
 
 - **Components**: `<components.md names>`

@@ -1,7 +1,7 @@
 ---
 name: opsx-frontend
 version: "1.2.0"
-description: Frontend (application UI) detail design from an architecture change - screens, components, states, flows, tokens. No implementation.
+description: Frontend (application UI) detail design from an architecture change - screens, components, states, flows, tokens, client data. No implementation.
 ---
 
 Design the application UI in detail - the implementable UI spec for web, mobile, and desktop apps, one level below architecture and separate from development. This uses the `frontend` schema (IFML 1.0 interaction-flow semantics, Harel statecharts as UML 2.5.1 state machines, NN/g wireflows, Atomic Design + Open UI-style component anatomy, the five-state UI Stack, WCAG 2.2). It produces:
@@ -14,9 +14,10 @@ Design the application UI in detail - the implementable UI spec for web, mobile,
 - flows.md (navigation map, event->transition tables, statecharts for complex interactions)
 - traceability.md (requirement <-> screen <-> flow <-> component matrix)
 
-**Conditional artifact (only when the product has that concern):**
+**Conditional artifacts (only when the product has that concern):**
 
 - design-tokens.md - token-based styling (DTCG: color/typography/dimension/motion/themes)
+- data.md - client data layer (RFC 9111/5861 freshness vocabulary, invalidation map, optimistic updates, offline)
 
 This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state and event; architecture already answered structure/technology. There is **no implementation/apply step** and the change stays open - you can keep adding screens and refining components over time.
 
@@ -28,9 +29,9 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 
 1. **Identify the source architecture change.** Frontend detail design builds on architecture artifacts. If the user named one, use it. Otherwise list `openspec/changes/*-architecture/` and ask which to build on. If there is genuinely no architecture change, proceed from what the user gives, but say so.
 
-2. **Decide whether the CONDITIONAL artifact applies - recommend, then confirm.**
-   - Auto-recommend: include **design-tokens** if styling is token-based (a design system, theming, or multi-platform styling exists or is planned).
-   - Present the recommendation (include yes/no + one-line reason) and **ask the user to confirm or adjust** before creating the change. Core artifacts are not negotiable.
+2. **Decide which CONDITIONAL artifacts apply - recommend, then confirm.**
+   - Auto-recommend: include **design-tokens** if styling is token-based (a design system, theming, or multi-platform styling exists or is planned); include **data** if the UI holds server data across screens (caching/refresh), updates optimistically, or works offline.
+   - Present the recommendation (each: include yes/no + one-line reason) and **ask the user to confirm or adjust** before creating the change. Core artifacts are not negotiable.
 
 3. **Determine the change name - `{program}-frontend`.** The frontend schema has no apply step and is a **project-level singleton** - normally one frontend detail design per program.
    - If a `*-frontend` change already exists, that is this project's frontend design - **continue it** (add/refine artifacts); do not create a second unless the user explicitly wants a separate one.
@@ -51,14 +52,14 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
    openspec status --change "{program}-frontend" --json
    ```
 
-   Build in dependency order: `overview -> (design-tokens) -> components -> screens -> flows -> traceability`.
+   Build in dependency order: `overview -> (design-tokens) -> components -> screens -> (data), flows -> traceability`.
 
 7. **Create artifacts in sequence**
 
    For each artifact that is `ready`:
    - Get instructions: `openspec instructions <artifact-id> --change "{program}-frontend" --json`
    - Read the relevant source architecture files AND any completed dependency frontend files for context.
-   - **If the user excluded design-tokens in step 2: do NOT create the file.** Leave it absent - an omitted artifact simply stays incomplete, which is correct for "no such concern."
+   - **For conditional artifacts the user excluded in step 2: do NOT create the file.** Leave it absent - an omitted artifact simply stays incomplete, which is correct for "no such concern."
    - Create the artifact using the `template` as structure and the `instruction` as guidance.
    - `context`/`rules` are constraints for YOU - do NOT copy them into the file.
    - Re-run `openspec status --change "{program}-frontend" --json` and continue with the next `ready` artifact.
@@ -70,13 +71,14 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 - **overview** - the system-wide UI vocabulary, declared ONCE: breakpoint classes with ranges, the interaction-state enum, the WCAG 2.2 conformance level (and how it applies off-web), reader map, conditional inclusion.
 - **design-tokens** - DTCG vocabulary (name/$type/$value): semantic color roles, type scale, spacing, named easing + duration tokens, themes as token-value collections. Components consume tokens by name.
 - **components** - shared components only: anatomy (named parts), variants/sizes with concrete dimensions, behavior per applicable interaction state, pointer + keyboard behavior (APG pattern where one exists), microcopy rules, RTL note only where mirroring matters.
-- **screens** - per screen: purpose + requirement trace, wire mockup + per-breakpoint behavior (reveal/divide/resize/reposition/swap), ALL five UI Stack states with copy, components by name, data with endpoint references when a backend change exists, per-field validation + exact error copy, analytics event names only.
+- **screens** - per screen: purpose + requirement trace, wire mockup + per-breakpoint behavior (reveal/divide/resize/reposition/swap), ALL five UI Stack states with copy, components by name, data with endpoint references when a backend change exists, error states mapped to the backend error catalog's problem types (retryable types keep a retry affordance), per-field validation + exact error copy, analytics event names only.
+- **data** - defaults once (freshness window, revalidate triggers, cache scope, client retry per backend retryability); per resource: source endpoints, displaying screens, invalidation map, optimistic updates + rollback; offline section only when the app works offline. Behavior, never a state library's API.
 - **flows** - the navigation map covers every screen; event->transition tables for guarded/parameterized transitions; statecharts ONLY for non-trivial internal state.
 - **traceability** - requirement <-> screen <-> flow <-> component (+ endpoint column when a backend change exists), plus a gaps section.
 
 **Output**
 
-Summarize: frontend change name + location, whether design-tokens was included (and why), artifacts created (one line each), and: "Frontend detail design complete - no implementation step. The change stays open; re-run `/opsx:frontend` to add screens or refine components. Run `/opsx:propose` (spec-driven) when ready to build."
+Summarize: frontend change name + location, which conditional artifacts were included (and why), artifacts created (one line each), and: "Frontend detail design complete - no implementation step. The change stays open; re-run `/opsx:frontend` to add screens or refine components. Run `/opsx:propose` (spec-driven) when ready to build."
 
 **Guardrails**
 
@@ -88,7 +90,8 @@ Summarize: frontend change name + location, whether design-tokens was included (
 - Form validation rules and exact error copy are part of the screen contract - never leave them "TBD".
 - Analytics events appear as NAMES only, cross-referencing the project's tracking plan - never define the tracking taxonomy here.
 - The user often narrates the UI one line (one message) at a time. RECEIVE each line, reflect it back, capture it in the right artifact. Do NOT interrupt with scope/stop questions. Only ask about a genuine fork.
-- Omit design-tokens entirely if styling is not token-based - never create an empty placeholder.
+- When a backend change exists, error states map the backend error catalog's problem types - never invent error semantics the backend does not define.
+- Omit a conditional artifact entirely if its concern is absent - never create an empty placeholder.
 - The change does not close. There is no apply step in the frontend schema.
 - Change name is `{program}-frontend` (project singleton). Don't invent per-feature names; continue the existing `*-frontend` unless the user wants a separate program.
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/frontend/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
