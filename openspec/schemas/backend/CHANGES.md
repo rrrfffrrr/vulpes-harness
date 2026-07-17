@@ -17,10 +17,13 @@ A version without a Migration section needs no document rework.
 ### Changed
 
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
+- `sequences` is scoped to the backend boundary: lifelines are components.md components plus stores/brokers, and the client is at most one boundary lifeline.
+  Client-side behavior (screen logic, client cache, UI retries) moves to the frontend schema's `flows` "API call sequences" section - sequence diagrams are a per-schema expression tool, not a single-home artifact.
 
 ### Migration (from 1.1.1)
 
 - Add `jobs` and `configuration` rows (`Yes/No` + one-line reason) to `overview.md`'s "Conditional artifacts included" table.
+- If `sequences.md` diagrams client-side behavior (screen logic, client cache, UI retries), move those parts to the frontend change's `flows.md` "API call sequences" section and keep the client as a single boundary lifeline here.
 - If the system runs time-triggered or background work outside its request/event surface, author `jobs.md` from the new template and add those jobs to the `traceability.md` interface column; otherwise no further rework.
 
 ## [1.1.1] - 2026-07-15

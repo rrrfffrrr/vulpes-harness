@@ -2,7 +2,7 @@ name: frontend
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link) and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
+description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link), API call sequences in flows (client-perspective UML sequence diagrams, when a flow drives backend calls whose order or failure behavior matters), and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
 #    below architecture. Architecture answered structure/technology; this schema answers what
@@ -28,8 +28,10 @@ description: "Frontend (application UI) detail design for web, mobile, and deskt
 #    manages client-side server-state (caching, optimistic updates, offline) beyond
 #    fetching per render. If the concern is absent, OMIT the file.
 #  - Conditional sections: ROUTES in flows when the platform addresses screens by URL or
-#    deep link; LOCALIZATION POLICY in overview (+ per-component TEXT BUDGET) when the
-#    product ships more than one locale. If the concern is absent, OMIT the section.
+#    deep link; API CALL SEQUENCES in flows when a flow drives backend calls whose order
+#    or failure behavior matters; LOCALIZATION POLICY in overview (+ per-component TEXT
+#    BUDGET) when the product ships more than one locale. If the concern is absent, OMIT
+#    the section.
 #  - Prose is plain and direct; concrete values (px, ms, copy text) over vague ranges.
 #  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
@@ -132,7 +134,8 @@ artifacts:
     generates: flows.md
     description: >-
       How the UI moves: the wireflow navigation map, event->transition tables (IFML
-      semantics), and statecharts for complex stateful interactions.
+      semantics), client-perspective API call sequences where a flow drives backend
+      calls, and statecharts for complex stateful interactions.
     template: flows.md
     instruction: |
       Specify navigation and interaction flow. Cover: the NAVIGATION MAP - a wireflow
@@ -148,7 +151,16 @@ artifacts:
       by name only;
       route names mirror the navigation map's nodes; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
       component -> action -> target screen/state) for transitions the map alone cannot
-      carry (guards, parameters); and STATECHARTS (UML state machine notation, mermaid)
+      carry (guards, parameters) - actions that call the backend name the endpoint
+      verbatim (`METHOD /path`); API CALL SEQUENCES (conditional section - when a flow
+      drives backend calls whose order or failure behavior matters: multi-call submits,
+      optimistic updates, retry-on-error): one sequence diagram per such flow (mermaid,
+      UML Interaction semantics) from the client's perspective - lifelines are the
+      screen (screens.md name), the client data layer (data.md, when present), and the
+      backend surface; messages name endpoints verbatim, from the backend change's
+      endpoints.md when one exists; show the failure paths the user can observe.
+      Backend-internal component interaction stays in the backend design's sequences -
+      never diagram it here; and STATECHARTS (UML state machine notation, mermaid)
       ONLY for interactions with non-trivial internal state (multi-step editors, drag
       interactions, connection-dependent UI) - simple open/close needs no statechart.
       Every flow traces to the requirements operation or goal it realizes, by name.

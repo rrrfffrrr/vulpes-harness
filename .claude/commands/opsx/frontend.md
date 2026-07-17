@@ -13,7 +13,7 @@ Design the application UI in detail - the implementable UI spec for web, mobile,
 - overview.md (platforms/stacks, breakpoint set, interaction-state enum, accessibility target, reader map)
 - components.md (shared components: anatomy, variants/sizes, per-state behavior, keyboard/assistive behavior, content rules)
 - screens.md (per screen: layout + breakpoint behavior, the five UI Stack states, data, forms with exact error copy, emitted event names)
-- flows.md (navigation map, event->transition tables, statecharts for complex interactions)
+- flows.md (navigation map, event->transition tables, API call sequences, statecharts for complex interactions)
 - traceability.md (requirement <-> screen <-> flow <-> component matrix)
 
 **Conditional artifacts (only when the product has that concern):**
@@ -75,7 +75,7 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 - **components** - shared components only: anatomy (named parts), variants/sizes with concrete dimensions, behavior per applicable interaction state, pointer + keyboard behavior (APG pattern where one exists), microcopy rules (+ text budgets when a localization policy exists), RTL note only where mirroring matters.
 - **screens** - per screen: purpose + requirement trace, wire mockup + per-breakpoint behavior (reveal/divide/resize/reposition/swap), ALL five UI Stack states with copy, components by name, data with endpoint references when a backend change exists, error states mapped to the backend error catalog's problem types (retryable types keep a retry affordance), per-field validation + exact error copy, analytics event names only.
 - **data** - defaults once (freshness window, revalidate triggers, cache scope, client retry per backend retryability); per resource: source endpoints, displaying screens, invalidation map, optimistic updates + rollback; offline section only when the app works offline. Behavior, never a state library's API.
-- **flows** - the navigation map covers every screen; a routes section (pattern/params/guard/deep-link entry) when the platform addresses screens by URL; event->transition tables for guarded/parameterized transitions; statecharts ONLY for non-trivial internal state.
+- **flows** - the navigation map covers every screen; a routes section (pattern/params/guard/deep-link entry) when the platform addresses screens by URL; event->transition tables for guarded/parameterized transitions (backend calls name the endpoint verbatim); API call sequences (client-perspective: screen, data layer, endpoints verbatim, user-observable failure paths) when a flow drives backend calls whose order or failure behavior matters - backend internals stay in the backend design's sequences; statecharts ONLY for non-trivial internal state.
 - **traceability** - requirement <-> screen <-> flow <-> component (+ endpoint column when a backend change exists), plus a gaps section.
 
 **Output**

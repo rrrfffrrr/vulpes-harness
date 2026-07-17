@@ -124,16 +124,22 @@ artifacts:
   - id: sequences
     generates: sequences.md
     description: >-
-      Runtime sequences for the key flows: client through middleware and components to
-      stores, including error/retry paths on critical flows. UML 2.5.1 Interaction
-      semantics rendered per DIAGRAM-STYLE.
+      Runtime sequences inside the backend boundary: middleware stages, components, and
+      stores from components.md, including error/retry paths on critical flows. The
+      client is at most a boundary lifeline. UML 2.5.1 Interaction semantics rendered
+      per DIAGRAM-STYLE.
     template: sequences.md
     instruction: |
-      Diagram the runtime flows that involve more than one component - happy path AND the
-      failure paths that change what a client observes (timeout, retry, partial failure,
-      compensation). Use sequence diagrams (mermaid, per openspec/DIAGRAM-STYLE.md) with
-      UML Interaction semantics: lifelines are the components/middleware stages from
-      components.md (same names), messages are the endpoint calls or events by name.
+      Diagram the backend-internal runtime flows that involve more than one component -
+      happy path AND the failure paths that change what a client observes (timeout,
+      retry, partial failure, compensation).
+      Use sequence diagrams (mermaid, per openspec/DIAGRAM-STYLE.md) with UML
+      Interaction semantics: lifelines are the components/middleware stages from
+      components.md (same names) plus stores/brokers, messages are the endpoint calls
+      or events by name. The client is at most ONE boundary lifeline sending the
+      initial request and receiving the response - client-side behavior (screen logic,
+      client cache, UI retries) belongs to the frontend design's flows (API call
+      sequences), never here.
       Each flow states which endpoints/channels it realizes and which requirements
       operation it traces to. Cover every critical path: flows with consistency
       guarantees, LRO flows, event-producing writes (show WHEN the event is published

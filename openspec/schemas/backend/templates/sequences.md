@@ -5,8 +5,10 @@ document-version: 0
 
 # Runtime sequences
 
-<!-- Flows that cross more than one component - happy path AND client-observable failure paths.
-     Lifelines use components.md names; messages name endpoints/channels.
+<!-- Backend-internal flows that cross more than one component - happy path AND client-observable failure paths.
+     Lifelines use components.md names plus stores/brokers; messages name endpoints/channels.
+     The client is at most ONE boundary lifeline (initial request, final response);
+     client-side behavior lives in the frontend design's flows (API call sequences).
      UML Interaction semantics, rendered per openspec/DIAGRAM-STYLE.md.
      Repeat the flow block per flow.
      Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.

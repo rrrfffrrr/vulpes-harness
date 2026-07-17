@@ -14,6 +14,9 @@ A version without a Migration section needs no document rework.
 - `overview`'s conditional-artifacts table and the `traceability` gaps list now carry data.
 - ROUTES conditional section in `flows` - when the platform addresses screens by URL or deep link: per screen the route pattern, params, auth guard, and deep-link entry behavior.
 - LOCALIZATION POLICY conditional section in `overview` (target locales, IGDA Loc SIG expansion headroom, font fallback, CLDR date/number/currency formats, pseudo-localization) with a per-component TEXT BUDGET line in `components` when the policy exists.
+- API CALL SEQUENCES conditional section in `flows` - when a flow drives backend calls whose order or failure behavior matters: client-perspective UML sequence diagrams (lifelines: screen, client data layer, backend surface; endpoints named verbatim).
+  Backend-internal interaction stays in the backend schema's `sequences` - sequence diagrams are a per-schema expression tool, not a single-home artifact.
+- Event->transition actions that call the backend name the endpoint verbatim (`METHOD /path`).
 
 ### Changed
 
@@ -25,6 +28,7 @@ A version without a Migration section needs no document rework.
 - When a backend change exists, add the "Error mapping" table (problem type -> screen behavior -> exact copy) to each screen in `screens.md` that displays backend data.
 - If the app manages client-side server-state (caching, optimistic updates, offline), author `data.md` from the new template; otherwise no further rework.
 - If the platform addresses screens by URL or deep link, add the "Routes" section to `flows.md`.
+- If a flow drives backend calls whose order or failure behavior matters, add the "API call sequences" section to `flows.md` - moving any client-side sequences authored in the backend change's `sequences.md`.
 - If the product ships more than one locale, add the "Localization policy" section to `overview.md` and text budgets to `components.md`.
 
 ## [1.1.1] - 2026-07-15

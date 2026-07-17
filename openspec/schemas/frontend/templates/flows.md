@@ -37,13 +37,41 @@ flowchart LR
 ## Event -> transition tables
 
 <!-- Per screen, for transitions the map alone cannot carry (guards, parameters).
-     IFML semantics. -->
+     IFML semantics.
+     Actions that call the backend name the endpoint verbatim (`METHOD /path`). -->
 
 ### `<Screen name>`
 
 | Event (on) | Guard | Action | Target |
 |------------|-------|--------|--------|
 | `<event (component)>` | `<condition or ->` | `<what happens>` | `<screen/state>` |
+
+## API call sequences
+
+<!-- Conditional section - only when a flow drives backend calls whose order or failure
+     behavior matters (multi-call submits, optimistic updates, retry-on-error).
+     Client perspective: lifelines are the screen (screens.md name), the client data
+     layer (data.md, when present), and the backend surface; messages name endpoints
+     verbatim. Backend-internal component interaction lives in the backend design's
+     sequences.md. Repeat the flow block per flow. -->
+
+### `<Flow name>`
+
+Realizes: `<METHOD /path>` - traces to: `<requirements operation name>`
+
+```mermaid
+sequenceDiagram
+  %% Replace participants (screen, data layer) and messages (endpoints, verbatim).
+  participant S as ScreenName
+  participant D as DataLayer
+  participant B as Backend
+  S->>D: user event
+  D->>B: METHOD /path
+  B-->>D: status
+  D-->>S: state update
+```
+
+**Failure path**: `<what fails, what the user sees, retry/rollback>`
 
 ## Statecharts
 
