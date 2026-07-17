@@ -10,6 +10,10 @@ A version without a Migration section needs no document rework.
 ### Added
 
 - Acceptance criteria per operation in `operation-model` (BABOK v3 technique 10.1): the measurable pass/fail conditions stakeholders accept the operation by. The new `verification` schema realizes them as cross-layer scenarios.
+- `scenarios` artifact - domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, 9.3.17/9.4.17; KAOS behavior scenarios; BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios).
+  `scenarios/index.md` is the domain index (domains mirror the goal model's top-level goals); each domain's `scenarios/<domain>.md` holds agent-interaction sequence diagrams: trigger (agent or schedule), lifelines = responsibility-model agents, messages = operation-model operations, outcome = the satisfied goal, plus obstacle variants.
+  Coverage: every operation appears in at least one scenario.
+  `requirements-document`'s Behavior section restates the flows; `traceability` gains an operation -> scenario table.
 
 ### Changed
 
@@ -20,6 +24,7 @@ A version without a Migration section needs no document rework.
 
 - Add an "Acceptance criteria" list (measurable, pass/fail) to every operation in `operation-model.md`; derive them from the operation's post-condition and the goal it operationalizes, and confirm them with stakeholders before relying on them.
 - Re-shape the `traceability.md` BR table: singular Goal column, one row per BR-goal link.
+- Author `scenarios/index.md` (domain index) plus one `scenarios/<domain>.md` per top-level goal from the existing models; cover every operation with at least one scenario; add the operation -> scenario table to `traceability.md` and restate the flows in `requirements-document.md`'s Behavior section.
 
 ## [1.1.1] - 2026-07-15
 

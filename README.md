@@ -42,7 +42,7 @@ For game projects:
 
 The requirements schema, using KAOS/GORE and BABOK.
 
-Produces business requirements, goal/object/responsibility/operation models, a synthesized requirements document, and a traceability matrix.
+Produces business requirements, goal/object/responsibility/operation models, per-domain operational scenarios, a synthesized requirements document, and a traceability matrix.
 
 ### architect
 

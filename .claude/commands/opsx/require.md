@@ -1,7 +1,7 @@
 ---
 name: "OPSX: Require"
 version: "1.2.0"
-description: Specify the requirements for a change using KAOS/GORE + BABOK - business requirements, goal/object/responsibility/operation models, synthesized requirements document, traceability. No implementation.
+description: Specify the requirements for a change using KAOS/GORE + BABOK - business requirements, goal/object/responsibility/operation models, domain-split operational scenarios, synthesized requirements document, traceability. No implementation.
 category: Workflow
 tags: [workflow, require, babok, kaos, gore, experimental]
 ---
@@ -13,8 +13,9 @@ Capture the requirements for a change - requirements engineering, separate from 
 - object-model.md (entities, relationships, attributes, invariants, glossary)
 - responsibility-model.md (each leaf goal assigned to a responsible agent)
 - operation-model.md (operations with pre/post/trigger, scenarios)
+- scenarios/index.md (domain index) + scenarios/\<domain\>.md (per-domain agent-interaction sequences: who or what schedule triggers which operations, in what order)
 - requirements-document.md (the single synthesis: scope, goals, glossary, responsibilities, behavior)
-- traceability.md (BR <-> goal <-> leaf <-> agent <-> operation matrix)
+- traceability.md (BR <-> goal <-> leaf <-> agent <-> operation <-> scenario matrix)
 
 This pipeline stops at requirements - there is **no implementation/apply step**. When you decide to build, run `/opsx:propose` (spec-driven) and feed these requirements artifacts in as the source.
 
@@ -45,7 +46,7 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
    openspec status --change "{program}-requirements" --json
    ```
 
-   Parse `artifacts` (status + dependencies). Build in dependency order: `business-requirements -> goal-model -> object-model, responsibility-model -> operation-model -> requirements-document -> traceability`.
+   Parse `artifacts` (status + dependencies). Build in dependency order: `business-requirements -> goal-model -> object-model, responsibility-model -> operation-model -> scenarios -> requirements-document -> traceability`.
 
 6. **Create artifacts in sequence**
 
@@ -65,8 +66,9 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
 - **object-model** - entities, relationships (cardinality lives here only), attributes, invariants (rules not expressible as cardinality), glossary. Conceptual, not a DB schema.
 - **responsibility-model** - assign every leaf goal to exactly one agent (software=requirement, environment=expectation); no orphans.
 - **operation-model** - operationalize leaves into operations (pre/post/trigger), plus scenarios (Given/When/Then); don't restate agent ownership (that's traceability).
-- **requirements-document** - the ONE synthesis: Scope, Goals, Glossary, Responsibilities, Behavior. Self-contained, current truth, no cross-references.
-- **traceability** - bidirectional matrix BR<->goal<->leaf<->agent<->operation; all cross-linking lives here, never in model prose.
+- **scenarios** - scenarios/index.md is the domain INDEX only (domains mirror the goal model's top-level goals); per-domain scenarios/\<domain\>.md holds one sequence diagram per user-recognizable flow: trigger (agent or schedule), lifelines = responsibility-model agents, messages = operations by name, outcome = the satisfied goal, plus obstacle variants. Every operation appears in at least one scenario. Requirements altitude - agents and operations only, no solution vocabulary.
+- **requirements-document** - the ONE synthesis: Scope, Goals, Glossary, Responsibilities, Behavior (operations + per-domain flows in prose). Self-contained, current truth, no cross-references.
+- **traceability** - bidirectional matrix BR<->goal<->leaf<->agent<->operation<->scenario; all cross-linking lives here, never in model prose.
 
 **Output**
 

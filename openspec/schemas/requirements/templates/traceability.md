@@ -37,6 +37,13 @@ document-version: 0
 |------|-----------|------|
 | `<leaf id>` | `<Operation>` | satisfy |
 
+## Operation -> scenario
+
+<!-- One row per operation-scenario link; repeat rows. -->
+| Operation | Scenario | Domain file |
+|-----------|----------|-------------|
+| `<Operation>` | `<scenario name>` | `scenarios/<domain>.md` |
+
 ## Coverage notes
 
-- `<any BR not covered, any leaf without agent/operation, deferred items>`
+- `<any BR not covered, any leaf without agent/operation, operations no scenario exercises, deferred items>`
