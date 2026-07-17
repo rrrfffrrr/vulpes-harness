@@ -38,9 +38,9 @@ document-version: 0
 
 <!-- The single place roles are linked to views.
      Every role finds its reading list here. -->
-| Role | Concerns | Views to read |
-|------|----------|---------------|
-| `<role>` | `<concerns>` | `<view, view>` |
+| Role | Concerns | Start with | Then |
+|------|----------|------------|------|
+| `<role>` | `<concerns>` | `<view>` | `<view>` |
 
 ## Conditional views included
 

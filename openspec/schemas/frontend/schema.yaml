@@ -145,7 +145,7 @@ artifacts:
       and the deep-link entry behavior (what state is restored, where back leads) -
       plus the FALLBACK POLICY stated once (the app-absent chain: web page, store
       redirect, smart banner; a deferred deep-link service only if an architecture
-      ADR decided one) with per-route deviations in the entry column -
+      ADR decided one) with per-route deviations in the fallback column -
       mechanism-agnostic: https Universal/App Links and custom schemes both fit, and
       the /.well-known domain-association files are a deployment concern referenced
       by name only;

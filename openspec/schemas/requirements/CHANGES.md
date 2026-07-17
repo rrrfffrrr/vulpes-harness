@@ -14,10 +14,12 @@ A version without a Migration section needs no document rework.
 ### Changed
 
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
+- Tables follow the new WRITING-STYLE one-value-per-cell rule (first normal form): the `traceability` BR table uses a singular Goal column with one row per BR-goal link.
 
 ### Migration (from 1.1.1)
 
 - Add an "Acceptance criteria" list (measurable, pass/fail) to every operation in `operation-model.md`; derive them from the operation's post-condition and the goal it operationalizes, and confirm them with stakeholders before relying on them.
+- Re-shape the `traceability.md` BR table: singular Goal column, one row per BR-goal link.
 
 ## [1.1.1] - 2026-07-15
 

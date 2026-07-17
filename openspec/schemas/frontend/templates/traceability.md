@@ -7,14 +7,15 @@ document-version: 0
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
      Include the Endpoint column only when a backend change exists.
+     One value per cell - repeat the row per additional component/endpoint link (WRITING-STYLE tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 
 ## Requirement <-> screen <-> flow <-> component
 
-| Requirement (goal / operation) | Screen | Flow | Components | Endpoint (backend) |
-|--------------------------------|--------|------|------------|---------------------|
-| `<id / name>` | `<screen>` | `<flow>` | `<components>` | `<METHOD path or ->` |
+| Requirement (goal / operation) | Screen | Flow | Component | Endpoint (backend) |
+|--------------------------------|--------|------|-----------|---------------------|
+| `<id / name>` | `<screen>` | `<flow>` | `<component>` | `<METHOD /path or ->` |
 
 ## Gaps
 

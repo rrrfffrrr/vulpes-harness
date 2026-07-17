@@ -30,9 +30,9 @@ flowchart LR
      Route names mirror the navigation map's nodes. -->
 - **Fallback policy** *(stated once)*: `<app-absent chain, e.g. open web page / store redirect / smart banner; deferred deep-link service if the architecture decided one (ADR ref)>`
 
-| Screen | Route pattern | Params | Guard | Deep-link entry |
-|--------|---------------|--------|-------|-----------------|
-| `<screen>` | `<https://... or scheme:///path/:param>` | `<params>` | `<auth or ->` | `<state restored; where back leads; app-absent fallback for https links>` |
+| Screen | Route pattern | Params | Guard | State restored | Back target | Fallback deviation |
+|--------|---------------|--------|-------|----------------|-------------|--------------------|
+| `<screen>` | `<https://... or scheme:///path/:param>` | `<params>` | `<auth or ->` | `<state>` | `<screen>` | `<- (policy) or per-route chain>` |
 
 ## Event -> transition tables
 

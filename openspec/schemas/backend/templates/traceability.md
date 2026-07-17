@@ -6,14 +6,15 @@ document-version: 0
 # Backend traceability matrix
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
+     One value per cell - repeat the row per additional interface/component/sequence link (WRITING-STYLE tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 
 ## Operation <-> interface <-> component <-> sequence
 
-| Requirements operation | Interface (endpoint / channel / webhook / job) | Component(s) | Sequence |
-|------------------------|------------------------------------------------|--------------|----------|
-| `<operation name>` | `<METHOD path / channel / webhook type / job name>` | `<component>` | `<flow name>` |
+| Requirements operation | Kind | Interface | Component | Sequence |
+|------------------------|------|-----------|-----------|----------|
+| `<operation name>` | `<endpoint / channel / webhook / job>` | `<METHOD /path or name>` | `<component>` | `<flow name>` |
 
 ## Gaps
 

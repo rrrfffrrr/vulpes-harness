@@ -13,9 +13,10 @@ document-version: 0
 
 ## Business requirement -> goals
 
-<!-- Constraint/decision BRs that yield no leaf goal are traced here as rationale. -->
-| BR | Goal(s) | Kind | Rationale |
-|----|---------|------|-----------|
+<!-- Constraint/decision BRs that yield no leaf goal are traced here as rationale.
+     One value per cell - a BR deriving several goals repeats the row per goal (WRITING-STYLE tables rule). -->
+| BR | Goal | Kind | Rationale |
+|----|------|------|-----------|
 | `<BR1>` | `<goal id>` | derive | `<why>` |
 
 ## Goal -> leaf (Requirement / Expectation)
