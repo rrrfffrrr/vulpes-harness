@@ -2,7 +2,7 @@ name: frontend
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link), API call sequences in flows (client-perspective UML sequence diagrams, when a flow drives backend calls whose order or failure behavior matters), and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
+description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Flows are covered exhaustively via event partitioning (McMenamin & Palmer, Essential Systems Analysis): per screen, user events plus arriving events (push, deep link, connectivity), temporal events (timers, expiry, polling), and data events. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link), API call sequences in flows (client-perspective UML sequence diagrams, when a flow drives backend calls whose order or failure behavior matters), and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
 #    below architecture. Architecture answered structure/technology; this schema answers what
@@ -152,7 +152,16 @@ artifacts:
       route names mirror the navigation map's nodes; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
       component -> action -> target screen/state) for transitions the map alone cannot
       carry (guards, parameters) - actions that call the backend name the endpoint
-      verbatim (`METHOD /path`); API CALL SEQUENCES (conditional section - when a flow
+      verbatim (`METHOD /path`), and events are NOT only user input: include
+      (a) USER EVENTS on each interactive component in the mockup, (b) ARRIVING
+      EVENTS - push notifications, deep-link entries, connectivity changes,
+      (c) TEMPORAL EVENTS - timers, session expiry, auto-refresh/polling, and
+      (d) DATA EVENTS - fetch success/failure, cache revalidation,
+      optimistic-update rollback (data.md vocabulary when it exists).
+      COVERAGE (event partitioning): per screen, enumerate all four trigger kinds;
+      each trigger appears in the navigation map or the screen's event->transition
+      table, or is marked screen-local - an unlisted trigger is a hole, not an
+      omission choice; API CALL SEQUENCES (conditional section - when a flow
       drives backend calls whose order or failure behavior matters: multi-call submits,
       optimistic updates, retry-on-error): one sequence diagram per such flow (mermaid,
       UML Interaction semantics) from the client's perspective - lifelines are the

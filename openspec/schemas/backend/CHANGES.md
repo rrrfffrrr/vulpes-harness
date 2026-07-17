@@ -20,12 +20,14 @@ A version without a Migration section needs no document rework.
 - `sequences` is scoped to the backend boundary: lifelines are components.md components plus stores/brokers, and the client is at most one boundary lifeline.
   Client-side behavior (screen logic, client cache, UI retries) moves to the frontend schema's `flows` "API call sequences" section - sequence diagrams are a per-schema expression tool, not a single-home artifact.
 - Tables follow the new WRITING-STYLE one-value-per-cell rule (first normal form): `traceability` splits the overloaded interface column into Kind + Interface (the Interface cell holds only `METHOD /path` or a name - no bracketed annotations), Component is singular, and rows repeat per link; the `conventions` error catalog splits Retryable into Retryable + Backoff.
+- `sequences` coverage is exhaustive by construction (trigger closure - event partitioning applied to the interface catalogs): every state-changing trigger (unsafe endpoint, consumed channel, job) is shown in a flow or explicitly single-component; every outbound effect appears in its trigger's flow; `traceability` gains the matching gap (multi-component state-changing interfaces no sequence shows).
 
 ### Migration (from 1.1.1)
 
 - Add `jobs` and `configuration` rows (`Yes/No` + one-line reason) to `overview.md`'s "Conditional artifacts included" table.
 - If `sequences.md` diagrams client-side behavior (screen logic, client cache, UI retries), move those parts to the frontend change's `flows.md` "API call sequences" section and keep the client as a single boundary lifeline here.
 - Re-shape `traceability.md`: add the Kind column, strip everything but `METHOD /path`/the name from the Interface cell, make Component singular, and repeat rows per link.
+- Audit `sequences.md` against trigger closure: walk endpoints/events/jobs item by item, add flows for uncovered multi-component state-changing triggers (or mark them single-component), and list remaining holes in the traceability gaps.
 - Split the `conventions.md` error-catalog Retryable column into Retryable (`yes/no`) + Backoff.
 - If the system runs time-triggered or background work outside its request/event surface, author `jobs.md` from the new template and add those jobs to the `traceability.md` interface column; otherwise no further rework.
 

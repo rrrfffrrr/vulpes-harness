@@ -18,4 +18,4 @@ document-version: 0
 
 ## Gaps
 
-- `<operations with no interface; interfaces tracing to no operation; components no flow exercises; conditional artifacts excluded (overview's reason)>`
+- `<operations with no interface; interfaces tracing to no operation; components no flow exercises; multi-component state-changing interfaces no sequence shows; conditional artifacts excluded (overview's reason)>`

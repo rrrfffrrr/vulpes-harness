@@ -6,6 +6,9 @@ document-version: 0
 # Runtime sequences
 
 <!-- Backend-internal flows that cross more than one component - happy path AND client-observable failure paths.
+     COVERAGE (trigger closure): walk endpoints.md / events.md / jobs.md item by item -
+     every state-changing trigger is shown in a flow or explicitly single-component;
+     every outbound effect (publish, webhook, notification) appears in its trigger's flow.
      Lifelines use components.md names plus stores/brokers; messages name endpoints/channels.
      The client is at most ONE boundary lifeline (initial request, final response);
      client-side behavior lives in the frontend design's flows (API call sequences).

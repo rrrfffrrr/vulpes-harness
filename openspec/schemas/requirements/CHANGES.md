@@ -12,7 +12,7 @@ A version without a Migration section needs no document rework.
 - Acceptance criteria per operation in `operation-model` (BABOK v3 technique 10.1): the measurable pass/fail conditions stakeholders accept the operation by. The new `verification` schema realizes them as cross-layer scenarios.
 - `scenarios` artifact - domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, 9.3.17/9.4.17; KAOS behavior scenarios; BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios).
   `scenarios/index.md` is the domain index (domains mirror the goal model's top-level goals); each domain's `scenarios/<domain>.md` holds agent-interaction sequence diagrams: trigger (agent or schedule), lifelines = responsibility-model agents, messages = operation-model operations, outcome = the satisfied goal, plus obstacle variants.
-  Coverage: every operation appears in at least one scenario.
+  Coverage is exhaustive by construction (event partitioning, McMenamin & Palmer): each domain file opens with its full EVENT LIST (agent actions, temporal events incl. missed-expected-event probes, arriving environment events) and every event maps to one scenario or an explicit "no response"; scenario steps get a Cockburn-style extension sweep; every operation appears in at least one scenario.
   `requirements-document`'s Behavior section restates the flows; `traceability` gains an operation -> scenario table.
 
 ### Changed

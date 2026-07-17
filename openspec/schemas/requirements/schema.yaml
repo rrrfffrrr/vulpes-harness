@@ -2,7 +2,7 @@ name: requirements
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, KAOS behavior scenarios, BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios) show which agent or schedule triggers which operations in what order; the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
+description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, KAOS behavior scenarios, BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios) show which agent or schedule triggers which operations in what order, covered exhaustively via event partitioning (McMenamin & Palmer, Essential Systems Analysis) with Cockburn-style extension sweeps (Writing Effective Use Cases); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - Cover every distinct, relevant item exhaustively. Detail = breadth/depth of distinct
 #    content, NOT word count.
@@ -155,9 +155,21 @@ artifacts:
       (reference the obstacle id); skip obstacles the interaction cannot observe.
       Requirements altitude: lifelines are AGENTS and messages are OPERATIONS - never
       components, endpoints, screens, or any other solution vocabulary.
-      Coverage: every operation appears in at least one scenario; a scheduled or
-      background operation gets a scenario showing its schedule trigger even when no
-      human is in the loop.
+      COVERAGE (event partitioning): scenarios start from the domain's EVENT LIST, not
+      from imagination. Per domain, enumerate every trigger the domain must answer:
+      (a) AGENT ACTIONS - walk the responsibility model agent by agent and list what
+      each does to the system; (b) TEMPORAL EVENTS - schedules and deadlines, plus the
+      probe "must the domain react when an expected event does NOT occur in time?";
+      (c) ENVIRONMENT EVENTS arriving (notification, callback, external data).
+      Record the event list as the table at the top of the domain file
+      (Event | Source | Scenario); every event maps to exactly one scenario or an
+      explicit "no response (why)" - an empty Scenario cell is a hole, not a choice.
+      Per scenario, sweep the steps Cockburn-style: at each step ask what can fail or
+      vary, and keep every variation an agent can observe (as the obstacle variant or
+      its own scenario).
+      Every operation appears in at least one scenario; a scheduled or background
+      operation gets a scenario showing its schedule trigger even when no human is in
+      the loop.
     requires:
       - goal-model
       - responsibility-model

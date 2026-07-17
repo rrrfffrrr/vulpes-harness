@@ -38,7 +38,11 @@ flowchart LR
 
 <!-- Per screen, for transitions the map alone cannot carry (guards, parameters).
      IFML semantics.
-     Actions that call the backend name the endpoint verbatim (`METHOD /path`). -->
+     Actions that call the backend name the endpoint verbatim (`METHOD /path`).
+     COVERAGE: enumerate ALL trigger kinds per screen, not only user input -
+     user events (each interactive component), arriving events (push, deep link,
+     connectivity), temporal events (timers, expiry, polling), data events (fetch
+     success/failure, revalidation, rollback). An unlisted trigger is a hole. -->
 
 ### `<Screen name>`
 

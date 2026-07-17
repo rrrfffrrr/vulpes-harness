@@ -28,6 +28,18 @@ document-version: 0
 
 # Operational scenarios - `<domain>`
 
+## Events
+
+<!-- The domain's FULL trigger list - agent actions (walk the responsibility model),
+     temporal events (schedules, deadlines, missed-expected-event probes), and
+     arriving environment events (notification, callback, external data).
+     Every event maps to exactly one scenario or an explicit "no response (why)";
+     an empty Scenario cell is a hole. -->
+
+| Event | Source | Scenario |
+|-------|--------|----------|
+| `<event>` | `<agent / schedule / environment>` | `<scenario name or no response (why)>` |
+
 ## `<Scenario name>`
 
 Trigger: `<agent (responsibility-model name) or schedule/time condition>` - outcome: `<satisfied goal, by name>`
