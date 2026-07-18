@@ -2,7 +2,7 @@ name: persistence
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Persistence (data store) detail design - no implementation/apply step. Builds on an architecture change's data-view: the store-level data design one level below it. Methodology: ANSI/SPARC three-schema separation (the architecture data-view carries the conceptual/logical model; this schema owns the internal/physical level), polyglot persistence with per-store design (Sadalage & Fowler, NoSQL Distilled), access-pattern-driven modeling for non-relational stores, evolutionary database design for migrations (Ambler & Sadalage, Refactoring Databases - expand-contract), and a traceability matrix back to requirements objects/invariants and architecture components. Store blocks are keyed to the engine ADR: while an engine is undecided, its block stays at the engine-portable level and is marked OPEN."
+description: "Persistence (data store) detail design - no implementation/apply step. Builds on an architecture change's data-view: the store-level data design one level below it. Methodology: ANSI/SPARC three-schema separation (the architecture data-view carries the conceptual/logical model; this schema owns the internal/physical level), polyglot persistence with per-store design (Sadalage & Fowler, NoSQL Distilled), access-pattern-driven modeling for non-relational stores, evolutionary database design for migrations (Ambler & Sadalage, Refactoring Databases - expand-contract), and a traceability matrix back to requirements objects/invariants and architecture components. Store blocks are keyed to the engine ADR: while an engine is undecided, its block stays at the engine-portable level and is marked OPEN. The logical model's relationships are expressed as an entity-relationship diagram (Chen 1976, crow's foot cardinality, mermaid erDiagram)."
 # Authoring principles (all artifacts):
 #  - This is STORE-LEVEL detail design, one level below the architecture data-view. The
 #    data-view answered the logical model, ownership, and intent (indexing/partitioning
@@ -57,16 +57,23 @@ artifacts:
   - id: model
     generates: model.md
     description: >-
-      The store-agnostic logical detail: per entity the full field list with
-      constraints, relationships and integrity rules, and the retention/PII
+      The store-agnostic logical detail: an entity-relationship diagram (crow's
+      foot) carrying relationships and cardinality, and per entity the full field
+      list with constraints, integrity rules, and the retention/PII
       classification honoring requirements invariants.
     template: model.md
     instruction: |
       Deepen the architecture data-view entities to full field level, store-agnostic.
+      RELATIONSHIPS come first as ONE entity-relationship diagram (mermaid erDiagram,
+      crow's foot cardinality, per openspec/rules/diagrams.md): entities carry
+      data-view names, and relationship facts with their cardinality live in the
+      diagram ONLY - split it per data domain from the overview when one view no
+      longer reads.
       Per ENTITY (data-view name, tracing to the requirements object by id): the FIELD
       table - every field with its logical type, constraints (required/unique/range/
-      format), and nullability; RELATIONSHIPS and integrity rules between entities
-      (cardinality, cascade intent); and RETENTION & PII - the classification and
+      format), and nullability; INTEGRITY & CASCADE - only the rules the diagram
+      cannot carry (cascade intent, conditional integrity); and RETENTION & PII -
+      the classification and
       retention window per entity or field group, citing the requirements invariant it
       honors by id.
       No store-native types here - logical types only (the store mapping lives in

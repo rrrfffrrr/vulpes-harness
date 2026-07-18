@@ -3,8 +3,11 @@
 Documentation diagrams are **hand-authored SVG committed to the repo** and embedded via `<img>`.
 Auto-layout engines (mermaid, D2, Graphviz, etc.) **cannot control edge attachment or layout and offer limited theming** - we evaluated them all and they hit the same wall.
 So "must-look-good" diagrams are drawn by these rules, not delegated to an engine.
+A diagram is an expression of design facts, never a deliverable of its own:
+it lives inside the design artifact whose facts it renders, bound by that artifact's coverage rules - never create a diagram-only artifact.
+Each fact keeps one home (the schema says whether that home is prose, a table, or the diagram); a picture carrying facts found nowhere else, or repeating facts owned elsewhere, is drift.
 Quick drafts / simple flows may use mermaid.
-Write mermaid against the official syntax pages (<https://mermaid.js.org/> - e.g. /syntax/sequenceDiagram.html, /syntax/flowchart.html, /syntax/stateDiagram.html); do not improvise constructs from memory - an invalid block renders as an error box, not a diagram.
+Write mermaid against the official syntax pages (<https://mermaid.js.org/> - e.g. /syntax/sequenceDiagram.html, /syntax/flowchart.html, /syntax/stateDiagram.html, /syntax/entityRelationshipDiagram.html); do not improvise constructs from memory - an invalid block renders as an error box, not a diagram.
 
 > GitHub blocks inline `<svg>` in Markdown, so **commit the diagram as a .svg file** and embed it as an image.
 > Then it renders on GitHub/GitLab/VS Code alike.
