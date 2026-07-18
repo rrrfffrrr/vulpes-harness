@@ -4,6 +4,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow the harness release version (`metadata.version` in `schema.yaml`); templates' `schema-version` frontmatter mirrors it.
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
+`schema-version` records MUST items only; a SHOULD item stays due until its effect is in the document or a weighed skip is recorded ([RFC 2119](https://www.rfc-editor.org/rfc/rfc2119)).
+On every migration, re-check every version's SHOULD items - including versions at or below the artifact's `schema-version` - and apply any still due.
 
 ## [1.2.0] - Unreleased
 
@@ -13,6 +15,7 @@ A version without a Migration section needs no document rework.
 
 ### Changed
 
+- Migration chain rule: a SHOULD item stays due until applied or a weighed skip is recorded (RFC 2119) - re-checked on every migration, even for versions already passed.
 - `ml-serving-view` demarcation against the new `ml` detail schema: the view keeps the model lifecycle APPROACH (versioning/update/rollback intent); concrete procedures and release gates live in the ml detail schema when one exists. Existing documents stay valid at architecture altitude - no migration needed.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - Tables follow the new rules/writing.md one-value-per-cell rule (first normal form): `traceability` uses singular View/ADR columns with one row per link and a role-coverage row per role-view pair; the `logical-view` interface table splits Inputs -> Outputs into Inputs + Outputs with a singular Consumer column; the `overview` reader map splits Views to read into Start with + Then.
@@ -48,7 +51,7 @@ A version without a Migration section needs no document rework.
    Until renamed, `openspec status` reports `overview` and `traceability` as missing - do not create duplicates.
 2. Add the version frontmatter to every artifact in the change: `schema-version: 1.1.0`, `document-version: 0`.
 3. Replace the change folder's `README.md` with a copy of the schema's `templates/README.md`, and copy `templates/README.ko.md` to `README.ko.md`.
-4. Recommended (SHOULD, not MUST): reflow artifact prose to `openspec/WRITING-STYLE.md`.
+4. Recommended (SHOULD, not MUST): reflow artifact prose to `openspec/WRITING-STYLE.md` (now `openspec/rules/writing.md`).
 
 ## [1.0.0] - 2026-06-22
 
