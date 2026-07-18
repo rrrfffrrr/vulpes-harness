@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -7,21 +7,23 @@ document-version: 0
 
 <!-- BABOK RTM for the requirements->architecture link.
      All design linking lives here, not in view prose.
+     One value per cell - repeat the row per additional view/ADR link (WRITING-STYLE tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 
 ## Requirements -> architecture component
 
-| Requirements (goal / operation / agent id) | Architecture component (logical-view) | View(s) | ADR(s) |
-|--------------------------------------------|---------------------------------------|---------|--------|
+| Requirements (goal / operation / agent id) | Architecture component (logical-view) | View | ADR |
+|--------------------------------------------|---------------------------------------|------|-----|
 | `<requirements id>` | `<component>` | `<view>` | `<ADR-NNN>` |
 
 ## Role coverage
 
-<!-- Every role in the overview view map has at least one view to read. -->
-| Role | Views available | Covered? |
-|------|-----------------|----------|
-| `<role>` | `<view, view>` | `<Yes/No>` |
+<!-- Every role in the overview view map has at least one view to read.
+     One row per role-view pair; roles with no view to read go to Gaps. -->
+| Role | View read |
+|------|-----------|
+| `<role>` | `<view>` |
 
 ## Gaps
 

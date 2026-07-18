@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -37,6 +37,15 @@ document-version: 0
 - Conformance: `<WCAG 2.2 level>`
 - Non-web platforms: `<how the criteria apply>`
 
+## Localization policy
+
+<!-- Conditional section - only when the product ships more than one locale. -->
+- Target locales: `<list>`
+- Text-expansion headroom: `<30-40% unless justified otherwise (IGDA Loc SIG)>`
+- Font fallback: `<per-script expectations>`
+- Formats: `<date/number/currency per locale - CLDR vocabulary>`
+- Pseudo-localization: `<when the pass runs>`
+
 ## Reader map
 
 | Reader | Start with | Then |
@@ -50,3 +59,4 @@ document-version: 0
 | Artifact | Included? | Reason |
 |----------|-----------|--------|
 | design-tokens | `<Yes/No>` | `<reason>` |
+| data | `<Yes/No>` | `<reason>` |

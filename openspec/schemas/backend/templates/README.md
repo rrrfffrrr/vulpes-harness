@@ -15,12 +15,14 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 2. `conventions.md` - the shared rulebook: auth scopes, versioning, error catalog, pagination, rate limits, idempotency, concurrency, caching, long-running operations
 3. `components.md` - middleware pipeline (ordered) + shared components
 4. `endpoints.md` - per-endpoint contracts (deviations from conventions only)
-5. `sequences.md` - runtime flows, including client-observable failure paths
+5. `sequences.md` - backend-internal runtime flows, including client-observable failure paths
 6. `events.md` - channels / messages / delivery guarantees *(if present)*
 7. `webhooks.md` - outbound callbacks *(if present)*
-8. `traceability.md` - operation <-> interface <-> component <-> sequence matrix
+8. `jobs.md` - scheduled/background job contracts *(if present)*
+9. `configuration.md` - config keys & feature flags catalog *(if present)*
+10. `traceability.md` - operation <-> interface <-> component <-> sequence matrix
 
-*events and webhooks exist only when the system has that concern.*
+*events, webhooks, jobs, and configuration exist only when the system has that concern.*
 
 ---
 

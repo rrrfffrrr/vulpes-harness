@@ -5,6 +5,23 @@ Versions follow the harness release version (`metadata.version` in `schema.yaml`
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
 
+## [1.2.0] - 2026-07-18
+
+### Added
+
+- Authoring principle: structure follows the new `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+
+### Changed
+
+- `ml-serving-view` demarcation against the new `ml` detail schema: the view keeps the model lifecycle APPROACH (versioning/update/rollback intent); concrete procedures and release gates live in the ml detail schema when one exists. Existing documents stay valid at architecture altitude - no migration needed.
+- Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
+- Tables follow the new rules/writing.md one-value-per-cell rule (first normal form): `traceability` uses singular View/ADR columns with one row per link and a role-coverage row per role-view pair; the `logical-view` interface table splits Inputs -> Outputs into Inputs + Outputs with a singular Consumer column; the `overview` reader map splits Views to read into Start with + Then.
+- Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
+
+### Migration (from 1.1.1)
+
+- Re-shape `traceability.md` (singular View/ADR, one row per link; role coverage one row per role-view pair - drop the Covered? column, uncovered roles go to Gaps), the `logical-view.md` interface table (Consumer singular with one row per consumer; separate Inputs and Outputs columns), and the `overview.md` reader map (Views to read splits into Start with + Then).
+
 ## [1.1.1] - 2026-07-15
 
 ### Added

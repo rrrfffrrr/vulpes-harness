@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -38,6 +38,7 @@ flowchart TB
 
 ## Interfaces
 
-| Interface | Provider | Consumer(s) | Inputs -> Outputs | Purpose |
-|-----------|----------|-------------|------------------|---------|
-| `<name>` | `<component>` | `<component>` | `<in ->` out> | `<purpose>` |
+<!-- One value per cell - repeat the row per additional consumer (WRITING-STYLE tables rule). -->
+| Interface | Provider | Consumer | Inputs | Outputs | Purpose |
+|-----------|----------|----------|--------|---------|---------|
+| `<name>` | `<component>` | `<component>` | `<in>` | `<out>` | `<purpose>` |

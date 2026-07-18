@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -33,9 +33,9 @@ document-version: 0
      Retryable tells clients whether to back off and retry. -->
 - Error media type: `application/problem+json` (type / title / status / detail / instance)
 
-| Problem type | Status | When | Retryable |
-|--------------|--------|------|-----------|
-| `<urn or URL>` | `<4xx/5xx>` | `<condition>` | `<yes + backoff / no>` |
+| Problem type | Status | When | Retryable | Backoff |
+|--------------|--------|------|-----------|---------|
+| `<urn or URL>` | `<4xx/5xx>` | `<condition>` | `<yes/no>` | `<policy or ->` |
 
 ## List endpoints: pagination / filtering / sorting
 

@@ -25,9 +25,14 @@ For game projects:
 <img alt="game workflow" src="assets/workflow-game.svg" width="90%">
 
 - Requirements: `/opsx:require {content}`
+- GDD: `/opsx:gdd {content}`
 - Architecture: `/opsx:architect {content}`
 - Backend detail: `/opsx:backend {content}`
 - Frontend detail: `/opsx:frontend {content}`
+- Persistence detail: `/opsx:persistence {content}`
+- ML detail: `/opsx:ml {content}`
+- Game UI detail: `/opsx:game-ui {content}`
+- Verification: `/opsx:verification {content}`
 - Prepare: `/opsx:propose {content}`
 - Build: `/opsx:apply {content}`
 
@@ -37,7 +42,7 @@ For game projects:
 
 The requirements schema, using KAOS/GORE and BABOK.
 
-Produces business requirements, goal/object/responsibility/operation models, a synthesized requirements document, and a traceability matrix.
+Produces business requirements, goal/object/responsibility/operation models, per-domain operational scenarios, a synthesized requirements document, and a traceability matrix.
 
 ### architect
 
@@ -49,18 +54,44 @@ Produces an architecture overview, logical/process/data/deployment views, crossc
 
 The backend detail-design schema, using OpenAPI/JSON Schema, RFC 9110/9457/9111, BCP 14, UML sequences, and C4 components.
 
-Produces an overview, API conventions, components, endpoint contracts, runtime sequences, optional events/webhooks, and a traceability matrix.
+Produces an overview, API conventions, components, endpoint contracts, runtime sequences, optional events/webhooks/jobs/configuration, and a traceability matrix.
 
 ### frontend
 
 The frontend detail-design schema for web, mobile, and desktop apps, using IFML, UML state machines, wireflows, Atomic Design, the UI Stack, and WCAG 2.2.
 
-Produces an overview, optional design tokens, a component inventory, screens, flows, and a traceability matrix.
+Produces an overview, optional design tokens, a component inventory, screens, an optional client data layer, flows, and a traceability matrix.
+
+### persistence
+
+The persistence detail-design schema, using the ANSI/SPARC internal level, polyglot persistence, access-pattern-driven store design, and evolutionary database design.
+
+Produces an overview with the store inventory, a field-level logical model, per-store designs, a migration policy, and a traceability matrix.
+
+### ml
+
+The ML detail-design schema for systems with an ml-serving-view, using Model Cards, Datasheets for Datasets, the ML Test Score, and ISO/IEC 5338.
+
+Produces a model inventory, per-model contracts with degradation/fallback, optional dataset datasheets, evaluation release gates, lifecycle procedures, and a traceability matrix.
+
+### verification
+
+The acceptance & verification design schema, using the ISTQB test-basis vocabulary, ISO/IEC/IEEE 29119-3 documentation types, Specification by Example with Gherkin, and BABOK 10.1 acceptance criteria.
+
+Produces an overview with the test basis, cross-layer acceptance scenarios, test data/environment requirements, and a coverage traceability matrix - per-contract test cases stay derived from the detail designs, never written here.
 
 ### gdd
 
 The game design schema, using the standard GDD sections.
 
 Produces the overview, gameplay, mechanics, world/narrative, art and audio direction, UX/UI, tech, monetization, and production sections.
+
+Game projects only.
+
+### game-ui
+
+The game UI detail-design schema, using the diegetic/non-diegetic/spatial/meta UI-layer taxonomy, Game UI Database screen vocabulary, SMPTE safe areas, Game Accessibility Guidelines/XAG, action-based input, and UML state machines.
+
+Produces an overview, optional design tokens, widgets, screens, HUD, flows, input, settings, and a traceability matrix.
 
 Game projects only.

@@ -5,6 +5,17 @@ Versions follow the harness release version (`metadata.version` in `schema.yaml`
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
 
+## [1.2.0] - 2026-07-18
+
+### Added
+
+- Authoring principle: structure follows the new `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+
+### Changed
+
+- Version lockstep with the 1.2.0 harness release (adds the game-ui schema) - no changes to this schema's artifacts; no migration needed.
+- Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
+
 ## [1.1.1] - 2026-07-15
 
 ### Added

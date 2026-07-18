@@ -1,0 +1,160 @@
+name: ml
+version: 1
+metadata:
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+description: "ML (model) detail design - no implementation/apply step. CONDITIONAL as a whole: create it only when the architecture includes an ml-serving-view. Builds on that view: the per-model contracts one level below it, invariant to where inference runs (server, on-device, edge) - the serving API surface stays in the backend schema and on-device consumption in the frontend/game-ui schemas, all referencing these models by name. Methodology: Model Cards for Model Reporting (Mitchell et al., FAT* 2019) for per-model contracts, Datasheets for Datasets (Gebru et al., 2018/CACM 2021) for training data, The ML Test Score (Breck et al., IEEE Big Data 2017) for evaluation and monitoring rigor, and ISO/IEC 5338:2023 AI system life cycle processes for lifecycle vocabulary. The data artifact is CONDITIONAL - only when the project owns training/fine-tuning data."
+# Authoring principles (all artifacts):
+#  - This is MODEL-LEVEL detail design, one level below the architecture ml-serving-view.
+#    The view answered pipeline shape, serving mode, hardware plan, and lifecycle approach;
+#    this schema answers per-model contracts, evaluation gates, and lifecycle procedures.
+#    Reference the view, components, and ADRs by name/id - do not restate them.
+#  - INFERENCE-LOCATION INVARIANT: a model's contract is the same whether it runs on a
+#    server, on-device, or at the edge. The serving API surface is documented in the
+#    backend endpoints (referencing the model by name); on-device consumption is referenced
+#    from the frontend/game-ui artifacts. Never fork a model's contract per location.
+#  - NO CODE, no notebooks, no training configs. Contract tables, metric/threshold tables,
+#    and procedure lists are the medium; source files are not.
+#  - Degradation and fallback are part of EVERY model contract: what the consumer observes
+#    when the model is unavailable, times out, or returns low confidence. A model contract
+#    without them is incomplete.
+#  - Evaluation gates are pass/fail with named datasets and slices; a model without a
+#    release gate is a traceability gap.
+#  - LLM-based models follow the same contract structure (inputs/outputs/confidence).
+#    There is no settled prompt-specification standard yet - prompt templates are project
+#    assets referenced by name, never restated or structured here.
+#  - Conditional artifact: data only when the project owns training/fine-tuning data. For
+#    third-party or pretrained API models, OMIT the file - their data is not yours to
+#    document.
+#  - State each fact once: the model inventory lives in overview; per-model facts live in
+#    models; evaluation owns gates; lifecycle owns procedures.
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
+artifacts:
+  - id: overview
+    generates: overview.md
+    description: >-
+      The entry point. The model inventory (task type, inference location, consuming
+      surfaces), reader map, and which conditional artifacts this design includes.
+    template: overview.md
+    instruction: |
+      Frame the ML detail design from the architecture ml-serving-view. Cover: the
+      MODEL INVENTORY - one row per model with its task type (one line), inference
+      location (server / on-device / edge, per the ml-serving-view by reference), and
+      the surfaces that consume it (backend endpoints, frontend/game-ui screens, jobs -
+      by name); the READER MAP (ML engineer / backend engineer / QA - what each reads
+      first); and the CONDITIONAL ARTIFACTS table - whether data is included, with a
+      one-line reason.
+      Reference the ml-serving-view, components, and ADRs by name/id; do not restate
+      them.
+    requires: []
+
+  - id: models
+    generates: models.md
+    description: >-
+      The per-model contracts (Model Cards at design altitude): intended use and
+      out-of-scope use, I/O contract with confidence semantics, quality targets by
+      reference, degradation/fallback behavior, and caveats.
+    template: models.md
+    instruction: |
+      Write the contract for EVERY model in the overview inventory, per Model Cards
+      structure at design altitude. Per model: INTENDED USE and OUT-OF-SCOPE USE (what
+      it must not be used for); the I/O CONTRACT - input schema (fields, types, ranges,
+      required/optional - same table form as backend payloads) and output schema
+      including CONFIDENCE SEMANTICS (what a score means, what consumers may compare it
+      against); QUALITY TARGETS - latency/memory/throughput budgets by reference to the
+      ml-serving-view targets, never restated; DEGRADATION & FALLBACK - the behavior a
+      consumer observes when the model is unavailable, times out, or returns low
+      confidence (fallback model, cached result, rule-based default, feature off);
+      and CAVEATS - known failure modes and the factors (input subgroups, conditions)
+      where quality varies.
+      For LLM-based models, the same contract applies; prompt templates are project
+      assets referenced by name only.
+    requires:
+      - overview
+
+  - id: data
+    generates: data.md
+    description: >-
+      CONDITIONAL - include when the project owns training/fine-tuning data.
+      Datasheets for Datasets at design altitude: composition, collection, labeling,
+      splits, refresh, and PII handling.
+    template: data.md
+    instruction: |
+      Document the owned training/fine-tuning data per Datasheets for Datasets, at
+      design altitude. Per dataset: MOTIVATION (which model/task it serves);
+      COMPOSITION (what instances are, fields, size intent); COLLECTION and LABELING
+      (sources, how labels are produced, known biases); SPLITS (train/validation/test
+      policy and leakage rules); REFRESH (cadence and trigger for new data); and PII
+      HANDLING - honoring the requirements invariants and persistence retention/PII
+      classes by id when those changes exist.
+      Omit this artifact entirely when all models are third-party or pretrained APIs.
+    requires:
+      - overview
+
+  - id: evaluation
+    generates: evaluation.md
+    description: >-
+      The evaluation design: per-model metrics with pass/fail release gates, named
+      eval datasets and slices, regression policy, and contract-level monitoring
+      signals (ML Test Score rigor).
+    template: evaluation.md
+    instruction: |
+      Define how model quality is judged. Per model: METRICS with THRESHOLDS as
+      pass/fail RELEASE GATES (a model version that misses a gate does not ship);
+      EVAL DATASETS and SLICES - the named datasets and the subgroups/conditions
+      (Model Cards factors) each gate is measured on; REGRESSION POLICY - what a new
+      model version must not regress (named slices, named metrics) relative to the
+      shipping version; and MONITORING SIGNALS - the drift/quality indicators watched
+      in production at contract level (what is measured and what threshold pages
+      someone), referencing the architecture observability conventions rather than
+      restating them.
+      Gates reference quality targets in models.md; do not redefine them.
+    requires:
+      - models
+
+  - id: lifecycle
+    generates: lifecycle.md
+    description: >-
+      The lifecycle procedures (ISO/IEC 5338 vocabulary at design altitude):
+      versioning of model+data+config, update and rollback procedures, retraining
+      triggers, and deprecation.
+    template: lifecycle.md
+    instruction: |
+      Define the lifecycle procedures the ml-serving-view's approach implies. Cover:
+      VERSIONING - the scheme tying model, training data, and config versions
+      together (what identifies "the model" for rollback purposes); UPDATE - how a
+      new version reaches production (staged rollout, shadow, canary - as procedure,
+      referencing the evaluation gates that must pass first); ROLLBACK - the
+      procedure and its time bound, and what state (features, caches) must roll back
+      with the model; RETRAINING TRIGGERS - what initiates retraining (schedule via
+      backend jobs by name, drift signal from evaluation monitoring, data refresh);
+      and DEPRECATION - how a model is retired and consumers migrate.
+      The ml-serving-view keeps the approach; this artifact holds the procedures -
+      do not restate the view.
+    requires:
+      - models
+      - evaluation
+
+  - id: traceability
+    generates: traceability.md
+    description: >-
+      The linking matrix: requirements operations <-> models <-> consuming surfaces
+      <-> evaluation gates (<-> datasets when data exists). All cross-artifact
+      linking lives here.
+    template: traceability.md
+    instruction: |
+      Produce the bidirectional matrix linking: requirements operations (by name) <->
+      models <-> the surfaces that consume them (backend endpoints by METHOD+path,
+      frontend/game-ui screens, jobs by name) <-> the evaluation gates that guard
+      them <-> the datasets that train them (when data exists). Draw names from the
+      artifacts themselves.
+      Include a GAPS section: models without release gates, models no surface
+      consumes, operations whose inference step has no model, and conditional
+      artifacts excluded (with the overview's reason). All linking lives HERE - never
+      in artifact prose beyond the single inline reference each contract carries.
+    requires:
+      - evaluation
+      - lifecycle

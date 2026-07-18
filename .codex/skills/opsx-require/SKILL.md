@@ -1,7 +1,7 @@
 ---
 name: opsx-require
-version: "1.1.1"
-description: Specify the requirements for a change using KAOS/GORE + BABOK - business requirements, goal/object/responsibility/operation models, synthesized requirements document, traceability. No implementation.
+version: "1.2.0"
+description: Specify the requirements for a change using KAOS/GORE + BABOK - business requirements, goal/object/responsibility/operation models, domain-split operational scenarios, synthesized requirements document, traceability. No implementation.
 ---
 
 Capture the requirements for a change - requirements engineering, separate from development. This uses the `requirements` schema (KAOS/GORE under a BABOK structure). It produces:
@@ -11,8 +11,9 @@ Capture the requirements for a change - requirements engineering, separate from 
 - object-model.md (entities, relationships, attributes, invariants, glossary)
 - responsibility-model.md (each leaf goal assigned to a responsible agent)
 - operation-model.md (operations with pre/post/trigger, scenarios)
+- scenarios/index.md (domain index) + scenarios/\<domain\>.md (per-domain agent-interaction sequences: who or what schedule triggers which operations, in what order)
 - requirements-document.md (the single synthesis: scope, goals, glossary, responsibilities, behavior)
-- traceability.md (BR <-> goal <-> leaf <-> agent <-> operation matrix)
+- traceability.md (BR <-> goal <-> leaf <-> agent <-> operation <-> scenario matrix)
 
 This pipeline stops at requirements - there is **no implementation/apply step**. When you decide to build, run `/opsx:propose` (spec-driven) and feed these requirements artifacts in as the source.
 
@@ -43,7 +44,7 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
    openspec status --change "{program}-requirements" --json
    ```
 
-   Parse `artifacts` (status + dependencies). Build in dependency order: `business-requirements -> goal-model -> object-model, responsibility-model -> operation-model -> requirements-document -> traceability`.
+   Parse `artifacts` (status + dependencies). Build in dependency order: `business-requirements -> goal-model -> object-model, responsibility-model -> operation-model -> scenarios -> requirements-document -> traceability`.
 
 6. **Create artifacts in sequence**
 
@@ -58,13 +59,14 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
 
 **Methodology guidance (apply when filling artifacts)**
 
-- **business-requirements** - preserve stakeholder statements VERBATIM (BR ids), classify [Goal]/[Constraint], keep conflicting statements both and mark the conflict. No analysis.
-- **goal-model** - KAOS/GORE: refine goals AND/OR to leaves (G1.2 = AND, G1.2.a = OR), keyword each (Achieve/Maintain/Avoid/Cease), mark leaves [Requirement]/[Expectation]; record domain properties, obstacles+resolutions, and resolve BR conflicts here.
+- **business-requirements** - preserve stakeholder statements VERBATIM (BR ids), classify [Goal]/[Constraint] (marker leads the heading, before the BR id), keep conflicting statements both and mark the conflict. No analysis.
+- **goal-model** - KAOS/GORE: refine goals AND/OR to leaves (G1.2 = AND, G1.2.a = OR), keyword each (Achieve/Maintain/Avoid/Cease), lead leaves with [Requirement]/[Expectation] (marker before the goal id, never trailing); record domain properties, obstacles+resolutions, and resolve BR conflicts here.
 - **object-model** - entities, relationships (cardinality lives here only), attributes, invariants (rules not expressible as cardinality), glossary. Conceptual, not a DB schema.
 - **responsibility-model** - assign every leaf goal to exactly one agent (software=requirement, environment=expectation); no orphans.
 - **operation-model** - operationalize leaves into operations (pre/post/trigger), plus scenarios (Given/When/Then); don't restate agent ownership (that's traceability).
-- **requirements-document** - the ONE synthesis: Scope, Goals, Glossary, Responsibilities, Behavior. Self-contained, current truth, no cross-references.
-- **traceability** - bidirectional matrix BR<->goal<->leaf<->agent<->operation; all cross-linking lives here, never in model prose.
+- **scenarios** - scenarios/index.md is the domain INDEX only (domains mirror the goal model's top-level goals); per-domain scenarios/\<domain\>.md holds one sequence diagram per user-recognizable flow: trigger (agent or schedule), lifelines = responsibility-model agents, messages = operations by name, outcome = the satisfied goal, plus obstacle variants. COVERAGE: start each domain file from its full EVENT LIST table (Event | Source | Scenario) - agent actions walked agent-by-agent, temporal events incl. missed-expected-event probes, arriving environment events; every event maps to a scenario or an explicit no-response, every operation appears in at least one scenario, and each scenario's steps get a Cockburn-style sweep for observable failures. Requirements altitude - agents and operations only, no solution vocabulary.
+- **requirements-document** - the ONE synthesis: Scope, Goals, Glossary, Responsibilities, Behavior (operations + per-domain flows in prose). Self-contained, current truth, no cross-references.
+- **traceability** - bidirectional matrix BR<->goal<->leaf<->agent<->operation<->scenario; all cross-linking lives here, never in model prose.
 
 **Output**
 
@@ -81,5 +83,6 @@ Summarize: change name + location, artifacts created (one line each), and: "Requ
 - **Superseding a requirements change:** the singleton convention means you normally keep refining the same `{program}-requirements`. If the user wants a clean restart that replaces it, move the OLD change into `openspec/changes/archive/<name>/` with a plain folder move (`mv`), NOT `openspec archive` (that promotes artifacts into specs, wrong for requirements). Confirm first; tell them the old requirements change is preserved under `archive/`, not deleted.
 - Verify each artifact file exists after writing before proceeding.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.

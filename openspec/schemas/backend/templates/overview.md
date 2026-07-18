@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -45,3 +45,5 @@ document-version: 0
 |----------|-----------|--------|
 | events | `<Yes/No>` | `<reason>` |
 | webhooks | `<Yes/No>` | `<reason>` |
+| jobs | `<Yes/No>` | `<reason>` |
+| configuration | `<Yes/No>` | `<reason>` |

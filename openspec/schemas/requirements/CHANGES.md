@@ -5,6 +5,31 @@ Versions follow the harness release version (`metadata.version` in `schema.yaml`
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
 
+## [1.2.0] - 2026-07-18
+
+### Added
+
+- Authoring principle: structure follows the new `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+- Acceptance criteria per operation in `operation-model` (BABOK v3 technique 10.1): the measurable pass/fail conditions stakeholders accept the operation by. The new `verification` schema realizes them as cross-layer scenarios.
+- `scenarios` artifact - domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, 9.3.17/9.4.17; KAOS behavior scenarios; BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios).
+  `scenarios/index.md` is the domain index (domains mirror the goal model's top-level goals); each domain's `scenarios/<domain>.md` holds agent-interaction sequence diagrams: trigger (agent or schedule), lifelines = responsibility-model agents, messages = operation-model operations, outcome = the satisfied goal, plus obstacle variants.
+  Coverage is exhaustive by construction (event partitioning, McMenamin & Palmer): each domain file opens with its full EVENT LIST (agent actions, temporal events incl. missed-expected-event probes, arriving environment events) and every event maps to one scenario or an explicit "no response"; scenario steps get a Cockburn-style extension sweep; every operation appears in at least one scenario.
+  `requirements-document`'s Behavior section restates the flows; `traceability` gains an operation -> scenario table.
+
+### Changed
+
+- Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
+- Tables follow the new rules/writing.md one-value-per-cell rule (first normal form): the `traceability` BR table uses a singular Goal column with one row per BR-goal link.
+- Classification markers lead the line: goal-model leaves start with `[Requirement]`/`[Expectation]` before the goal id, and business-requirements headings start with `[Goal]`/`[Constraint]` before the BR id - a marker never trails the free text.
+- Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
+
+### Migration (from 1.1.1)
+
+- Add an "Acceptance criteria" list (measurable, pass/fail) to every operation in `operation-model.md`; derive them from the operation's post-condition and the goal it operationalizes, and confirm them with stakeholders before relying on them.
+- Re-shape the `traceability.md` BR table: singular Goal column, one row per BR-goal link.
+- Move each goal-model leaf's trailing `[Requirement]`/`[Expectation]` marker to the front of the line (before the goal id), and each business-requirements heading's `[Goal]`/`[Constraint]` marker to the front (before the BR id).
+- Author `scenarios/index.md` (domain index) plus one `scenarios/<domain>.md` per top-level goal from the existing models; cover every operation with at least one scenario; add the operation -> scenario table to `traceability.md` and restate the flows in `requirements-document.md`'s Behavior section.
+
 ## [1.1.1] - 2026-07-15
 
 ### Added

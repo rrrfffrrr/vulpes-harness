@@ -1,15 +1,15 @@
 name: frontend
 version: 1
 metadata:
-  version: "1.1.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Flows are covered exhaustively via event partitioning (McMenamin & Palmer, Essential Systems Analysis): per screen, user events plus arriving events (push, deep link, connectivity), temporal events (timers, expiry, polling), and data events. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link), API call sequences in flows (client-perspective UML sequence diagrams, when a flow drives backend calls whose order or failure behavior matters), and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
 #    below architecture. Architecture answered structure/technology; this schema answers what
 #    each screen shows, how every component looks and behaves per state, and how the UI moves
 #    between screens on events. Reference architecture components and requirements by
 #    name/id - do not restate them.
-#  - NO CODE. Wire mockups (ascii/mermaid per openspec/DIAGRAM-STYLE.md), state tables,
+#  - NO CODE. Wire mockups (ascii/mermaid per openspec/rules/diagrams.md), state tables,
 #    token tables, and event->transition tables are the medium; source files are not.
 #  - State each fact once: system-wide vocabulary (breakpoint set, interaction-state enum,
 #    accessibility target) lives in overview; component facts live in components; screens
@@ -24,12 +24,20 @@ description: "Frontend (application UI) detail design for web, mobile, and deskt
 #  - Screens may list the analytics events they emit BY NAME as cross-references to the
 #    project's tracking plan; the tracking taxonomy itself is a separate artifact owned
 #    elsewhere - never define it here.
-#  - Conditional artifact: design-tokens when styling is token-based. If the concern is
-#    absent, OMIT the file.
+#  - Conditional artifacts: design-tokens when styling is token-based; data when the app
+#    manages client-side server-state (caching, optimistic updates, offline) beyond
+#    fetching per render. If the concern is absent, OMIT the file.
+#  - Conditional sections: ROUTES in flows when the platform addresses screens by URL or
+#    deep link; API CALL SEQUENCES in flows when a flow drives backend calls whose order
+#    or failure behavior matters; LOCALIZATION POLICY in overview (+ per-component TEXT
+#    BUDGET) when the product ships more than one locale. If the concern is absent, OMIT
+#    the section.
 #  - Prose is plain and direct; concrete values (px, ms, copy text) over vague ranges.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview
     generates: overview.md
@@ -45,9 +53,13 @@ artifacts:
       map to; the INTERACTION-STATE ENUM - the component states this spec uses everywhere
       (e.g. enabled/disabled/hovered/focused/pressed/selected), declared once here; the
       ACCESSIBILITY TARGET - the WCAG 2.2 conformance level and how it applies on non-web
-      platforms; the READER MAP (designers / UI engineers / QA - what each reads first);
-      and the CONDITIONAL ARTIFACTS table - whether design-tokens is included, with a
-      one-line reason.
+      platforms; the LOCALIZATION POLICY (conditional section - when the product ships
+      more than one locale): target locales, text-expansion headroom (IGDA Localization
+      SIG budgets - 30-40% unless the project justifies otherwise), font fallback
+      expectations, date/number/currency formats per locale (Unicode CLDR vocabulary),
+      and the pseudo-localization pass; the READER MAP (designers / UI engineers / QA - what each reads first);
+      and the CONDITIONAL ARTIFACTS table - whether design-tokens and data are included,
+      with a one-line reason each.
       Reference architecture and requirements by id; do not restate them.
     requires: []
 
@@ -86,8 +98,10 @@ artifacts:
       overview enum (only states that apply); BEHAVIOR - pointer AND keyboard interaction
       (the APG pattern it follows where one exists), plus labeling/announcement for
       assistive tech; CONTENT guidelines - the microcopy rules for its text parts (casing,
-      length, verb form); and TOKENS consumed (when design-tokens exists) or concrete
-      values (when not). Add an RTL/mirroring note only for components whose layout or
+      length, verb form), plus - when the overview declares a localization policy - the
+      TEXT BUDGET per text part (length limit including the policy's expansion headroom,
+      and the truncation/wrap behavior when exceeded); and TOKENS consumed (when
+      design-tokens exists) or concrete values (when not). Add an RTL/mirroring note only for components whose layout or
       iconography must mirror.
       One-off screen-specific arrangements do not belong here - only shared components.
     requires:
@@ -105,7 +119,10 @@ artifacts:
       it serves by id); LAYOUT - a wire mockup (ascii or mermaid) of the ideal state plus
       the BREAKPOINT BEHAVIOR - what is revealed/divided/resized/repositioned/swapped at
       each breakpoint from the overview set; the FIVE UI STACK STATES - what the screen
-      shows when ideal, empty, loading, partial, and error (copy included); COMPONENTS
+      shows when ideal, empty, loading, partial, and error (copy included) - when a
+      backend change exists, the ERROR state maps each applicable problem type from the
+      backend error catalog to what the screen shows (exact copy; retryable types keep
+      a retry affordance); COMPONENTS
       used, by components.md name - never respecify them; DATA displayed - the fields and
       where they come from (when a backend change exists, reference its endpoints by
       METHOD+path); FORMS - per field the validation rules and the EXACT error copy, plus
@@ -119,18 +136,72 @@ artifacts:
     generates: flows.md
     description: >-
       How the UI moves: the wireflow navigation map, event->transition tables (IFML
-      semantics), and statecharts for complex stateful interactions.
+      semantics), client-perspective API call sequences where a flow drives backend
+      calls, and statecharts for complex stateful interactions.
     template: flows.md
     instruction: |
       Specify navigation and interaction flow. Cover: the NAVIGATION MAP - a wireflow
       (screens as nodes, user events as labeled edges) covering every screen in
-      screens.md; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
+      screens.md; ROUTES (conditional section - when the platform addresses screens by
+      URL or deep link): per screen the route pattern with parameters, the auth guard,
+      and the deep-link entry behavior (what state is restored, where back leads) -
+      plus the FALLBACK POLICY stated once (the app-absent chain: web page, store
+      redirect, smart banner; a deferred deep-link service only if an architecture
+      ADR decided one) with per-route deviations in the fallback column -
+      mechanism-agnostic: https Universal/App Links and custom schemes both fit, and
+      the /.well-known domain-association files are a deployment concern referenced
+      by name only;
+      route names mirror the navigation map's nodes; EVENT->TRANSITION tables per screen (IFML semantics: event on a view
       component -> action -> target screen/state) for transitions the map alone cannot
-      carry (guards, parameters); and STATECHARTS (UML state machine notation, mermaid)
+      carry (guards, parameters) - actions that call the backend name the endpoint
+      verbatim (`METHOD /path`), and events are NOT only user input: include
+      (a) USER EVENTS on each interactive component in the mockup, (b) ARRIVING
+      EVENTS - push notifications, deep-link entries, connectivity changes,
+      (c) TEMPORAL EVENTS - timers, session expiry, auto-refresh/polling, and
+      (d) DATA EVENTS - fetch success/failure, cache revalidation,
+      optimistic-update rollback (data.md vocabulary when it exists).
+      COVERAGE (event partitioning): per screen, enumerate all four trigger kinds;
+      each trigger appears in the navigation map or the screen's event->transition
+      table, or is marked screen-local - an unlisted trigger is a hole, not an
+      omission choice; API CALL SEQUENCES (conditional section - when a flow
+      drives backend calls whose order or failure behavior matters: multi-call submits,
+      optimistic updates, retry-on-error): one sequence diagram per such flow (mermaid,
+      UML Interaction semantics) from the client's perspective - lifelines are the
+      screen (screens.md name), the client data layer (data.md, when present), and the
+      backend surface; messages name endpoints verbatim, from the backend change's
+      endpoints.md when one exists; show the failure paths the user can observe.
+      Backend-internal component interaction stays in the backend design's sequences -
+      never diagram it here; and STATECHARTS (UML state machine notation, mermaid)
       ONLY for interactions with non-trivial internal state (multi-step editors, drag
       interactions, connection-dependent UI) - simple open/close needs no statechart.
       Every flow traces to the requirements operation or goal it realizes, by name.
-      Diagrams per openspec/DIAGRAM-STYLE.md.
+      Diagrams per openspec/rules/diagrams.md.
+    requires:
+      - screens
+
+  - id: data
+    generates: data.md
+    description: >-
+      CONDITIONAL - include when the app manages client-side server-state beyond
+      fetching per render. Per-resource freshness (RFC 9111/5861 vocabulary), the
+      invalidation map, optimistic updates with rollback, client retry aligned to the
+      backend error catalog, and offline behavior.
+    template: data.md
+    instruction: |
+      Specify how the UI holds and refreshes server data. State DEFAULTS once
+      (freshness window, revalidate triggers, cache scope, and the client retry policy
+      tied to the backend error catalog's retryability when a backend change exists) -
+      resources record only deviations. Per RESOURCE: the SOURCE (backend endpoints by
+      METHOD+path when a backend change exists); the SCREENS that display it
+      (screens.md names); FRESHNESS deviations (RFC 5861 vocabulary: how long it may
+      serve stale while revalidating); INVALIDATED BY - the mutations or events that
+      invalidate it (this invalidation map is the core contract of the artifact); and
+      OPTIMISTIC UPDATES - which mutations render optimistically and the rollback
+      behavior the user observes on failure. Add the OFFLINE section only when the app
+      works offline: read behavior (stale-if-error), write queueing/rejection with
+      copy, and the reconciliation the user observes on reconnect.
+      Stay library-agnostic - specify behavior, never a state library's API.
+      Omit this artifact entirely if the app fetches per render and holds nothing.
     requires:
       - screens
 
@@ -147,7 +218,8 @@ artifacts:
       backend change exists, add the endpoint column (METHOD+path) for data each screen
       displays. Draw names from the artifacts themselves.
       Include a GAPS section: requirements with no screen, screens no flow reaches,
-      components no screen uses, and conditional artifacts excluded (with the overview's
+      components no screen uses, data.md resources no screen displays (when data
+      exists), and conditional artifacts excluded (with the overview's
       reason). All linking lives HERE - never in artifact prose beyond the single inline
       trace each screen/flow carries.
     requires:

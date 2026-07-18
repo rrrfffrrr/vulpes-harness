@@ -23,11 +23,11 @@ Creates `openspec/` and the base commands for each tool listed.
 
 Get the harness from <https://github.com/rrrfffrrr/vulpes-harness> and copy these into your project at the same paths:
 
-- `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`, `openspec/schemas/backend/`, `openspec/schemas/frontend/`
-- `openspec/DIAGRAM-STYLE.md` and `openspec/WRITING-STYLE.md`  (diagram and prose rules for the schemas)
+- `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`, `openspec/schemas/backend/`, `openspec/schemas/frontend/`, `openspec/schemas/persistence/`, `openspec/schemas/ml/`, `openspec/schemas/game-ui/`, `openspec/schemas/verification/`
+- `openspec/rules/`  (writing, diagram, and structure rules for the schemas)
 - `openspec/AGENTS.md` and `openspec/CLAUDE.md`  (agent guide to the openspec folder; CLAUDE.md just imports AGENTS.md)
-- `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`, `backend.md`, `frontend.md`  (Claude)
-- `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`, `opsx-backend/`, `opsx-frontend/`  (Codex)
+- `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`, `backend.md`, `frontend.md`, `persistence.md`, `ml.md`, `game-ui.md`, `verification.md`  (Claude)
+- `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`, `opsx-backend/`, `opsx-frontend/`, `opsx-persistence/`, `opsx-ml/`, `opsx-game-ui/`, `opsx-verification/`  (Codex)
 
 Copy only the lines for the tool(s) you installed in step 1.
 Commit the copied files.
@@ -41,7 +41,7 @@ Exception - `openspec/AGENTS.md` and `openspec/CLAUDE.md` are not a blind `cp` w
 ## 3. Verify
 
 ```bash
-openspec schemas                 # lists requirements, gdd, architecture, backend, frontend
+openspec schemas                 # lists requirements, gdd, architecture, backend, frontend, persistence, ml, game-ui, verification
 openspec schema validate gdd     # Schema 'gdd' is valid
 ```
 
@@ -53,7 +53,9 @@ Updates REPLACE each unit whole instead of copying over it - an overlay copy lea
 
 1. Replace each unit:
    - `openspec/schemas/<name>/` - delete the folder, then copy the new one in.
-   - `.claude/commands/opsx/*.md`, `.codex/skills/opsx-*/`, `openspec/DIAGRAM-STYLE.md`, `openspec/WRITING-STYLE.md`, `openspec/CLAUDE.md` - overwrite with the new files.
+   - `openspec/rules/` - delete the folder, then copy the new one in.
+     Updating from 1.1.x: also delete the old root-level `openspec/WRITING-STYLE.md` and `openspec/DIAGRAM-STYLE.md` - they moved into `openspec/rules/`.
+   - `.claude/commands/opsx/*.md`, `.codex/skills/opsx-*/`, `openspec/CLAUDE.md` - overwrite with the new files.
    - `openspec/AGENTS.md` - replace only the `# vulpes-harness` section (the exception above).
 2. Read each schema's `CHANGES.md` for what changed between your version and the new one.
 3. Existing documents migrate on next use: the next run of each `/opsx:*` command applies the pending Migration sections in order.
@@ -65,4 +67,4 @@ Pending document migration shows up in `openspec status --change <name>` instead
 
 ## Next
 
-Run the workflows: `/opsx:require` -> `/opsx:gdd` or `/opsx:architect` -> `/opsx:backend` / `/opsx:frontend` -> `/opsx:propose`.
+Run the workflows: `/opsx:require` -> `/opsx:gdd` or `/opsx:architect` -> `/opsx:backend` / `/opsx:frontend` / `/opsx:persistence` / `/opsx:ml` / `/opsx:game-ui` -> `/opsx:verification` -> `/opsx:propose`.

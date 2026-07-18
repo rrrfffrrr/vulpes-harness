@@ -25,9 +25,14 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 <img alt="게임 작업 진행" src="assets/workflow-game.svg" width="90%">
 
 - 요구사항: `/opsx:require {내용}`
+- GDD: `/opsx:gdd {내용}`
 - 아키텍처: `/opsx:architect {내용}`
 - 백엔드 상세: `/opsx:backend {내용}`
 - 프론트엔드 상세: `/opsx:frontend {내용}`
+- 영속성 상세: `/opsx:persistence {내용}`
+- ML 상세: `/opsx:ml {내용}`
+- 게임 UI 상세: `/opsx:game-ui {내용}`
+- 검증 설계: `/opsx:verification {내용}`
 - 작업 준비: `/opsx:propose {내용}`
 - 실행: `/opsx:apply {내용}`
 
@@ -37,7 +42,7 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 
 요구사항 스키마. KAOS/GORE와 BABOK 기반.
 
-비즈니스 요구사항, 목표/객체/책임/오퍼레이션 모델, 요구사항 종합본, 추적표를 산출.
+비즈니스 요구사항, 목표/객체/책임/오퍼레이션 모델, 도메인별 운영 시나리오, 요구사항 종합본, 추적표를 산출.
 
 ### architect
 
@@ -49,18 +54,44 @@ AI 도구에서 슬래시 명령을 실행하면 입력한 내용이 저장소�
 
 백엔드 상세 설계 스키마. OpenAPI/JSON Schema, RFC 9110/9457/9111, BCP 14, UML 시퀀스, C4 컴포넌트 기반.
 
-개요, API 규약, 컴포넌트, 엔드포인트 계약, 런타임 시퀀스, (조건부) 이벤트·웹훅, 추적표를 산출.
+개요, API 규약, 컴포넌트, 엔드포인트 계약, 런타임 시퀀스, (조건부) 이벤트·웹훅·백그라운드 잡·설정 카탈로그, 추적표를 산출.
 
 ### frontend
 
 웹/모바일/데스크톱 앱 UI 상세 설계 스키마. IFML, UML 상태 머신, wireflow, Atomic Design, UI Stack, WCAG 2.2 기반.
 
-개요, (조건부) 디자인 토큰, 컴포넌트 인벤토리, 화면, 플로, 추적표를 산출.
+개요, (조건부) 디자인 토큰, 컴포넌트 인벤토리, 화면, (조건부) 클라이언트 데이터 계층, 플로, 추적표를 산출.
+
+### persistence
+
+영속성(데이터 스토어) 상세 설계 스키마. ANSI/SPARC internal 수준, 폴리글랏 퍼시스턴스, 액세스 패턴 주도 스토어 설계, 진화적 데이터베이스 설계 기반.
+
+스토어 인벤토리 개요, 필드 수준 논리 모델, 스토어별 설계, 마이그레이션 정책, 추적표를 산출.
+
+### ml
+
+ml-serving-view가 있는 시스템의 ML 상세 설계 스키마. Model Cards, Datasheets for Datasets, ML Test Score, ISO/IEC 5338 기반.
+
+모델 인벤토리, 열화/폴백 포함 모델별 계약, (조건부) 데이터셋 datasheet, 평가 릴리스 게이트, 수명주기 절차, 추적표를 산출.
+
+### verification
+
+인수·검증 설계 스키마. ISTQB test basis 어휘, ISO/IEC/IEEE 29119-3 문서 타입, Specification by Example + Gherkin, BABOK 10.1 인수 기준 기반.
+
+test basis 개요, 계층 횡단 인수 시나리오, 테스트 데이터/환경 요구사항, 커버리지 추적표를 산출 - 계약별 테스트 케이스는 상세 설계에서 도출되며 여기 작성하지 않음.
 
 ### gdd
 
 게임 디자인 스키마. 표준 GDD 구성 기반.
 
 개요, 게임플레이, 메카닉, 세계관과 서사, 아트와 오디오 디렉션, UX/UI, 기술, 수익화, 프로덕션을 산출.
+
+게임 프로젝트 전용.
+
+### game-ui
+
+게임 UI 상세 설계 스키마. diegetic/non-diegetic/spatial/meta UI 레이어 분류, Game UI Database 화면 어휘, SMPTE safe area, Game Accessibility Guidelines/XAG, 액션 기반 입력, UML 상태 머신 기반.
+
+개요, (조건부) 디자인 토큰, 위젯, 화면, HUD, 플로, 입력, 설정, 추적표를 산출.
 
 게임 프로젝트 전용.

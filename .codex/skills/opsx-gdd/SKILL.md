@@ -1,6 +1,6 @@
 ---
 name: opsx-gdd
-version: "1.1.1"
+version: "1.2.0"
 description: Author a Game Design Document - the cross-discipline blueprint of the intended game (overview, gameplay, mechanics, art, audio, UX, tech, monetization, production). No implementation.
 ---
 
@@ -93,7 +93,7 @@ Summarize: GDD change name + location, which conditional sections were included 
 - This is a GDD - the intended game (WHAT it is and HOW it plays/looks/sounds/sells). NOT formal requirements (`/opsx:require`), NOT architecture (`/opsx:architect`), NOT code/tasks.
 - Change name is `{program}-gdd` (project singleton). Don't invent per-feature names; continue the existing one unless the user wants a separate program.
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/gdd/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
-- Show, don't only tell: diagrams/flows/mockups follow `openspec/DIAGRAM-STYLE.md`. LINK mood boards and reference images - never embed binaries or paste long asset dumps.
+- Show, don't only tell: diagrams/flows/mockups follow `openspec/rules/diagrams.md`. LINK mood boards and reference images - never embed binaries or paste long asset dumps.
 - State each fact once; each concern in exactly one section. `production` is the only synthesis artifact and may restate features by reference.
 - If a requirements change exists, reference its goals/requirements/invariants by id rather than re-deriving the formal model - add the player-facing design on top.
 - The user often narrates the GDD one line (one message) at a time. RECEIVE each line, reflect it back accurately, and capture it in the right section. Do NOT interrupt that flow with scope/stop questions. Only ask about a genuine fork.
@@ -102,5 +102,6 @@ Summarize: GDD change name + location, which conditional sections were included 
 - The change does not close. There is no apply step in the gdd schema.
 - Read source requirements + dependency GDD artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.

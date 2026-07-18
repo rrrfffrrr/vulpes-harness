@@ -1,0 +1,275 @@
+name: game-ui
+version: 1
+metadata:
+  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+description: "Game UI detail design for PC, console, mobile, and handheld games - no implementation/apply step. Builds on an architecture change and the GDD: the implementable game-UI specification one level below both. Methodology: the Fagerholt & Lorentzon diegesis/spatiality UI-layer design space (Chalmers 2009) with Andrews' diegetic/non-diegetic/spatial/meta terms (2010), Game UI Database screen-type vocabulary, SMPTE ST 2046-1 safe areas with platform legibility floors (Xbox Accessibility Guidelines 101, Steam Deck compatibility criteria), an action-based input model (Steam Input action sets/layers), Game Accessibility Guidelines + Xbox Accessibility Guidelines v3.2 accessibility, Pinelle 2008 game-usability heuristics as quality criteria, IGDA Localization SIG text-expansion budgets, and UML 2.5.1 state machines + wireflows shared with the rest of the harness. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
+# Authoring principles (all artifacts):
+#  - This is the IMPLEMENTABLE GAME-UI SPEC, one level below architecture and the GDD.
+#    The GDD's ux-ui section answered intent (flow map, key screens, input summary,
+#    onboarding); this schema answers what every screen and HUD element shows, how every
+#    widget behaves per state and input device, and what every binding and setting does.
+#    Reference GDD sections, architecture components, and requirements by name/id -
+#    do not restate them. Application UIs (companion apps, web storefronts) are the
+#    frontend schema's terrain, not this one's.
+#  - NO CODE and ENGINE-AGNOSTIC. Wire mockups (ascii/mermaid per openspec/rules/diagrams.md),
+#    layer classifications, binding tables, and option tables are the medium; engine assets
+#    and source files are not. Name the engine/UI stack once in overview (from architecture);
+#    never write engine-specific structure into artifacts.
+#  - State each fact once: system-wide vocabulary (UI layers, safe-area and scale policy,
+#    legibility floors, widget-state enum, localization budgets, accessibility target)
+#    lives in overview; widget facts live in widgets; screens and hud reference widgets
+#    by name and record only what is specific to them.
+#  - Every visible UI element carries its UI-layer classification
+#    (diegetic / non-diegetic / spatial / meta) - the whole point of the layer vocabulary
+#    is deciding, per element, where it lives relative to the game world.
+#  - Every screen and HUD element respects the safe-area and legibility policy declared in
+#    overview; deviations are called out per element, never silent.
+#  - Input is specified as ACTIONS mapped to bindings per device, per context - never as
+#    raw buttons sprinkled through prose. Glyphs shown must match the active input device.
+#  - Accessibility is specified where it applies: per-option requirements in settings,
+#    per-element behavior in widgets/hud (text scaling, contrast, narration), the
+#    conformance target once in overview. Platform certification requirements
+#    (Sony TRC, Nintendo guidelines, Xbox XR test cases) are NDA-bound project inputs:
+#    reference them as placeholders, never restate their content.
+#  - Conditional artifact: design-tokens when styling is token-based. Conditional sections:
+#    subtitles/captions in hud when the game has speech or important audio. If the concern
+#    is absent, OMIT the file or section.
+#  - Prose is plain and direct; concrete values (px, dp, ms, % opacity, exact copy) over
+#    vague ranges.
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
+#    language, front-loaded scannable structure, one term per concept, searchable headings
+#    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
+artifacts:
+  - id: overview
+    generates: overview.md
+    description: >-
+      The entry point. Platforms and input devices, the UI-layer vocabulary, safe-area and
+      UI-scale policy, text legibility floors, the widget-state enum, localization budgets,
+      the accessibility target, reader map, and which conditional artifacts this design
+      includes.
+    template: overview.md
+    instruction: |
+      Frame the game-UI detail design from the architecture change and the GDD. Cover: the
+      PLATFORMS, INPUT DEVICES, and UI STACK this spec targets (from the architecture
+      technology stack, by reference); the UI-LAYER VOCABULARY - the four classes
+      (diegetic / non-diegetic / spatial / meta) in this game's terms, with one concrete
+      example each; the SAFE-AREA & SCALE POLICY - the safe-area percentages or insets per
+      platform, the UI-scale option range, and the project's aspect-ratio decision
+      (ultrawide/letterbox behavior is a recorded project decision, not a cited standard);
+      TEXT LEGIBILITY FLOORS - minimum text sizes per platform/viewing distance; the
+      WIDGET-STATE ENUM - the interaction states this spec uses everywhere (e.g.
+      idle/focused/pressed/disabled/selected), declared once here; the LOCALIZATION POLICY -
+      target languages, text-expansion headroom (30-40% unless the project justifies
+      otherwise), font fallback expectations, pseudo-localization pass; the ACCESSIBILITY
+      TARGET - the Game Accessibility Guidelines tier and the XAG guidelines the project
+      commits to, plus (only when the game has player-to-player communication or in-game
+      purchasing) the CVAA/EAA legal note; the PLATFORM CERTIFICATION placeholder - which
+      NDA cert documents the project must consult; the READER MAP (UI designers / UI
+      engineers / QA - what each reads first); and the CONDITIONAL ARTIFACTS table -
+      whether design-tokens is included, with a one-line reason.
+      Reference architecture, GDD, and requirements by id; do not restate them.
+    requires: []
+
+  - id: design-tokens
+    generates: design-tokens.md
+    description: >-
+      CONDITIONAL - include when styling is token-based (a centralized stylesheet or
+      theming exists or is planned). The named design decisions: color, typography
+      (including fallback fonts), dimension, motion (easing/duration), and themes as token
+      collections (DTCG-aligned).
+    template: design-tokens.md
+    instruction: |
+      Define the design tokens (DTCG vocabulary: a token has a name, a $type, and a
+      $value). Cover the groups the game uses: COLOR (semantic roles - primary/surface/
+      danger/rarity tiers/... with values), TYPOGRAPHY (the font set - production practice
+      favors few families - the type scale, and the per-script fallback chain from the
+      overview localization policy), DIMENSION (spacing scale, radii, HUD inset values if
+      tokenized), MOTION (named easing curves and duration tokens - every animated
+      transition in widgets/screens/flows references these by name; motion must remain
+      reducible per the accessibility target), and THEMES - each theme (e.g. default/high
+      contrast/colorblind palettes) as a collection of token VALUES over the same token
+      names; widgets never restate per-theme behavior, they reference tokens.
+      Name tokens once here; widgets, screens, and hud consume them by name.
+      Omit this artifact entirely if styling is not token-based.
+    requires:
+      - overview
+
+  - id: widgets
+    generates: widgets.md
+    description: >-
+      The shared widget inventory: per widget its anatomy, variants/sizes, behavior per
+      widget state, behavior per input device, text budget with localization headroom,
+      glyph slots, and assistive behavior (narration/labeling).
+    template: widgets.md
+    instruction: |
+      Specify every shared/reused widget (buttons, list menus, dialogs, sliders, tab bars,
+      meters, tooltips...). Per widget: its ANATOMY - the named parts that compose it;
+      VARIANTS and SIZES with concrete dimensions; STATES - behavior/appearance per widget
+      state from the overview enum (only states that apply); INPUT BEHAVIOR - how the
+      widget is operated per device class (pointer, gamepad focus + cardinal navigation,
+      touch), including the focus-visual treatment; TEXT BUDGET - the length limit for each
+      text part including the overview's localization headroom, and the truncation/wrap
+      behavior when exceeded; GLYPH SLOTS - where device-matching input glyphs appear, if
+      anywhere; ASSISTIVE behavior - narration/labeling for screen-narration features and
+      the text-scaling behavior; and TOKENS consumed (when design-tokens exists) or
+      concrete values (when not).
+      One-off screen-specific arrangements do not belong here - only shared widgets.
+    requires:
+      - overview
+
+  - id: screens
+    generates: screens.md
+    description: >-
+      The per-screen specification for menus, full-screen states, and modals: layout with
+      safe-area compliance, screen states, widgets used, data displayed, per-device
+      operation, and emitted analytics event names.
+    template: screens.md
+    instruction: |
+      Specify every screen and modal: name screen types in Game UI Database vocabulary
+      where it fits (title screen, settings menu, pause, inventory, loadout, results,
+      matchmaking lobby...). Modals/popups are screen blocks that name their owner screen.
+      Per screen: PURPOSE (one line, tracing to the GDD section or requirement it serves
+      by id); LAYOUT - a wire mockup (ascii or mermaid) of the nominal state, with
+      safe-area compliance stated and any deviation from the overview policy called out;
+      SCREEN STATES - for data-driven screens (stores, lobbies, leaderboards, load/save)
+      cover empty, loading, and error/connection-loss states with copy, alongside the
+      nominal state; WIDGETS used, by widgets.md name - never respecify them; DATA
+      displayed - the fields and where they come from (gameplay state by GDD name; when a
+      backend change exists, reference its endpoints by METHOD+path); OPERATION - anything
+      screen-specific about operating it per device (initial focus, shortcut/hold
+      actions, touch gestures) beyond what widgets already define; and EVENTS EMITTED -
+      analytics event names only, as cross-references to the project's tracking plan.
+    requires:
+      - widgets
+
+  - id: hud
+    generates: hud.md
+    description: >-
+      The in-game HUD and world-space UI inventory: per element its UI layer, placement,
+      data source, visibility rules, customization hooks, and feedback channels.
+      Conditional section: subtitles/captions.
+    template: hud.md
+    instruction: |
+      Specify every persistent or transient in-game UI element (vitals, ammo/resources,
+      minimap/compass, objective trackers, reticles, waypoints/markers, damage numbers,
+      notifications/toasts, kill feeds, boss bars...). Per element: its UI LAYER
+      (diegetic / non-diegetic / spatial / meta) with a one-line rationale; PLACEMENT -
+      screen region or world anchor, safe-area compliance, and behavior when the element
+      collides with others; DATA - the gameplay state it displays, by GDD mechanic/state
+      name; VISIBILITY - when it appears, hides, or fades (always-on / contextual / on
+      change / on hold-to-view), and its behavior in screenshot/photo mode if one exists;
+      CUSTOMIZATION - the settings options that affect it, by settings.md option name
+      (scale, opacity, position, toggle, contrast variant); and FEEDBACK CHANNELS - the
+      non-visual channels that carry the same information (audio cue, haptics), so no
+      essential information rides on one channel alone.
+      SUBTITLES/CAPTIONS (conditional section - when the game has speech or important
+      audio): line length and count limits, size floor and scaling, background
+      opacity, speaker identification, caption placement, and which settings options
+      control each - concrete values, not intents.
+      Widgets reused inside HUD elements are referenced by widgets.md name.
+    requires:
+      - widgets
+
+  - id: flows
+    generates: flows.md
+    description: >-
+      How the game UI moves: boot flow, the wireflow navigation map covering every screen,
+      pause/modal stack conventions, and statecharts for complex stateful interactions.
+    template: flows.md
+    instruction: |
+      Specify navigation and interaction flow. Cover: the BOOT FLOW - from launch through
+      legal/compliance placeholders (platform cert content is a project input), title
+      screen, and first-boot setup (initial language/accessibility/settings prompts)
+      to the main menu; the NAVIGATION MAP - a wireflow (screens as nodes, player events
+      as labeled edges) covering every screen in screens.md, including how gameplay
+      reaches pause and how menus return to gameplay; MODAL & PAUSE CONVENTIONS - the
+      stack rules (what suspends gameplay, what dismisses what, back/cancel semantics);
+      EVENT->TRANSITION tables per screen for transitions the map alone cannot carry
+      (guards, parameters); and STATECHARTS (UML state machine notation, mermaid) ONLY for
+      interactions with non-trivial internal state (matchmaking, purchase flows,
+      multi-step character creation) - simple open/close needs no statechart.
+      Animated transitions reference motion tokens by name when design-tokens exists.
+      Every flow traces to the GDD section or requirements operation it realizes, by name.
+      Diagrams per openspec/rules/diagrams.md.
+    requires:
+      - screens
+
+  - id: input
+    generates: input.md
+    description: >-
+      The action-based input specification: the device matrix, per-context action sets
+      with binding tables per device, glyph policy, remapping policy, hot-swap behavior,
+      and menu navigation model.
+    template: input.md
+    instruction: |
+      Specify input as actions, not buttons. Cover: the DEVICE MATRIX - the input devices
+      supported per platform (from overview, by reference); ACTION SETS - one per input
+      context (gameplay contexts by GDD name, menus, photo mode...), each listing its
+      ACTIONS with a binding per device class (gamepad, keyboard+mouse, touch) - layered
+      modifications of a base set (aim-down-sights, vehicle...) are called out as layers;
+      GLYPH POLICY - on-screen prompts always match the active device, what art source
+      supplies glyphs per platform, and the fallback when first-party art is NDA-bound;
+      REMAPPING - what is remappable (full remap is the accessibility baseline),
+      what is reserved, whether presets/profiles exist; HOT-SWAP - behavior when a device
+      appears, disconnects, or changes mid-session (pause on disconnect, glyph refresh,
+      reconnection prompt); MENU NAVIGATION MODEL - how gamepad focus moves through menus
+      (cardinal navigation, wrap rules, initial focus, back/cancel semantics shared with
+      flows.md); and HAPTICS - per-context haptic feedback and its settings hooks, when
+      the platform has them.
+      Sensitivity/curve options, toggle-vs-hold alternatives, and assist options appear
+      here by settings.md option name - defined once in settings.
+    requires:
+      - screens
+      - hud
+
+  - id: settings
+    generates: settings.md
+    description: >-
+      The player-facing option inventory: every option with its type, range, default,
+      platform applicability, and the accessibility guideline it serves - grouped by the
+      conventional buckets (gameplay / display / audio / UI & accessibility / language /
+      controls).
+    template: settings.md
+    instruction: |
+      Specify every player-facing option. Group by the conventional buckets - gameplay,
+      display/graphics, audio, UI & accessibility, language, controls - and keep each
+      option in exactly one bucket. Per option: TYPE and RANGE (toggle / enum values /
+      slider with min-max-step); DEFAULT per platform where defaults differ; EFFECT -
+      what it changes, referencing the hud element, widget, or input action it controls
+      by name; PLATFORM applicability; and the ACCESSIBILITY guideline it serves (XAG
+      number / Game Accessibility Guidelines item) when it is an accessibility option.
+      Cover the accessibility baseline from the overview target explicitly: text scaling,
+      subtitle options, contrast/colorblind variants, motion reduction, full input
+      remapping, separate volume channels, and the game's difficulty/assist options
+      (assist design is game-specific - trace it to the GDD, don't invent it here).
+      Note FIRST-BOOT exposure: which options the first-boot setup (flows.md) surfaces
+      before play begins.
+    requires:
+      - hud
+      - input
+
+  - id: traceability
+    generates: traceability.md
+    description: >-
+      The linking matrix: GDD sections / requirements <-> screens & hud elements <-> flows
+      <-> widgets <-> input contexts <-> settings options (<-> backend endpoints when a
+      backend change exists). All cross-artifact linking lives here.
+    template: traceability.md
+    instruction: |
+      Produce the bidirectional matrix linking: GDD sections and requirements
+      goals/operations (by id/name) <-> screens and hud elements <-> the flows that reach
+      them <-> the widgets they use <-> the input context that operates them <-> the
+      settings options that affect them. When a backend change exists, add the endpoint
+      column (METHOD+path) for data each screen displays. Draw names from the artifacts
+      themselves.
+      Include a GAPS section: GDD/requirements items with no screen or hud element,
+      screens no flow reaches, widgets nothing uses, hud elements with no
+      settings hook where the accessibility target expects one, and conditional
+      artifacts/sections excluded (with the overview's reason). All linking lives HERE -
+      never in artifact prose beyond the single inline trace each screen/element/flow
+      carries.
+    requires:
+      - flows
+      - settings

@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Architect"
-version: "1.1.1"
+version: "1.2.0"
 description: Technical architecture from a requirements change - 4+1 views + arc42 + ISO 42010 + ADRs. No implementation.
 category: Workflow
 tags: [workflow, architect, architecture, 4+1, arc42, adr, experimental]
@@ -90,7 +90,7 @@ Summarize: architecture change name + location, which conditional views were inc
 **Guardrails**
 
 - This is ARCHITECTURE (HOW), not requirements (WHAT/WHY) and not implementation. NO code, NO tasks. Diagrams, interface signatures, schemas, config-level detail are fine; source files are not.
-- Diagrams follow `openspec/DIAGRAM-STYLE.md`.
+- Diagrams follow `openspec/rules/diagrams.md`.
 - Do NOT restate the requirements as prose - reference them by id and link only in traceability.
 - Reference each fact once; a structural fact belongs to exactly one view. Rationale lives in ADRs, not in view prose.
 - The user often narrates decisions one line (one message) at a time. RECEIVE each line, reflect it back, capture it in the right view/ADR. Do NOT interrupt with scope/stop questions. Only ask about a genuine fork.
@@ -100,5 +100,6 @@ Summarize: architecture change name + location, which conditional views were inc
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/architecture/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source requirements + dependency architecture artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.

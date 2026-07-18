@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -26,7 +26,7 @@ document-version: 0
 
 ### Flow: `<name>`  (operation: `<OperationName>`)
 
-<!-- Sequence diagram (mermaid, per openspec/DIAGRAM-STYLE.md) - or Given/When/Then prose for simple flows. -->
+<!-- Sequence diagram (mermaid, per openspec/rules/diagrams.md) - or Given/When/Then prose for simple flows. -->
 
 ```mermaid
 sequenceDiagram

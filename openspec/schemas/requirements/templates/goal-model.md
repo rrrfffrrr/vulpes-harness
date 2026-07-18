@@ -1,5 +1,5 @@
 ---
-schema-version: 1.1.1
+schema-version: 1.2.0
 document-version: 0
 ---
 
@@ -15,12 +15,13 @@ document-version: 0
 
 <!-- One or more top-level business goals; no synthetic super-root.
      Refine to leaves.
-     Mark each leaf [Requirement] (software) or [Expectation] (environment). -->
+     Lead each leaf with [Requirement] (software) or [Expectation] (environment) -
+     the marker sits before the goal id, never at the end of the line. -->
 - **G1: Achieve `<top-level goal>`**
-  - (AND) G1.1: Maintain `<subgoal - all needed>` [Requirement]
+  - (AND) [Requirement] G1.1: Maintain `<subgoal - all needed>`
   - (AND) G1.2: Achieve `<subgoal>`
-    - (OR) G1.2.a `<alternative>` [Requirement]
-    - (OR) G1.2.b `<alternative>` [Requirement]
+    - (OR) [Requirement] G1.2.a `<alternative>`
+    - (OR) [Requirement] G1.2.b `<alternative>`
 
 ## Domain properties
 
