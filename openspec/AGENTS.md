@@ -8,6 +8,7 @@
 - `changes/` - in-flight spec-driven changes AND the standing documents below
 - `changes/archive/` - completed changes and superseded standing documents
 - `schemas/` - vulpes-harness workflow schemas (requirements, gdd, architecture, backend, frontend, persistence, ml, game-ui, verification)
+- `CONVENTIONS.md` - structure rules: boundary declaration, role separation, split on growth, scoped naming, index hubs
 - `DIAGRAM-STYLE.md` - diagram rules for the schemas
 - `WRITING-STYLE.md` - prose rules for artifact writing (reader-first, search-friendly)
 
