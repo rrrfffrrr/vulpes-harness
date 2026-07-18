@@ -54,6 +54,11 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 - Expand an acronym at first use - "long form (ACRONYM)" - and don't introduce an acronym used only once.
 - Define a term once (glossary or first use) and use that exact form afterwards.
 
+## Requirement keywords
+
+- MUST, SHOULD, MAY and their NOT forms carry [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) force; only the UPPERCASE forms are normative ([RFC 8174](https://www.rfc-editor.org/rfc/rfc8174)).
+- SHOULD is deferrable, never dismissible: skip one only for a weighed, recorded reason, and an unapplied SHOULD stays due - it does not expire with time or versions.
+
 ## Findability
 
 - Write the noun, not the pronoun: "the session token", not "it" or "this value" - a search for the noun must find every statement about it.
@@ -73,7 +78,7 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 
 ## References
 
-Verified 2026-07-15; Tables entries verified 2026-07-18.
+Verified 2026-07-15; Tables entries verified 2026-07-18; Requirement keywords entries verified 2026-07-18.
 
 - Semantic Line Breaks: <https://sembr.org/>
 - ISO 24495-1:2023 Plain language - governing principles: <https://www.iso.org/standard/78907.html>
@@ -82,5 +87,7 @@ Verified 2026-07-15; Tables entries verified 2026-07-18.
 - NN/g reading research: [How Users Read on the Web, 1997](https://www.nngroup.com/articles/how-users-read-on-the-web/) - [F-shaped pattern, 2017 update](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) - [Inverted Pyramid, 2018](https://www.nngroup.com/articles/inverted-pyramid/) - [First 2 Words, 2009](https://www.nngroup.com/articles/first-2-words-a-signal-for-scanning/)
 - GOV.UK clear titles (search-term-first): <https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-titles/>
 - ISO 8601-1:2019 date/time format: <https://www.iso.org/standard/70907.html>
+- RFC 2119 Key words for use in RFCs to Indicate Requirement Levels (BCP 14): <https://www.rfc-editor.org/rfc/rfc2119>
+- RFC 8174 Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words (BCP 14): <https://www.rfc-editor.org/rfc/rfc8174>
 - E. F. Codd, A Relational Model of Data for Large Shared Data Banks, CACM 13(6) 1970 (first normal form): <https://dl.acm.org/doi/10.1145/362384.362685>
 - Microsoft Writing Style Guide - Tables (brief, parallel cell entries): <https://learn.microsoft.com/en-us/style-guide/scannable-content/tables>
