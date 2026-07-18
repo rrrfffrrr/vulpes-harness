@@ -35,7 +35,8 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 - Front-load keywords: the first two words of a heading, list item, or table cell carry the meaning.
 - Lists for parallel facts, tables for enumerable facts; prose only where reasoning is needed.
 - Headings are sentence case, descriptive, and unique within the document.
-  A heading names its subject; never a teaser.
+  A heading names its subject; never a teaser, never a `Subject - explainer` suffix.
+  A qualifier leads the heading (`<domain> runtime sequences`); the explanation opens the section body.
 - Keep paragraphs short; more than ~5 sentences is usually two paragraphs.
 
 ## Tables

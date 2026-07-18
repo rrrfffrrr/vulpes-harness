@@ -14,7 +14,7 @@ document-version: 0
 - **Versioning & ordering**: `<how migrations are numbered and applied>`
 - **Compatibility window**: `<which schema versions must coexist with running code>`
 
-## Breaking changes - expand-contract
+## Breaking changes (expand-contract)
 
 <!-- What qualifies as breaking, and the parallel-change rule for shipping it. -->
 - `<qualifies as breaking: ...>`

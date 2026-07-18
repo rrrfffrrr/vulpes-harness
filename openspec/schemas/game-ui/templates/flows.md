@@ -3,7 +3,7 @@ schema-version: 1.2.0
 document-version: 0
 ---
 
-# Flows - domain index
+# Flows
 
 <!-- This file lives at flows/index.md.
      Index ONLY - every flow lives in a per-domain file (flows/<domain>.md).
@@ -26,7 +26,7 @@ schema-version: 1.2.0
 document-version: 0
 ---
 
-# Flows - `<domain>`
+# `<domain>` flows
 
 <!-- The domain navigation maps jointly cover EVERY screen in screens.md;
      cross-domain edges name the target screen and its domain.

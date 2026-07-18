@@ -1,4 +1,4 @@
-# How to read these artifacts - backend
+# How to read the backend artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

@@ -3,7 +3,7 @@ schema-version: 1.2.0
 document-version: 0
 ---
 
-# Runtime sequences - domain index
+# Runtime sequences
 
 <!-- This file lives at sequences/index.md.
      Index ONLY - every flow lives in a per-domain file (sequences/<domain>.md).
@@ -26,7 +26,7 @@ schema-version: 1.2.0
 document-version: 0
 ---
 
-# Runtime sequences - `<domain>`
+# `<domain>` runtime sequences
 
 <!-- Backend-internal flows that cross more than one component - happy path AND client-observable failure paths.
      COVERAGE (trigger closure): walk this domain's endpoints.md / events.md / jobs.md entries item by item -

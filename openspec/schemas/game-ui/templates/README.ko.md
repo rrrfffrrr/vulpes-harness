@@ -1,4 +1,4 @@
-# 아티팩트 읽는 법 - game-ui
+# game-ui 아티팩트 읽는 법
 
 [English](README.md) | [한국어](README.ko.md)
 

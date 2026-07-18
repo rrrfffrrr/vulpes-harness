@@ -4,21 +4,21 @@ Structure rules for every document set the harness generates, and for the harnes
 `writing.md` governs the prose inside a document and `diagrams.md` the diagrams;
 this file governs the containers: what goes into them, where content lives, how containers are named, and when they split.
 
-## Boundary - declare what is in and what is out
+## Boundary
 
 - Every container (document set, artifact, section, table) declares its scope: what belongs in it AND what is deliberately left out.
 - An exclusion carries its reason - a conditional-artifact row reads `No` plus why, an event row reads `no response (why)`, a scope section has an Out list.
   A silent omission is a hole; an explicit exclusion with a reason is a design decision.
 - Completeness comes from enumerating a closed list (interfaces, events, agents, roles) and accounting for every entry - never from writing what comes to mind.
 
-## Place - different roles never share a home
+## Place
 
 - Separate the focal content, the supporting content, and the management content into different homes
   (the goal model vs the other models vs traceability; endpoints vs conventions vs traceability).
 - Each fact has exactly one authoritative home; every other place references it by name or id instead of restating it.
 - Classification markers and kind tags sit in a fixed slot at the START of the line, before the free text - never trailing after it, never mid-sentence.
 
-## Growth - when a container overflows, split it at a seam
+## Growth
 
 - Never stretch an overflowing container; split it.
   A cell that wants a list becomes repeated rows; a section that wants two subjects becomes two sections; a file that outgrows one sitting becomes a folder with one file per domain.
@@ -26,14 +26,14 @@ this file governs the containers: what goes into them, where content lives, how 
 - An artifact that accumulates entries without bound (scenarios, sequences, flows) ships the split from the start: it declares `<name>/index.md`, the index holds pointers only, and every entry lives in a per-domain file `<name>/<domain>.md`.
 - Each split unit stays a coherent whole: small enough to reference on its own, large enough to read without hopping.
 
-## Naming - the name states the role, the scope states the ownership
+## Naming
 
 - Name a file or artifact by its ROLE: `overview.md`, `conventions.md`, `traceability.md`.
   The folder that contains it states whose it is.
 - The same role recurring in different scopes reuses the same local name; qualify by scope in prose when disambiguation is needed (the backend conventions vs this file).
 - Never encode the scope into the name - no schema-name or folder-name prefixes.
 
-## Index - a hub holds pointers, never content
+## Index
 
 - An index document (`AGENTS.md`, `CLAUDE.md`, a folder README index) lists what exists, where it is, and when to read it; the content itself lives in dedicated role-named files.
 - Adding content to a hub means extracting it into a file and leaving one pointer line behind.

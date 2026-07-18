@@ -1,4 +1,4 @@
-# How to read these artifacts - frontend
+# How to read the frontend artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

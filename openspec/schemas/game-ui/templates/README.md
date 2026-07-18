@@ -1,4 +1,4 @@
-# How to read these artifacts - game-ui
+# How to read the game-ui artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

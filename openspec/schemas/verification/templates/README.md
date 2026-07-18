@@ -1,4 +1,4 @@
-# How to read these artifacts - verification
+# How to read the verification artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

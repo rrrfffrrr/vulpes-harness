@@ -1,4 +1,4 @@
-# Changelog - backend schema
+# Backend schema changelog
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow the harness release version (`metadata.version` in `schema.yaml`); templates' `schema-version` frontmatter mirrors it.
