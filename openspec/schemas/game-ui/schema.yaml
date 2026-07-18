@@ -11,7 +11,7 @@ description: "Game UI detail design for PC, console, mobile, and handheld games 
 #    Reference GDD sections, architecture components, and requirements by name/id -
 #    do not restate them. Application UIs (companion apps, web storefronts) are the
 #    frontend schema's terrain, not this one's.
-#  - NO CODE and ENGINE-AGNOSTIC. Wire mockups (ascii/mermaid per openspec/DIAGRAM-STYLE.md),
+#  - NO CODE and ENGINE-AGNOSTIC. Wire mockups (ascii/mermaid per openspec/rules/diagrams.md),
 #    layer classifications, binding tables, and option tables are the medium; engine assets
 #    and source files are not. Name the engine/UI stack once in overview (from architecture);
 #    never write engine-specific structure into artifacts.
@@ -36,10 +36,10 @@ description: "Game UI detail design for PC, console, mobile, and handheld games 
 #    is absent, OMIT the file or section.
 #  - Prose is plain and direct; concrete values (px, dp, ms, % opacity, exact copy) over
 #    vague ranges.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
-#  - Structure follows openspec/CONVENTIONS.md: boundary declaration, role separation,
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
 #    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview
@@ -192,7 +192,7 @@ artifacts:
       multi-step character creation) - simple open/close needs no statechart.
       Animated transitions reference motion tokens by name when design-tokens exists.
       Every flow traces to the GDD section or requirements operation it realizes, by name.
-      Diagrams per openspec/DIAGRAM-STYLE.md.
+      Diagrams per openspec/rules/diagrams.md.
     requires:
       - screens
 

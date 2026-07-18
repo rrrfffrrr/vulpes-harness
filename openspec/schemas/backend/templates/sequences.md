@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- Flows that cross more than one component - happy path AND client-observable failure paths.
      Lifelines use components.md names; messages name endpoints/channels.
-     UML Interaction semantics, rendered per openspec/DIAGRAM-STYLE.md.
+     UML Interaction semantics, rendered per openspec/rules/diagrams.md.
      Repeat the flow block per flow.
      Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->

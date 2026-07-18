@@ -1,7 +1,7 @@
-# Conventions
+# Structure rules
 
 Structure rules for every document set the harness generates, and for the harness's own documents.
-`WRITING-STYLE.md` governs the prose inside a document and `DIAGRAM-STYLE.md` the diagrams;
+`writing.md` governs the prose inside a document and `diagrams.md` the diagrams;
 this file governs the containers: what goes into them, where content lives, how containers are named, and when they split.
 
 ## Boundary - declare what is in and what is out

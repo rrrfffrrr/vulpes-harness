@@ -9,12 +9,13 @@ A version without a Migration section needs no document rework.
 
 ### Added
 
-- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+- Authoring principle: structure follows the new `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - Acceptance criteria per operation in `operation-model` (BABOK v3 technique 10.1): the measurable pass/fail conditions stakeholders accept the operation by. The new `verification` schema realizes them as cross-layer scenarios.
 
 ### Changed
 
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
+- Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
 
 ### Migration (from 1.1.1)
 

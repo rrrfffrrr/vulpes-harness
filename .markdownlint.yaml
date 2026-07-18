@@ -2,10 +2,10 @@
 # Deliberate deviations are documented per rule; everything else is enforced.
 default: true
 
-# SemBr (openspec/WRITING-STYLE.md): one sentence per line - sentence length governs, not column width.
+# SemBr (openspec/rules/writing.md): one sentence per line - sentence length governs, not column width.
 MD013: false
 
-# Inline HTML is limited to <img> embeds (openspec/DIAGRAM-STYLE.md).
+# Inline HTML is limited to <img> embeds (openspec/rules/diagrams.md).
 # Template placeholders are backtick-wrapped code spans (`<name>`), so anything else this rule
 # flags is a real render hazard - GitHub strips unknown tags from output.
 MD033:

@@ -8,7 +8,7 @@ description: "Technical architecture design - no implementation/apply step. Buil
 #    What/Why (goals, requirements); architecture answers How (structure, technology, runtime,
 #    deployment). Do NOT restate the requirements as prose - reference them by id
 #    (G1.1.1, operation names) and link in traceability only.
-#  - NO CODE and NO implementation tasks. Diagrams follow openspec/DIAGRAM-STYLE.md; interface
+#  - NO CODE and NO implementation tasks. Diagrams follow openspec/rules/diagrams.md; interface
 #    signatures, schemas, and config-level detail are fine; source files are not.
 #  - Every view is a 42010 viewpoint: state which STAKEHOLDERS (roles) and CONCERNS it
 #    frames at the top, so each role can find its own view. The role-to-view map lives in
@@ -19,10 +19,10 @@ description: "Technical architecture design - no implementation/apply step. Buil
 #    data-view when there is persistent state/a database, ml-serving-view when there is
 #    model inference. If a concern is absent, OMIT the view - do not create an empty file.
 #  - Prose is plain and direct. Tech stack and version pins are explicit, not vague.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
-#  - Structure follows openspec/CONVENTIONS.md: boundary declaration, role separation,
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
 #    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview

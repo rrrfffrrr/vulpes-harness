@@ -22,10 +22,10 @@ description: "Acceptance & verification design - no implementation/apply step. T
 #    device coverage), never how to provision it - provisioning is an ops concern.
 #  - State each fact once: the test basis is declared in overview; scenarios reference
 #    it; all linking lives in traceability.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
-#  - Structure follows openspec/CONVENTIONS.md: boundary declaration, role separation,
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
 #    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview

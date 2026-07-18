@@ -90,7 +90,7 @@ Summarize: backend change name + location, which conditional artifacts were incl
 **Guardrails**
 
 - This is INTERFACE-LEVEL detail design, below architecture (structure/technology) and above implementation. NO code, NO tasks. Payload schemas, header tables, and sequence diagrams are fine; source files are not.
-- Diagrams follow `openspec/DIAGRAM-STYLE.md`.
+- Diagrams follow `openspec/rules/diagrams.md`.
 - Do NOT restate architecture - reference components, views, and ADRs by name/id.
 - State each fact once: shared rules live in conventions; endpoints/events/webhooks/jobs record only deviations.
 - Document externally observable behavior only: interface guarantees, not DB transaction boundaries. Observability conventions, SLOs, and capacity live in architecture crosscutting-concepts - do not duplicate them.
@@ -102,6 +102,6 @@ Summarize: backend change name + location, which conditional artifacts were incl
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/backend/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source architecture + dependency backend artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
-- **Structure:** follow `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.
