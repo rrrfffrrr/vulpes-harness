@@ -155,6 +155,11 @@ artifacts:
       relative to the write), and multi-component job runs (jobs.md) whose failure or
       restart behavior matters. Do not diagram single-component request handling - the
       middleware pipeline in components.md already covers it.
+      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
+      sequences.md becomes the index only (domain -> file -> one-line scope) and every
+      flow moves into a per-domain file sequences/<domain>.md - domains mirror the
+      requirements scenarios domains where they exist, system seams otherwise; never
+      split at a size cap.
     requires:
       - components
       - endpoints

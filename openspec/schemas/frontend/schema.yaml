@@ -176,6 +176,10 @@ artifacts:
       interactions, connection-dependent UI) - simple open/close needs no statechart.
       Every flow traces to the requirements operation or goal it realizes, by name.
       Diagrams per openspec/rules/diagrams.md.
+      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
+      flows.md becomes the index only (domain -> file -> one-line scope) and every
+      flow moves into a per-domain file flows/<domain>.md (a domain = a user journey
+      or feature area); never split at a size cap.
     requires:
       - screens
 

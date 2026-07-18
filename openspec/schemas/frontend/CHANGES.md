@@ -25,6 +25,7 @@ On every migration, re-check every version's SHOULD items - including versions a
 
 ### Changed
 
+- `flows` growth form (structure.md Growth): when `flows.md` outgrows one sitting it becomes the domain index and every flow moves into `flows/<domain>.md`; single-file stays valid until then.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
 
