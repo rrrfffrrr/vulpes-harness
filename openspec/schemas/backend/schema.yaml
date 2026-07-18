@@ -129,7 +129,7 @@ artifacts:
       Runtime sequences inside the backend boundary: middleware stages, components, and
       stores from components.md, including error/retry paths on critical flows. The
       client is at most a boundary lifeline. UML 2.5.1 Interaction semantics rendered
-      per DIAGRAM-STYLE. sequences/index.md is the domain index; each domain's
+      per openspec/rules/diagrams.md. sequences/index.md is the domain index; each domain's
       sequences/<domain>.md holds the flows.
     template: sequences.md
     instruction: |
