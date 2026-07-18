@@ -9,7 +9,7 @@ Design the data stores in detail - the store-level data design one level below t
 **Artifacts (always, in dependency order):**
 
 - overview.md (store inventory with engine + deciding ADR or OPEN, data domains, reader map)
-- model.md (store-agnostic logical detail: full field lists, integrity, retention/PII classes)
+- model.md (store-agnostic logical detail: ER diagram, full field lists, integrity, retention/PII classes)
 - stores.md (per-store design: native units, keys/indexes, access patterns, consistency/durability, retention mechanisms, engine-specific features)
 - migrations.md (migration policy, expand-contract for breaking changes, seed data, backfills)
 - traceability.md (object <-> entity <-> store <-> access-pattern matrix)
@@ -61,7 +61,7 @@ This pipeline answers HOW DATA IS STORED AND EVOLVED (units, keys, indexes, migr
 **Methodology guidance (apply when filling artifacts)**
 
 - **overview** - the store inventory with engine + deciding ADR (or OPEN + candidates), data domains by requirements object ids, reader map.
-- **model** - store-agnostic and full field level: logical types, constraints, nullability, relationships with cardinality, retention/PII class per entity citing the requirements invariant. No store-native types.
+- **model** - store-agnostic and full field level: ONE ER diagram (mermaid erDiagram, crow's foot) owning relationships and cardinality, then per entity logical types, constraints, nullability, integrity/cascade notes the diagram cannot carry, retention/PII class citing the requirements invariant. No store-native types.
 - **stores** - per store: entity -> native unit mapping with keys/partitions/indexes, the access patterns each structure serves (patterns justify structure - query-first for non-relational stores), consistency/durability settings as design decisions, retention mechanisms (cleanup via backend jobs by name), engine-specific features keyed to the engine ADR. OPEN engine -> portable-only block + what the pending decision blocks.
 - **migrations** - versioning/ordering, the compatibility window, expand-contract (expand -> dual-write -> backfill -> cut over -> contract) for breaking changes, seed data, backfills via backend jobs by name.
 - **traceability** - object/invariant <-> entity <-> store/unit <-> access pattern, plus a gaps section (entities with no store, structures serving no pattern, unenforced retention invariants, OPEN engines).
