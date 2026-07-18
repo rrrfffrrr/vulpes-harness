@@ -7,6 +7,19 @@ A version without a Migration section needs no document rework.
 `schema-version` records MUST items only; SHOULD items follow the Requirement keywords rule in `openspec/rules/writing.md` - deferrable, never dismissible.
 On every migration, re-check every version's SHOULD items - including versions at or below the artifact's `schema-version` - and apply any still due.
 
+## [1.2.1] - Unreleased
+
+### Changed
+
+- Version lockstep with the 1.2.1 harness release.
+- Migration chain rule: SHOULD items follow the new Requirement keywords rule in rules/writing.md (RFC 2119: deferrable, never dismissible) - re-checked on every migration, even for versions already passed.
+- Headings drop the `Subject - explainer` dash suffix (rules/writing.md Scannable structure): a qualifier leads, the explanation opens the section body; template titles follow.
+
+### Migration (from 1.2.0)
+
+- Replace the change folder's `README.md` and `README.ko.md` with fresh copies of the schema's `templates/README.md` and `templates/README.ko.md`.
+- Recommended (SHOULD): retitle headings that trail a `Subject - explainer` dash suffix - the qualifier leads, the explanation opens the section body (rules/writing.md).
+
 ## [1.2.0] - Unreleased
 
 ### Added
@@ -15,7 +28,6 @@ On every migration, re-check every version's SHOULD items - including versions a
 
 ### Changed
 
-- Migration chain rule: SHOULD items follow the new Requirement keywords rule in rules/writing.md (RFC 2119: deferrable, never dismissible) - re-checked on every migration, even for versions already passed.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema) - no changes to this schema's artifacts; no migration needed.
 - Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
 

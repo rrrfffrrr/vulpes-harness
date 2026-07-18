@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Frontend"
-version: "1.2.0"
+version: "1.2.1"
 description: Frontend (application UI) detail design from an architecture change - screens, components, states, flows, tokens, client data. No implementation.
 category: Workflow
 tags: [workflow, frontend, ui, detail-design, ifml, experimental]

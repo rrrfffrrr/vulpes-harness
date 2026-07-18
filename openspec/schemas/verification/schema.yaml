@@ -1,7 +1,7 @@
 name: verification
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Acceptance & verification design - no implementation/apply step. The thin verification layer over the requirements and detail-design changes: it owns ONLY what those designs cannot derive. Methodology: ISTQB test-basis vocabulary (the detail designs ARE the test basis; per-contract test cases are derived from them with ISO/IEC/IEEE 29119-4 techniques and are NOT written here), ISO/IEC/IEEE 29119-3:2021 dynamic-level documentation types (test data requirements, test environment requirements), Specification by Example (Adzic) with Gherkin scenarios for cross-layer acceptance journeys, and BABOK v3 10.1 acceptance criteria (owned by the requirements operation-model, realized here). Traceability closes the loop: every acceptance criterion is exercised by a scenario or listed as a gap."
 # Authoring principles (all artifacts):
 #  - THIN BY DESIGN. This schema owns scenario SELECTION and environment/data needs -

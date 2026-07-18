@@ -7,6 +7,26 @@ A version without a Migration section needs no document rework.
 `schema-version` records MUST items only; SHOULD items follow the Requirement keywords rule in `openspec/rules/writing.md` - deferrable, never dismissible.
 On every migration, re-check every version's SHOULD items - including versions at or below the artifact's `schema-version` - and apply any still due.
 
+## [1.2.1] - Unreleased
+
+### Changed
+
+- Version lockstep with the 1.2.1 harness release.
+- Migration chain rule: SHOULD items follow the new Requirement keywords rule in rules/writing.md (RFC 2119: deferrable, never dismissible) - re-checked on every migration, even for versions already passed.
+- Headings drop the `Subject - explainer` dash suffix (rules/writing.md Scannable structure): a qualifier leads, the explanation opens the section body; template titles follow.
+- `sequences` is domain-split like the requirements scenarios: `sequences/index.md` (domain index) + per-domain `sequences/<domain>.md` (was single-file `sequences.md`); domains mirror the requirements scenarios domains where they exist, system seams otherwise.
+
+### Fixed
+
+- Template comments named the pre-1.2.0 WRITING-STYLE file; they now name `rules/writing.md`.
+- The `sequences` description named the pre-1.2.0 DIAGRAM-STYLE file; it now names `openspec/rules/diagrams.md`.
+
+### Migration (from 1.2.0)
+
+- Convert `sequences.md` to the folder form: create `sequences/index.md` (Domain | File | Scope) and move every flow into its domain's `sequences/<domain>.md`.
+- Replace the change folder's `README.md` and `README.ko.md` with fresh copies of the schema's `templates/README.md` and `templates/README.ko.md`.
+- Recommended (SHOULD): retitle headings that trail a `Subject - explainer` dash suffix - the qualifier leads, the explanation opens the section body (rules/writing.md).
+
 ## [1.2.0] - Unreleased
 
 ### Added
@@ -19,7 +39,6 @@ On every migration, re-check every version's SHOULD items - including versions a
 
 ### Changed
 
-- `sequences` is domain-split like the requirements scenarios: `sequences/index.md` (domain index) + per-domain `sequences/<domain>.md` (was single-file `sequences.md`); domains mirror the requirements scenarios domains where they exist, system seams otherwise.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - `sequences` is scoped to the backend boundary: lifelines are components.md components plus stores/brokers, and the client is at most one boundary lifeline.
   Client-side behavior (screen logic, client cache, UI retries) moves to the frontend schema's `flows` "API call sequences" section - sequence diagrams are a per-schema expression tool, not a single-home artifact.
@@ -35,7 +54,6 @@ On every migration, re-check every version's SHOULD items - including versions a
 - Audit `sequences.md` against trigger closure: walk endpoints/events/jobs item by item, add flows for uncovered multi-component state-changing triggers (or mark them single-component), and list remaining holes in the traceability gaps.
 - Split the `conventions.md` error-catalog Retryable column into Retryable (`yes/no`) + Backoff.
 - If the system runs time-triggered or background work outside its request/event surface, author `jobs.md` from the new template and add those jobs to the `traceability.md` interface column; otherwise no further rework.
-- Convert `sequences.md` to the folder form: create `sequences/index.md` (Domain | File | Scope) and move every flow into its domain's `sequences/<domain>.md`.
 
 ## [1.1.1] - 2026-07-15
 

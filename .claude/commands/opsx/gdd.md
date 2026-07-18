@@ -1,6 +1,6 @@
 ---
 name: "OPSX: GDD"
-version: "1.2.0"
+version: "1.2.1"
 description: Author a Game Design Document - the cross-discipline blueprint of the intended game (overview, gameplay, mechanics, art, audio, UX, tech, monetization, production). No implementation.
 category: Workflow
 tags: [workflow, gdd, game-design, experimental]

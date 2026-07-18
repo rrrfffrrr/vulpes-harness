@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Architect"
-version: "1.2.0"
+version: "1.2.1"
 description: Technical architecture from a requirements change - 4+1 views + arc42 + ISO 42010 + ADRs. No implementation.
 category: Workflow
 tags: [workflow, architect, architecture, 4+1, arc42, adr, experimental]

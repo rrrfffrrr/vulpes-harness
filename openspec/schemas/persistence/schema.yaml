@@ -1,7 +1,7 @@
 name: persistence
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Persistence (data store) detail design - no implementation/apply step. Builds on an architecture change's data-view: the store-level data design one level below it. Methodology: ANSI/SPARC three-schema separation (the architecture data-view carries the conceptual/logical model; this schema owns the internal/physical level), polyglot persistence with per-store design (Sadalage & Fowler, NoSQL Distilled), access-pattern-driven modeling for non-relational stores, evolutionary database design for migrations (Ambler & Sadalage, Refactoring Databases - expand-contract), and a traceability matrix back to requirements objects/invariants and architecture components. Store blocks are keyed to the engine ADR: while an engine is undecided, its block stays at the engine-portable level and is marked OPEN. The logical model's relationships are expressed as an entity-relationship diagram (Chen 1976, crow's foot cardinality, mermaid erDiagram)."
 # Authoring principles (all artifacts):
 #  - This is STORE-LEVEL detail design, one level below the architecture data-view. The

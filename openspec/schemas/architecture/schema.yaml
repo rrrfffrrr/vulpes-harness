@@ -1,7 +1,7 @@
 name: architecture
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Technical architecture design - no implementation/apply step. Builds on a requirements change's KAOS/BABOK artifacts. Methodology: Kruchten 4+1 views (logical/process/physical + scenarios) framed as ISO/IEC 42010 viewpoints, structured with arc42 sections, decisions captured as Nygard ADRs, and a BABOK traceability matrix back to the requirements goals/operations. Core views are always required; role-specific views (process, data, ml-serving) are CONDITIONAL - recommended from the requirements artifacts and confirmed with the user, created only when the system actually has that concern."
 # Authoring principles (all artifacts):
 #  - This is SOLUTION/technical design, one level below requirements. Requirements answered

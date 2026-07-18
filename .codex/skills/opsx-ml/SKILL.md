@@ -1,6 +1,6 @@
 ---
 name: opsx-ml
-version: "1.2.0"
+version: "1.2.1"
 description: ML detail design from an architecture change with an ml-serving-view - per-model contracts, evaluation gates, lifecycle procedures. No implementation.
 ---
 
