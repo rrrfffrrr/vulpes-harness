@@ -3,17 +3,39 @@ schema-version: 1.2.0
 document-version: 0
 ---
 
-# Flows
+# Flows - domain index
 
-<!-- Navigation map covers EVERY screen in screens.md.
-     Statecharts only for non-trivial internal state.
-     Diagrams per openspec/rules/diagrams.md.
-     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
+<!-- This file lives at flows/index.md.
+     Index ONLY - every flow lives in a per-domain file (flows/<domain>.md).
+     A domain = a user journey or feature area.
+     Replace every `<...>` placeholder; repeat the row per domain.
      Delete guidance comments when done. -->
+
+| Domain | File | Scope |
+|--------|------|-------|
+| `<domain>` | `<domain>.md` | `<one-line scope>` |
+
+## Per-domain file skeleton
+
+<!-- Copy the block below (without the outer fence) into each flows/<domain>.md,
+     keep each section scoped to the domain, then delete this section from the index. -->
+
+````markdown
+---
+schema-version: 1.2.0
+document-version: 0
+---
+
+# Flows - `<domain>`
+
+<!-- The domain navigation maps jointly cover EVERY screen in screens.md;
+     cross-domain edges name the target screen and its domain.
+     Statecharts only for non-trivial internal state.
+     Diagrams per openspec/rules/diagrams.md. -->
 
 ## Navigation map
 
-<!-- Wireflow: screens as nodes, user events as labeled edges. -->
+<!-- Wireflow: this domain's screens as nodes, user events as labeled edges. -->
 ```mermaid
 flowchart LR
   %% Replace with real screens (nodes) and user events (edge labels).
@@ -27,7 +49,9 @@ flowchart LR
      schemes both fit the pattern column. The /.well-known association files that verify
      the domain (apple-app-site-association, assetlinks.json - RFC 8615) are a
      deployment/hosting concern - reference them, never specify them here.
-     Route names mirror the navigation map's nodes. -->
+     Route names mirror the navigation map's nodes.
+     The fallback policy is stated once across the flows artifact - state it in one
+     domain file and reference it from the others. -->
 - **Fallback policy** *(stated once)*: `<app-absent chain, e.g. open web page / store redirect / smart banner; deferred deep-link service if the architecture decided one (ADR ref)>`
 
 | Screen | Route pattern | Params | Guard | State restored | Back target | Fallback deviation |
@@ -57,7 +81,7 @@ flowchart LR
      Client perspective: lifelines are the screen (screens.md name), the client data
      layer (data.md, when present), and the backend surface; messages name endpoints
      verbatim. Backend-internal component interaction lives in the backend design's
-     sequences.md. Repeat the flow block per flow. -->
+     sequences/. Repeat the flow block per flow. -->
 
 ### `<Flow name>`
 
@@ -92,3 +116,4 @@ stateDiagram-v2
   [*] --> StateA
   StateA --> StateB: event [guard]
 ```
+````

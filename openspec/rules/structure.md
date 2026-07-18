@@ -23,7 +23,7 @@ this file governs the containers: what goes into them, where content lives, how 
 - Never stretch an overflowing container; split it.
   A cell that wants a list becomes repeated rows; a section that wants two subjects becomes two sections; a file that outgrows one sitting becomes a folder with one file per domain.
 - Split along the content's own seams - domain, system boundary, perspective, likely-to-change decision - never along processing order or an arbitrary size cap.
-- A tracked artifact (a declared `generates:` path) keeps its path through the split: the file becomes the index of a same-named folder (`sequences.md` + `sequences/<domain>.md`), and content lives only in the per-domain files.
+- An artifact that accumulates entries without bound (scenarios, sequences, flows) ships the split from the start: it declares `<name>/index.md`, the index holds pointers only, and every entry lives in a per-domain file `<name>/<domain>.md`.
 - Each split unit stays a coherent whole: small enough to reference on its own, large enough to read without hopping.
 
 ## Naming - the name states the role, the scope states the ownership

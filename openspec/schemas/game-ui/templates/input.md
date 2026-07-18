@@ -48,7 +48,7 @@ document-version: 0
 ## Menu navigation model
 
 - Cardinal navigation: `<wrap rules, initial focus convention>`
-- Back/cancel semantics: `<shared with flows.md modal conventions>`
+- Back/cancel semantics: `<shared with flows/ modal conventions>`
 
 ## Haptics
 

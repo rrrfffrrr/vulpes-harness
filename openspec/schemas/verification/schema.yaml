@@ -49,11 +49,12 @@ artifacts:
     requires: []
 
   - id: scenarios
-    generates: scenarios.md
+    generates: scenarios/index.md
     description: >-
       The cross-layer acceptance scenarios in Gherkin, grouped by requirements
       operation: each realizes named acceptance criteria and lists the design
-      surfaces it crosses by reference.
+      surfaces it crosses by reference. scenarios/index.md is the domain index;
+      each domain's scenarios/<domain>.md holds its scenarios.
     template: scenarios.md
     instruction: |
       Write the acceptance scenarios, grouped by requirements operation. Per
@@ -69,10 +70,9 @@ artifacts:
       proves one behavior.
       Every acceptance criterion in scope is realized by at least one scenario or
       recorded as a gap in traceability.
-      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
-      scenarios.md becomes the index only (domain -> file -> one-line scope) and every
-      scenario moves into a per-domain file scenarios/<domain>.md - domains mirror the
-      requirements scenarios domains; never split at a size cap.
+      scenarios/index.md is the INDEX only (domain -> file -> one-line scope); every
+      scenario lives in a per-domain file scenarios/<domain>.md - domains mirror the
+      requirements scenarios domains.
     requires:
       - overview
 

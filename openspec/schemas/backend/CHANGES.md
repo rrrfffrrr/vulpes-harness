@@ -19,7 +19,7 @@ On every migration, re-check every version's SHOULD items - including versions a
 
 ### Changed
 
-- `sequences` growth form (structure.md Growth): when `sequences.md` outgrows one sitting it becomes the domain index and every flow moves into `sequences/<domain>.md`; single-file stays valid until then.
+- `sequences` is domain-split like the requirements scenarios: `sequences/index.md` (domain index) + per-domain `sequences/<domain>.md` (was single-file `sequences.md`); domains mirror the requirements scenarios domains where they exist, system seams otherwise.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - `sequences` is scoped to the backend boundary: lifelines are components.md components plus stores/brokers, and the client is at most one boundary lifeline.
   Client-side behavior (screen logic, client cache, UI retries) moves to the frontend schema's `flows` "API call sequences" section - sequence diagrams are a per-schema expression tool, not a single-home artifact.
@@ -35,6 +35,7 @@ On every migration, re-check every version's SHOULD items - including versions a
 - Audit `sequences.md` against trigger closure: walk endpoints/events/jobs item by item, add flows for uncovered multi-component state-changing triggers (or mark them single-component), and list remaining holes in the traceability gaps.
 - Split the `conventions.md` error-catalog Retryable column into Retryable (`yes/no`) + Backoff.
 - If the system runs time-triggered or background work outside its request/event surface, author `jobs.md` from the new template and add those jobs to the `traceability.md` interface column; otherwise no further rework.
+- Convert `sequences.md` to the folder form: create `sequences/index.md` (Domain | File | Scope) and move every flow into its domain's `sequences/<domain>.md`.
 
 ## [1.1.1] - 2026-07-15
 
