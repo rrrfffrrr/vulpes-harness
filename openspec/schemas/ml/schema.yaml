@@ -1,7 +1,7 @@
 name: ml
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "ML (model) detail design - no implementation/apply step. CONDITIONAL as a whole: create it only when the architecture includes an ml-serving-view. Builds on that view: the per-model contracts one level below it, invariant to where inference runs (server, on-device, edge) - the serving API surface stays in the backend schema and on-device consumption in the frontend/game-ui schemas, all referencing these models by name. Methodology: Model Cards for Model Reporting (Mitchell et al., FAT* 2019) for per-model contracts, Datasheets for Datasets (Gebru et al., 2018/CACM 2021) for training data, The ML Test Score (Breck et al., IEEE Big Data 2017) for evaluation and monitoring rigor, and ISO/IEC 5338:2023 AI system life cycle processes for lifecycle vocabulary. The data artifact is CONDITIONAL - only when the project owns training/fine-tuning data."
 # Authoring principles (all artifacts):
 #  - This is MODEL-LEVEL detail design, one level below the architecture ml-serving-view.

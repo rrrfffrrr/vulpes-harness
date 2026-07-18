@@ -1,6 +1,6 @@
 ---
 name: opsx-persistence
-version: "1.2.0"
+version: "1.2.1"
 description: Persistence detail design from an architecture change - store-level data design, access patterns, migrations. No implementation.
 ---
 

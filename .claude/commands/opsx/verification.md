@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Verification"
-version: "1.2.0"
+version: "1.2.1"
 description: Acceptance & verification design over the requirements and detail designs - cross-layer scenarios, test data/environment requirements. No implementation.
 category: Workflow
 tags: [workflow, verification, acceptance, qa, detail-design, experimental]

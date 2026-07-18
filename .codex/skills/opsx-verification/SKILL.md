@@ -1,6 +1,6 @@
 ---
 name: opsx-verification
-version: "1.2.0"
+version: "1.2.1"
 description: Acceptance & verification design over the requirements and detail designs - cross-layer scenarios, test data/environment requirements. No implementation.
 ---
 

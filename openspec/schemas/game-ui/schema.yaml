@@ -1,7 +1,7 @@
 name: game-ui
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Game UI detail design for PC, console, mobile, and handheld games - no implementation/apply step. Builds on an architecture change and the GDD: the implementable game-UI specification one level below both. Methodology: the Fagerholt & Lorentzon diegesis/spatiality UI-layer design space (Chalmers 2009) with Andrews' diegetic/non-diegetic/spatial/meta terms (2010), Game UI Database screen-type vocabulary, SMPTE ST 2046-1 safe areas with platform legibility floors (Xbox Accessibility Guidelines 101, Steam Deck compatibility criteria), an action-based input model (Steam Input action sets/layers), Game Accessibility Guidelines + Xbox Accessibility Guidelines v3.2 accessibility, Pinelle 2008 game-usability heuristics as quality criteria, IGDA Localization SIG text-expansion budgets, and UML 2.5.1 state machines + wireflows shared with the rest of the harness. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE GAME-UI SPEC, one level below architecture and the GDD.

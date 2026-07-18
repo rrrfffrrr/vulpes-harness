@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Game UI"
-version: "1.2.0"
+version: "1.2.1"
 description: Game UI detail design from an architecture change and the GDD - screens, HUD, widgets, input, settings, flows. No implementation.
 category: Workflow
 tags: [workflow, game-ui, hud, detail-design, experimental]
