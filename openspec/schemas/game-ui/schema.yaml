@@ -193,6 +193,10 @@ artifacts:
       Animated transitions reference motion tokens by name when design-tokens exists.
       Every flow traces to the GDD section or requirements operation it realizes, by name.
       Diagrams per openspec/rules/diagrams.md.
+      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
+      flows.md becomes the index only (domain -> file -> one-line scope) and every
+      flow moves into a per-domain file flows/<domain>.md (a domain = a flow area:
+      boot, gameplay, meta menus, settings); never split at a size cap.
     requires:
       - screens
 

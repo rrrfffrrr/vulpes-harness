@@ -69,6 +69,10 @@ artifacts:
       proves one behavior.
       Every acceptance criterion in scope is realized by at least one scenario or
       recorded as a gap in traceability.
+      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
+      scenarios.md becomes the index only (domain -> file -> one-line scope) and every
+      scenario moves into a per-domain file scenarios/<domain>.md - domains mirror the
+      requirements scenarios domains; never split at a size cap.
     requires:
       - overview
 
