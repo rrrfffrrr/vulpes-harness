@@ -56,6 +56,9 @@ Breaking one of these breaks installed projects - check before committing.
 
 - Commit messages follow Conventional Commits 1.0.0 (conventionalcommits.org): `feat:` / `fix:` / `refactor:` / `docs:` / `chore:`.
 - Per-schema `CHANGES.md` follows Keep a Changelog with one deliberate deviation: the unreleased section is pre-named `## [x.y.z] - Unreleased` (not `## [Unreleased]`), because the version-lockstep invariant pre-assigns the release version across schema metadata and template frontmatter.
+- A CBT/review install is a versioning event: once a release-branch snapshot has been installed anywhere, later fixes on that release bump the PATCH version (new pre-named unreleased section, full version lockstep) instead of folding into the installed number.
+  Folding breaks migration: documents authored against the snapshot carry the same `schema-version` as the final schema, so the version comparison can never trigger the Migration sections those documents need.
+  (Learned in 1.2.0 CBT - its snapshot documents need the 1.2.0 Migration sections applied manually, by instruction, not by comparison.)
 
 ## Workflow: the work loop
 
