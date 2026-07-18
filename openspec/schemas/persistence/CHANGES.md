@@ -5,7 +5,7 @@ Versions follow the harness release version (`metadata.version` in `schema.yaml`
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
 
-## [1.2.0] - Unreleased
+## [1.2.0] - 2026-07-18
 
 ### Added
 
