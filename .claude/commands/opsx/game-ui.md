@@ -90,7 +90,7 @@ Summarize: game-ui change name + location, whether design-tokens and the subtitl
 **Guardrails**
 
 - This is the IMPLEMENTABLE GAME-UI SPEC, below architecture and the GDD and above implementation. NO code, ENGINE-AGNOSTIC: wire mockups, layer classifications, binding tables, and option tables are the medium; engine assets and source files are not.
-- Diagrams follow `openspec/DIAGRAM-STYLE.md`.
+- Diagrams follow `openspec/rules/diagrams.md`.
 - Do NOT restate the GDD, architecture, or requirements - reference them by name/id. The GDD ux-ui section keeps intent (flow map, key screens, input summary, onboarding); this schema holds the implementable detail. Application UIs (companion apps, web storefronts) belong to the frontend schema, not here.
 - State each fact once: system-wide vocabulary in overview, widget facts in widgets; screens and hud reference widgets by name and record only what is specific to them.
 - Every screen and HUD element carries its UI-layer classification and respects the overview safe-area and legibility policy - deviations are called out, never silent.
@@ -105,5 +105,6 @@ Summarize: game-ui change name + location, whether design-tokens and the subtitl
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/game-ui/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source architecture/GDD + dependency game-ui artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.

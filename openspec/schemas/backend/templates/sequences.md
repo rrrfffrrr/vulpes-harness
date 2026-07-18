@@ -12,7 +12,7 @@ document-version: 0
      Lifelines use components.md names plus stores/brokers; messages name endpoints/channels.
      The client is at most ONE boundary lifeline (initial request, final response);
      client-side behavior lives in the frontend design's flows (API call sequences).
-     UML Interaction semantics, rendered per openspec/DIAGRAM-STYLE.md.
+     UML Interaction semantics, rendered per openspec/rules/diagrams.md.
      Repeat the flow block per flow.
      Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->

@@ -22,11 +22,13 @@ description: "Backend detail design - no implementation/apply step. Builds on an
 #    system sends outbound callbacks; jobs when the system runs time-triggered or background
 #    work outside its request/event surface; configuration when behavior varies between
 #    deploys (env config, feature flags). If the concern is absent, OMIT the file.
-#  - Diagrams follow openspec/DIAGRAM-STYLE.md. Prose is plain and direct; concrete values
+#  - Diagrams follow openspec/rules/diagrams.md. Prose is plain and direct; concrete values
 #    over vague ranges.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview
     generates: overview.md
@@ -133,7 +135,7 @@ artifacts:
       Diagram the backend-internal runtime flows that involve more than one component -
       happy path AND the failure paths that change what a client observes (timeout,
       retry, partial failure, compensation).
-      Use sequence diagrams (mermaid, per openspec/DIAGRAM-STYLE.md) with UML
+      Use sequence diagrams (mermaid, per openspec/rules/diagrams.md) with UML
       Interaction semantics: lifelines are the components/middleware stages from
       components.md (same names) plus stores/brokers, messages are the endpoint calls
       or events by name. The client is at most ONE boundary lifeline sending the

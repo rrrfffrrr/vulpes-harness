@@ -7,11 +7,16 @@ A version without a Migration section needs no document rework.
 
 ## [1.2.0] - Unreleased
 
+### Added
+
+- Authoring principle: structure follows the new `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+
 ### Changed
 
 - `ml-serving-view` demarcation against the new `ml` detail schema: the view keeps the model lifecycle APPROACH (versioning/update/rollback intent); concrete procedures and release gates live in the ml detail schema when one exists. Existing documents stay valid at architecture altitude - no migration needed.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
-- Tables follow the new WRITING-STYLE one-value-per-cell rule (first normal form): `traceability` uses singular View/ADR columns with one row per link and a role-coverage row per role-view pair; the `logical-view` interface table splits Inputs -> Outputs into Inputs + Outputs with a singular Consumer column; the `overview` reader map splits Views to read into Start with + Then.
+- Tables follow the new rules/writing.md one-value-per-cell rule (first normal form): `traceability` uses singular View/ADR columns with one row per link and a role-coverage row per role-view pair; the `logical-view` interface table splits Inputs -> Outputs into Inputs + Outputs with a singular Consumer column; the `overview` reader map splits Views to read into Start with + Then.
+- Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
 
 ### Migration (from 1.1.1)
 

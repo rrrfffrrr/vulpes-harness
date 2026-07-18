@@ -9,7 +9,7 @@ description: "Frontend (application UI) detail design for web, mobile, and deskt
 #    each screen shows, how every component looks and behaves per state, and how the UI moves
 #    between screens on events. Reference architecture components and requirements by
 #    name/id - do not restate them.
-#  - NO CODE. Wire mockups (ascii/mermaid per openspec/DIAGRAM-STYLE.md), state tables,
+#  - NO CODE. Wire mockups (ascii/mermaid per openspec/rules/diagrams.md), state tables,
 #    token tables, and event->transition tables are the medium; source files are not.
 #  - State each fact once: system-wide vocabulary (breakpoint set, interaction-state enum,
 #    accessibility target) lives in overview; component facts live in components; screens
@@ -33,9 +33,11 @@ description: "Frontend (application UI) detail design for web, mobile, and deskt
 #    BUDGET) when the product ships more than one locale. If the concern is absent, OMIT
 #    the section.
 #  - Prose is plain and direct; concrete values (px, ms, copy text) over vague ranges.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview
     generates: overview.md
@@ -173,7 +175,7 @@ artifacts:
       ONLY for interactions with non-trivial internal state (multi-step editors, drag
       interactions, connection-dependent UI) - simple open/close needs no statechart.
       Every flow traces to the requirements operation or goal it realizes, by name.
-      Diagrams per openspec/DIAGRAM-STYLE.md.
+      Diagrams per openspec/rules/diagrams.md.
     requires:
       - screens
 

@@ -9,6 +9,7 @@ A version without a Migration section needs no document rework.
 
 ### Added
 
+- Authoring principle: structure follows the new `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - `jobs` conditional artifact - contracts for time-triggered/background work outside the request/event surface: trigger (POSIX cron vocabulary), run identity (Spring Batch JobInstance semantics), overlap policy (Kubernetes CronJob terms), restart/rerun (Jakarta Batch), input scope, effects vs event publish, failure, backfill.
 - `overview`'s conditional-artifacts table, the `sequences` critical-path list, and the `traceability` interface column now carry jobs.
 
@@ -19,8 +20,9 @@ A version without a Migration section needs no document rework.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - `sequences` is scoped to the backend boundary: lifelines are components.md components plus stores/brokers, and the client is at most one boundary lifeline.
   Client-side behavior (screen logic, client cache, UI retries) moves to the frontend schema's `flows` "API call sequences" section - sequence diagrams are a per-schema expression tool, not a single-home artifact.
-- Tables follow the new WRITING-STYLE one-value-per-cell rule (first normal form): `traceability` splits the overloaded interface column into Kind + Interface (the Interface cell holds only `METHOD /path` or a name - no bracketed annotations), Component is singular, and rows repeat per link; the `conventions` error catalog splits Retryable into Retryable + Backoff.
+- Tables follow the new rules/writing.md one-value-per-cell rule (first normal form): `traceability` splits the overloaded interface column into Kind + Interface (the Interface cell holds only `METHOD /path` or a name - no bracketed annotations), Component is singular, and rows repeat per link; the `conventions` error catalog splits Retryable into Retryable + Backoff.
 - `sequences` coverage is exhaustive by construction (trigger closure - event partitioning applied to the interface catalogs): every state-changing trigger (unsafe endpoint, consumed channel, job) is shown in a flow or explicitly single-component; every outbound effect appears in its trigger's flow; `traceability` gains the matching gap (multi-component state-changing interfaces no sequence shows).
+- Rules documents moved into `openspec/rules/`: prose rules are now `rules/writing.md` (was `openspec/WRITING-STYLE.md`), diagram rules `rules/diagrams.md` (was `openspec/DIAGRAM-STYLE.md`); schema and template references updated.
 
 ### Migration (from 1.1.1)
 

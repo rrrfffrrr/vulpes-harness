@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- Navigation map covers EVERY screen in screens.md.
      Statecharts only for non-trivial internal state.
-     Diagrams per openspec/DIAGRAM-STYLE.md.
+     Diagrams per openspec/rules/diagrams.md.
      Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 

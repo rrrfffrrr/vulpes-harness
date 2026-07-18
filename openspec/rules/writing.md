@@ -2,7 +2,7 @@
 
 Prose rules for every artifact the harness generates, written for two readers:
 a human scanning for an answer, and anyone (or any tool) searching the document.
-These rules govern prose; diagram rules live in `DIAGRAM-STYLE.md`.
+These rules govern prose; diagram rules live in `diagrams.md`.
 
 ## Line breaks (semantic line breaks)
 
