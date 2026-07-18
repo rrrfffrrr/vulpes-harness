@@ -4,7 +4,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow the harness release version (`metadata.version` in `schema.yaml`); templates' `schema-version` frontmatter mirrors it.
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
-`schema-version` records MUST items only; a SHOULD item stays due until its effect is in the document or a weighed skip is recorded ([RFC 2119](https://www.rfc-editor.org/rfc/rfc2119)).
+`schema-version` records MUST items only; SHOULD items follow the Requirement keywords rule in `openspec/rules/writing.md` - deferrable, never dismissible.
 On every migration, re-check every version's SHOULD items - including versions at or below the artifact's `schema-version` - and apply any still due.
 
 ## [1.2.0] - Unreleased
