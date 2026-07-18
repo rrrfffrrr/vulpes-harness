@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- Navigation map covers EVERY screen in screens.md.
      Statecharts only for non-trivial internal state.
-     Diagrams per openspec/DIAGRAM-STYLE.md.
+     Diagrams per openspec/rules/diagrams.md.
      Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
@@ -30,20 +30,52 @@ flowchart LR
      Route names mirror the navigation map's nodes. -->
 - **Fallback policy** *(stated once)*: `<app-absent chain, e.g. open web page / store redirect / smart banner; deferred deep-link service if the architecture decided one (ADR ref)>`
 
-| Screen | Route pattern | Params | Guard | Deep-link entry |
-|--------|---------------|--------|-------|-----------------|
-| `<screen>` | `<https://... or scheme:///path/:param>` | `<params>` | `<auth or ->` | `<state restored; where back leads; app-absent fallback for https links>` |
+| Screen | Route pattern | Params | Guard | State restored | Back target | Fallback deviation |
+|--------|---------------|--------|-------|----------------|-------------|--------------------|
+| `<screen>` | `<https://... or scheme:///path/:param>` | `<params>` | `<auth or ->` | `<state>` | `<screen>` | `<- (policy) or per-route chain>` |
 
 ## Event -> transition tables
 
 <!-- Per screen, for transitions the map alone cannot carry (guards, parameters).
-     IFML semantics. -->
+     IFML semantics.
+     Actions that call the backend name the endpoint verbatim (`METHOD /path`).
+     COVERAGE: enumerate ALL trigger kinds per screen, not only user input -
+     user events (each interactive component), arriving events (push, deep link,
+     connectivity), temporal events (timers, expiry, polling), data events (fetch
+     success/failure, revalidation, rollback). An unlisted trigger is a hole. -->
 
 ### `<Screen name>`
 
 | Event (on) | Guard | Action | Target |
 |------------|-------|--------|--------|
 | `<event (component)>` | `<condition or ->` | `<what happens>` | `<screen/state>` |
+
+## API call sequences
+
+<!-- Conditional section - only when a flow drives backend calls whose order or failure
+     behavior matters (multi-call submits, optimistic updates, retry-on-error).
+     Client perspective: lifelines are the screen (screens.md name), the client data
+     layer (data.md, when present), and the backend surface; messages name endpoints
+     verbatim. Backend-internal component interaction lives in the backend design's
+     sequences.md. Repeat the flow block per flow. -->
+
+### `<Flow name>`
+
+Realizes: `<METHOD /path>` - traces to: `<requirements operation name>`
+
+```mermaid
+sequenceDiagram
+  %% Replace participants (screen, data layer) and messages (endpoints, verbatim).
+  participant S as ScreenName
+  participant D as DataLayer
+  participant B as Backend
+  S->>D: user event
+  D->>B: METHOD /path
+  B-->>D: status
+  D-->>S: state update
+```
+
+**Failure path**: `<what fails, what the user sees, retry/rollback>`
 
 ## Statecharts
 

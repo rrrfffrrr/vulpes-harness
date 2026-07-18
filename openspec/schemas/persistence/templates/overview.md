@@ -14,9 +14,9 @@ document-version: 0
 ## Store inventory
 
 <!-- One row per store. Engine undecided or contested -> OPEN + candidates. -->
-| Store | Engine (version intent) | Decided by | Owning components (data-view) |
-|-------|-------------------------|------------|-------------------------------|
-| `<name>` | `<PostgreSQL 16 / OPEN: MySQL vs PostgreSQL>` | `<ADR-NNN / OPEN>` | `<component names>` |
+| Store | Engine (version intent) | Decided by | Owning component (data-view) |
+|-------|-------------------------|------------|------------------------------|
+| `<name>` | `<PostgreSQL 16 / OPEN: MySQL vs PostgreSQL>` | `<ADR-NNN / OPEN>` | `<component name>` |
 
 ## Data domains
 

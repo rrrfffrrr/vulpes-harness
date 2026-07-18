@@ -11,7 +11,7 @@ Design the application UI in detail - the implementable UI spec for web, mobile,
 - overview.md (platforms/stacks, breakpoint set, interaction-state enum, accessibility target, reader map)
 - components.md (shared components: anatomy, variants/sizes, per-state behavior, keyboard/assistive behavior, content rules)
 - screens.md (per screen: layout + breakpoint behavior, the five UI Stack states, data, forms with exact error copy, emitted event names)
-- flows.md (navigation map, event->transition tables, statecharts for complex interactions)
+- flows.md (navigation map, event->transition tables, API call sequences, statecharts for complex interactions)
 - traceability.md (requirement <-> screen <-> flow <-> component matrix)
 
 **Conditional artifacts (only when the product has that concern):**
@@ -73,7 +73,7 @@ This pipeline answers WHAT EACH SCREEN SHOWS AND HOW THE UI BEHAVES per state an
 - **components** - shared components only: anatomy (named parts), variants/sizes with concrete dimensions, behavior per applicable interaction state, pointer + keyboard behavior (APG pattern where one exists), microcopy rules (+ text budgets when a localization policy exists), RTL note only where mirroring matters.
 - **screens** - per screen: purpose + requirement trace, wire mockup + per-breakpoint behavior (reveal/divide/resize/reposition/swap), ALL five UI Stack states with copy, components by name, data with endpoint references when a backend change exists, error states mapped to the backend error catalog's problem types (retryable types keep a retry affordance), per-field validation + exact error copy, analytics event names only.
 - **data** - defaults once (freshness window, revalidate triggers, cache scope, client retry per backend retryability); per resource: source endpoints, displaying screens, invalidation map, optimistic updates + rollback; offline section only when the app works offline. Behavior, never a state library's API.
-- **flows** - the navigation map covers every screen; a routes section (pattern/params/guard/deep-link entry) when the platform addresses screens by URL; event->transition tables for guarded/parameterized transitions; statecharts ONLY for non-trivial internal state.
+- **flows** - the navigation map covers every screen; a routes section (pattern/params/guard/deep-link entry) when the platform addresses screens by URL; event->transition tables for guarded/parameterized transitions (backend calls name the endpoint verbatim), covering ALL four trigger kinds per screen - user events per interactive component, arriving events (push, deep link, connectivity), temporal events (timers, expiry, polling), data events (fetch success/failure, revalidation, rollback) - each in the map or a table, or marked screen-local; API call sequences (client-perspective: screen, data layer, endpoints verbatim, user-observable failure paths) when a flow drives backend calls whose order or failure behavior matters - backend internals stay in the backend design's sequences; statecharts ONLY for non-trivial internal state.
 - **traceability** - requirement <-> screen <-> flow <-> component (+ endpoint column when a backend change exists), plus a gaps section.
 
 **Output**
@@ -83,7 +83,7 @@ Summarize: frontend change name + location, which conditional artifacts were inc
 **Guardrails**
 
 - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), below architecture and above implementation. NO code. Wire mockups, state tables, and token tables are the medium; source files are not.
-- Diagrams follow `openspec/DIAGRAM-STYLE.md`.
+- Diagrams follow `openspec/rules/diagrams.md`.
 - Do NOT restate architecture or requirements - reference them by name/id.
 - State each fact once: system-wide vocabulary in overview, component facts in components; screens reference components by name and record only screen-specific behavior.
 - Every screen covers ALL five UI Stack states (ideal/empty/loading/partial/error) - never only the ideal state.
@@ -97,5 +97,6 @@ Summarize: frontend change name + location, which conditional artifacts were inc
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/frontend/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source architecture + dependency frontend artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.

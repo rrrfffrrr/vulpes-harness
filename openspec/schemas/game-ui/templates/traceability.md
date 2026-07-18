@@ -7,14 +7,15 @@ document-version: 0
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
      Include the Endpoint column only when a backend change exists.
+     One value per cell - repeat the row per additional widget/option/endpoint link (WRITING-STYLE tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 
 ## GDD / requirement <-> screen / hud element <-> flow <-> widget <-> input <-> settings
 
-| GDD section / requirement | Screen / hud element | Flow | Widgets | Input context | Settings options | Endpoint (backend) |
-|---------------------------|----------------------|------|---------|---------------|------------------|---------------------|
-| `<id / name>` | `<screen or element>` | `<flow>` | `<widgets>` | `<context>` | `<options>` | `<METHOD path or ->` |
+| GDD section / requirement | Screen / hud element | Flow | Widget | Input context | Settings option | Endpoint (backend) |
+|---------------------------|----------------------|------|--------|---------------|-----------------|---------------------|
+| `<id / name>` | `<screen or element>` | `<flow>` | `<widget>` | `<context>` | `<option>` | `<METHOD /path or ->` |
 
 ## Gaps
 

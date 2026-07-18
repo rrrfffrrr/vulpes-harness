@@ -14,7 +14,7 @@ Design the backend in detail - exact interface contracts, one level below archit
 - conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, long-running operations (LRO))
 - components.md (middleware pipeline in order + shared components, C4 Component level)
 - endpoints.md (per-endpoint contracts - deviations from conventions only)
-- sequences.md (runtime flows incl. client-observable failure paths)
+- sequences.md (backend-internal runtime flows incl. client-observable failure paths)
 - traceability.md (operation <-> interface <-> component <-> sequence matrix)
 
 **Conditional artifacts (only when the system has that concern):**
@@ -78,7 +78,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 - **conventions** - every shared rule ONCE, in BCP 14 keywords: scope taxonomy, versioning + compatibility promise + deprecation, RFC 9457 error catalog with retryability, pagination/filtering, 429 + Retry-After contract, idempotency replay semantics, ETag/If-Match, RFC 9111 cache classes, LRO pattern, naming.
 - **components** - the middleware pipeline as an ORDERED table (order is a contract) with per-stage rejection behavior; shared components at C4 Component altitude, deepening architecture logical-view names.
 - **endpoints** - per endpoint: purpose + requirements operation, scopes, parameter/body tables with constraints, per-status responses using the error catalog, guarantees ONLY as deviations. Field constraints are the contract. One example pair max.
-- **sequences** - multi-component flows only, happy + client-observable failure paths; lifelines = components.md names; show when events publish relative to writes.
+- **sequences** - backend-internal multi-component flows only, happy + client-observable failure paths; lifelines = components.md names plus stores/brokers, the client at most one boundary lifeline (client-side behavior belongs to the frontend flows); show when events publish relative to writes. COVERAGE: walk endpoints/events/jobs item by item - every state-changing trigger is in a flow or explicitly single-component, and every outbound effect (publish, webhook, notification) appears in its trigger's flow.
 - **events** - AsyncAPI channel structure, envelope stated once, delivery guarantees + consistency relation to the write path per channel.
 - **webhooks** - Standard Webhooks: event types, signing, retry schedule, receiver MUSTs.
 - **jobs** - defaults stated once (timezone, late start, overlap, retry); per job: trigger, run identity (identifying parameters), restart/rerun semantics, input scope, effects incl. write-vs-publish relation, failure, backfill.
@@ -92,7 +92,7 @@ Summarize: backend change name + location, which conditional artifacts were incl
 **Guardrails**
 
 - This is INTERFACE-LEVEL detail design, below architecture (structure/technology) and above implementation. NO code, NO tasks. Payload schemas, header tables, and sequence diagrams are fine; source files are not.
-- Diagrams follow `openspec/DIAGRAM-STYLE.md`.
+- Diagrams follow `openspec/rules/diagrams.md`.
 - Do NOT restate architecture - reference components, views, and ADRs by name/id.
 - State each fact once: shared rules live in conventions; endpoints/events/webhooks/jobs record only deviations.
 - Document externally observable behavior only: interface guarantees, not DB transaction boundaries. Observability conventions, SLOs, and capacity live in architecture crosscutting-concepts - do not duplicate them.
@@ -104,5 +104,6 @@ Summarize: backend change name + location, which conditional artifacts were incl
 - The folder README.md and README.ko.md are verbatim copies of `openspec/schemas/backend/templates/README.md` / `templates/README.ko.md` - never hand-write or edit them per project.
 - Read source architecture + dependency backend artifacts before creating the next one. Verify each file exists after writing.
 - **Artifact versioning:** every artifact keeps the frontmatter its template provides - `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter). First write leaves `document-version: 0`; every subsequent revision of that artifact increments it by 1 in the same edit. Never change `schema-version` by hand - it moves only when the artifact is reworked against a newer schema (see the schema's `CHANGES.md`).
-- **Prose style:** follow `openspec/WRITING-STYLE.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, ISO 8601 dates.
+- **Prose style:** follow `openspec/rules/writing.md` - semantic line breaks (one sentence per line), plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals, one-value-per-cell tables, ISO 8601 dates.
+- **Structure:** follow `openspec/rules/structure.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - **Migration:** when continuing an existing change, if any artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), first apply that schema's `CHANGES.md` Migration sections in order, oldest to newest, then continue. Migration REQUIRES a clean git working tree (commit or stash first) and lands as its own commit, labeled with the change name and target schema version in the project's own commit convention (default when it has none: `chore: migrate <change> to schema <x.y.z>`). Git is both the backup and the migration history: never create backup copies or a separate migration log. If the project is not a git repository, stop and ask the user how to back up first.

@@ -13,9 +13,10 @@ document-version: 0
 
 ## Business requirement -> goals
 
-<!-- Constraint/decision BRs that yield no leaf goal are traced here as rationale. -->
-| BR | Goal(s) | Kind | Rationale |
-|----|---------|------|-----------|
+<!-- Constraint/decision BRs that yield no leaf goal are traced here as rationale.
+     One value per cell - a BR deriving several goals repeats the row per goal (WRITING-STYLE tables rule). -->
+| BR | Goal | Kind | Rationale |
+|----|------|------|-----------|
 | `<BR1>` | `<goal id>` | derive | `<why>` |
 
 ## Goal -> leaf (Requirement / Expectation)
@@ -36,6 +37,13 @@ document-version: 0
 |------|-----------|------|
 | `<leaf id>` | `<Operation>` | satisfy |
 
+## Operation -> scenario
+
+<!-- One row per operation-scenario link; repeat rows. -->
+| Operation | Scenario | Domain file |
+|-----------|----------|-------------|
+| `<Operation>` | `<scenario name>` | `scenarios/<domain>.md` |
+
 ## Coverage notes
 
-- `<any BR not covered, any leaf without agent/operation, deferred items>`
+- `<any BR not covered, any leaf without agent/operation, operations no scenario exercises, deferred items>`

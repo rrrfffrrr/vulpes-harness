@@ -15,7 +15,7 @@ document-version: 0
 
 | Model | Task (one line) | Inference location (ml-serving-view) | Consumed by |
 |-------|-----------------|----------------------------------------|-------------|
-| `<name>` | `<classify / rank / generate / ...>` | `<server / on-device / edge>` | `<METHOD path / screen / job names>` |
+| `<name>` | `<classify / rank / generate / ...>` | `<server / on-device / edge>` | `<METHOD /path / screen / job name>` |
 
 ## Reader map
 

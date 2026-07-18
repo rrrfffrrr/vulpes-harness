@@ -10,8 +10,7 @@ There is no build or test suite; verification is `openspec schema validate` plus
 - `.claude/commands/opsx/` : Claude slash commands (require / gdd / architect / backend / frontend / persistence / ml / game-ui / verification)
 - `.codex/skills/opsx-*/` : Codex mirrors of the commands - bodies must stay identical below the frontmatter
 - `openspec/AGENTS.md`, `openspec/CLAUDE.md` : the agent guide INSTALLED into target projects (different audience from this file)
-- `openspec/DIAGRAM-STYLE.md` : diagram rules the schemas follow
-- `openspec/WRITING-STYLE.md` : prose rules for generated artifacts (reader-first, search-friendly)
+- `openspec/rules/` : rules for generated artifacts - `writing.md` (prose, reader-first), `diagrams.md`, `structure.md` (boundary, place, growth, naming, index)
 - `INSTALLATION.md` : copy-based install procedure
 - `README.md` / `README.ko.md` : user docs (change together)
 - `assets/workflow.svg`, `assets/workflow-game.svg` : pipeline diagrams (app / game)

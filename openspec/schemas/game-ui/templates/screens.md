@@ -21,7 +21,7 @@ document-version: 0
 ### Layout
 
 ```text
-<wire mockup of the nominal state (ascii or mermaid, per openspec/DIAGRAM-STYLE.md)>
+<wire mockup of the nominal state (ascii or mermaid, per openspec/rules/diagrams.md)>
 ```
 
 - Safe area: `<complies with overview policy - or the deviation, called out>`

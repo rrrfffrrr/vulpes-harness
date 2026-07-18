@@ -8,8 +8,7 @@
 - `changes/` - in-flight spec-driven changes AND the standing documents below
 - `changes/archive/` - completed changes and superseded standing documents
 - `schemas/` - vulpes-harness workflow schemas (requirements, gdd, architecture, backend, frontend, persistence, ml, game-ui, verification)
-- `DIAGRAM-STYLE.md` - diagram rules for the schemas
-- `WRITING-STYLE.md` - prose rules for artifact writing (reader-first, search-friendly)
+- `rules/` - rules for artifact writing: `writing.md` (prose, reader-first), `diagrams.md`, `structure.md` (boundary, place, growth, naming, index)
 
 ## Standing documents live in changes/
 
@@ -44,7 +43,7 @@ Treat these changes as current truth alongside `specs/`.
 - NEVER run `openspec archive` on a `*-requirements` / `*-gdd` / `*-architecture` change - archive promotes artifacts into `specs/`, which is wrong for these schemas.
   To supersede one, `mv` the folder into `changes/archive/`.
 - Update standing documents only via `/opsx:require`, `/opsx:gdd`, `/opsx:architect`, `/opsx:backend`, `/opsx:frontend`, `/opsx:persistence`, `/opsx:ml`, `/opsx:game-ui`, `/opsx:verification` - continue the existing singleton change; never create per-feature copies.
-- Artifact prose follows `WRITING-STYLE.md` (this folder): semantic line breaks, plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals.
+- Artifact prose follows `rules/writing.md`: semantic line breaks, plain language, front-loaded scannable structure, one term per concept, searchable headings and verbatim literals.
 - Every artifact in these changes starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write).
   Increment `document-version` by 1 whenever you revise an artifact; never change `schema-version` by hand (per-version schema changes: `schemas/<schema>/CHANGES.md`).
 - If an artifact's `schema-version` is older than the schema's `metadata.version` (no frontmatter = pre-1.1.0), apply the Migration sections in `schemas/<schema>/CHANGES.md` in order before editing further.

@@ -12,7 +12,7 @@ document-version: 0
      Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.
      Delete guidance comments when done. -->
 
-## BR1: `<topic>`  [Goal | Constraint]
+## [Goal | Constraint] BR1: `<topic>`
 >
 > "`<verbatim statement>`"
 > Decision: "`<verbatim decision or clarification, if any>`"

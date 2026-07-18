@@ -15,7 +15,7 @@ description: "Game Design Document - the cross-discipline blueprint of the inten
 #  - State each fact once. Each concern lives in exactly one section (a mechanic's rules in
 #    mechanics, its UI in ux-ui, its art in art-direction). The production artifact is the ONE
 #    sanctioned synthesis (feature list / scope) and may restate by reference - it is exempt.
-#  - Show, don't only tell. Diagrams/flowcharts/screen-flow/mockups follow openspec/DIAGRAM-STYLE.md.
+#  - Show, don't only tell. Diagrams/flowcharts/screen-flow/mockups follow openspec/rules/diagrams.md.
 #    Reference external mood boards, reference images, and prototypes by LINK
 #    - do not embed binaries or paste long asset dumps.
 #  - If a requirements change exists for this game (openspec/changes/*/requirements-document.md),
@@ -26,9 +26,11 @@ description: "Game Design Document - the cross-discipline blueprint of the inten
 #    absent, OMIT the file - do not create an empty placeholder.
 #  - Prose is plain and direct. Define a term once (in overview or where introduced) and use
 #    one form thereafter. Version pins and concrete numbers are explicit, not vague.
-#  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
+#  - Prose follows openspec/rules/writing.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/rules/structure.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview
     generates: overview.md

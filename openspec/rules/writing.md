@@ -2,7 +2,7 @@
 
 Prose rules for every artifact the harness generates, written for two readers:
 a human scanning for an answer, and anyone (or any tool) searching the document.
-These rules govern prose; diagram rules live in `DIAGRAM-STYLE.md`.
+These rules govern prose; diagram rules live in `diagrams.md`.
 
 ## Line breaks (semantic line breaks)
 
@@ -31,6 +31,15 @@ These rules govern prose; diagram rules live in `DIAGRAM-STYLE.md`.
   A heading names its subject; never a teaser.
 - Keep paragraphs short; more than ~5 sentences is usually two paragraphs.
 
+## Tables
+
+- A table is a relation: one column per kind of fact, one value per cell (first normal form).
+- Never pack a second fact into a cell with brackets or separators - `POST /orders`, not `POST /orders [paginated]`;
+  a second fact gets its own column.
+- A cell that wants a list marks a one-to-many link: repeat the row per value, as a database table would.
+- A plural column heading (`Component(s)`) signals a packed cell: name the column singular and repeat rows.
+- Keep cell text brief (ideally one line) and entries within a column parallel (all nouns, or all verb-first).
+
 ## Terminology
 
 - One term per concept, one concept per term - same spelling and capitalization everywhere.
@@ -57,7 +66,7 @@ These rules govern prose; diagram rules live in `DIAGRAM-STYLE.md`.
 
 ## References
 
-Verified 2026-07-15.
+Verified 2026-07-15; Tables entries verified 2026-07-18.
 
 - Semantic Line Breaks: <https://sembr.org/>
 - ISO 24495-1:2023 Plain language - governing principles: <https://www.iso.org/standard/78907.html>
@@ -66,3 +75,5 @@ Verified 2026-07-15.
 - NN/g reading research: [How Users Read on the Web, 1997](https://www.nngroup.com/articles/how-users-read-on-the-web/) - [F-shaped pattern, 2017 update](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) - [Inverted Pyramid, 2018](https://www.nngroup.com/articles/inverted-pyramid/) - [First 2 Words, 2009](https://www.nngroup.com/articles/first-2-words-a-signal-for-scanning/)
 - GOV.UK clear titles (search-term-first): <https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-titles/>
 - ISO 8601-1:2019 date/time format: <https://www.iso.org/standard/70907.html>
+- E. F. Codd, A Relational Model of Data for Large Shared Data Banks, CACM 13(6) 1970 (first normal form): <https://dl.acm.org/doi/10.1145/362384.362685>
+- Microsoft Writing Style Guide - Tables (brief, parallel cell entries): <https://learn.microsoft.com/en-us/style-guide/scannable-content/tables>

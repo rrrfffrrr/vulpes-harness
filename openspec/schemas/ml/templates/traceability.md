@@ -7,14 +7,15 @@ document-version: 0
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
      Include the dataset column only when data.md exists.
+     One value per cell - repeat the row per additional consumer/gate link (WRITING-STYLE tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 
 ## Operation <-> model <-> surfaces <-> gates
 
-| Requirements operation | Model | Consumed by | Release gates | Dataset |
-|------------------------|-------|-------------|---------------|---------|
-| `<operation name>` | `<model>` | `<METHOD path / screen / job>` | `<gate names>` | `<dataset or ->` |
+| Requirements operation | Model | Consumed by | Release gate | Dataset |
+|------------------------|-------|-------------|--------------|---------|
+| `<operation name>` | `<model>` | `<METHOD /path / screen / job>` | `<gate name>` | `<dataset or ->` |
 
 ## Gaps
 
