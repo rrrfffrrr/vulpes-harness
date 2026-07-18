@@ -9,6 +9,11 @@ On every migration, re-check every version's SHOULD items - including versions a
 
 ## [1.2.1] - Unreleased
 
+### Added
+
+- `model.md` field-table Constraints vocabulary gains `identifier`: it marks the entity's identifying field(s) (composite: mark each), distinguishing them from merely-unique fields.
+  Foreign-key fields stay out of the logical model - the relationship line owns the link, and its store realization (reference / embed / direction) lives in `stores.md`.
+
 ### Changed
 
 - Version lockstep with the 1.2.1 harness release.
@@ -22,6 +27,8 @@ On every migration, re-check every version's SHOULD items - including versions a
 ### Migration (from 1.2.0)
 
 - Replace the change folder's `README.md` and `README.ko.md` with fresh copies of the schema's `templates/README.md` and `templates/README.ko.md`.
+- In each entity's field table in `model.md`, add `identifier` to the Constraints of the identifying field(s) (composite: mark each).
+- Delete field rows whose only fact is a foreign-key link the relationship diagram already carries; if such a row held extra facts (e.g. nullability of the link), move them to the entity's Integrity & cascade bullet.
 - Recommended (SHOULD): retitle headings that trail a `Subject - explainer` dash suffix - the qualifier leads, the explanation opens the section body (rules/writing.md).
 
 ## [1.2.0] - 2026-07-18
