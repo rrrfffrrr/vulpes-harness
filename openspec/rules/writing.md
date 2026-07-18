@@ -8,6 +8,13 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 
 - Start each sentence on its own line.
   Break long sentences after clause boundaries (`,` `;` `:`).
+
+  ```markdown
+  The gateway rejects an expired token with `401 Unauthorized`.
+  If the client then retries with a refreshed token,
+  the gateway accepts the request and renews the session.
+  ```
+
 - A line break MUST NOT change the rendered output ([SemBr](https://sembr.org/)).
 - Multi-sentence list items break into continuation lines (indented under the item); blockquotes continue with a `>` line.
 - Where a literal line break is impossible - table cells, headings, inside a link or code span - keep to one short sentence or fragment instead.
