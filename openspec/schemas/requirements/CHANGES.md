@@ -4,6 +4,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow the harness release version (`metadata.version` in `schema.yaml`); templates' `schema-version` frontmatter mirrors it.
 To migrate documents, apply each version's Migration section in order, from the artifact's `schema-version` (no frontmatter = pre-1.1.0) up to the current version.
 A version without a Migration section needs no document rework.
+`schema-version` records MUST items only; a SHOULD item stays due until its effect is in the document or a weighed skip is recorded ([RFC 2119](https://www.rfc-editor.org/rfc/rfc2119)).
+On every migration, re-check every version's SHOULD items - including versions at or below the artifact's `schema-version` - and apply any still due.
 
 ## [1.2.0] - Unreleased
 
@@ -18,6 +20,7 @@ A version without a Migration section needs no document rework.
 
 ### Changed
 
+- Migration chain rule: a SHOULD item stays due until applied or a weighed skip is recorded (RFC 2119) - re-checked on every migration, even for versions already passed.
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - Tables follow the new rules/writing.md one-value-per-cell rule (first normal form): the `traceability` BR table uses a singular Goal column with one row per BR-goal link.
 - Classification markers lead the line: goal-model leaves start with `[Requirement]`/`[Expectation]` before the goal id, and business-requirements headings start with `[Goal]`/`[Constraint]` before the BR id - a marker never trails the free text.
@@ -52,7 +55,7 @@ A version without a Migration section needs no document rework.
 
 1. Add the version frontmatter to every artifact in the change: `schema-version: 1.1.0`, `document-version: 0`.
 2. Replace the change folder's `README.md` with a copy of the schema's `templates/README.md`, and copy `templates/README.ko.md` to `README.ko.md`.
-3. Recommended (SHOULD, not MUST): reflow artifact prose to `openspec/WRITING-STYLE.md`.
+3. Recommended (SHOULD, not MUST): reflow artifact prose to `openspec/WRITING-STYLE.md` (now `openspec/rules/writing.md`).
 
 ## [1.0.0] - 2026-06-22
 
