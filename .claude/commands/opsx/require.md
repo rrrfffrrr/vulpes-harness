@@ -61,8 +61,8 @@ This pipeline stops at requirements - there is **no implementation/apply step**.
 
 **Methodology guidance (apply when filling artifacts)**
 
-- **business-requirements** - preserve stakeholder statements VERBATIM (BR ids), classify [Goal]/[Constraint], keep conflicting statements both and mark the conflict. No analysis.
-- **goal-model** - KAOS/GORE: refine goals AND/OR to leaves (G1.2 = AND, G1.2.a = OR), keyword each (Achieve/Maintain/Avoid/Cease), mark leaves [Requirement]/[Expectation]; record domain properties, obstacles+resolutions, and resolve BR conflicts here.
+- **business-requirements** - preserve stakeholder statements VERBATIM (BR ids), classify [Goal]/[Constraint] (marker leads the heading, before the BR id), keep conflicting statements both and mark the conflict. No analysis.
+- **goal-model** - KAOS/GORE: refine goals AND/OR to leaves (G1.2 = AND, G1.2.a = OR), keyword each (Achieve/Maintain/Avoid/Cease), lead leaves with [Requirement]/[Expectation] (marker before the goal id, never trailing); record domain properties, obstacles+resolutions, and resolve BR conflicts here.
 - **object-model** - entities, relationships (cardinality lives here only), attributes, invariants (rules not expressible as cardinality), glossary. Conceptual, not a DB schema.
 - **responsibility-model** - assign every leaf goal to exactly one agent (software=requirement, environment=expectation); no orphans.
 - **operation-model** - operationalize leaves into operations (pre/post/trigger), plus scenarios (Given/When/Then); don't restate agent ownership (that's traceability).

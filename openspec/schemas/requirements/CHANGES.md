@@ -19,11 +19,13 @@ A version without a Migration section needs no document rework.
 
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema).
 - Tables follow the new WRITING-STYLE one-value-per-cell rule (first normal form): the `traceability` BR table uses a singular Goal column with one row per BR-goal link.
+- Classification markers lead the line: goal-model leaves start with `[Requirement]`/`[Expectation]` before the goal id, and business-requirements headings start with `[Goal]`/`[Constraint]` before the BR id - a marker never trails the free text.
 
 ### Migration (from 1.1.1)
 
 - Add an "Acceptance criteria" list (measurable, pass/fail) to every operation in `operation-model.md`; derive them from the operation's post-condition and the goal it operationalizes, and confirm them with stakeholders before relying on them.
 - Re-shape the `traceability.md` BR table: singular Goal column, one row per BR-goal link.
+- Move each goal-model leaf's trailing `[Requirement]`/`[Expectation]` marker to the front of the line (before the goal id), and each business-requirements heading's `[Goal]`/`[Constraint]` marker to the front (before the BR id).
 - Author `scenarios/index.md` (domain index) plus one `scenarios/<domain>.md` per top-level goal from the existing models; cover every operation with at least one scenario; add the operation -> scenario table to `traceability.md` and restate the flows in `requirements-document.md`'s Behavior section.
 
 ## [1.1.1] - 2026-07-15

@@ -36,7 +36,8 @@ artifacts:
       accompanying decisions/clarifications. Quote exact wording; do NOT paraphrase,
       summarize, reorder, or drop detail. Group by topic only for readability.
       Classify each as [Goal] (something the system should achieve) or [Constraint]
-      (a fixed choice such as a tech-stack or policy decision).
+      (a fixed choice such as a tech-stack or policy decision); the marker leads the
+      heading, before the BR id.
       No analysis or design here - just the raw statements and their kind.
       If two statements conflict, keep BOTH verbatim and mark them as a conflict to be
       resolved in the goal model (do not resolve it here).
@@ -58,8 +59,9 @@ artifacts:
       Phrase every goal with a KAOS pattern keyword - Achieve / Maintain / Avoid / Cease -
       so goals stay goals, not feature bullets.
       Each leaf is a REQUIREMENT (responsibility of the software-to-be) or an EXPECTATION
-      (responsibility of an environment agent). Having zero expectations is acceptable for
-      a software-only system - do not invent them.
+      (responsibility of an environment agent), marked with a leading
+      [Requirement]/[Expectation] before the goal id. Having zero expectations is
+      acceptable for a software-only system - do not invent them.
       Record DOMAIN PROPERTIES - descriptive facts about the environment assumed true
       regardless of the system (not things the system enforces; those are requirements or
       object-model invariants). Record OBSTACLES
