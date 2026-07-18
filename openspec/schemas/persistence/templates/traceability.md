@@ -6,14 +6,15 @@ document-version: 0
 # Persistence traceability matrix
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
+     One value per cell - repeat the row per additional store/pattern link (WRITING-STYLE tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 
 ## Object <-> entity <-> store <-> access pattern
 
-| Requirements object / invariant | Entity (model.md) | Store / native unit | Access patterns |
-|---------------------------------|-------------------|---------------------|-----------------|
-| `<id>` | `<entity>` | `<store: unit>` | `<patterns>` |
+| Requirements object / invariant | Entity (model.md) | Store / native unit | Access pattern |
+|---------------------------------|-------------------|---------------------|----------------|
+| `<id>` | `<entity>` | `<store: unit>` | `<pattern>` |
 
 ## Gaps
 

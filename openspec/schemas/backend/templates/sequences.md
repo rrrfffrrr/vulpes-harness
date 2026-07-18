@@ -5,8 +5,13 @@ document-version: 0
 
 # Runtime sequences
 
-<!-- Flows that cross more than one component - happy path AND client-observable failure paths.
-     Lifelines use components.md names; messages name endpoints/channels.
+<!-- Backend-internal flows that cross more than one component - happy path AND client-observable failure paths.
+     COVERAGE (trigger closure): walk endpoints.md / events.md / jobs.md item by item -
+     every state-changing trigger is shown in a flow or explicitly single-component;
+     every outbound effect (publish, webhook, notification) appears in its trigger's flow.
+     Lifelines use components.md names plus stores/brokers; messages name endpoints/channels.
+     The client is at most ONE boundary lifeline (initial request, final response);
+     client-side behavior lives in the frontend design's flows (API call sequences).
      UML Interaction semantics, rendered per openspec/DIAGRAM-STYLE.md.
      Repeat the flow block per flow.
      Replace every `<...>` placeholder, dropping the backticks unless the value is a literal.

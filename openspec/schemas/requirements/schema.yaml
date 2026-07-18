@@ -2,7 +2,7 @@ name: requirements
 version: 1
 metadata:
   version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
-description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
+description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, KAOS behavior scenarios, BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios) show which agent or schedule triggers which operations in what order, covered exhaustively via event partitioning (McMenamin & Palmer, Essential Systems Analysis) with Cockburn-style extension sweeps (Writing Effective Use Cases); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - Cover every distinct, relevant item exhaustively. Detail = breadth/depth of distinct
 #    content, NOT word count.
@@ -12,6 +12,8 @@ description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure.
 #    No other repetition, anywhere.
 #  - No meta/filler, no process commentary, no change-history (Git records change).
 #  - No cross-references between artifacts in prose; linking is the traceability matrix's job.
+#  - Operational scenarios reference goals, agents, and operations BY NAME - they never
+#    restate definitions, pre/post conditions, or acceptance criteria.
 #  - Semi-formal: natural language + structure (AND/OR, KAOS goal patterns, pre/post/trigger).
 #    No temporal-logic formalization.
 #  - Prose is plain and direct. Parentheses are only for a value/identifier/abbreviation
@@ -34,7 +36,8 @@ artifacts:
       accompanying decisions/clarifications. Quote exact wording; do NOT paraphrase,
       summarize, reorder, or drop detail. Group by topic only for readability.
       Classify each as [Goal] (something the system should achieve) or [Constraint]
-      (a fixed choice such as a tech-stack or policy decision).
+      (a fixed choice such as a tech-stack or policy decision); the marker leads the
+      heading, before the BR id.
       No analysis or design here - just the raw statements and their kind.
       If two statements conflict, keep BOTH verbatim and mark them as a conflict to be
       resolved in the goal model (do not resolve it here).
@@ -56,8 +59,9 @@ artifacts:
       Phrase every goal with a KAOS pattern keyword - Achieve / Maintain / Avoid / Cease -
       so goals stay goals, not feature bullets.
       Each leaf is a REQUIREMENT (responsibility of the software-to-be) or an EXPECTATION
-      (responsibility of an environment agent). Having zero expectations is acceptable for
-      a software-only system - do not invent them.
+      (responsibility of an environment agent), marked with a leading
+      [Requirement]/[Expectation] before the goal id. Having zero expectations is
+      acceptable for a software-only system - do not invent them.
       Record DOMAIN PROPERTIES - descriptive facts about the environment assumed true
       regardless of the system (not things the system enforces; those are requirements or
       object-model invariants). Record OBSTACLES
@@ -126,17 +130,66 @@ artifacts:
       - object-model
       - responsibility-model
 
+  - id: scenarios
+    generates: scenarios/index.md
+    description: >-
+      Domain-split operational scenarios (ISO/IEC/IEEE 29148 operational
+      scenarios information item; KAOS behavior scenarios; BABOK v3 sequence
+      diagrams).
+      scenarios/index.md is the domain index; each domain's
+      scenarios/<domain>.md holds the agent-interaction sequences -
+      which agent or schedule triggers which operations, in what order.
+    template: scenarios.md
+    instruction: |
+      Show HOW the system operates: which agent or schedule triggers which operations,
+      in what order. Derive DOMAINS from the goal model's top-level goals (one domain
+      per top-level goal unless the user names a different split).
+      scenarios/index.md is the INDEX only (domain -> file -> top-level goal);
+      every scenario lives in a per-domain file scenarios/<domain>.md -
+      never in the index.
+      Per domain file, one scenario per user-recognizable flow: the NAME; the TRIGGER -
+      the initiating agent (responsibility-model name) or the time/schedule condition;
+      a SEQUENCE DIAGRAM (mermaid, per openspec/DIAGRAM-STYLE.md) whose lifelines are
+      agents from the responsibility model (human roles, environment agents, the
+      software-to-be's agents) and whose messages are operations by name from the
+      operation model; and the OUTCOME - the satisfied goal, by name.
+      Add an obstacle variant where a resolved obstacle changes the interaction
+      (reference the obstacle id); skip obstacles the interaction cannot observe.
+      Requirements altitude: lifelines are AGENTS and messages are OPERATIONS - never
+      components, endpoints, screens, or any other solution vocabulary.
+      COVERAGE (event partitioning): scenarios start from the domain's EVENT LIST, not
+      from imagination. Per domain, enumerate every trigger the domain must answer:
+      (a) AGENT ACTIONS - walk the responsibility model agent by agent and list what
+      each does to the system; (b) TEMPORAL EVENTS - schedules and deadlines, plus the
+      probe "must the domain react when an expected event does NOT occur in time?";
+      (c) ENVIRONMENT EVENTS arriving (notification, callback, external data).
+      Record the event list as the table at the top of the domain file
+      (Event | Source | Scenario); every event maps to exactly one scenario or an
+      explicit "no response (why)" - an empty Scenario cell is a hole, not a choice.
+      Per scenario, sweep the steps Cockburn-style: at each step ask what can fail or
+      vary, and keep every variation an agent can observe (as the obstacle variant or
+      its own scenario).
+      Every operation appears in at least one scenario; a scheduled or background
+      operation gets a scenario showing its schedule trigger even when no human is in
+      the loop.
+    requires:
+      - goal-model
+      - responsibility-model
+      - operation-model
+
   - id: requirements-document
     generates: requirements-document.md
     description: >-
       The KAOS synthesized requirements document - the single final requirements artifact.
-      Consolidates the four models top-to-bottom: scope, business/strategic goals down to
+      Consolidates the models top-to-bottom: scope, business/strategic goals down to
       requirements, glossary, responsibilities, behavior.
     template: requirements-document.md
     instruction: |
-      Consolidate the four models into one coherent, self-contained document, ordered top
+      Consolidate the models into one coherent, self-contained document, ordered top
       (scope and business/strategic goals) to bottom (requirements). Sections: Scope; Goals
-      (goal specification); Glossary; Responsibilities; Behavior. Scope is NOT copied from a
+      (goal specification); Glossary; Responsibilities; Behavior - the operations AND,
+      per domain, the operational-scenario flows (who or what schedule triggers which
+      operations, in what order) restated in prose. Scope is NOT copied from a
       model - synthesize it from the top-level goals and the requirement-vs-expectation
       (software-vs-environment) split: what the system does (in) and what is left to the
       environment or deferred (out). The other four sections restate model content; this is
@@ -147,24 +200,31 @@ artifacts:
       - object-model
       - responsibility-model
       - operation-model
+      - scenarios
 
   - id: traceability
     generates: traceability.md
     description: >-
       BABOK requirements traceability matrix (RTM) - a separate artifact linking
-      business requirements <-> goals <-> leaf requirements/expectations <-> agents <-> operations.
+      business requirements <-> goals <-> leaf requirements/expectations <-> agents
+      <-> operations <-> operational scenarios.
     template: traceability.md
     instruction: |
       Produce a bidirectional traceability matrix linking: raw business requirements <->
-      goals <-> leaf requirements/expectations <-> responsible agents <-> operations. Draw the
-      ids and edges from the models (business-requirements, goal, responsibility, operation),
+      goals <-> leaf requirements/expectations <-> responsible agents <-> operations <->
+      operational scenarios. Draw the
+      ids and edges from the models (business-requirements, goal, responsibility, operation,
+      scenarios),
       not only the synthesis document. The Kind column uses: derive (decomposition),
       satisfy, depends. Give a rationale (its own column) on the business-requirement->goal
       links, including constraint/decision BRs that yield no leaf goal; the other tables use
-      Kind only. All linking lives HERE, never in the model prose.
+      Kind only. The operation -> scenario table lists the domain file per link; its
+      coverage note flags operations no scenario exercises.
+      All linking lives HERE, never in the model prose.
     requires:
       - business-requirements
       - goal-model
       - responsibility-model
       - operation-model
+      - scenarios
       - requirements-document

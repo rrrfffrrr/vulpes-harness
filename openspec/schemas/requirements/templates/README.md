@@ -8,7 +8,7 @@ No implementation (apply) step.
 
 Every artifact starts with frontmatter: `schema-version` (semver of the schema it was authored against) and `document-version` (revision counter - 0 at first write, +1 per revision).
 
-**Start here ->** [`requirements-document.md`](requirements-document.md) - the single synthesis of the four models.
+**Start here ->** [`requirements-document.md`](requirements-document.md) - the single synthesis of the models.
 For a quick read, the synthesis is enough.
 
 **Reading order (for humans):**
@@ -19,7 +19,8 @@ For a quick read, the synthesis is enough.
 4. `object-model.md` - entities, relationships, invariants (INV)
 5. `responsibility-model.md` - the agent responsible for each leaf goal
 6. `operation-model.md` - operations (pre/post/trigger), scenarios
-7. `traceability.md` - BR <-> goal <-> leaf <-> agent <-> operation matrix
+7. `scenarios/index.md` - domain index; `scenarios/<domain>.md` - who or what schedule triggers which operations, as sequences
+8. `traceability.md` - BR <-> goal <-> leaf <-> agent <-> operation <-> scenario matrix
 
 ---
 
