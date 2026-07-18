@@ -7,6 +7,9 @@ document-version: 0
 
 <!-- Store-agnostic. Deepens architecture data-view entities to full field level.
      Logical types only - store-native mapping lives in stores.md.
+     Mark the entity's identifying field(s) `identifier` in Constraints (composite: mark each).
+     No foreign-key fields - the relationship line owns the link;
+     its store realization (reference / embed / direction) lives in stores.md.
      Replace every `<...>` placeholder and example row; repeat the entity block per entity.
      Delete guidance comments when done. -->
 
@@ -29,7 +32,7 @@ erDiagram
 
 | Field | Type (logical) | Constraints | Null |
 |-------|----------------|-------------|------|
-| `<field>` | `<string / integer / decimal / timestamp / ...>` | `<unique / range / format / ...>` | `<yes/no>` |
+| `<field>` | `<string / integer / decimal / timestamp / ...>` | `<identifier / unique / range / format / ...>` | `<yes/no>` |
 
 - **Integrity & cascade**: `<rules the diagram cannot carry - cascade intent, conditional integrity>`
 - **Retention & PII**: `<class + retention window>` (invariant `<id>`)

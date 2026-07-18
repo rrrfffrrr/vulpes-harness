@@ -70,8 +70,10 @@ artifacts:
       diagram ONLY - split it per data domain from the overview when one view no
       longer reads.
       Per ENTITY (data-view name, tracing to the requirements object by id): the FIELD
-      table - every field with its logical type, constraints (required/unique/range/
-      format), and nullability; INTEGRITY & CASCADE - only the rules the diagram
+      table - every field with its logical type, constraints (identifier/required/
+      unique/range/format), and nullability - mark the identifying field(s)
+      `identifier` (composite: mark each), and keep foreign-key fields out: the
+      relationship line owns the link, its store realization lives in stores; INTEGRITY & CASCADE - only the rules the diagram
       cannot carry (cascade intent, conditional integrity); and RETENTION & PII -
       the classification and
       retention window per entity or field group, citing the requirements invariant it
