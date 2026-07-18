@@ -26,7 +26,7 @@ On every migration, re-check every version's SHOULD items - including versions a
 - Replace the change folder's `README.md` and `README.ko.md` with fresh copies of the schema's `templates/README.md` and `templates/README.ko.md`.
 - Recommended (SHOULD): retitle headings that trail a `Subject - explainer` dash suffix - the qualifier leads, the explanation opens the section body (rules/writing.md).
 
-## [1.2.0] - Unreleased
+## [1.2.0] - 2026-07-18
 
 ### Added
 
