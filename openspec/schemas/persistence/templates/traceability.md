@@ -6,7 +6,7 @@ document-version: 0
 # Persistence traceability matrix
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
-     One value per cell - repeat the row per additional store/pattern link (WRITING-STYLE tables rule).
+     One value per cell - repeat the row per additional store/pattern link (rules/writing.md tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 

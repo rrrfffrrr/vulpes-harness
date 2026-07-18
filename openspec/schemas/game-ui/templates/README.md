@@ -1,4 +1,4 @@
-# How to read these artifacts - game-ui
+# How to read the game-ui artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 
@@ -16,7 +16,7 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 3. `widgets.md` - shared widgets: anatomy, variants, states, per-device input behavior, text budgets
 4. `screens.md` - per screen & modal: layout + safe area, screen states, data, per-device operation
 5. `hud.md` - per HUD element: UI layer, placement, visibility, customization hooks, feedback channels *(+ subtitles section if present)*
-6. `flows.md` - boot flow, navigation map, modal & pause conventions, statecharts; splits into `flows/<domain>.md` when it outgrows one sitting (the file stays as the index)
+6. `flows/index.md` - domain index; `flows/<domain>.md` - boot flow, navigation map, modal & pause conventions, statecharts
 7. `input.md` - per-context action sets, bindings per device, glyphs, remapping, hot-swap
 8. `settings.md` - the option inventory: type/range/default/effect/accessibility mapping per option
 9. `traceability.md` - GDD/requirement <-> screen/hud <-> flow <-> widget <-> input <-> settings matrix

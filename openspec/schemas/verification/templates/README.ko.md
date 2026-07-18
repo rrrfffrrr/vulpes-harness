@@ -1,4 +1,4 @@
-# 아티팩트 읽는 법 - verification
+# verification 아티팩트 읽는 법
 
 [English](README.md) | [한국어](README.ko.md)
 
@@ -12,7 +12,7 @@
 **읽기 순서:**
 
 1. `overview.md` - test basis / 범위 / 범위 밖 / 독자 맵
-2. `scenarios.md` - 계층 횡단 인수 시나리오(Gherkin), 요구사항 오퍼레이션별 그룹; 한 번에 읽기 어려울 만큼 커지면 `scenarios/<domain>.md`로 분리(원 파일은 인덱스로 남음)
+2. `scenarios/index.md` - 도메인 인덱스; `scenarios/<도메인>.md` - 계층 횡단 인수 시나리오(Gherkin), 요구사항 오퍼레이션별 그룹
 3. `environment.md` - 테스트 데이터 요구사항 + 테스트 환경 요구사항
 4. `traceability.md` - 기준 <-> 시나리오 <-> 표면 <-> 환경 매트릭스와 갭
 

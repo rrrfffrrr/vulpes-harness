@@ -71,7 +71,7 @@ document-version: 0
 | Reader | Start with | Then |
 |--------|-----------|------|
 | UI designer | widgets.md | screens.md, hud.md |
-| UI engineer | screens.md | input.md, flows.md |
+| UI engineer | screens.md | input.md, flows/index.md |
 | QA | settings.md | traceability.md |
 
 ## Conditional artifacts included

@@ -1,4 +1,4 @@
-# How to read these artifacts - frontend
+# How to read the frontend artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 
@@ -16,7 +16,7 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 3. `components.md` - shared components: anatomy, variants, states, behavior, content rules
 4. `screens.md` - per screen: layout + breakpoint behavior, the five UI Stack states, data, forms with exact error copy
 5. `data.md` - client data layer: freshness, invalidation map, optimistic updates, offline *(if present)*
-6. `flows.md` - navigation map, event->transition tables, API call sequences, statecharts for complex interactions; splits into `flows/<domain>.md` when it outgrows one sitting (the file stays as the index)
+6. `flows/index.md` - domain index; `flows/<domain>.md` - navigation map, event->transition tables, API call sequences, statecharts for complex interactions
 7. `traceability.md` - requirement <-> screen <-> flow <-> component matrix
 
 *design-tokens exists only when styling is token-based; data only when the app manages client-side server-state.*

@@ -16,7 +16,7 @@ Write mermaid against the official syntax pages (<https://mermaid.js.org/> - e.g
 > No generous margins: at a fixed display width (`width=NN%`), large margins render the content smaller and **hurt legibility**.
 > Content bounds differ per diagram, so viewBox/size/layout **cannot be common** (per-diagram).
 
-## Fixed - shared style tokens (identical across all diagrams)
+## Shared style tokens (identical across all diagrams)
 
 - **Root**: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" width="W" height="H" font-family="sans-serif" font-size="13">`
 - **Arrow marker**:
@@ -39,7 +39,7 @@ Write mermaid against the official syntax pages (<https://mermaid.js.org/> - e.g
 - **ASCII over Unicode symbols** in text (`->` `/` etc.).
 - **Embed**: `<img alt="..." src="x.svg" width="NN%">`.
 
-## Variable - per-diagram (cannot be common)
+## Per-diagram settings (cannot be common)
 
 - `viewBox` W x H, overall orientation (horizontal/vertical)
 - node positions/sizes, label positions, distribution shape (e.g. a hub: trunk -> bus -> branches)

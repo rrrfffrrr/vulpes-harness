@@ -133,11 +133,12 @@ artifacts:
       - components
 
   - id: flows
-    generates: flows.md
+    generates: flows/index.md
     description: >-
       How the UI moves: the wireflow navigation map, event->transition tables (IFML
       semantics), client-perspective API call sequences where a flow drives backend
-      calls, and statecharts for complex stateful interactions.
+      calls, and statecharts for complex stateful interactions. flows/index.md is
+      the domain index; each domain's flows/<domain>.md holds its flows.
     template: flows.md
     instruction: |
       Specify navigation and interaction flow. Cover: the NAVIGATION MAP - a wireflow
@@ -176,10 +177,9 @@ artifacts:
       interactions, connection-dependent UI) - simple open/close needs no statechart.
       Every flow traces to the requirements operation or goal it realizes, by name.
       Diagrams per openspec/rules/diagrams.md.
-      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
-      flows.md becomes the index only (domain -> file -> one-line scope) and every
-      flow moves into a per-domain file flows/<domain>.md (a domain = a user journey
-      or feature area); never split at a size cap.
+      flows/index.md is the INDEX only (domain -> file -> one-line scope); every
+      flow lives in a per-domain file flows/<domain>.md (a domain = a user journey
+      or feature area); cross-domain edges name the target screen and its domain.
     requires:
       - screens
 

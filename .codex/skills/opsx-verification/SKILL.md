@@ -9,7 +9,7 @@ Design the acceptance layer - the thin verification design over the requirements
 **Artifacts (always, in dependency order):**
 
 - overview.md (test basis, scope, explicit out-of-scope, reader map)
-- scenarios.md (cross-layer acceptance scenarios in Gherkin, grouped by requirements operation)
+- scenarios/index.md (domain index) + scenarios/\<domain\>.md (cross-layer acceptance scenarios in Gherkin, grouped by requirements operation)
 - environment.md (test data requirements + test environment requirements)
 - traceability.md (criterion <-> scenario <-> surfaces <-> environment matrix, with gaps)
 
@@ -60,7 +60,7 @@ This pipeline answers WHICH JOURNEYS PROVE THE ACCEPTANCE CRITERIA and what they
 **Methodology guidance (apply when filling artifacts)**
 
 - **overview** - the test basis by change/artifact name (ISTQB sense), operations in scope, explicit out-of-scope (derived test cases, performance/SLO), reader map.
-- **scenarios** - grouped by requirements operation; per scenario: the acceptance criteria realized, the surfaces crossed by reference (endpoints METHOD+path, screens, flows, jobs, stores), Gherkin with 3-5 steps and concrete example values. Prefer journeys crossing layers; include the failure journeys acceptance depends on (frontend error mapping). One scenario proves one behavior.
+- **scenarios** - scenarios/index.md is the domain INDEX only (domains mirror the requirements scenarios domains); per-domain scenarios/\<domain\>.md holds its scenarios, grouped by requirements operation; per scenario: the acceptance criteria realized, the surfaces crossed by reference (endpoints METHOD+path, screens, flows, jobs, stores), Gherkin with 3-5 steps and concrete example values. Prefer journeys crossing layers; include the failure journeys acceptance depends on (frontend error mapping). One scenario proves one behavior.
 - **environment** - test data requirements (data sets/states per scenario group, synthetic-data policy honoring persistence PII classes, reset/isolation) and test environment requirements (real vs stubbed, device/platform coverage by reference, clock control for jobs/retention). WHAT, never how to provision.
 - **traceability** - criterion <-> scenario <-> surfaces <-> environment, plus gaps (unrealized criteria, anchorless scenarios, untested seams).
 

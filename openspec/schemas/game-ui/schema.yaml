@@ -173,10 +173,11 @@ artifacts:
       - widgets
 
   - id: flows
-    generates: flows.md
+    generates: flows/index.md
     description: >-
       How the game UI moves: boot flow, the wireflow navigation map covering every screen,
       pause/modal stack conventions, and statecharts for complex stateful interactions.
+      flows/index.md is the domain index; each domain's flows/<domain>.md holds its flows.
     template: flows.md
     instruction: |
       Specify navigation and interaction flow. Cover: the BOOT FLOW - from launch through
@@ -193,10 +194,10 @@ artifacts:
       Animated transitions reference motion tokens by name when design-tokens exists.
       Every flow traces to the GDD section or requirements operation it realizes, by name.
       Diagrams per openspec/rules/diagrams.md.
-      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
-      flows.md becomes the index only (domain -> file -> one-line scope) and every
-      flow moves into a per-domain file flows/<domain>.md (a domain = a flow area:
-      boot, gameplay, meta menus, settings); never split at a size cap.
+      flows/index.md is the INDEX only (domain -> file -> one-line scope); every
+      flow lives in a per-domain file flows/<domain>.md (a domain = a flow area:
+      boot, gameplay, meta menus, settings); cross-domain edges name the target
+      screen and its domain.
     requires:
       - screens
 
@@ -220,7 +221,7 @@ artifacts:
       appears, disconnects, or changes mid-session (pause on disconnect, glyph refresh,
       reconnection prompt); MENU NAVIGATION MODEL - how gamepad focus moves through menus
       (cardinal navigation, wrap rules, initial focus, back/cancel semantics shared with
-      flows.md); and HAPTICS - per-context haptic feedback and its settings hooks, when
+      flows/); and HAPTICS - per-context haptic feedback and its settings hooks, when
       the platform has them.
       Sensitivity/curve options, toggle-vs-hold alternatives, and assist options appear
       here by settings.md option name - defined once in settings.
@@ -248,7 +249,7 @@ artifacts:
       subtitle options, contrast/colorblind variants, motion reduction, full input
       remapping, separate volume channels, and the game's difficulty/assist options
       (assist design is game-specific - trace it to the GDD, don't invent it here).
-      Note FIRST-BOOT exposure: which options the first-boot setup (flows.md) surfaces
+      Note FIRST-BOOT exposure: which options the first-boot setup (flows/) surfaces
       before play begins.
     requires:
       - hud

@@ -33,6 +33,6 @@ document-version: 0
 
 | Reader | Start with | Then |
 |--------|-----------|------|
-| QA | scenarios.md | environment.md |
-| Engineer | scenarios.md | traceability.md |
-| Product | traceability.md | scenarios.md |
+| QA | scenarios/index.md | environment.md |
+| Engineer | scenarios/index.md | traceability.md |
+| Product | traceability.md | scenarios/index.md |

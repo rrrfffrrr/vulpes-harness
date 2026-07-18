@@ -1,4 +1,4 @@
-# How to read these artifacts - backend
+# How to read the backend artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 
@@ -15,7 +15,7 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 2. `conventions.md` - the shared rulebook: auth scopes, versioning, error catalog, pagination, rate limits, idempotency, concurrency, caching, long-running operations
 3. `components.md` - middleware pipeline (ordered) + shared components
 4. `endpoints.md` - per-endpoint contracts (deviations from conventions only)
-5. `sequences.md` - backend-internal runtime flows, including client-observable failure paths; splits into `sequences/<domain>.md` when it outgrows one sitting (the file stays as the index)
+5. `sequences/index.md` - domain index; `sequences/<domain>.md` - backend-internal runtime flows, including client-observable failure paths
 6. `events.md` - channels / messages / delivery guarantees *(if present)*
 7. `webhooks.md` - outbound callbacks *(if present)*
 8. `jobs.md` - scheduled/background job contracts *(if present)*

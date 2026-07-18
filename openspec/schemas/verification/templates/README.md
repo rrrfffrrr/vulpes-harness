@@ -1,4 +1,4 @@
-# How to read these artifacts - verification
+# How to read the verification artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 
@@ -12,7 +12,7 @@ Every artifact starts with frontmatter: `schema-version` (semver of the schema i
 **Reading order:**
 
 1. `overview.md` - test basis / scope / out of scope / reader map
-2. `scenarios.md` - cross-layer acceptance scenarios (Gherkin), grouped by requirements operation; splits into `scenarios/<domain>.md` when it outgrows one sitting (the file stays as the index)
+2. `scenarios/index.md` - domain index; `scenarios/<domain>.md` - cross-layer acceptance scenarios (Gherkin), grouped by requirements operation
 3. `environment.md` - test data requirements + test environment requirements
 4. `traceability.md` - criterion <-> scenario <-> surfaces <-> environment matrix, with gaps
 

@@ -124,12 +124,13 @@ artifacts:
       - components
 
   - id: sequences
-    generates: sequences.md
+    generates: sequences/index.md
     description: >-
       Runtime sequences inside the backend boundary: middleware stages, components, and
       stores from components.md, including error/retry paths on critical flows. The
       client is at most a boundary lifeline. UML 2.5.1 Interaction semantics rendered
-      per DIAGRAM-STYLE.
+      per openspec/rules/diagrams.md. sequences/index.md is the domain index; each domain's
+      sequences/<domain>.md holds the flows.
     template: sequences.md
     instruction: |
       Diagram the backend-internal runtime flows that involve more than one component -
@@ -155,11 +156,9 @@ artifacts:
       relative to the write), and multi-component job runs (jobs.md) whose failure or
       restart behavior matters. Do not diagram single-component request handling - the
       middleware pipeline in components.md already covers it.
-      GROWTH (openspec/rules/structure.md): when this file outgrows one sitting,
-      sequences.md becomes the index only (domain -> file -> one-line scope) and every
-      flow moves into a per-domain file sequences/<domain>.md - domains mirror the
-      requirements scenarios domains where they exist, system seams otherwise; never
-      split at a size cap.
+      sequences/index.md is the INDEX only (domain -> file -> one-line scope); every
+      flow lives in a per-domain file sequences/<domain>.md - domains mirror the
+      requirements scenarios domains where they exist, system seams otherwise.
     requires:
       - components
       - endpoints
@@ -200,7 +199,7 @@ artifacts:
       consumer verifies, timeout, the retry/backoff schedule, and what makes delivery
       count as failed/exhausted; and RECEIVER REQUIREMENTS - what a consumer endpoint MUST
       do (status to return, verification steps, idempotent handling of redelivery).
-      Reference the events.md channel or sequences.md flow that triggers each type where
+      Reference the events.md channel or sequences/<domain>.md flow that triggers each type where
       one exists. Omit this artifact entirely if the system sends no outbound callbacks.
     requires:
       - conventions

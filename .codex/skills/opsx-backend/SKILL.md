@@ -12,7 +12,7 @@ Design the backend in detail - exact interface contracts, one level below archit
 - conventions.md (the shared rulebook: auth scopes, versioning/deprecation, error catalog, pagination, rate-limit contract, idempotency, concurrency, caching, long-running operations (LRO))
 - components.md (middleware pipeline in order + shared components, C4 Component level)
 - endpoints.md (per-endpoint contracts - deviations from conventions only)
-- sequences.md (backend-internal runtime flows incl. client-observable failure paths)
+- sequences/index.md (domain index) + sequences/\<domain\>.md (backend-internal runtime flows incl. client-observable failure paths)
 - traceability.md (operation <-> interface <-> component <-> sequence matrix)
 
 **Conditional artifacts (only when the system has that concern):**
@@ -76,7 +76,7 @@ This pipeline answers the EXACT CONTRACTS (what each endpoint/channel accepts, r
 - **conventions** - every shared rule ONCE, in BCP 14 keywords: scope taxonomy, versioning + compatibility promise + deprecation, RFC 9457 error catalog with retryability, pagination/filtering, 429 + Retry-After contract, idempotency replay semantics, ETag/If-Match, RFC 9111 cache classes, LRO pattern, naming.
 - **components** - the middleware pipeline as an ORDERED table (order is a contract) with per-stage rejection behavior; shared components at C4 Component altitude, deepening architecture logical-view names.
 - **endpoints** - per endpoint: purpose + requirements operation, scopes, parameter/body tables with constraints, per-status responses using the error catalog, guarantees ONLY as deviations. Field constraints are the contract. One example pair max.
-- **sequences** - backend-internal multi-component flows only, happy + client-observable failure paths; lifelines = components.md names plus stores/brokers, the client at most one boundary lifeline (client-side behavior belongs to the frontend flows); show when events publish relative to writes. COVERAGE: walk endpoints/events/jobs item by item - every state-changing trigger is in a flow or explicitly single-component, and every outbound effect (publish, webhook, notification) appears in its trigger's flow.
+- **sequences** - sequences/index.md is the domain INDEX only (domains mirror the requirements scenarios domains where they exist, system seams otherwise); per-domain sequences/\<domain\>.md holds backend-internal multi-component flows only, happy + client-observable failure paths; lifelines = components.md names plus stores/brokers, the client at most one boundary lifeline (client-side behavior belongs to the frontend flows); show when events publish relative to writes. COVERAGE: walk endpoints/events/jobs item by item - every state-changing trigger is in a flow or explicitly single-component, and every outbound effect (publish, webhook, notification) appears in its trigger's flow.
 - **events** - AsyncAPI channel structure, envelope stated once, delivery guarantees + consistency relation to the write path per channel.
 - **webhooks** - Standard Webhooks: event types, signing, retry schedule, receiver MUSTs.
 - **jobs** - defaults stated once (timezone, late start, overlap, retry); per job: trigger, run identity (identifying parameters), restart/rerun semantics, input scope, effects incl. write-vs-publish relation, failure, backfill.
