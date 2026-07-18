@@ -9,6 +9,7 @@ A version without a Migration section needs no document rework.
 
 ### Added
 
+- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - `jobs` conditional artifact - contracts for time-triggered/background work outside the request/event surface: trigger (POSIX cron vocabulary), run identity (Spring Batch JobInstance semantics), overlap policy (Kubernetes CronJob terms), restart/rerun (Jakarta Batch), input scope, effects vs event publish, failure, backfill.
 - `overview`'s conditional-artifacts table, the `sequences` critical-path list, and the `traceability` interface column now carry jobs.
 

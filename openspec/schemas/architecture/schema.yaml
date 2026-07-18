@@ -22,6 +22,8 @@ description: "Technical architecture design - no implementation/apply step. Buil
 #  - Prose follows openspec/WRITING-STYLE.md (reader-first): semantic line breaks, plain
 #    language, front-loaded scannable structure, one term per concept, searchable headings
 #    and verbatim literals, ISO 8601 dates.
+#  - Structure follows openspec/CONVENTIONS.md: boundary declaration, role separation,
+#    split on growth, scoped naming, index hubs.
 artifacts:
   - id: overview
     generates: overview.md

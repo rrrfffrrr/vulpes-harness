@@ -7,6 +7,10 @@ A version without a Migration section needs no document rework.
 
 ## [1.2.0] - Unreleased
 
+### Added
+
+- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+
 ### Changed
 
 - Version lockstep with the 1.2.0 harness release (adds the game-ui schema) - no changes to this schema's artifacts; no migration needed.

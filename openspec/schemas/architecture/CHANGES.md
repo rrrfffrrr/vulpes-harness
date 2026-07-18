@@ -7,6 +7,10 @@ A version without a Migration section needs no document rework.
 
 ## [1.2.0] - Unreleased
 
+### Added
+
+- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
+
 ### Changed
 
 - `ml-serving-view` demarcation against the new `ml` detail schema: the view keeps the model lifecycle APPROACH (versioning/update/rollback intent); concrete procedures and release gates live in the ml detail schema when one exists. Existing documents stay valid at architecture altitude - no migration needed.

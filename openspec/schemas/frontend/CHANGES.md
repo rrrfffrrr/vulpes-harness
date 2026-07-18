@@ -9,6 +9,7 @@ A version without a Migration section needs no document rework.
 
 ### Added
 
+- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - `data` conditional artifact - the client data layer: per-resource freshness (RFC 9111 + RFC 5861 stale-while-revalidate vocabulary), the invalidation map, optimistic updates with rollback, client retry aligned to the backend error catalog's retryability, and an offline section (stale-if-error reads, write queueing, reconnect reconciliation).
 - Error mapping in `screens`: when a backend change exists, the error state maps each applicable problem type from the backend conventions error catalog to screen behavior and exact copy; retryable types keep a retry affordance.
 - `overview`'s conditional-artifacts table and the `traceability` gaps list now carry data.

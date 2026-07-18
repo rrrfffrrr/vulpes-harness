@@ -9,5 +9,6 @@ A version without a Migration section needs no document rework.
 
 ### Added
 
+- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - Initial release: acceptance & verification design schema (ISTQB test-basis vocabulary, ISO/IEC/IEEE 29119-3 dynamic-level documentation types, Specification by Example + Gherkin, BABOK 10.1 acceptance criteria realized from the requirements operation-model) with 4 artifacts - `overview` -> `scenarios` -> `environment` -> `traceability`.
 - Thin-by-design rule: per-contract test cases are derived from the detail-design contracts (29119-4 techniques) and are never written in these artifacts.

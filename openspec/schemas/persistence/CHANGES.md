@@ -9,5 +9,6 @@ A version without a Migration section needs no document rework.
 
 ### Added
 
+- Authoring principle: structure follows the new `openspec/CONVENTIONS.md` - boundary declaration, role separation, split on growth, scoped naming, index hubs.
 - Initial release: persistence (data store) detail-design schema (ANSI/SPARC internal level below the architecture data-view, polyglot persistence per Sadalage & Fowler, access-pattern-driven store design, evolutionary database design per Ambler & Sadalage) with 5 artifacts - `overview` -> `model` -> `stores` -> `migrations` -> `traceability`.
 - Store blocks are keyed to the engine ADR; an undecided or contested engine is recorded as OPEN with candidates, and the block stays engine-portable.
