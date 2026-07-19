@@ -1,6 +1,8 @@
-<!-- vulpes-harness 1.2.0 - the "# vulpes-harness" section is harness-managed: update it by re-copying from the harness repo. Every other h1 section (e.g. "# Project") is project-owned; the harness never touches those. -->
+<!-- The "# vulpes-harness" section is harness-managed: update it by re-copying from the harness repo. Every other h1 section (e.g. "# Project") is project-owned; the harness never touches those. -->
 
 # vulpes-harness
+
+Harness version 1.2.1 - a mismatch with `metadata.version` in `schemas/*/schema.yaml` means an update skipped this section; re-copy it.
 
 ## Index
 
