@@ -63,7 +63,7 @@ This pipeline answers WHICH JOURNEYS PROVE THE ACCEPTANCE CRITERIA and what they
 
 - **overview** - the test basis by change/artifact name (ISTQB sense), operations in scope, explicit out-of-scope (derived test cases, performance/SLO), reader map.
 - **scenarios** - scenarios/index.md is the domain INDEX only (domains mirror the requirements scenarios domains); per-domain scenarios/\<domain\>.md holds its scenarios, grouped by requirements operation; per scenario: the acceptance criteria realized, the surfaces crossed by reference (endpoints METHOD+path, screens, flows, jobs, stores), Gherkin with 3-5 steps and concrete example values. Prefer journeys crossing layers; include the failure journeys acceptance depends on (frontend error mapping). One scenario proves one behavior.
-- **environment** - test data requirements (data sets/states per scenario group, synthetic-data policy honoring persistence PII classes, reset/isolation) and test environment requirements (real vs stubbed, device/platform coverage by reference, clock control for jobs/retention). WHAT, never how to provision.
+- **environment** - test data requirements (per scenario group: data set, state, resetting - one fact per column; synthetic-data policy honoring persistence PII classes) and test environment requirements (real components, stubbed systems, device/platform coverage by reference, clock control for jobs/retention). WHAT, never how to provision.
 - **traceability** - criterion <-> scenario <-> surfaces <-> environment, plus gaps (unrealized criteria, anchorless scenarios, untested seams).
 
 **Output**
