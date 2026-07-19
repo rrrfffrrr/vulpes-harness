@@ -85,14 +85,16 @@ artifacts:
     template: environment.md
     instruction: |
       State what the scenarios need to run, in two parts (29119-3 documentation
-      types, merged). TEST DATA REQUIREMENTS: the data sets and states scenarios
-      assume (by scenario group), how personal data is handled (honoring the
-      persistence retention/PII classes when a persistence change exists - synthetic
-      data over copied production data), and reset/isolation needs between runs.
-      TEST ENVIRONMENT REQUIREMENTS: the components and stores that must be real vs
-      stubbed (external systems, webhook receivers, payment providers), the device/
-      platform coverage the frontend or game-ui overview implies, and any clock/time
-      control scenarios need (for jobs and retention).
+      types, merged). TEST DATA REQUIREMENTS, one fact per column (rules/writing.md
+      Tables): per scenario group, the data set (records that must exist), the
+      state (condition those records are in), and resetting (how runs stay
+      isolated); plus how personal data is handled (honoring the persistence
+      retention/PII classes when a persistence change exists - synthetic data over
+      copied production data).
+      TEST ENVIRONMENT REQUIREMENTS: the components and stores that must be real,
+      the external systems stubbed (payment providers, webhook receivers), the
+      device/platform coverage the frontend or game-ui overview implies, and any
+      clock/time control scenarios need (for jobs and retention).
       State WHAT is needed, never how to provision it.
     requires:
       - scenarios
