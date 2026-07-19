@@ -15,6 +15,7 @@ On every migration, re-check every version's SHOULD items - including versions a
 - Migration chain rule: SHOULD items follow the new Requirement keywords rule in rules/writing.md (RFC 2119: deferrable, never dismissible) - re-checked on every migration, even for versions already passed.
 - Headings drop the `Subject - explainer` dash suffix (rules/writing.md Scannable structure): a qualifier leads, the explanation opens the section body; template titles follow.
 - `sequences` is domain-split like the requirements scenarios: `sequences/index.md` (domain index) + per-domain `sequences/<domain>.md` (was single-file `sequences.md`); domains mirror the requirements scenarios domains where they exist, system seams otherwise.
+- `components` ownership-boundaries table: the `Notes` column is named for the fact it holds - `Invariants guarded` (rules/writing.md Tables: one column per kind of fact).
 
 ### Fixed
 
@@ -24,6 +25,7 @@ On every migration, re-check every version's SHOULD items - including versions a
 ### Migration (from 1.2.0)
 
 - Convert `sequences.md` to the folder form: create `sequences/index.md` (Domain | File | Scope) and move every flow into its domain's `sequences/<domain>.md`.
+- In `components.md`, rename the ownership-boundaries table's `Notes` column to `Invariants guarded`, moving any non-invariant note into prose.
 - Replace the change folder's `README.md` and `README.ko.md` with fresh copies of the schema's `templates/README.md` and `templates/README.ko.md`.
 - Recommended (SHOULD): retitle headings that trail a `Subject - explainer` dash suffix - the qualifier leads, the explanation opens the section body (rules/writing.md).
 
