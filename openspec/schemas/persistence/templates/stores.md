@@ -15,15 +15,15 @@ document-version: 0
 
 ### Units
 
-| Entity (model.md) | Native unit | Keys / partition | Indexes |
-|-------------------|-------------|------------------|---------|
-| `<entity>` | `<table / collection / keyspace / measurement>` | `<PK, partition/shard key>` | `<indexes>` |
+| Entity (model.md) | Native unit | Key | Partition | Indexes |
+|-------------------|-------------|-----|-----------|---------|
+| `<entity>` | `<table / collection / keyspace / measurement>` | `<PK>` | `<partition/shard key, or ->` | `<indexes>` |
 
 ### Access patterns
 
-| Pattern | Served by | Notes |
-|---------|-----------|-------|
-| `<query/lookup>` | `<unit + index>` | `<cardinality/frequency notes>` |
+| Pattern | Served by | Cardinality | Frequency |
+|---------|-----------|-------------|-----------|
+| `<query/lookup>` | `<unit + index>` | `<result size>` | `<how often it runs>` |
 
 ### Consistency & durability
 
