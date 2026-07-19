@@ -44,6 +44,9 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 - A table is a relation: one column per kind of fact, one value per cell (first normal form).
 - Never pack a second fact into a cell with brackets or separators - `POST /orders`, not `POST /orders [paginated]`;
   a second fact gets its own column.
+- Judge packing by category, not separators: a column is a category of fact, and a value is atomic relative to its category.
+  A compound identifier (`G1.2`, `POST /orders`, `operation - criterion`) is one value in one category;
+  a column splits only when two categories share it (`Data set / state`).
 - A cell that wants a list marks a one-to-many link: repeat the row per value, as a database table would.
 - A plural column heading (`Component(s)`) signals a packed cell: name the column singular and repeat rows.
 - Keep cell text brief (ideally one line) and entries within a column parallel (all nouns, or all verb-first).
