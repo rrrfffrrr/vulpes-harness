@@ -1,7 +1,7 @@
 name: verification
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Acceptance & verification design - no implementation/apply step. The thin verification layer over the requirements and detail-design changes: it owns ONLY what those designs cannot derive. Methodology: ISTQB test-basis vocabulary (the detail designs ARE the test basis; per-contract test cases are derived from them with ISO/IEC/IEEE 29119-4 techniques and are NOT written here), ISO/IEC/IEEE 29119-3:2021 dynamic-level documentation types (test data requirements, test environment requirements), Specification by Example (Adzic) with Gherkin scenarios for cross-layer acceptance journeys, and BABOK v3 10.1 acceptance criteria (owned by the requirements operation-model, realized here). Traceability closes the loop: every acceptance criterion is exercised by a scenario or listed as a gap."
 # Authoring principles (all artifacts):
 #  - THIN BY DESIGN. This schema owns scenario SELECTION and environment/data needs -
@@ -49,11 +49,12 @@ artifacts:
     requires: []
 
   - id: scenarios
-    generates: scenarios.md
+    generates: scenarios/index.md
     description: >-
       The cross-layer acceptance scenarios in Gherkin, grouped by requirements
       operation: each realizes named acceptance criteria and lists the design
-      surfaces it crosses by reference.
+      surfaces it crosses by reference. scenarios/index.md is the domain index;
+      each domain's scenarios/<domain>.md holds its scenarios.
     template: scenarios.md
     instruction: |
       Write the acceptance scenarios, grouped by requirements operation. Per
@@ -69,6 +70,9 @@ artifacts:
       proves one behavior.
       Every acceptance criterion in scope is realized by at least one scenario or
       recorded as a gap in traceability.
+      scenarios/index.md is the INDEX only (domain -> file -> one-line scope); every
+      scenario lives in a per-domain file scenarios/<domain>.md - domains mirror the
+      requirements scenarios domains.
     requires:
       - overview
 
@@ -81,14 +85,16 @@ artifacts:
     template: environment.md
     instruction: |
       State what the scenarios need to run, in two parts (29119-3 documentation
-      types, merged). TEST DATA REQUIREMENTS: the data sets and states scenarios
-      assume (by scenario group), how personal data is handled (honoring the
-      persistence retention/PII classes when a persistence change exists - synthetic
-      data over copied production data), and reset/isolation needs between runs.
-      TEST ENVIRONMENT REQUIREMENTS: the components and stores that must be real vs
-      stubbed (external systems, webhook receivers, payment providers), the device/
-      platform coverage the frontend or game-ui overview implies, and any clock/time
-      control scenarios need (for jobs and retention).
+      types, merged). TEST DATA REQUIREMENTS, one fact per column (rules/writing.md
+      Tables): per scenario group, the data set (records that must exist), the
+      state (condition those records are in), and resetting (how runs stay
+      isolated); plus how personal data is handled (honoring the persistence
+      retention/PII classes when a persistence change exists - synthetic data over
+      copied production data).
+      TEST ENVIRONMENT REQUIREMENTS: the components and stores that must be real,
+      the external systems stubbed (payment providers, webhook receivers), the
+      device/platform coverage the frontend or game-ui overview implies, and any
+      clock/time control scenarios need (for jobs and retention).
       State WHAT is needed, never how to provision it.
     requires:
       - scenarios

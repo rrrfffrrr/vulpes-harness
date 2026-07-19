@@ -1,7 +1,7 @@
 name: persistence
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Persistence (data store) detail design - no implementation/apply step. Builds on an architecture change's data-view: the store-level data design one level below it. Methodology: ANSI/SPARC three-schema separation (the architecture data-view carries the conceptual/logical model; this schema owns the internal/physical level), polyglot persistence with per-store design (Sadalage & Fowler, NoSQL Distilled), access-pattern-driven modeling for non-relational stores, evolutionary database design for migrations (Ambler & Sadalage, Refactoring Databases - expand-contract), and a traceability matrix back to requirements objects/invariants and architecture components. Store blocks are keyed to the engine ADR: while an engine is undecided, its block stays at the engine-portable level and is marked OPEN. The logical model's relationships are expressed as an entity-relationship diagram (Chen 1976, crow's foot cardinality, mermaid erDiagram)."
 # Authoring principles (all artifacts):
 #  - This is STORE-LEVEL detail design, one level below the architecture data-view. The
@@ -70,8 +70,10 @@ artifacts:
       diagram ONLY - split it per data domain from the overview when one view no
       longer reads.
       Per ENTITY (data-view name, tracing to the requirements object by id): the FIELD
-      table - every field with its logical type, constraints (required/unique/range/
-      format), and nullability; INTEGRITY & CASCADE - only the rules the diagram
+      table - every field with its logical type, constraints (identifier/required/
+      unique/range/format), and nullability - mark the identifying field(s)
+      `identifier` (composite: mark each), and keep foreign-key fields out: the
+      relationship line owns the link, its store realization lives in stores; INTEGRITY & CASCADE - only the rules the diagram
       cannot carry (cascade intent, conditional integrity); and RETENTION & PII -
       the classification and
       retention window per entity or field group, citing the requirements invariant it

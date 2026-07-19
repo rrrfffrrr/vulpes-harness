@@ -1,9 +1,9 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
-# Operational scenarios - domain index
+# Operational scenarios
 
 <!-- This file lives at scenarios/index.md.
      Index ONLY - every scenario lives in a per-domain file (scenarios/<domain>.md).
@@ -22,11 +22,11 @@ document-version: 0
 
 ````markdown
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
-# Operational scenarios - `<domain>`
+# `<domain>` operational scenarios
 
 ## Events
 

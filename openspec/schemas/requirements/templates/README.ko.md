@@ -1,4 +1,4 @@
-# 아티팩트 읽는 법 - requirements
+# requirements 아티팩트 읽는 법
 
 [English](README.md) | [한국어](README.ko.md)
 

@@ -8,6 +8,13 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 
 - Start each sentence on its own line.
   Break long sentences after clause boundaries (`,` `;` `:`).
+
+  ```markdown
+  The gateway rejects an expired token with `401 Unauthorized`.
+  If the client then retries with a refreshed token,
+  the gateway accepts the request and renews the session.
+  ```
+
 - A line break MUST NOT change the rendered output ([SemBr](https://sembr.org/)).
 - Multi-sentence list items break into continuation lines (indented under the item); blockquotes continue with a `>` line.
 - Where a literal line break is impossible - table cells, headings, inside a link or code span - keep to one short sentence or fragment instead.
@@ -28,7 +35,8 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 - Front-load keywords: the first two words of a heading, list item, or table cell carry the meaning.
 - Lists for parallel facts, tables for enumerable facts; prose only where reasoning is needed.
 - Headings are sentence case, descriptive, and unique within the document.
-  A heading names its subject; never a teaser.
+  A heading names its subject; never a teaser, never a `Subject - explainer` suffix.
+  A qualifier leads the heading (`<domain> runtime sequences`); the explanation opens the section body.
 - Keep paragraphs short; more than ~5 sentences is usually two paragraphs.
 
 ## Tables
@@ -36,6 +44,9 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 - A table is a relation: one column per kind of fact, one value per cell (first normal form).
 - Never pack a second fact into a cell with brackets or separators - `POST /orders`, not `POST /orders [paginated]`;
   a second fact gets its own column.
+- Judge packing by category, not separators: a column is a category of fact, and a value is atomic relative to its category.
+  A compound identifier (`G1.2`, `POST /orders`, `operation - criterion`) is one value in one category;
+  a column splits only when two categories share it (`Data set / state`).
 - A cell that wants a list marks a one-to-many link: repeat the row per value, as a database table would.
 - A plural column heading (`Component(s)`) signals a packed cell: name the column singular and repeat rows.
 - Keep cell text brief (ideally one line) and entries within a column parallel (all nouns, or all verb-first).
@@ -46,6 +57,11 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 - Never rotate synonyms for the same thing; synonyms break search.
 - Expand an acronym at first use - "long form (ACRONYM)" - and don't introduce an acronym used only once.
 - Define a term once (glossary or first use) and use that exact form afterwards.
+
+## Requirement keywords
+
+- MUST, SHOULD, MAY and their NOT forms carry [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) force; only the UPPERCASE forms are normative ([RFC 8174](https://www.rfc-editor.org/rfc/rfc8174)).
+- SHOULD is deferrable, never dismissible: skip one only for a weighed, recorded reason, and an unapplied SHOULD stays due - it does not expire with time or versions.
 
 ## Findability
 
@@ -66,7 +82,7 @@ These rules govern prose; diagram rules live in `diagrams.md`.
 
 ## References
 
-Verified 2026-07-15; Tables entries verified 2026-07-18.
+Verified 2026-07-15; Tables entries verified 2026-07-18; Requirement keywords entries verified 2026-07-18.
 
 - Semantic Line Breaks: <https://sembr.org/>
 - ISO 24495-1:2023 Plain language - governing principles: <https://www.iso.org/standard/78907.html>
@@ -75,5 +91,7 @@ Verified 2026-07-15; Tables entries verified 2026-07-18.
 - NN/g reading research: [How Users Read on the Web, 1997](https://www.nngroup.com/articles/how-users-read-on-the-web/) - [F-shaped pattern, 2017 update](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) - [Inverted Pyramid, 2018](https://www.nngroup.com/articles/inverted-pyramid/) - [First 2 Words, 2009](https://www.nngroup.com/articles/first-2-words-a-signal-for-scanning/)
 - GOV.UK clear titles (search-term-first): <https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-titles/>
 - ISO 8601-1:2019 date/time format: <https://www.iso.org/standard/70907.html>
+- RFC 2119 Key words for use in RFCs to Indicate Requirement Levels (BCP 14): <https://www.rfc-editor.org/rfc/rfc2119>
+- RFC 8174 Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words (BCP 14): <https://www.rfc-editor.org/rfc/rfc8174>
 - E. F. Codd, A Relational Model of Data for Large Shared Data Banks, CACM 13(6) 1970 (first normal form): <https://dl.acm.org/doi/10.1145/362384.362685>
 - Microsoft Writing Style Guide - Tables (brief, parallel cell entries): <https://learn.microsoft.com/en-us/style-guide/scannable-content/tables>

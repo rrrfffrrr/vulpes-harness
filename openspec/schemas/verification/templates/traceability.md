@@ -1,12 +1,12 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
 # Verification traceability matrix
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
-     One value per cell - repeat the row per additional surface/need link (WRITING-STYLE tables rule).
+     One value per cell - repeat the row per additional surface/need link (rules/writing.md tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 

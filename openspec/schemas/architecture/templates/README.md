@@ -1,4 +1,4 @@
-# How to read these artifacts - architecture
+# How to read the architecture artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

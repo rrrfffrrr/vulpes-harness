@@ -24,7 +24,7 @@ Creates `openspec/` and the base commands for each tool listed.
 Get the harness from <https://github.com/rrrfffrrr/vulpes-harness> and copy these into your project at the same paths:
 
 - `openspec/schemas/requirements/`, `openspec/schemas/gdd/`, `openspec/schemas/architecture/`, `openspec/schemas/backend/`, `openspec/schemas/frontend/`, `openspec/schemas/persistence/`, `openspec/schemas/ml/`, `openspec/schemas/game-ui/`, `openspec/schemas/verification/`
-- `openspec/rules/`  (writing, diagram, and structure rules for the schemas)
+- `openspec/rules/`  (writing, diagram, and structure rules for the schemas, with their `CHANGES.md`)
 - `openspec/AGENTS.md` and `openspec/CLAUDE.md`  (agent guide to the openspec folder; CLAUDE.md just imports AGENTS.md)
 - `.claude/commands/opsx/require.md`, `gdd.md`, `architect.md`, `backend.md`, `frontend.md`, `persistence.md`, `ml.md`, `game-ui.md`, `verification.md`  (Claude)
 - `.codex/skills/opsx-require/`, `opsx-gdd/`, `opsx-architect/`, `opsx-backend/`, `opsx-frontend/`, `opsx-persistence/`, `opsx-ml/`, `opsx-game-ui/`, `opsx-verification/`  (Codex)
@@ -36,6 +36,7 @@ Exception - `openspec/AGENTS.md` and `openspec/CLAUDE.md` are not a blind `cp` w
 
 - `AGENTS.md`: add or replace only the `# vulpes-harness` h1 section.
   Every other h1 section is project-owned - keep them as-is.
+  Add the leading HTML comment (the ownership note above the first h1) if the file doesn't have it.
 - `CLAUDE.md`: make sure the `@AGENTS.md` import line is present; keep the rest of the file.
 
 ## 3. Verify
@@ -46,6 +47,7 @@ openspec schema validate gdd     # Schema 'gdd' is valid
 ```
 
 If a schema is missing, redo the copy in step 2.
+Check that the `Harness version` line in `openspec/AGENTS.md` matches `metadata.version` in `openspec/schemas/*/schema.yaml` - a mismatch means the copy skipped that file.
 
 ## Updating an installed harness
 
@@ -57,7 +59,8 @@ Updates REPLACE each unit whole instead of copying over it - an overlay copy lea
      Updating from 1.1.x: also delete the old root-level `openspec/WRITING-STYLE.md` and `openspec/DIAGRAM-STYLE.md` - they moved into `openspec/rules/`.
    - `.claude/commands/opsx/*.md`, `.codex/skills/opsx-*/`, `openspec/CLAUDE.md` - overwrite with the new files.
    - `openspec/AGENTS.md` - replace only the `# vulpes-harness` section (the exception above).
-2. Read each schema's `CHANGES.md` for what changed between your version and the new one.
+     Updating from 1.2.0 or earlier: also replace the leading HTML comment - it carried a version stamp; the version now lives on the `Harness version` line inside the section.
+2. Read each schema's `CHANGES.md` and `openspec/rules/CHANGES.md` for what changed between your version and the new one.
 3. Existing documents migrate on next use: the next run of each `/opsx:*` command applies the pending Migration sections in order.
    To migrate immediately, ask your agent to apply them now.
    Migrations run from a clean git working tree and land as their own commit - git is the backup and the migration history.

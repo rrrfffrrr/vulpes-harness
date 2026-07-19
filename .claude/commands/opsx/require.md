@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Require"
-version: "1.2.0"
+version: "1.2.1"
 description: Specify the requirements for a change using KAOS/GORE + BABOK - business requirements, goal/object/responsibility/operation models, domain-split operational scenarios, synthesized requirements document, traceability. No implementation.
 category: Workflow
 tags: [workflow, require, babok, kaos, gore, experimental]

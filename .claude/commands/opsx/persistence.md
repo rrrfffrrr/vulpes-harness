@@ -1,6 +1,6 @@
 ---
 name: "OPSX: Persistence"
-version: "1.2.0"
+version: "1.2.1"
 description: Persistence detail design from an architecture change - store-level data design, access patterns, migrations. No implementation.
 category: Workflow
 tags: [workflow, persistence, database, detail-design, experimental]

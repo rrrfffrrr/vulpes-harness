@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -51,8 +51,8 @@ document-version: 0
 | Reader | Start with | Then |
 |--------|-----------|------|
 | Designer | components.md | screens.md |
-| UI engineer | screens.md | flows.md |
-| QA | flows.md | traceability.md |
+| UI engineer | screens.md | flows/index.md |
+| QA | flows/index.md | traceability.md |
 
 ## Conditional artifacts included
 

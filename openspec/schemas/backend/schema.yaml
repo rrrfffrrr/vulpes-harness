@@ -1,7 +1,7 @@
 name: backend
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Backend detail design - no implementation/apply step. Builds on an architecture change: exact per-interface contracts one level below the architecture views. Methodology: OpenAPI 3.2 + JSON Schema 2020-12 endpoint contracts under RFC 9110 HTTP semantics, RFC 9457 problem-details errors, RFC 9111 response caching, BCP 14 (RFC 2119/8174) requirement keywords, UML 2.5.1 sequence semantics, C4 Component-level middleware/component inventory, and a traceability matrix back to requirements operations and architecture components. Event, webhook, job, and configuration sections are CONDITIONAL (AsyncAPI 3.1 / CloudEvents / Standard Webhooks / Spring Batch + Jakarta Batch job vocabulary with Kubernetes CronJob overlap terms / 12-factor III configuration catalog), created only when the system has that concern. Sequence coverage is exhaustive via trigger closure (event partitioning, McMenamin & Palmer, applied to the interface catalogs): every state-changing endpoint, consumed channel, and job is shown in a flow or explicitly single-component."
 # Authoring principles (all artifacts):
 #  - This is INTERFACE-LEVEL detail design, one level below architecture. Architecture answered
@@ -124,12 +124,13 @@ artifacts:
       - components
 
   - id: sequences
-    generates: sequences.md
+    generates: sequences/index.md
     description: >-
       Runtime sequences inside the backend boundary: middleware stages, components, and
       stores from components.md, including error/retry paths on critical flows. The
       client is at most a boundary lifeline. UML 2.5.1 Interaction semantics rendered
-      per DIAGRAM-STYLE.
+      per openspec/rules/diagrams.md. sequences/index.md is the domain index; each domain's
+      sequences/<domain>.md holds the flows.
     template: sequences.md
     instruction: |
       Diagram the backend-internal runtime flows that involve more than one component -
@@ -155,6 +156,9 @@ artifacts:
       relative to the write), and multi-component job runs (jobs.md) whose failure or
       restart behavior matters. Do not diagram single-component request handling - the
       middleware pipeline in components.md already covers it.
+      sequences/index.md is the INDEX only (domain -> file -> one-line scope); every
+      flow lives in a per-domain file sequences/<domain>.md - domains mirror the
+      requirements scenarios domains where they exist, system seams otherwise.
     requires:
       - components
       - endpoints
@@ -195,7 +199,7 @@ artifacts:
       consumer verifies, timeout, the retry/backoff schedule, and what makes delivery
       count as failed/exhausted; and RECEIVER REQUIREMENTS - what a consumer endpoint MUST
       do (status to return, verification steps, idempotent handling of redelivery).
-      Reference the events.md channel or sequences.md flow that triggers each type where
+      Reference the events.md channel or sequences/<domain>.md flow that triggers each type where
       one exists. Omit this artifact entirely if the system sends no outbound callbacks.
     requires:
       - conventions

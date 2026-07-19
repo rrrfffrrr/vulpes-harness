@@ -1,7 +1,7 @@
 name: frontend
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Frontend (application UI) detail design for web, mobile, and desktop apps - no implementation/apply step. Builds on an architecture change: the implementable UI specification one level below architecture. Methodology: OMG IFML 1.0 interaction-flow semantics, Harel statecharts as formalized in UML 2.5.1 state machines, NN/g wireflows for screen+navigation, Atomic Design component hierarchy with Open UI-style anatomy and WAI-ARIA APG behavior, Scott Hurff's five-state UI Stack per screen, breakpoint-based adaptive layout, WCAG 2.2 accessibility, and a traceability matrix back to requirements and architecture. Design tokens (DTCG) and the client data layer (RFC 9111 + RFC 5861 freshness vocabulary, invalidation map, optimistic updates) are CONDITIONAL, created only when the concern exists. Flows are covered exhaustively via event partitioning (McMenamin & Palmer, Essential Systems Analysis): per screen, user events plus arriving events (push, deep link, connectivity), temporal events (timers, expiry, polling), and data events. Conditional sections: URL routes in flows (when the platform addresses screens by URL/deep link), API call sequences in flows (client-perspective UML sequence diagrams, when a flow drives backend calls whose order or failure behavior matters), and the localization policy in overview with per-component text budgets (IGDA Localization SIG expansion budgets, Unicode CLDR locale formats) when the product ships more than one locale."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE UI SPEC for application UIs (web, mobile, desktop), one level
@@ -133,11 +133,12 @@ artifacts:
       - components
 
   - id: flows
-    generates: flows.md
+    generates: flows/index.md
     description: >-
       How the UI moves: the wireflow navigation map, event->transition tables (IFML
       semantics), client-perspective API call sequences where a flow drives backend
-      calls, and statecharts for complex stateful interactions.
+      calls, and statecharts for complex stateful interactions. flows/index.md is
+      the domain index; each domain's flows/<domain>.md holds its flows.
     template: flows.md
     instruction: |
       Specify navigation and interaction flow. Cover: the NAVIGATION MAP - a wireflow
@@ -176,6 +177,9 @@ artifacts:
       interactions, connection-dependent UI) - simple open/close needs no statechart.
       Every flow traces to the requirements operation or goal it realizes, by name.
       Diagrams per openspec/rules/diagrams.md.
+      flows/index.md is the INDEX only (domain -> file -> one-line scope); every
+      flow lives in a per-domain file flows/<domain>.md (a domain = a user journey
+      or feature area); cross-domain edges name the target screen and its domain.
     requires:
       - screens
 

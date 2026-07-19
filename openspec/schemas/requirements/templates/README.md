@@ -1,4 +1,4 @@
-# How to read these artifacts - requirements
+# How to read the requirements artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

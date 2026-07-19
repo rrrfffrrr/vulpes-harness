@@ -1,4 +1,4 @@
-# How to read these artifacts - gdd
+# How to read the gdd artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

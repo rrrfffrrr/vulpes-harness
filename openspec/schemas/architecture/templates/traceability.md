@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- BABOK RTM for the requirements->architecture link.
      All design linking lives here, not in view prose.
-     One value per cell - repeat the row per additional view/ADR link (WRITING-STYLE tables rule).
+     One value per cell - repeat the row per additional view/ADR link (rules/writing.md tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 

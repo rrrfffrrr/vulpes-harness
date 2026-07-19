@@ -1,7 +1,7 @@
 name: requirements
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "KAOS goal-oriented planning (semi-formal) under a BABOK structure. Raw business requirements drive four KAOS models (goal, object, agent/responsibility, operation); domain-split operational scenarios (ISO/IEC/IEEE 29148 operational scenarios information item, KAOS behavior scenarios, BABOK v3 10.42 Sequence Diagrams / 10.47 Use Cases and Scenarios) show which agent or schedule triggers which operations in what order, covered exhaustively via event partitioning (McMenamin & Palmer, Essential Systems Analysis) with Cockburn-style extension sweeps (Writing Effective Use Cases); the requirements document is the single sanctioned synthesis of those models; a separate traceability matrix links everything. No implementation/apply step."
 # Authoring principles (all artifacts):
 #  - Cover every distinct, relevant item exhaustively. Detail = breadth/depth of distinct

@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -7,7 +7,7 @@ document-version: 0
 
 <!-- All cross-artifact linking lives here, not in artifact prose.
      Include the dataset column only when data.md exists.
-     One value per cell - repeat the row per additional consumer/gate link (WRITING-STYLE tables rule).
+     One value per cell - repeat the row per additional consumer/gate link (rules/writing.md tables rule).
      Replace every example row.
      Delete guidance comments when done. -->
 

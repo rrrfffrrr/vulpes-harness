@@ -1,7 +1,7 @@
 name: game-ui
 version: 1
 metadata:
-  version: "1.2.0"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
+  version: "1.2.1"   # harness release version - templates' schema-version frontmatter mirrors this; bump together
 description: "Game UI detail design for PC, console, mobile, and handheld games - no implementation/apply step. Builds on an architecture change and the GDD: the implementable game-UI specification one level below both. Methodology: the Fagerholt & Lorentzon diegesis/spatiality UI-layer design space (Chalmers 2009) with Andrews' diegetic/non-diegetic/spatial/meta terms (2010), Game UI Database screen-type vocabulary, SMPTE ST 2046-1 safe areas with platform legibility floors (Xbox Accessibility Guidelines 101, Steam Deck compatibility criteria), an action-based input model (Steam Input action sets/layers), Game Accessibility Guidelines + Xbox Accessibility Guidelines v3.2 accessibility, Pinelle 2008 game-usability heuristics as quality criteria, IGDA Localization SIG text-expansion budgets, and UML 2.5.1 state machines + wireflows shared with the rest of the harness. Design tokens (DTCG) are CONDITIONAL, created only when styling is token-based."
 # Authoring principles (all artifacts):
 #  - This is the IMPLEMENTABLE GAME-UI SPEC, one level below architecture and the GDD.
@@ -173,10 +173,11 @@ artifacts:
       - widgets
 
   - id: flows
-    generates: flows.md
+    generates: flows/index.md
     description: >-
       How the game UI moves: boot flow, the wireflow navigation map covering every screen,
       pause/modal stack conventions, and statecharts for complex stateful interactions.
+      flows/index.md is the domain index; each domain's flows/<domain>.md holds its flows.
     template: flows.md
     instruction: |
       Specify navigation and interaction flow. Cover: the BOOT FLOW - from launch through
@@ -193,6 +194,10 @@ artifacts:
       Animated transitions reference motion tokens by name when design-tokens exists.
       Every flow traces to the GDD section or requirements operation it realizes, by name.
       Diagrams per openspec/rules/diagrams.md.
+      flows/index.md is the INDEX only (domain -> file -> one-line scope); every
+      flow lives in a per-domain file flows/<domain>.md (a domain = a flow area:
+      boot, gameplay, meta menus, settings); cross-domain edges name the target
+      screen and its domain.
     requires:
       - screens
 
@@ -216,7 +221,7 @@ artifacts:
       appears, disconnects, or changes mid-session (pause on disconnect, glyph refresh,
       reconnection prompt); MENU NAVIGATION MODEL - how gamepad focus moves through menus
       (cardinal navigation, wrap rules, initial focus, back/cancel semantics shared with
-      flows.md); and HAPTICS - per-context haptic feedback and its settings hooks, when
+      flows/); and HAPTICS - per-context haptic feedback and its settings hooks, when
       the platform has them.
       Sensitivity/curve options, toggle-vs-hold alternatives, and assist options appear
       here by settings.md option name - defined once in settings.
@@ -244,7 +249,7 @@ artifacts:
       subtitle options, contrast/colorblind variants, motion reduction, full input
       remapping, separate volume channels, and the game's difficulty/assist options
       (assist design is game-specific - trace it to the GDD, don't invent it here).
-      Note FIRST-BOOT exposure: which options the first-boot setup (flows.md) surfaces
+      Note FIRST-BOOT exposure: which options the first-boot setup (flows/) surfaces
       before play begins.
     requires:
       - hud

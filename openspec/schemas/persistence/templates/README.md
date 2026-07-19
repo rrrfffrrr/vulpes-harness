@@ -1,4 +1,4 @@
-# How to read these artifacts - persistence
+# How to read the persistence artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

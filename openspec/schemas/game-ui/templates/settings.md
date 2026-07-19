@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -56,5 +56,5 @@ document-version: 0
 
 ## First-boot exposure
 
-<!-- Which options the first-boot setup (flows.md) surfaces before play begins. -->
+<!-- Which options the first-boot setup (flows/) surfaces before play begins. -->
 - `<option names>`

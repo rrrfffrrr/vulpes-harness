@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -14,7 +14,7 @@ document-version: 0
 ## Business requirement -> goals
 
 <!-- Constraint/decision BRs that yield no leaf goal are traced here as rationale.
-     One value per cell - a BR deriving several goals repeats the row per goal (WRITING-STYLE tables rule). -->
+     One value per cell - a BR deriving several goals repeats the row per goal (rules/writing.md tables rule). -->
 | BR | Goal | Kind | Rationale |
 |----|------|------|-----------|
 | `<BR1>` | `<goal id>` | derive | `<why>` |

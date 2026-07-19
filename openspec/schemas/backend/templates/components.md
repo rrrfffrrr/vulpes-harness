@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -32,6 +32,6 @@ document-version: 0
 
 <!-- Which component owns which domain concept.
      Bounded-context vocabulary where it helps. -->
-| Domain concept | Owning component | Notes |
-|----------------|------------------|-------|
+| Domain concept | Owning component | Invariants guarded |
+|----------------|------------------|--------------------|
 | `<concept>` | `<component>` | `<invariants it guards>` |
