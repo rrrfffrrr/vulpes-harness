@@ -1,19 +1,42 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
 # Flows
 
-<!-- Navigation map covers EVERY screen in screens.md.
-     Statecharts only for non-trivial internal state.
-     Diagrams per openspec/rules/diagrams.md.
-     Replace every `<...>` placeholder and example row, dropping the backticks unless the value is a literal.
+<!-- This file lives at flows/index.md.
+     Index ONLY - every flow lives in a per-domain file (flows/<domain>.md).
+     A domain = a flow area: boot, gameplay, meta menus, settings.
+     Replace every `<...>` placeholder; repeat the row per domain.
      Delete guidance comments when done. -->
+
+| Domain | File | Scope |
+|--------|------|-------|
+| `<domain>` | `<domain>.md` | `<one-line scope>` |
+
+## Per-domain file skeleton
+
+<!-- Copy the block below (without the outer fence) into each flows/<domain>.md,
+     keep each section scoped to the domain, then delete this section from the index. -->
+
+````markdown
+---
+schema-version: 1.2.1
+document-version: 0
+---
+
+# `<domain>` flows
+
+<!-- The domain navigation maps jointly cover EVERY screen in screens.md;
+     cross-domain edges name the target screen and its domain.
+     Statecharts only for non-trivial internal state.
+     Diagrams per openspec/rules/diagrams.md. -->
 
 ## Boot flow
 
-<!-- Launch -> legal/compliance placeholders (platform cert content is a project input)
+<!-- Only in the boot domain's file.
+     Launch -> legal/compliance placeholders (platform cert content is a project input)
      -> title -> first-boot setup -> main menu. -->
 ```mermaid
 flowchart LR
@@ -25,7 +48,7 @@ flowchart LR
 
 ## Navigation map
 
-<!-- Wireflow: screens as nodes, player events as labeled edges.
+<!-- Wireflow: this domain's screens as nodes, player events as labeled edges.
      Include gameplay <-> pause and menu -> gameplay returns. -->
 ```mermaid
 flowchart LR
@@ -34,6 +57,9 @@ flowchart LR
 ```
 
 ## Modal & pause conventions
+
+<!-- Stated once, in the domain that owns the pause/modal stack (typically gameplay);
+     other domains reference it. -->
 
 - Pause: `<what suspends gameplay; single/multiplayer difference>`
 - Modal stack: `<what dismisses what; back/cancel semantics (shared with input.md)>`
@@ -64,3 +90,4 @@ stateDiagram-v2
   [*] --> StateA
   StateA --> StateB: event [guard]
 ```
+````

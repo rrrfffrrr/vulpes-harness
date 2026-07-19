@@ -1,15 +1,36 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
 # Acceptance scenarios
 
+<!-- This file lives at scenarios/index.md.
+     Index ONLY - every scenario lives in a per-domain file (scenarios/<domain>.md).
+     Domains mirror the requirements scenarios domains.
+     Replace every `<...>` placeholder; repeat the row per domain.
+     Delete guidance comments when done. -->
+
+| Domain | File | Scope |
+|--------|------|-------|
+| `<domain>` | `<domain>.md` | `<one-line scope>` |
+
+## Per-domain file skeleton
+
+<!-- Copy the block below (without the outer fence) into each scenarios/<domain>.md,
+     repeat the scenario block per scenario, then delete this section from the index. -->
+
+````markdown
+---
+schema-version: 1.2.1
+document-version: 0
+---
+
+# `<domain>` acceptance scenarios
+
 <!-- Cross-layer journeys, grouped by requirements operation.
      Each realizes named acceptance criteria; surfaces by reference, contracts never restated.
-     Gherkin, 3-5 steps, concrete example values.
-     Replace every `<...>` placeholder; repeat the scenario block per scenario.
-     Delete guidance comments when done. -->
+     Gherkin, 3-5 steps, concrete example values. -->
 
 ## Operation: `<name>`
 
@@ -23,3 +44,4 @@ Given <context with concrete example values>
 When <the action>
 Then <the observable outcome>
 ```
+````

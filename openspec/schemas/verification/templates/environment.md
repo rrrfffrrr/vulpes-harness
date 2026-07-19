@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -12,14 +12,15 @@ document-version: 0
 
 ## Test data requirements
 
-| Scenario group | Data set / state | Notes |
-|----------------|------------------|-------|
-| `<operation/group>` | `<what must exist, concrete shape>` | `<reset/isolation needs>` |
+| Scenario group | Data set | State | Resetting |
+|----------------|----------|-------|-----------|
+| `<operation/group>` | `<records that must exist, concrete shape>` | `<condition those records are in>` | `<how runs stay isolated: reset steps, or fresh data per run>` |
 
 - **Personal data**: `<synthetic data policy; honoring persistence retention/PII classes when present>`
 
 ## Test environment requirements
 
-- **Real vs stubbed**: `<components/stores that must be real; external systems stubbed (payment, webhook receivers, ...)>`
+- **Real components**: `<components/stores that must be real>`
+- **Stubbed systems**: `<external systems stubbed (payment, webhook receivers, ...)>`
 - **Device / platform coverage**: `<from the frontend or game-ui overview, by reference>`
 - **Clock/time control**: `<needed for jobs/retention scenarios, or none>`

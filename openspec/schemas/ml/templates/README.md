@@ -1,4 +1,4 @@
-# How to read these artifacts - ml
+# How to read the ml artifacts
 
 [English](README.md) | [한국어](README.ko.md)
 

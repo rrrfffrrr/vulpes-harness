@@ -1,5 +1,5 @@
 ---
-schema-version: 1.2.0
+schema-version: 1.2.1
 document-version: 0
 ---
 
@@ -36,7 +36,7 @@ document-version: 0
 | Reader | Start with | Then |
 |--------|-----------|------|
 | API consumer | conventions.md | endpoints.md |
-| Backend engineer | components.md | sequences.md |
+| Backend engineer | components.md | sequences/index.md |
 | QA | endpoints.md | traceability.md |
 
 ## Conditional artifacts included
