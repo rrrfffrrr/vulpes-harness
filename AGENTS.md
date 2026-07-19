@@ -10,7 +10,7 @@ There is no build or test suite; verification is `openspec schema validate` plus
 - `.claude/commands/opsx/` : Claude slash commands (require / gdd / architect / backend / frontend / persistence / ml / game-ui / verification)
 - `.codex/skills/opsx-*/` : Codex mirrors of the commands - bodies must stay identical below the frontmatter
 - `openspec/AGENTS.md`, `openspec/CLAUDE.md` : the agent guide INSTALLED into target projects (different audience from this file)
-- `openspec/rules/` : rules for generated artifacts - `writing.md` (prose, reader-first), `diagrams.md`, `structure.md` (boundary, place, growth, naming, index)
+- `openspec/rules/` : rules for generated artifacts - `writing.md` (prose, reader-first), `diagrams.md`, `structure.md` (boundary, place, growth, naming, index), `CHANGES.md` (Keep a Changelog)
 - `INSTALLATION.md` : copy-based install procedure
 - `README.md` / `README.ko.md` : user docs (change together)
 - `assets/workflow.svg`, `assets/workflow-game.svg` : pipeline diagrams (app / game)
@@ -20,7 +20,7 @@ There is no build or test suite; verification is `openspec schema validate` plus
 Breaking one of these breaks installed projects - check before committing.
 
 - **Command/skill parity**: a Claude command body and its Codex skill body are identical below the frontmatter. Edit one -> apply the same edit to the other -> run the parity check below.
-- **Version lockstep**: the harness release semver moves together in `schema.yaml` `metadata.version`, command/skill frontmatter `version`, and every template's `schema-version` frontmatter. Record what changed in that schema's `CHANGES.md` - installed projects have no git history of this repo, so CHANGES.md is their only migration guide.
+- **Version lockstep**: the harness release semver moves together in `schema.yaml` `metadata.version`, command/skill frontmatter `version`, every template's `schema-version` frontmatter, and the pre-named unreleased section of `openspec/rules/CHANGES.md`. Record what changed in that schema's `CHANGES.md` (rule changes: `openspec/rules/CHANGES.md`) - installed projects have no git history of this repo, so CHANGES.md is their only migration guide.
 - **Artifact naming**: plain names (`overview.md`, `traceability.md`) - the change folder namespaces artifacts; no schema-name prefixes.
 - **Reading guides** (`templates/README(.ko).md`) are copied verbatim, name-preserving, into change folders - keep wording location-neutral so it reads correctly in both places.
 - **English/Korean sync**: root `README.md` <-> `README.ko.md` and per-schema `templates/README.md` <-> `README.ko.md` change together.
@@ -55,7 +55,7 @@ Breaking one of these breaks installed projects - check before committing.
 | `hotfix/<name>` | Production bugs. Branch from `main` → merge to `main` + `develop` (+ active `release`). | — |
 
 - Commit messages follow Conventional Commits 1.0.0 (conventionalcommits.org): `feat:` / `fix:` / `refactor:` / `docs:` / `chore:`.
-- Per-schema `CHANGES.md` follows Keep a Changelog with one deliberate deviation: the unreleased section is pre-named `## [x.y.z] - Unreleased` (not `## [Unreleased]`), because the version-lockstep invariant pre-assigns the release version across schema metadata and template frontmatter.
+- Per-schema `CHANGES.md` and `openspec/rules/CHANGES.md` follow Keep a Changelog with one deliberate deviation: the unreleased section is pre-named `## [x.y.z] - Unreleased` (not `## [Unreleased]`), because the version-lockstep invariant pre-assigns the release version across schema metadata and template frontmatter.
 - A CBT/review install is a versioning event: once a release-branch snapshot has been installed anywhere, later fixes on that release bump the PATCH version (new pre-named unreleased section, full version lockstep) instead of folding into the installed number.
   Folding breaks migration: documents authored against the snapshot carry the same `schema-version` as the final schema, so the version comparison can never trigger the Migration sections those documents need.
   (Learned in 1.2.0 CBT - its snapshot documents need the 1.2.0 Migration sections applied manually, by instruction, not by comparison.)
