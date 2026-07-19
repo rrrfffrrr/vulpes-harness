@@ -7,7 +7,7 @@ A version without a Migration section needs no document rework.
 `schema-version` records MUST items only; SHOULD items follow the Requirement keywords rule in `openspec/rules/writing.md` - deferrable, never dismissible.
 On every migration, re-check every version's SHOULD items - including versions at or below the artifact's `schema-version` - and apply any still due.
 
-## [1.2.1] - Unreleased
+## [1.2.1] - 2026-07-19
 
 ### Changed
 

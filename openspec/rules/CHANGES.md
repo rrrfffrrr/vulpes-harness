@@ -4,7 +4,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow the harness release version; the folder is replaced whole on update, so this file is the installed copy's version marker.
 Document rework a rule change requires is recorded as a Migration section in each affected schema's `CHANGES.md` - never here.
 
-## [1.2.1] - Unreleased
+## [1.2.1] - 2026-07-19
 
 ### Added
 
